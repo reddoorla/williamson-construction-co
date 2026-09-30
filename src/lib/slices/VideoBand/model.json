@@ -1,0 +1,45 @@
+{
+  "id": "video_band",
+  "type": "SharedSlice",
+  "name": "VideoBand",
+  "description": "VideoBand",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A full-width looping background video",
+      "imageUrl": "",
+      "primary": {
+        "poster": {
+          "type": "Image",
+          "config": {
+            "label": "poster",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "video_mp4": {
+          "type": "Link",
+          "config": {
+            "label": "video (mp4)",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
+        },
+        "video_webm": {
+          "type": "Link",
+          "config": {
+            "label": "video (webm)",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

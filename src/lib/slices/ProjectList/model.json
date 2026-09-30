@@ -1,0 +1,35 @@
+{
+  "id": "project_list",
+  "type": "SharedSlice",
+  "name": "ProjectList",
+  "description": "ProjectList",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Project cards: photo, name, scope of work and a link. Lists every project when none is chosen",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "project": {
+          "type": "Link",
+          "config": {
+            "label": "project",
+            "select": "document",
+            "customtypes": ["project"]
+          }
+        }
+      }
+    }
+  ]
+}

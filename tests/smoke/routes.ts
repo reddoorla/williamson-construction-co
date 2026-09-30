@@ -52,16 +52,36 @@ if (
   );
 }
 
-export const smokeRoutes: SmokeRoute[] = [
+const SITE_PATHS: Array<[string, string]> = [
+  ["/", "home"],
+  ["/services", "services"],
+  ["/about-us", "about us"],
+  ["/projects", "projects"],
+  ["/contact", "contact"],
+  ["/join-the-team", "join the team"],
+  ["/projects/cedars-sinai-beverly-hills", "project: Cedars-Sinai, Beverly Hills"],
+  [
+    "/projects/cedars-sinai-pro-building-cooling-tower-refurbishment",
+    "project: Cedars-Sinai Cooling Tower Refurbishment",
+  ],
+  ["/projects/mbm-hospitality", "project: MBM Hospitality"],
+  ["/projects/providence-express-care", "project: Providence Express Care"],
+  [
+    "/projects/providence-hospital-little-company-of-mary",
+    "project: Providence Hospital, Little Company of Mary",
+  ],
+  ["/projects/providence-saint-johns", "project: Providence Saint John's"],
+  ["/projects/torrance-high-school", "project: Torrance High School"],
+  ["/projects/west-high-school", "project: West High School"],
+];
+
+export const smokeRoutes: SmokeRoute[] = SITE_PATHS.map(([path, name]) =>
   isPlaceholderRepo
-    ? // Bare starter: home intentionally 404s until Prismic is wired (see the
-      // NOTE above). Surface that in the test title so a green run can't be
-      // mistaken for a wired-up 200.
-      {
-        path: "/",
-        name: "home — placeholder repo, expecting 404",
+    ? {
+        path,
+        name: `${name} — placeholder repo, expecting 404`,
         hydrationMarker: "footer",
         expectStatus: 404,
       }
-    : { path: "/", name: "home", hydrationMarker: "footer" },
-];
+    : { path, name, hydrationMarker: "footer" },
+);

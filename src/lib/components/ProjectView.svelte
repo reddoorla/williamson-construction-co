@@ -1,0 +1,70 @@
+<script lang="ts">
+  import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
+  import { isFilled } from "@prismicio/client";
+  import TitlePanel from "$lib/components/TitlePanel.svelte";
+  import { vimeoEmbedUrl } from "$lib/vimeo-url";
+  import type { ProjectDocument } from "../../prismicio-types";
+
+  type Props = { project: ProjectDocument };
+
+  let { project }: Props = $props();
+
+  const gallery = $derived(project.data.gallery.filter((item) => isFilled.image(item.image)));
+  const video = $derived(vimeoEmbedUrl(project.data.vimeo_url));
+</script>
+
+<article data-project={project.uid}>
+  <TitlePanel>
+    {#snippet media()}
+      {#if isFilled.image(project.data.hero_image)}
+        <PrismicImage
+          field={project.data.hero_image}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+          imgixParams={{ w: 2400 }}
+          loading="eager"
+        />
+      {/if}
+    {/snippet}
+    {#snippet heading()}
+      <h1 class="wc-h1">{project.data.title}</h1>
+    {/snippet}
+    {#snippet aside()}
+      {#if isFilled.richText(project.data.scope)}
+        <h2 class="text-base font-bold">Scope of Work</h2>
+        <div class="wc-scope mt-2 text-base leading-7">
+          <PrismicRichText field={project.data.scope} />
+        </div>
+      {/if}
+    {/snippet}
+  </TitlePanel>
+
+  <section class="wc-shell my-16" aria-label="{project.data.title} gallery">
+    {#if video}
+      <div class="relative mb-16 aspect-video w-full">
+        <iframe
+          src={video}
+          title="{project.data.title} video"
+          class="absolute inset-0 h-full w-full"
+          allow="fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+    {/if}
+    {#if gallery.length > 0}
+      <ul class="flex flex-col gap-8">
+        {#each gallery as item, i (i)}
+          <li>
+            <PrismicImage
+              field={item.image}
+              fallbackAlt=""
+              class="block w-full"
+              imgixParams={{ w: 1600 }}
+              loading="lazy"
+            />
+          </li>
+        {/each}
+      </ul>
+    {/if}
+  </section>
+</article>

@@ -1,0 +1,94 @@
+{
+  "id": "page_hero",
+  "type": "SharedSlice",
+  "name": "PageHero",
+  "description": "PageHero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Opening band: a background video or photo with the blue title panel over its lower edge",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "background image (the video's poster when a video is set)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "video_mp4": {
+          "type": "Link",
+          "config": {
+            "label": "background video (mp4)",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
+        },
+        "video_webm": {
+          "type": "Link",
+          "config": {
+            "label": "background video (webm)",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
+        },
+        "heading_align": {
+          "type": "Select",
+          "config": {
+            "label": "heading alignment",
+            "options": ["left", "center"],
+            "default_value": "left"
+          }
+        }
+      },
+      "items": {
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "button label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "button link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "button_style": {
+          "type": "Select",
+          "config": {
+            "label": "button style",
+            "options": ["gold", "outline-light", "primary", "outline-primary", "white"],
+            "default_value": "gold"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "headline",
+  "type": "SharedSlice",
+  "name": "Headline",
+  "description": "Headline",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A centred heading, optionally in two lines",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": {
+            "label": "section id (for #links)",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "accent": {
+          "type": "Text",
+          "config": {
+            "label": "second line",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

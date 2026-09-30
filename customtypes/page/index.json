@@ -27,31 +27,64 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "lead_text": {
+            "page_hero": {
               "type": "SharedSlice"
             },
-            "text_columns": {
+            "headline": {
               "type": "SharedSlice"
             },
-            "accordion": {
+            "video_band": {
               "type": "SharedSlice"
             },
-            "rich_text": {
+            "sector_feature": {
               "type": "SharedSlice"
             },
-            "hero": {
+            "sector_cards": {
               "type": "SharedSlice"
             },
-            "media_text": {
+            "statement_band": {
               "type": "SharedSlice"
             },
-            "section_grid": {
+            "full_width_image": {
               "type": "SharedSlice"
             },
-            "testimonial": {
+            "quote_slider": {
               "type": "SharedSlice"
             },
-            "cta_banner": {
+            "client_logos": {
+              "type": "SharedSlice"
+            },
+            "our_plan": {
+              "type": "SharedSlice"
+            },
+            "cta_block": {
+              "type": "SharedSlice"
+            },
+            "lead_statement": {
+              "type": "SharedSlice"
+            },
+            "leadership": {
+              "type": "SharedSlice"
+            },
+            "phase_bubbles": {
+              "type": "SharedSlice"
+            },
+            "phase_slider": {
+              "type": "SharedSlice"
+            },
+            "phase_detail": {
+              "type": "SharedSlice"
+            },
+            "project_list": {
+              "type": "SharedSlice"
+            },
+            "contact_card": {
+              "type": "SharedSlice"
+            },
+            "employee_application": {
+              "type": "SharedSlice"
+            },
+            "intake_form": {
               "type": "SharedSlice"
             }
           }

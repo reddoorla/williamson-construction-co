@@ -1,0 +1,26 @@
+{
+  "id": "lead_statement",
+  "type": "SharedSlice",
+  "name": "LeadStatement",
+  "description": "LeadStatement",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A large light paragraph",
+      "imageUrl": "",
+      "primary": {
+        "body": {
+          "type": "Text",
+          "config": {
+            "label": "text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

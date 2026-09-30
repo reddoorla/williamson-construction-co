@@ -1,0 +1,33 @@
+{
+  "id": "intake_form",
+  "type": "SharedSlice",
+  "name": "IntakeForm",
+  "description": "IntakeForm",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "The trade-partner intake form. Its fields are fixed; this sets the words around it",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "success_message": {
+          "type": "Text",
+          "config": {
+            "label": "message after sending",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

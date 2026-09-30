@@ -47,4 +47,27 @@ describe("the template's Content-Security-Policy", () => {
     expect(source).toContain("SVELTE_EVENT_REPLAY_HASH");
     expect(source).not.toContain(SVELTE_EVENT_REPLAY_HASH);
   });
+
+  // The background videos are Prismic link-to-media files. Prismic hands them
+  // back on <repo>.cdn.prismic.io or on its S3 host; the seeded documents carry
+  // the S3 one. A host outside media-src blocks the video silently in
+  // production only (/dev/match serves them same-origin).
+  it("lets <video> load Prismic media from either host it is served on", () => {
+    const mediaSrc = config.kit?.csp?.directives?.["media-src"] ?? [];
+    const allows = (url: string) => {
+      const host = new URL(url).host;
+      return mediaSrc.some((source) => {
+        if (!source.startsWith("https://")) return false;
+        const pattern = source.slice("https://".length);
+        return pattern.startsWith("*.") ? host.endsWith(pattern.slice(1)) : host === pattern;
+      });
+    };
+    expect(
+      allows("https://prismic-io.s3.amazonaws.com/williamson-construction/abc_school_vid.mp4"),
+    ).toBe(true);
+    expect(
+      allows("https://williamson-construction.cdn.prismic.io/williamson-construction/abc.webm"),
+    ).toBe(true);
+    expect(allows("https://evil.example/williamson-construction/abc.mp4")).toBe(false);
+  });
 });

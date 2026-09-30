@@ -1,0 +1,59 @@
+{
+  "id": "cta_block",
+  "type": "SharedSlice",
+  "name": "CtaBlock",
+  "description": "CtaBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A large closing heading with buttons",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "size": {
+          "type": "Select",
+          "config": {
+            "label": "heading size",
+            "options": ["large", "medium"],
+            "default_value": "large"
+          }
+        }
+      },
+      "items": {
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "button label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "button link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "button_style": {
+          "type": "Select",
+          "config": {
+            "label": "button style",
+            "options": ["gold", "outline-light", "primary", "outline-primary", "white"],
+            "default_value": "gold"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "quote_slider",
+  "type": "SharedSlice",
+  "name": "QuoteSlider",
+  "description": "QuoteSlider",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Slides on a blue panel: a quote with attribution, or a gold headline with a line and a button",
+      "imageUrl": "",
+      "primary": {
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "panel background (optional)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "headline, first line",
+            "placeholder": ""
+          }
+        },
+        "accent": {
+          "type": "Text",
+          "config": {
+            "label": "headline, second line",
+            "placeholder": ""
+          }
+        },
+        "quote": {
+          "type": "Text",
+          "config": {
+            "label": "quote or line",
+            "placeholder": ""
+          }
+        },
+        "attribution": {
+          "type": "Text",
+          "config": {
+            "label": "attribution",
+            "placeholder": ""
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "button label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "button link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}
