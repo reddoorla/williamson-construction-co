@@ -245,11 +245,19 @@ export function documents(img, media = (key) => ({ link_type: "Media", key })) {
   /** @param {string} stem */
   const poster = (stem) => I(`${stem}-poster-00001.jpg`);
 
-  /** @param {string} [heading] @param {string} [size] @param {string} [label] @param {unknown} [link] */
-  const cta = (heading = CTA_HEADING, size = "large", label = "About", link = page("about-us")) =>
+  /**
+   * @param {{ heading?: string, size?: string, first?: string, second?: string, secondLink?: unknown }} [options]
+   */
+  const cta = ({
+    heading = CTA_HEADING,
+    size = "large",
+    first = "Contact",
+    second = "About",
+    secondLink = page("about-us"),
+  } = {}) =>
     slice("cta_block", { heading, size }, [
-      button("Contact", page("contact"), "gold"),
-      button(label, link, "outline-primary"),
+      button(first, page("contact"), "gold"),
+      button(second, secondLink, "outline-primary"),
     ]);
 
   const projects = PROJECTS.map((project) => ({
@@ -536,12 +544,14 @@ export function documents(img, media = (key) => ({ link_type: "Media", key })) {
         slice("lead_statement", {
           body: "Our Mission is to serve the noble calling of our healthcare and education communities; to build inspired environments for the caregiver and patient, teacher and student; to create spaces that celebrate wellness, learning and the gift of life.",
         }),
-        cta(
-          "We are changing the industry by treating our clients like people and not bottom lines.",
-          "medium",
-          "Get Hired",
-          page("join-the-team"),
-        ),
+        cta({
+          heading:
+            "We are changing the industry by treating our clients like people and not bottom lines.",
+          size: "medium",
+          first: "Hire Us",
+          second: "Get Hired",
+          secondLink: page("join-the-team"),
+        }),
         slice("leadership", { heading: "Leadership" }, [
           {
             photo: I("646d47bfeb53b0308e8d439c_williamson_actuallybrian.png"),

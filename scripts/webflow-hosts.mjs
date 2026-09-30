@@ -1,7 +1,10 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
-export const FORBIDDEN = /website-files\.com|webflow\.(?:com|io)|githack\.com/i;
+// d3e54v103j8qbb.cloudfront.net is the CDN Webflow serves its jQuery from on
+// every captured page; it goes with the site like the rest.
+export const FORBIDDEN =
+  /website-files\.com|webflow\.(?:com|io)|githack\.com|d3e54v103j8qbb\.cloudfront\.net/i;
 
 const SKIP_DIRS = new Set(["node_modules", ".git"]);
 
