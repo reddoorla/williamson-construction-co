@@ -107,7 +107,7 @@
       type="submit"
       aria-disabled={submitting ? "true" : undefined}
       aria-busy={submitting}
-      class="{buttonClass('gold')} self-start aria-disabled:cursor-wait"
+      class="{buttonClass('gold')} self-start aria-disabled:cursor-wait aria-disabled:hover:bg-gold"
     >
       {submitting ? "Sending…" : "Submit"}
     </button>

@@ -24,7 +24,7 @@
     />
   {/if}
   <p class="mt-8 text-center text-base text-primary">
-    {context?.intake ? "Or email us at" : "Email us at"}
+    {context?.intake ? "Questions? Email us at" : "Email us at"}
     <a href={CONTACT_EMAIL_HREF} class="text-primary underline">{CONTACT_EMAIL}</a>.
   </p>
 </section>
