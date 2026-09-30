@@ -41,6 +41,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`Form.svelte`](../src/lib/components/Form.svelte) | `errors`, `errorSummaryTitle`, `children` | 3 |  |
 | [`HeroBackgroundImage.svelte`](../src/lib/components/HeroBackgroundImage.svelte) | `image`, `altFallback`, `preload` | 8 | LCP-optimized hero image |
 | [`Img.svelte`](../src/lib/components/Img.svelte) | `src` | 5 | Progressive-loading wrapper around @zerodevx/svelte-img: the image renders blurred (`.progressive-img` in app.css) and sharpens once the underlying <img> finishes — or fails — loading |
+| [`IntakeFormFields.svelte`](../src/lib/components/IntakeFormFields.svelte) | `formTs`, `result`, `successMessage` | 8 |  |
 | [`LandscapeModal.svelte`](../src/lib/components/LandscapeModal.svelte) | — | 3 | Orientation lockout — a primitive the template deliberately does NOT mount (tests/smoke/landscape.spec.ts fails if it is re-mounted), because an undismissable landscape overlay fails WCAG 2.1 SC 1.3.4 (Orientation) |
 | [`Modal.svelte`](../src/lib/components/Modal.svelte) | `open`, `onclose`, `label`, `labelledby`, `children` | 16 | Accessible name for the dialog |
 | [`Nav.svelte`](../src/lib/components/Nav.svelte) | `navLinks`, `items`, `logo` | 17 | Optional per-route override of the `$lib/site-config.json` nav (no route in the bare template supplies this) |
@@ -63,6 +64,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`contact.ts`](../src/lib/contact.ts) | `CONTACT_EMAIL`, `CONTACT_PHONE_DISPLAY`, `CONTACT_EMAIL_HREF`, `CONTACT_PHONE_HREF`, `LICENSE_LINE`, `NAV_LINKS`, `FOOTER_LINKS`, `telHref` | — |  |
 | [`index.ts`](../src/lib/index.ts) | — | — | place files you want to import through the `$lib` alias in this folder |
 | [`indexability.ts`](../src/lib/indexability.ts) | `MIRROR_ROBOTS_TAG`, `isNetlifyMirrorHost` | 6 | Which HOST a request arrived on decides whether it may be indexed (#140) |
+| [`intake.ts`](../src/lib/intake.ts) | `YES_NO`, `INTAKE_PAGE_UID`, `TOKEN_MISSING`, `INTAKE_FIELDS`, `intakePayload`, `TURNSTILE_FIELD`, `missingTurnstileToken` | 10 |  |
 | [`links.ts`](../src/lib/links.ts) | `hrefOf`, `buttonsOf`, `mediaUrl` | — |  |
 | [`page-load.ts`](../src/lib/page-load.ts) | `loadPage` | 4 |  |
 | [`page-meta.ts`](../src/lib/page-meta.ts) | `pageMeta` | 2 |  |
@@ -85,4 +87,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-64 modules, 387 tests behind them.
+66 modules, 405 tests behind them.
