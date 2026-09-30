@@ -14,6 +14,11 @@
     <h2 class="{slice.primary.size === 'medium' ? 'wc-h2' : 'wc-h1'} text-left text-primary">
       {slice.primary.heading}
     </h2>
-    <ButtonRow items={slice.items} grounds={["white"]} class="mt-8" />
+    <ButtonRow
+      items={slice.items}
+      grounds={["white"]}
+      restyle={{ "outline-primary": "ghost-primary" }}
+      class="mt-8"
+    />
   </div>
 </section>
