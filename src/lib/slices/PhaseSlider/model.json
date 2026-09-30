@@ -1,0 +1,63 @@
+{
+  "id": "phase_slider",
+  "type": "SharedSlice",
+  "name": "PhaseSlider",
+  "description": "PhaseSlider",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "One slide per phase, each linking to its section",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": {
+            "label": "section id (for #links)",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "icon": {
+          "type": "Image",
+          "config": {
+            "label": "icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "body": {
+          "type": "Text",
+          "config": {
+            "label": "summary",
+            "placeholder": ""
+          }
+        },
+        "anchor": {
+          "type": "Text",
+          "config": {
+            "label": "links to section id",
+            "placeholder": ""
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "button label",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

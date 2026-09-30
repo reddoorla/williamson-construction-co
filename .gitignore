@@ -59,6 +59,6 @@ matching/*.png
 
 # end reddoor-maint match-harness
 
-# The Webflow reference capture (OD7-P1): the reference dies when Webflow
+# The Webflow reference capture (OD7-P2): the reference dies when Webflow
 # cancels on 2026-10-19 and cannot be captured again, so its bytes are tracked.
 !matching/spec/

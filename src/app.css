@@ -2,6 +2,43 @@
 @import "tailwindcss";
 @source not "../matching/spec";
 
+/* TODO(D8): the reference sets type in freight-sans-pro from Adobe Fonts kit
+   htt1asl, licensed to whoever owns the kit (reddoor-maintenance
+   docs/webflow-conversions-2026-10.md, D8). Until that owner is known this
+   self-hosts Lato, the open face the reference's own WebFont loader already
+   pulls in, from the capture (matching/spec/files/fonts.gstatic.com). */
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/lato-300.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/lato-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/lato-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/lato-400-italic.woff2") format("woff2");
+}
+
 @theme {
   --screen-sm: 560px;
   --screen-md: 768px;
@@ -14,13 +51,16 @@
   --color-white: white;
   --color-background: white;
 
-  /* Neutral placeholder palette — replace per project (docs/STARTER.md). Every
-     value is distinct on purpose so a forgotten token is visible, not silent. */
-  --color-light: #e5e7eb;
-  --color-primary: #111827;
-  --color-dark: #1f2937;
-  --color-secondary: #6b7280;
-  --color-accent: #2563eb;
+  /* The reference's :root is --primary #004a80 and --secondary #c6a647.
+     Gold fails as text on white (2.35:1) and white fails on gold (2.35:1), so
+     gold is a FILL (--color-gold) carrying navy text, and --color-secondary is
+     the text-capable dark gold. matching/LEDGER.md records both. */
+  --color-light: #e2e2e2;
+  --color-primary: #004a80;
+  --color-dark: #1a1a1a;
+  --color-secondary: #735a14;
+  --color-gold: #c6a647;
+  --color-navy: #002e52;
 
   /* Tailwind 4.3 writes 13 of its palette entries with a `none` hue — every
      neutral, zinc-50 and mauve-50, e.g. neutral-900 is `oklch(20.5% 0 none)`.
@@ -44,12 +84,8 @@
   --color-zinc-50: oklch(98.5% 0 0);
   --color-mauve-50: oklch(98.5% 0 0);
 
-  /* Type — set per project. Self-host the brand's licensed woff2 files under
-     static/fonts (preload the body face in app.html) or load a kit, then
-     point these at the loaded family names. Until then the system stack
-     applies. `font-heading` / `font-body` utilities come from these tokens. */
-  --font-heading: ui-sans-serif, system-ui, sans-serif;
-  --font-body: ui-sans-serif, system-ui, sans-serif;
+  --font-heading: Lato, ui-sans-serif, system-ui, sans-serif;
+  --font-body: Lato, ui-sans-serif, system-ui, sans-serif;
 
   --transition-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
   --transition-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -356,5 +392,73 @@ main > section.hero-band:first-child {
     pointer-events: none;
     will-change: transform;
     filter: blur(0.5px);
+  }
+}
+
+@utility wc-h1 {
+  font-size: 62px;
+  line-height: 78px;
+  font-weight: 400;
+  @media (max-width: 991px) {
+    font-size: 55px;
+    line-height: 60px;
+  }
+  @media (max-width: 479px) {
+    font-size: 35px;
+    line-height: 45px;
+  }
+}
+
+@utility wc-h2 {
+  font-size: 45px;
+  line-height: 60px;
+  font-weight: 400;
+  @media (max-width: 991px) {
+    font-size: 35px;
+    line-height: 45px;
+  }
+}
+
+@utility wc-h3 {
+  font-size: 35px;
+  line-height: 45px;
+  font-weight: 400;
+  @media (max-width: 991px) {
+    font-size: 30px;
+    line-height: 35px;
+  }
+  @media (max-width: 479px) {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+
+@utility wc-p {
+  font-size: 22px;
+  line-height: 1.6em;
+  @media (max-width: 479px) {
+    font-size: 18px;
+  }
+}
+
+@utility wc-prose {
+  font-size: 16px;
+  line-height: 1.6em;
+  & p + p,
+  & p + ul,
+  & ul + p {
+    margin-top: 1em;
+  }
+}
+
+@utility wc-shell {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4%;
+  padding-right: 4%;
+  @media (min-width: 1280px) {
+    padding-left: 0;
+    padding-right: 0;
   }
 }

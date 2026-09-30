@@ -1,0 +1,90 @@
+{
+  "id": "sector_feature",
+  "type": "SharedSlice",
+  "name": "SectorFeature",
+  "description": "SectorFeature",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A sector card (icon, label, text) beside a two-tone heading and buttons",
+      "imageUrl": "",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "label",
+            "placeholder": ""
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "icon": {
+          "type": "Image",
+          "config": {
+            "label": "icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "accent": {
+          "type": "Text",
+          "config": {
+            "label": "heading, gold line",
+            "placeholder": ""
+          }
+        },
+        "card_side": {
+          "type": "Select",
+          "config": {
+            "label": "card side",
+            "options": ["left", "right"],
+            "default_value": "left"
+          }
+        }
+      },
+      "items": {
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "button label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "button link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "button_style": {
+          "type": "Select",
+          "config": {
+            "label": "button style",
+            "options": ["gold", "outline-light", "primary", "outline-primary", "white"],
+            "default_value": "gold"
+          }
+        }
+      }
+    }
+  ]
+}

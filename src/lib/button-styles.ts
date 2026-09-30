@@ -1,0 +1,30 @@
+export type ButtonVariant = "gold" | "outline-light" | "primary" | "outline-primary" | "white";
+
+export const BUTTON_BASE =
+  "inline-block rounded-[10px] border-2 px-8 py-2 text-base leading-6 transition-colors duration-200";
+
+export const BUTTON_CLASS: Record<ButtonVariant, string> = {
+  gold: "border-gold bg-gold text-navy hover:bg-white",
+  "outline-light": "border-white bg-transparent text-white hover:bg-white/10",
+  primary: "border-primary bg-primary text-white hover:bg-primary/80",
+  "outline-primary": "border-primary bg-white text-primary hover:bg-primary/15",
+  white: "border-white bg-white text-primary hover:border-gold hover:bg-gold hover:text-navy",
+};
+
+export type Ground = "white" | "light" | "band-over-white" | "band-over-black";
+
+export const BUTTON_GROUNDS: Record<ButtonVariant, readonly Ground[]> = {
+  gold: ["white", "light", "band-over-white", "band-over-black"],
+  "outline-light": ["band-over-white", "band-over-black"],
+  primary: ["white", "light"],
+  "outline-primary": ["white", "light"],
+  white: ["band-over-white", "band-over-black"],
+};
+
+export function buttonClass(variant: ButtonVariant, extra = ""): string {
+  return `${BUTTON_BASE} ${BUTTON_CLASS[variant]}${extra ? ` ${extra}` : ""}`;
+}
+
+export function isButtonVariant(value: unknown): value is ButtonVariant {
+  return typeof value === "string" && value in BUTTON_CLASS;
+}

@@ -30,26 +30,28 @@ const AA_NORMAL_TEXT = 4.5;
 /** Tokens the template renders as text on a LIGHT ground. */
 const LIGHT_GROUND_TEXT = ["secondary", "primary", "dark", "black"] as const;
 /** The light grounds those land on. */
-const LIGHT_GROUNDS = ["background", "white"] as const;
+const LIGHT_GROUNDS = ["background", "white", "light"] as const;
 
 /** Tokens the template renders as text on a DARK ground. */
 const DARK_GROUND_TEXT = ["white"] as const;
 /** The dark grounds those land on. */
-const DARK_GROUNDS = ["primary", "dark", "black"] as const;
+const DARK_GROUNDS = ["primary", "dark", "black", "secondary", "navy"] as const;
+
+/** Tokens rendered as text on the gold FILL (buttons, numbered discs). */
+const GOLD_GROUND_TEXT = ["navy"] as const;
+const GOLD_GROUNDS = ["gold"] as const;
 
 /**
- * `bg-light` is deliberately NOT in LIGHT_GROUNDS. It is a ground the template
- * uses (17 occurrences), but no component currently puts a `text-*` token
- * inside one — in the only file where both appear, `/dev/animate-in`, they are
- * siblings. Asserting the pair today would fail the template's own placeholder
- * palette, where `secondary` #6b7280 on `light` #e5e7eb measures 3.90:1.
- *
- * That measurement is the point of this comment rather than a reason to ignore
- * it: the pair is one nesting away from being real, and it is already below AA
- * in the shipped defaults. If you put secondary text on `bg-light`, add "light"
- * to LIGHT_GROUNDS and fix whichever value then fails.
+ * Gold is the brand accent the reference sets as text on its blue bands
+ * ("Committed to your Success", the About slider headlines). It is 3.90:1 on
+ * primary: legible only as LARGE text (WCAG 1.4.3, 24px and up). So it is
+ * measured against the large-text bar, and the scan below refuses any
+ * `text-gold` that does not sit on a heading utility.
  */
-const KNOWN_UNCOMPOSED_GROUND = "light";
+const AA_LARGE_TEXT = 3;
+const LARGE_ONLY_TEXT = ["gold"] as const;
+const LARGE_ONLY_GROUNDS = ["primary", "navy"] as const;
+const LARGE_TEXT_CLASSES = /\bwc-h[123]\b/;
 
 type Rgb = [number, number, number];
 
@@ -164,6 +166,40 @@ describe("theme contrast", () => {
     },
   );
 
+  it.each(GOLD_GROUND_TEXT.flatMap((text) => GOLD_GROUNDS.map((ground) => ({ text, ground }))))(
+    "text-$text on bg-$ground meets AA",
+    ({ text, ground }) => {
+      const ratio = contrast(resolveToken(text), resolveToken(ground));
+      expect(
+        ratio,
+        `--color-${text} on --color-${ground} is ${ratio.toFixed(2)}:1, below AA.`,
+      ).toBeGreaterThanOrEqual(AA_NORMAL_TEXT);
+    },
+  );
+
+  it.each(
+    LARGE_ONLY_TEXT.flatMap((text) => LARGE_ONLY_GROUNDS.map((ground) => ({ text, ground }))),
+  )("large text-$text on bg-$ground meets AA large", ({ text, ground }) => {
+    const ratio = contrast(resolveToken(text), resolveToken(ground));
+    expect(
+      ratio,
+      `--color-${text} on --color-${ground} is ${ratio.toFixed(2)}:1, below the large-text bar.`,
+    ).toBeGreaterThanOrEqual(AA_LARGE_TEXT);
+  });
+
+  it("sets text-gold only on large headings", () => {
+    const offenders: string[] = [];
+    let seen = 0;
+    for (const file of svelteFiles(resolve(REPO_ROOT, "src"))) {
+      for (const m of readFileSync(file, "utf8").matchAll(/class="([^"]*\btext-gold\b[^"]*)"/g)) {
+        seen++;
+        if (!LARGE_TEXT_CLASSES.test(m[1])) offenders.push(`${file}: ${m[1]}`);
+      }
+    }
+    expect(offenders).toEqual([]);
+    expect(seen).toBeGreaterThan(0);
+  });
+
   /**
    * The 13 none-hued Tailwind tokens app.css overrides with a 0 hue (#152) are
    * in this @theme block, so a `text-neutral-*` in src is classified here
@@ -188,7 +224,12 @@ describe("theme contrast", () => {
    */
   it("every text-<theme token> in src is classified by ground", () => {
     const files = svelteFiles(resolve(REPO_ROOT, "src"));
-    const known = new Set<string>([...LIGHT_GROUND_TEXT, ...DARK_GROUND_TEXT]);
+    const known = new Set<string>([
+      ...LIGHT_GROUND_TEXT,
+      ...DARK_GROUND_TEXT,
+      ...GOLD_GROUND_TEXT,
+      ...LARGE_ONLY_TEXT,
+    ]);
     const themeTokens = Object.keys(colors).filter((t) => !["transparent", "current"].includes(t));
     const found = new Set<string>();
     for (const file of files) {
@@ -206,6 +247,5 @@ describe("theme contrast", () => {
     ).toEqual([]);
     // Guard the guard: if this found nothing at all, the scan is broken.
     expect(found.size).toBeGreaterThan(0);
-    expect(KNOWN_UNCOMPOSED_GROUND).toBe("light");
   });
 });

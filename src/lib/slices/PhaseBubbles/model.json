@@ -1,0 +1,72 @@
+{
+  "id": "phase_bubbles",
+  "type": "SharedSlice",
+  "name": "PhaseBubbles",
+  "description": "PhaseBubbles",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Numbered phase icons linking to their sections",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": {
+            "label": "section id (for #links)",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "Text",
+          "config": {
+            "label": "intro",
+            "placeholder": ""
+          }
+        },
+        "outro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "closing text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {
+        "icon": {
+          "type": "Image",
+          "config": {
+            "label": "icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "label",
+            "placeholder": ""
+          }
+        },
+        "anchor": {
+          "type": "Text",
+          "config": {
+            "label": "links to section id",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

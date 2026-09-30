@@ -1,0 +1,56 @@
+{
+  "id": "employee_application",
+  "type": "SharedSlice",
+  "name": "EmployeeApplication",
+  "description": "EmployeeApplication",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A heading with a downloadable application",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "heading",
+            "placeholder": ""
+          }
+        },
+        "body": {
+          "type": "Text",
+          "config": {
+            "label": "text",
+            "placeholder": ""
+          }
+        },
+        "email": {
+          "type": "Text",
+          "config": {
+            "label": "email to send it to",
+            "placeholder": ""
+          }
+        },
+        "file": {
+          "type": "Link",
+          "config": {
+            "label": "application file",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "button label",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
