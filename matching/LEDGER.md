@@ -49,3 +49,14 @@ has been quietly widened and nothing records who widened it, or why.
   and turning that setting on later pauses the video.
 - [deviation] focus ring — the navy outline has a 2px white halo inside it, so
   keyboard focus shows on the navy bands too, where a navy ring alone is 1:1.
+
+## 2026-09-30 — OD7-P2b fidelity pass
+
+- [corrects the 2026-09-30 "type" entry] type — `freight-sans-pro` now loads
+  from Reddoor's Adobe Fonts kit `noj4tji` (D8 answered; `htt1asl` stays with
+  the Webflow build). Lato and its four self-hosted files are gone. Adobe
+  ships Light only as the separate family `freight-sans-pro-lights`, so
+  `font-light` (every weight-300 rule the reference has: `.our-mission-text`,
+  `.font-weight-thin`, `.form-label`, the centred `text-size-4xl` intro) sets
+  that family; otherwise Chrome synthesizes 300 from the 400 face.
+  `tests/smoke/fonts.spec.ts` asserts it per text node.

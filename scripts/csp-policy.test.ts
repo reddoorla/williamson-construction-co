@@ -95,3 +95,25 @@ describe("the Prismic toolbar under this site's policy", () => {
     expect(directives["frame-src"]).not.toContain("https://*.prismic.io");
   });
 });
+
+describe("Adobe Fonts kit noj4tji under this site's policy", () => {
+  const directives = config.kit?.csp?.directives ?? {};
+
+  it("loads the kit's stylesheet and the font files it names", () => {
+    expect(directives["style-src"]).toContain("https://use.typekit.net");
+    expect(directives["font-src"]).toContain("https://use.typekit.net");
+  });
+
+  it("allows the kit's @import of p.typekit.net/p.css", () => {
+    expect(directives["style-src"]).toContain("https://p.typekit.net");
+  });
+
+  it("does not widen past those two hosts", () => {
+    const all = Object.values(directives).flat();
+    expect(all.filter((s) => /typekit/.test(s)).sort()).toEqual([
+      "https://p.typekit.net",
+      "https://use.typekit.net",
+      "https://use.typekit.net",
+    ]);
+  });
+});
