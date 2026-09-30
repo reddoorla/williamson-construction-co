@@ -20,7 +20,14 @@
     "slicemachine": "start-slicemachine"
   },
   "reddoor": {
-    "a11yRoutes": []
+    "a11yRoutes": [
+      "/",
+      "/services",
+      "/projects",
+      "/about-us",
+      "/contact",
+      "/projects/torrance-high-school"
+    ]
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
