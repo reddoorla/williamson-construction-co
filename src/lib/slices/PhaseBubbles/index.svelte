@@ -30,7 +30,7 @@
         <svelte:element
           this={href ? "a" : "div"}
           {href}
-          class="flex flex-col items-center text-center"
+          class="flex flex-col items-center text-center hover:opacity-100"
         >
           <span
             class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-[26px] text-white"

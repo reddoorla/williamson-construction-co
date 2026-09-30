@@ -20,7 +20,7 @@
     {#if email}<br /><a href="mailto:{email}" class="text-primary">{email}</a>{/if}
   </p>
   {#if file}
-    <WcButton href={file} class="mt-4"
+    <WcButton href={file} grounds={["white"]} class="mt-4"
       >{slice.primary.button_label || "Employee Application"}</WcButton
     >
   {/if}

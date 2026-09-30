@@ -25,7 +25,7 @@
     <Slider
       itemCount={slice.items.length}
       label="Testimonials"
-      arrowClass="text-gold! hover:bg-white/10!"
+      arrowClass="text-gold! hover:bg-transparent! hover:opacity-80 aria-disabled:hover:opacity-40"
       dotClass="bg-white/60"
       activeDotClass="bg-gold"
     >

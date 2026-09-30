@@ -239,6 +239,32 @@ main > section.hero-band:first-child {
     scrollbar-gutter: stable;
   }
 
+  a {
+    transition:
+      background-color 0.7s ease-in-out,
+      opacity 0.35s ease-in;
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      opacity: var(--wc-link-fade, 0.55);
+      background-color: #6d6a690f;
+    }
+  }
+
+  .text-primary {
+    --wc-link-fade: 0.75;
+  }
+
+  .bg-light a.text-black {
+    --wc-link-fade: 0.6;
+  }
+
+  .bg-light .text-primary,
+  .bg-light.text-primary {
+    --wc-link-fade: 0.85;
+  }
+
   body {
     font-family: var(--font-body);
     max-width: 100vw;

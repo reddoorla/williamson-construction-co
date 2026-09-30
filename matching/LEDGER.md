@@ -60,3 +60,31 @@ has been quietly widened and nothing records who widened it, or why.
   `.font-weight-thin`, `.form-label`, the centred `text-size-4xl` intro) sets
   that family; otherwise Chrome synthesizes 300 from the 400 face.
   `tests/smoke/fonts.spec.ts` asserts it per text node.
+- [a11y] link hover — the reference's `a:hover` (opacity 0.55, fill
+  `#6d6a690f`, 0.35s/0.7s) applies to every plain link. At 0.55 black text on
+  white stays AA (4.64:1), so those links and every image-only link fade to
+  exactly 0.55. Primary text on white does not (3.09:1), so a `--wc-link-fade`
+  floor raises it to 0.75 (on `bg-light`: 0.85), and black on `bg-light` to
+  0.6. `tests/interaction/hovers.spec.ts` measures each link in the browser and
+  refuses any value other than 0.55 where 0.55 passes. The hover is behind
+  `@media (hover: hover)`, like every Tailwind `hover:`, so a tap on a phone
+  leaves no faded link behind.
+- [corrects the 2026-09-30 "buttons" entry, in part] gold — on white and light
+  grounds gold now takes the reference's own hover, gold at 55%, under navy
+  text (8.9:1). On the blue grounds gold at 55% under navy is below 3:1, so it
+  keeps the white substitute there.
+- [kept] white button (About's testimonial "Contact") and the contact page's
+  outline phone buttons — the reference shows no hover on either, because
+  `.bg-color-white` and `.button-default.mr-8.bg-color-transparent` sit later in
+  the stylesheet at the same specificity as `.button-default:hover` and undo it.
+  Their siblings `.bg-color-white.ml-8:hover` and `.bg-color-transparent.ml-8:hover`
+  do hover, so the missing state reads as a cascade accident, and both keep a
+  hover (gold, and white at 10%). Matching would also need a new Prismic select
+  option, because the phone buttons share `outline-light` with the hero's.
+- [deviation] `.number-bubble:hover` — the reference keeps the bubble at
+  opacity 1 but `a:hover`'s near-transparent fill (0,1,1) beats
+  `.number-bubble`'s navy (0,1,0), so the white number vanishes on hover. The
+  rebuild keeps opacity 1 and the navy disc.
+- [kept] `.bg-color-transparent.ml-8:hover` is white at 11% (`#ffffff1c`); the
+  Our Plan "Services" button shares `outline-light`'s white at 10%
+  (`#ffffff1a`), 2/255 apart in alpha.

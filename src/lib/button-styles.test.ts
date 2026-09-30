@@ -3,9 +3,13 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import {
+  BUTTON_BASE,
   BUTTON_CLASS,
+  BUTTON_CLASS_ON_LIGHT,
   BUTTON_GROUNDS,
+  buttonClass,
   legibleVariant,
+  variantClass,
   type ButtonVariant,
   type Ground,
 } from "./button-styles";
@@ -88,9 +92,14 @@ function passes(classes: string, ground: Ground): boolean {
   });
 }
 
-const cases = Object.entries(BUTTON_CLASS).flatMap(([variant, classes]) =>
-  BUTTON_GROUNDS[variant as keyof typeof BUTTON_GROUNDS].flatMap((ground) =>
-    (["rest", "hover"] as const).map((state) => ({ variant, classes, ground, state })),
+const cases = (Object.keys(BUTTON_CLASS) as ButtonVariant[]).flatMap((variant) =>
+  BUTTON_GROUNDS[variant].flatMap((ground) =>
+    (["rest", "hover"] as const).map((state) => ({
+      variant,
+      classes: variantClass(variant, [ground]),
+      ground,
+      state,
+    })),
   ),
 );
 
@@ -184,4 +193,55 @@ describe("focus on the dark grounds", () => {
       }
     },
   );
+});
+
+describe("hover states the reference's stylesheet prescribes", () => {
+  const LIGHT: Ground[] = ["white", "light"];
+  const DARK: Ground[] = ["primary", "band-over-white", "band-over-black"];
+
+  it("never lets the reference's a:hover fade reach a button (.button-default:hover opacity 1)", () => {
+    expect(BUTTON_BASE.split(" ")).toContain("hover:opacity-100");
+  });
+
+  it("gives gold the reference's hover, gold at 55%, on white and light grounds", () => {
+    for (const ground of LIGHT) {
+      expect(buttonClass("gold", "", [ground]).split(" ")).toContain("hover:bg-gold/55");
+    }
+  });
+
+  it("keeps gold's measured substitute where gold at 55% under navy fails AA", () => {
+    for (const ground of DARK) {
+      expect(
+        contrast(token("navy"), surface({ name: "gold", alpha: 0.55 }, grounds[ground])),
+      ).toBeLessThan(4.5);
+      expect(buttonClass("gold", "", [ground])).not.toContain("hover:bg-gold/55");
+    }
+    expect(buttonClass("gold", "", ["white", "primary"])).not.toContain("hover:bg-gold/55");
+    expect(buttonClass("gold")).not.toContain("hover:bg-gold/55");
+  });
+
+  it("only offers a light-ground class where every state passes there", () => {
+    for (const [variant, classes] of Object.entries(BUTTON_CLASS_ON_LIGHT)) {
+      const placed = LIGHT.filter((g) => BUTTON_GROUNDS[variant as ButtonVariant].includes(g));
+      expect(placed.length, `${variant} is placed on no light ground`).toBeGreaterThan(0);
+      for (const ground of placed) {
+        expect(passes(classes!, ground), `${variant} on ${ground}`).toBe(true);
+      }
+    }
+  });
+
+  it("has the transparent primary button of .bg-color-transparent.text-color-primary, hover primary at 10%", () => {
+    const classes = BUTTON_CLASS["ghost-primary"].split(" ");
+    expect(classes).toEqual(
+      expect.arrayContaining(["bg-transparent", "text-primary", "hover:bg-primary/10"]),
+    );
+  });
+
+  it.each([
+    ["outline-light", "hover:bg-white/10"],
+    ["primary", "hover:bg-primary/80"],
+    ["outline-primary", "hover:bg-primary/15"],
+  ] as const)("%s hovers as the reference's matching variant does (%s)", (variant, hover) => {
+    expect(BUTTON_CLASS[variant].split(" ")).toContain(hover);
+  });
 });
