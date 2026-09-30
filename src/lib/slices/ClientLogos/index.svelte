@@ -18,7 +18,11 @@
   <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-10" aria-label="Clients">
     {#each logos as item, i (i)}
       <li class="w-[40%] sm:w-[18%]">
-        <PrismicImage field={item.logo} class="mx-auto max-h-24 w-full object-contain" />
+        <PrismicImage
+          field={item.logo}
+          fallbackAlt=""
+          class="mx-auto max-h-24 w-full object-contain"
+        />
       </li>
     {/each}
   </ul>

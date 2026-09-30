@@ -49,6 +49,14 @@ describe("check-no-webflow", () => {
     expect(run(dir).status).toBe(1);
   });
 
+  it("catches Webflow's jQuery CDN", () => {
+    const dir = fixture({
+      "layout.js":
+        'import("https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js")',
+    });
+    expect(run(dir).status).toBe(1);
+  });
+
   it("skips binary files rather than decoding them", () => {
     const dir = fixture({ "font.woff2": Buffer.from([0, 1, 2, 0x77, 0x65, 0x62]) });
     expect(scanForWebflow([dir])).toEqual({ scanned: 0, hits: [] });

@@ -4,10 +4,12 @@ import * as prismic from "@prismicio/client";
 
 import { captureFileFor, collectImageKeys } from "../../src/lib/capture-files.js";
 import { documents, lang } from "../../src/lib/site-pages.js";
+import { alreadySeeded } from "./guard.mjs";
 import { linkTargets, relink } from "./relink.mjs";
 
 const SPEC = "matching/spec";
 const dryRun = process.argv.includes("--dry-run");
+const force = process.argv.includes("--force");
 const manifest = JSON.parse(readFileSync(join(SPEC, "manifest.json"), "utf8"));
 
 const keys = collectImageKeys(documents);
@@ -30,6 +32,22 @@ const repositoryName = process.env.PRISMIC_REPOSITORY_NAME;
 const writeToken = process.env.PRISMIC_WRITE_TOKEN;
 if (!repositoryName || !writeToken) {
   console.error("PRISMIC_REPOSITORY_NAME and PRISMIC_WRITE_TOKEN must be set (or pass --dry-run).");
+  process.exit(1);
+}
+
+const marker = [...files.values()]
+  .map((file) => basename(file))
+  .find((name) => name.endsWith(".pdf"));
+if (!marker) {
+  console.error("seed: no seed-only file to check for a previous run");
+  process.exit(1);
+}
+console.log(`seed: target repository ${repositoryName}`);
+if (!force && (await alreadySeeded({ repositoryName, writeToken, filename: marker }))) {
+  console.error(
+    `seed: ${marker} is already in ${repositoryName}'s media library, so this seed has run. ` +
+      "Edit content in Prismic now; pass --force only to upload everything again.",
+  );
   process.exit(1);
 }
 

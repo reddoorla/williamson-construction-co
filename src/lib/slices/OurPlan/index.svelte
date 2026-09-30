@@ -49,6 +49,7 @@
           {@const { shape, disc } = PLAN_SHAPES[i]}
           <g
             bind:this={tabs[i]}
+            id="{slice.id}-tab-{i}"
             role="tab"
             tabindex={active === i ? 0 : -1}
             aria-selected={active === i}
@@ -96,6 +97,7 @@
       <div
         id="{slice.id}-step"
         role="tabpanel"
+        aria-labelledby="{slice.id}-tab-{active}"
         class="w-full lg:w-[40%] lg:pr-[8%]"
         aria-live="polite"
       >
