@@ -12,9 +12,14 @@
 
   let submitting = $state(false);
   let confirmationEl = $state<HTMLElement | null>(null);
+  let errorEl = $state<HTMLElement | null>(null);
 
   $effect(() => {
     if (result?.success) confirmationEl?.focus();
+  });
+
+  $effect(() => {
+    if (result?.error) errorEl?.focus();
   });
 </script>
 
@@ -31,7 +36,11 @@
   <form
     method="POST"
     class="wc-intake mx-auto mt-8 flex max-w-[560px] flex-col gap-4"
-    use:enhance={() => {
+    use:enhance={({ cancel }) => {
+      if (submitting) {
+        cancel();
+        return;
+      }
       submitting = true;
       return async ({ update }) => {
         await update();
@@ -40,8 +49,21 @@
     }}
   >
     {#if result?.error}
-      <p role="alert" class="border-2 border-red-700 bg-red-50 p-4 text-red-900">{result.error}</p>
+      {#key result}
+        <p
+          bind:this={errorEl}
+          role="alert"
+          tabindex="-1"
+          class="border-2 border-red-700 bg-red-50 p-4 text-red-900"
+        >
+          {result.error}
+        </p>
+      {/key}
     {/if}
+
+    <p class="text-sm text-primary">
+      <span aria-hidden="true" class="text-red-600">*</span> marks a required field.
+    </p>
 
     <input type="hidden" name="ts" value={formTs} />
     <input
@@ -73,7 +95,7 @@
           type={field.kind}
           required={field.required ?? false}
           autocomplete={field.autocomplete}
-          placeholder={field.placeholder}
+          description={field.description}
           maxlength={500}
         />
       {/if}
@@ -83,9 +105,9 @@
 
     <button
       type="submit"
-      disabled={submitting}
+      aria-disabled={submitting ? "true" : undefined}
       aria-busy={submitting}
-      class="{buttonClass('gold')} self-start disabled:cursor-wait"
+      class="{buttonClass('gold')} self-start aria-disabled:cursor-wait"
     >
       {submitting ? "Sending…" : "Submit"}
     </button>

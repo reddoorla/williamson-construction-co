@@ -13,7 +13,7 @@ export type IntakeField =
       kind: "text" | "email" | "tel";
       required?: boolean;
       autocomplete?: "organization" | "email" | "tel";
-      placeholder?: string;
+      description?: string;
     }
   | { name: string; label: string; kind: "yes-no" };
 
@@ -35,7 +35,12 @@ export const INTAKE_FIELDS: readonly IntakeField[] = [
   { name: "email", label: "Email", kind: "email", required: true, autocomplete: "email" },
   { name: "license_number", label: "License Number", kind: "text" },
   { name: "insurance", label: "Insurance", kind: "yes-no" },
-  { name: "project_size", label: "Project Size", kind: "text", placeholder: "5K to 100K" },
+  {
+    name: "project_size",
+    label: "Project Size",
+    kind: "text",
+    description: "For example, 5K to 100K",
+  },
   { name: "prevailing_wage", label: "Prevailing Wage", kind: "yes-no" },
   { name: "union", label: "Union", kind: "yes-no" },
 ];
