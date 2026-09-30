@@ -1,9 +1,8 @@
-import { error, fail } from "@sveltejs/kit";
+import { error } from "@sveltejs/kit";
 import { env } from "$env/dynamic/private";
-import { env as publicEnv } from "$env/dynamic/public";
 import { createIngestAction } from "@reddoorla/maintenance/forms";
 
-import { INTAKE_PAGE_UID, TOKEN_MISSING, intakePayload, missingTurnstileToken } from "$lib/intake";
+import { INTAKE_PAGE_UID, intakePayload } from "$lib/intake";
 import { loadPage } from "$lib/page-load";
 import { createClient, isPlaceholderRepo } from "$lib/prismicio";
 import { replyCopyFor } from "$lib/server/reply-copy";
@@ -32,15 +31,7 @@ const ingest = createIngestAction({
   }),
 });
 
-export const actions: Actions = {
-  default: async (event) => {
-    const form = await event.request
-      .clone()
-      .formData()
-      .catch(() => null);
-    if (form && missingTurnstileToken(form, publicEnv.PUBLIC_TURNSTILE_SITE_KEY)) {
-      return fail(400, { error: TOKEN_MISSING });
-    }
-    return ingest(event);
-  },
-};
+// No token check here. Central verifies Turnstile and keeps a tokenless
+// submission (as spam on a requireTurnstile site), so refusing one on the site
+// would only lose the lead of a visitor whose widget never rendered.
+export const actions: Actions = { default: ingest };

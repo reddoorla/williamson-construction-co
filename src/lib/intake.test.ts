@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { INTAKE_FIELDS, intakePayload, missingTurnstileToken } from "./intake";
+import { INTAKE_FIELDS, intakePayload } from "./intake";
 
 const form = (entries: Record<string, string>) => {
   const data = new FormData();
@@ -95,21 +95,5 @@ describe("INTAKE_FIELDS against the reference form", () => {
     ];
     expect(radios).toEqual(["Insurance", "Prevailing Wage", "Union"]);
     expect(INTAKE_FIELDS.filter((f) => f.kind === "yes-no").map((f) => f.label)).toEqual(radios);
-  });
-});
-
-describe("missingTurnstileToken", () => {
-  it("refuses a tokenless submission when a sitekey is configured", () => {
-    expect(missingTurnstileToken(form({}), "0x4AAA")).toBe(true);
-    expect(missingTurnstileToken(form({ "cf-turnstile-response": "  " }), "0x4AAA")).toBe(true);
-  });
-
-  it("passes a submission that carries a token", () => {
-    expect(missingTurnstileToken(form({ "cf-turnstile-response": "tok" }), "0x4AAA")).toBe(false);
-  });
-
-  it("stays out of the way when no sitekey is configured", () => {
-    expect(missingTurnstileToken(form({}), undefined)).toBe(false);
-    expect(missingTurnstileToken(form({}), " ")).toBe(false);
   });
 });

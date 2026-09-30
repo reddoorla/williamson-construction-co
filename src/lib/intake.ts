@@ -3,9 +3,6 @@ export const YES_NO = ["Yes", "No"] as const;
 /** The page document whose route (src/routes/join-the-team) carries the form. */
 export const INTAKE_PAGE_UID = "join-the-team";
 
-export const TOKEN_MISSING =
-  "We couldn't verify this submission. Wait a moment and send it again, or email us.";
-
 export type IntakeField =
   | {
       name: string;
@@ -77,18 +74,4 @@ export function intakePayload(form: FormData): Record<string, string | undefined
     prevailing_wage: yesNo(form, "prevailing_wage"),
     union: yesNo(form, "union"),
   };
-}
-
-export const TURNSTILE_FIELD = "cf-turnstile-response";
-
-/**
- * With a sitekey configured, a submission carrying no Turnstile token is
- * refused here, before it reaches the ingest. Central verifies the token; this
- * catches the submission that never had one (the widget failed to render, or a
- * script posted the form directly) and tells a person what to do instead.
- */
-export function missingTurnstileToken(form: FormData, siteKey: string | undefined): boolean {
-  if (!siteKey?.trim()) return false;
-  const token = form.get(TURNSTILE_FIELD);
-  return typeof token !== "string" || token.trim() === "";
 }

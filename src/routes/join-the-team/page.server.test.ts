@@ -11,7 +11,6 @@ vi.mock("$env/dynamic/private", () => ({
 vi.mock("$lib/server/reply-copy", () => ({ replyCopyFor: async () => undefined }));
 
 const { actions } = await import("./+page.server");
-const { TOKEN_MISSING } = await import("$lib/intake");
 
 type Posted = { url: string; body: Record<string, unknown> };
 
@@ -46,16 +45,13 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 describe("the /join-the-team action", () => {
-  it("refuses a submission with no Turnstile token when a sitekey is set, and sends nothing", async () => {
+  it("forwards a tokenless submission to central, which decides, rather than refusing it", async () => {
     publicEnv.PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAAD_aiDmsrlRAHq-V";
     const posted: Posted[] = [];
-    const result = (await actions.default(event(filled, posted))) as {
-      status: number;
-      data: { error: string };
-    };
-    expect(result.status).toBe(400);
-    expect(result.data.error).toBe(TOKEN_MISSING);
-    expect(posted).toEqual([]);
+    const result = await actions.default(event(filled, posted));
+    expect(result).toEqual({ success: true });
+    expect(posted).toHaveLength(1);
+    expect(posted[0].body).toMatchObject({ formType: "inquiry", name: "Acme Mechanical" });
   });
 
   it("forwards a tokened submission as an inquiry with every intake field", async () => {

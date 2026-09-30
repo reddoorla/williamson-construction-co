@@ -64,7 +64,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`contact.ts`](../src/lib/contact.ts) | `CONTACT_EMAIL`, `CONTACT_PHONE_DISPLAY`, `CONTACT_EMAIL_HREF`, `CONTACT_PHONE_HREF`, `LICENSE_LINE`, `NAV_LINKS`, `FOOTER_LINKS`, `telHref` | — |  |
 | [`index.ts`](../src/lib/index.ts) | — | — | place files you want to import through the `$lib` alias in this folder |
 | [`indexability.ts`](../src/lib/indexability.ts) | `MIRROR_ROBOTS_TAG`, `isNetlifyMirrorHost` | 6 | Which HOST a request arrived on decides whether it may be indexed (#140) |
-| [`intake.ts`](../src/lib/intake.ts) | `YES_NO`, `INTAKE_PAGE_UID`, `TOKEN_MISSING`, `INTAKE_FIELDS`, `intakePayload`, `TURNSTILE_FIELD`, `missingTurnstileToken` | 10 |  |
+| [`intake.ts`](../src/lib/intake.ts) | `YES_NO`, `INTAKE_PAGE_UID`, `INTAKE_FIELDS`, `intakePayload` | 7 |  |
 | [`links.ts`](../src/lib/links.ts) | `hrefOf`, `buttonsOf`, `mediaUrl` | — |  |
 | [`page-load.ts`](../src/lib/page-load.ts) | `loadPage` | 4 |  |
 | [`page-meta.ts`](../src/lib/page-meta.ts) | `pageMeta` | 2 |  |
@@ -87,4 +87,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-66 modules, 405 tests behind them.
+66 modules, 402 tests behind them.
