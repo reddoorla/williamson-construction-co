@@ -12,8 +12,12 @@
 
   let header = $state<HTMLElement>();
 
-  const onFocusin = (event: FocusEvent) => {
-    if (menuOpen && header && !header.contains(event.target as Node)) closeMenu();
+  const onFocusout = () => {
+    setTimeout(() => {
+      const now = document.activeElement;
+      if (!menuOpen || !header || !now || now === document.body) return;
+      if (!header.contains(now)) closeMenu();
+    });
   };
 
   const onKeydown = (event: KeyboardEvent) => {
@@ -23,9 +27,13 @@
   };
 </script>
 
-<svelte:window onkeydown={onKeydown} onfocusin={onFocusin} />
+<svelte:window onkeydown={onKeydown} />
 
-<header class="wc-header fixed inset-x-0 top-0 z-50 mx-auto max-w-[1280px]" bind:this={header}>
+<header
+  class="wc-header fixed inset-x-0 top-0 z-50 mx-auto max-w-[1280px]"
+  bind:this={header}
+  onfocusout={onFocusout}
+>
   <div class="relative z-10 flex h-16 items-stretch justify-between bg-white/90">
     <a href="/" class="block h-full" aria-label="Williamson Construction, home">
       <img src="/images/wcc-header-logo.svg" alt="" class="h-full w-auto" />

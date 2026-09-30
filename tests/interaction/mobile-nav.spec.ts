@@ -29,7 +29,7 @@ async function open(page: Page) {
 test("closed, the panel sits 15rem up behind the bar and is hidden (.mobile-nav)", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "networkidle" });
   const panel = await box(page, "#wc-menu");
   expect(panel.visibility).toBe("hidden");
   expect(panel.top).toBe(64 - 240);
@@ -39,7 +39,7 @@ test("closed, the panel sits 15rem up behind the bar and is hidden (.mobile-nav)
 test("open, it is the reference's 208px white panel of four 52px links under the 64px bar", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "networkidle" });
   await open(page);
   await expect.poll(async () => (await box(page, "#wc-menu")).top, { timeout: 3000 }).toBe(64);
   const panel = await box(page, "#wc-menu");
@@ -79,7 +79,7 @@ test("open, it is the reference's 208px white panel of four 52px links under the
 test("the icons cross-fade: menu out, close in, in the same 32px spot (.open-nav, .close-nav)", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "networkidle" });
   const [menu, close] = [
     page.locator('button[aria-controls="wc-menu"] img').nth(0),
     page.locator('button[aria-controls="wc-menu"] img').nth(1),
@@ -99,8 +99,9 @@ test("the icons cross-fade: menu out, close in, in the same 32px spot (.open-nav
 test("Tab past the last menu link closes the menu, so the next control is not under it", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "networkidle" });
   const button = await open(page);
+  await expect(page.locator("#wc-menu a").first()).toBeVisible();
   await button.focus();
   await expect(button).toBeFocused();
   for (const name of ["About", "Services", "Projects", "Contact"]) {
@@ -120,7 +121,7 @@ test("Tab past the last menu link closes the menu, so the next control is not un
 });
 
 test("the toggle fades to 0.6 on hover (.open-nav:hover, .close-nav:hover)", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "networkidle" });
   const button = page.getByRole("button", { name: "Menu" });
   const icons = button.locator("span").first();
   await button.hover();
@@ -133,7 +134,7 @@ test.describe("with motion allowed", () => {
   test("the panel slides for 500ms (TRANSFORM_MOVE, ease) and the icons fade on the IX2 timings", async ({
     page,
   }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "networkidle" });
     const panel = page.locator("#wc-menu");
     const [menu, close] = [
       page.locator('button[aria-controls="wc-menu"] img').nth(0),
@@ -183,7 +184,7 @@ test.describe("with motion allowed", () => {
   test("Tab straight after closing goes on into the page, never into the sliding panel", async ({
     page,
   }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "networkidle" });
     const button = await open(page);
     await button.focus();
     await page.keyboard.press("Escape");

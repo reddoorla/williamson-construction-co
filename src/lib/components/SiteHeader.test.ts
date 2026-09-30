@@ -69,8 +69,17 @@ describe("SiteHeader", () => {
     const links = menuOf(container).querySelectorAll("a");
     links[1]!.focus();
     expect(button.getAttribute("aria-expanded")).toBe("true");
+    await new Promise((r) => setTimeout(r));
+    expect(button.getAttribute("aria-expanded")).toBe("true");
+    links[1]!.blur();
+    await new Promise((r) => setTimeout(r));
+    expect(
+      button.getAttribute("aria-expanded"),
+      "focus falling to <body> is not focus leaving",
+    ).toBe("true");
+    links[1]!.focus();
     outside.focus();
-    await Promise.resolve();
+    await new Promise((r) => setTimeout(r));
     expect(button.getAttribute("aria-expanded")).toBe("false");
     outside.remove();
   });
