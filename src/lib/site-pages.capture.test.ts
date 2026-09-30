@@ -203,7 +203,7 @@ describe("site-pages buttons against the capture", () => {
     const main = html.slice(html.indexOf("</section>"), html.indexOf('<section class="footer'));
     return [...main.matchAll(/<a href="([^"]+)" class="[^"]*\bw-button\b[^"]*">([^<]+)<\/a>/g)]
       .map(([, target, label]) => {
-        const file = target.startsWith("https://cdn.prod.website-files.com/")
+        const file = /^https:\/\/cdn\.prod\.website-files\.com\//.test(target)
           ? `media:${target.split("/").pop()}`
           : target;
         return `${label.trim()} -> ${file}`;
