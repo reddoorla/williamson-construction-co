@@ -1,19 +1,52 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import Pause from "@lucide/svelte/icons/pause";
+  import Play from "@lucide/svelte/icons/play";
 
   type Props = {
     mp4?: string | null;
     webm?: string | null;
     poster?: string | null;
     class?: string;
+    controlClass?: string;
   };
 
-  let { mp4, webm, poster, class: passedClasses = "" }: Props = $props();
+  let {
+    mp4,
+    webm,
+    poster,
+    class: passedClasses = "",
+    controlClass = "bottom-4 right-4",
+  }: Props = $props();
 
   let video = $state<HTMLVideoElement>();
+  let playing = $state(false);
+
+  function play() {
+    if (!video) return;
+    playing = true;
+    try {
+      video.play()?.catch?.(() => {
+        playing = false;
+      });
+    } catch {
+      playing = false;
+    }
+  }
+
+  function pause() {
+    video?.pause();
+    playing = false;
+  }
 
   onMount(() => {
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) video?.pause();
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (!reduce?.matches) play();
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) pause();
+    };
+    reduce?.addEventListener?.("change", onChange);
+    return () => reduce?.removeEventListener?.("change", onChange);
   });
 </script>
 
@@ -22,7 +55,6 @@
   class="bg-cover bg-center object-cover {passedClasses}"
   style={poster ? `background-image: url("${poster}")` : undefined}
   poster={poster ?? undefined}
-  autoplay
   muted
   loop
   playsinline
@@ -33,3 +65,15 @@
   {#if webm}<source src={webm} type="video/webm" />{/if}
   {#if mp4}<source src={mp4} type="video/mp4" />{/if}
 </video>
+<button
+  type="button"
+  class="absolute z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary/80 text-white hover:bg-primary {controlClass}"
+  aria-label={playing ? "Pause background video" : "Play background video"}
+  onclick={() => (playing ? pause() : play())}
+>
+  {#if playing}
+    <Pause size={18} aria-hidden="true" />
+  {:else}
+    <Play size={18} aria-hidden="true" />
+  {/if}
+</button>

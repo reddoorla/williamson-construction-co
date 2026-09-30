@@ -11,15 +11,33 @@ export const BUTTON_CLASS: Record<ButtonVariant, string> = {
   white: "border-white bg-white text-primary hover:border-gold hover:bg-gold hover:text-navy",
 };
 
-export type Ground = "white" | "light" | "band-over-white" | "band-over-black";
+export type Ground = "white" | "light" | "primary" | "band-over-white" | "band-over-black";
 
 export const BUTTON_GROUNDS: Record<ButtonVariant, readonly Ground[]> = {
-  gold: ["white", "light", "band-over-white", "band-over-black"],
-  "outline-light": ["band-over-white", "band-over-black"],
+  gold: ["white", "primary", "band-over-white", "band-over-black"],
+  "outline-light": ["primary", "band-over-white", "band-over-black"],
   primary: ["white", "light"],
   "outline-primary": ["white", "light"],
-  white: ["band-over-white", "band-over-black"],
+  white: ["primary", "band-over-white", "band-over-black"],
 };
+
+const VARIANTS = Object.keys(BUTTON_CLASS) as ButtonVariant[];
+
+export function isLegibleOn(variant: ButtonVariant, grounds: readonly Ground[]): boolean {
+  return grounds.every((ground) => BUTTON_GROUNDS[variant].includes(ground));
+}
+
+export function legibleVariant(
+  requested: unknown,
+  grounds: readonly Ground[],
+  fallback: ButtonVariant,
+): ButtonVariant {
+  if (isButtonVariant(requested) && isLegibleOn(requested, grounds)) return requested;
+  if (isLegibleOn(fallback, grounds)) return fallback;
+  const any = VARIANTS.find((variant) => isLegibleOn(variant, grounds));
+  if (!any) throw new Error(`no button variant is legible on ${grounds.join(" + ")}`);
+  return any;
+}
 
 export function buttonClass(variant: ButtonVariant, extra = ""): string {
   return `${BUTTON_BASE} ${BUTTON_CLASS[variant]}${extra ? ` ${extra}` : ""}`;

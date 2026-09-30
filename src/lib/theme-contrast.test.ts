@@ -187,13 +187,20 @@ describe("theme contrast", () => {
     ).toBeGreaterThanOrEqual(AA_LARGE_TEXT);
   });
 
-  it("sets text-gold only on large headings", () => {
+  it("sets text-gold only on large headings, or on a slider arrow icon", () => {
     const offenders: string[] = [];
     let seen = 0;
     for (const file of svelteFiles(resolve(REPO_ROOT, "src"))) {
-      for (const m of readFileSync(file, "utf8").matchAll(/class="([^"]*\btext-gold\b[^"]*)"/g)) {
+      const src = readFileSync(file, "utf8");
+      for (const m of src.matchAll(/\btext-gold\b/g)) {
         seen++;
-        if (!LARGE_TEXT_CLASSES.test(m[1])) offenders.push(`${file}: ${m[1]}`);
+        const open = Math.max(src.lastIndexOf('"', m.index), src.lastIndexOf("`", m.index));
+        const close = src.slice(m.index).search(/["`]/);
+        const value = src.slice(open + 1, m.index + (close === -1 ? 0 : close));
+        const attr = src.slice(Math.max(0, open - 20), open);
+        if (LARGE_TEXT_CLASSES.test(value)) continue;
+        if (/\barrowClass=$/.test(attr)) continue;
+        offenders.push(`${file}: ${value}`);
       }
     }
     expect(offenders).toEqual([]);

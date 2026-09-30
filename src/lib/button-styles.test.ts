@@ -2,7 +2,13 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { BUTTON_CLASS, BUTTON_GROUNDS, type Ground } from "./button-styles";
+import {
+  BUTTON_CLASS,
+  BUTTON_GROUNDS,
+  legibleVariant,
+  type ButtonVariant,
+  type Ground,
+} from "./button-styles";
 
 type Rgb = [number, number, number];
 
@@ -35,18 +41,23 @@ const token = (name: string): Rgb => {
 const grounds: Record<Ground, Rgb> = {
   white: token("white"),
   light: token("light"),
+  primary: token("primary"),
   "band-over-white": blend(token("primary"), 0.9, token("white")),
   "band-over-black": blend(token("primary"), 0.9, token("black")),
 };
 
 type Paint = { name: string; alpha: number } | null;
 
-function paint(classes: string, prefix: "" | "hover:", kind: "bg" | "text"): Paint {
+function paint(classes: string, prefix: "" | "hover:", kind: "bg" | "text" | "border"): Paint {
   const re = new RegExp(
-    `(?:^|\\s)${prefix.replace(":", "\\:")}${kind}-([a-z]+)(?:/(\\d+))?(?=\\s|$)`,
+    `(?:^|\\s)${prefix.replace(":", "\\:")}${kind}-([a-z0-9-]+)(?:/(\\d+))?(?=\\s|$)`,
   );
   const m = re.exec(classes);
-  if (!m) return null;
+  if (!m) {
+    const loose = new RegExp(`(?:^|\\s)${prefix.replace(":", "\\:")}${kind}-\\S+`).exec(classes);
+    if (loose) throw new Error(`cannot read "${loose[0].trim()}" in "${classes}"`);
+    return null;
+  }
   if (m[1] === "transparent") return { name: "transparent", alpha: 0 };
   return { name: m[1], alpha: m[2] ? Number(m[2]) / 100 : 1 };
 }
@@ -54,6 +65,27 @@ function paint(classes: string, prefix: "" | "hover:", kind: "bg" | "text"): Pai
 function surface(fill: Paint, ground: Rgb): Rgb {
   if (!fill || fill.alpha === 0) return ground;
   return blend(token(fill.name), fill.alpha, ground);
+}
+
+const EDGE_FLOOR = 2;
+
+function edgeShows(classes: string, ground: Ground): boolean {
+  const border = paint(classes, "", "border");
+  if (!border) return true;
+  return contrast(surface(border, grounds[ground]), grounds[ground]) >= EDGE_FLOOR;
+}
+
+function passes(classes: string, ground: Ground): boolean {
+  if (!edgeShows(classes, ground)) return false;
+  return (["rest", "hover"] as const).every((state) => {
+    const restFill = paint(classes, "", "bg");
+    const hoverFill = paint(classes, "hover:", "bg");
+    const text =
+      paint(classes, state === "hover" ? "hover:" : "", "text") ?? paint(classes, "", "text");
+    const under = surface(restFill, grounds[ground]);
+    const face = state === "hover" && hoverFill ? surface(hoverFill, grounds[ground]) : under;
+    return contrast(token(text!.name), face) >= 4.5;
+  });
 }
 
 const cases = Object.entries(BUTTON_CLASS).flatMap(([variant, classes]) =>
@@ -87,5 +119,43 @@ describe("button contrast, every state on every ground it is placed on", () => {
   it("fails the Homes defect: a gold hover at 55% under white text", () => {
     const face = surface({ name: "gold", alpha: 0.55 }, grounds.white);
     expect(contrast(token("white"), face)).toBeLessThan(4.5);
+  });
+});
+
+describe("where each variant may go", () => {
+  const allGrounds = Object.keys(grounds) as Ground[];
+
+  it.each(Object.keys(BUTTON_CLASS) as ButtonVariant[])(
+    "%s is listed on exactly the grounds where it passes, so the list is measured, not declared",
+    (variant) => {
+      const measured = allGrounds.filter((g) => passes(BUTTON_CLASS[variant], g));
+      expect([...BUTTON_GROUNDS[variant]].sort()).toEqual(measured.sort());
+    },
+  );
+
+  it("keeps an editor's pick when it is legible on the slice's ground", () => {
+    expect(legibleVariant("outline-light", ["primary"], "gold")).toBe("outline-light");
+  });
+
+  it("replaces a pick that is not legible there with the slice's fallback", () => {
+    expect(legibleVariant("outline-light", ["white"], "primary")).toBe("primary");
+    expect(legibleVariant("primary", ["primary"], "gold")).toBe("gold");
+  });
+
+  it("needs a pick to be legible on every ground a band can sit over", () => {
+    expect(legibleVariant("white", ["band-over-white", "band-over-black"], "gold")).toBe("white");
+    expect(legibleVariant("primary", ["band-over-white", "band-over-black"], "gold")).toBe("gold");
+  });
+
+  it("does not trust a fallback that is itself illegible", () => {
+    expect(legibleVariant("outline-light", ["white"], "white")).not.toMatch(/white|outline-light/);
+  });
+
+  it("reads a hyphenated colour token as one token", () => {
+    expect(paint("bg-gold-dark text-navy", "", "bg")).toEqual({ name: "gold-dark", alpha: 1 });
+  });
+
+  it("refuses a colour class it cannot read rather than measuring the ground instead", () => {
+    expect(() => paint("bg-gold-dark/[.4] text-navy", "", "bg")).toThrow(/cannot read/);
   });
 });

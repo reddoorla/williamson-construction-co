@@ -368,6 +368,7 @@ main > section.hero-band:first-child {
   :where(a, button, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-white);
   }
 
   a,

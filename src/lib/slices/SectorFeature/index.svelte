@@ -24,7 +24,7 @@
           class="absolute -top-16 left-8 h-32 w-32 {cardRight ? 'lg:left-auto lg:right-8' : ''}"
         />
       {/if}
-      <h3 class="text-base font-bold">{slice.primary.label}</h3>
+      <p class="text-base font-bold">{slice.primary.label}</p>
       <div class="mt-4 text-base leading-7"><PrismicRichText field={slice.primary.body} /></div>
     </div>
     <div class="lg:w-[50%] lg:pt-8">
@@ -34,7 +34,7 @@
           <span class="wc-h2 block text-secondary">{slice.primary.accent}</span>
         {/if}
       </h2>
-      <ButtonRow items={slice.items} fallback="primary" class="mt-12" />
+      <ButtonRow items={slice.items} grounds={["white"]} fallback="primary" class="mt-12" />
     </div>
   </div>
 </section>

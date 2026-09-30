@@ -1,13 +1,18 @@
 <script lang="ts">
   import type { LinkField } from "@prismicio/client";
   import WcButton from "$lib/components/WcButton.svelte";
-  import { isButtonVariant, type ButtonVariant } from "$lib/button-styles";
+  import { legibleVariant, type ButtonVariant, type Ground } from "$lib/button-styles";
   import { buttonsOf } from "$lib/links";
 
   type Item = { button_label: string | null; button_link: LinkField; button_style?: string | null };
-  type Props = { items: readonly Item[]; fallback?: ButtonVariant; class?: string };
+  type Props = {
+    items: readonly Item[];
+    grounds: readonly Ground[];
+    fallback?: ButtonVariant;
+    class?: string;
+  };
 
-  let { items, fallback = "gold", class: passedClasses = "" }: Props = $props();
+  let { items, grounds, fallback = "gold", class: passedClasses = "" }: Props = $props();
 
   const buttons = $derived(buttonsOf(items));
 </script>
@@ -17,7 +22,7 @@
     {#each buttons as button, i (i)}
       <WcButton
         href={button.href}
-        variant={isButtonVariant(button.item.button_style) ? button.item.button_style : fallback}
+        variant={legibleVariant(button.item.button_style, grounds, fallback)}
         >{button.label}</WcButton
       >
     {/each}

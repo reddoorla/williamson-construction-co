@@ -22,15 +22,15 @@ source. It is the fastest way to recognise what a thing does.
 | --- | --- | --- | --- |
 | [`animateIn.ts`](../src/lib/actions/animateIn.ts) | `animateIn` | 23 |  |
 | [`trapFocus.ts`](../src/lib/actions/trapFocus.ts) | `trapFocus` | 24 | Focus management for modal overlays (WCAG 2.4.3 focus order + 2.1.2 no keyboard trap) |
-| [`button-styles.ts`](../src/lib/button-styles.ts) | `BUTTON_BASE`, `BUTTON_CLASS`, `BUTTON_GROUNDS`, `buttonClass`, `isButtonVariant` | 2 |  |
+| [`button-styles.ts`](../src/lib/button-styles.ts) | `BUTTON_BASE`, `BUTTON_CLASS`, `BUTTON_GROUNDS`, `isLegibleOn`, `legibleVariant`, `buttonClass`, `isButtonVariant` | 8 |  |
 | [`capture-files.js`](../src/lib/capture-files.js) | `captureFileFor`, `collectImageKeys` | — | @param {{ files: Array<{ file: string }> }} manifest @param {string} key @returns {string} |
 | [`Accordion.svelte`](../src/lib/components/Accordion.svelte) | `items`, `allowMultiple` | 4 |  |
 | [`AnimateInTriggered.svelte`](../src/lib/components/Animation/AnimateInTriggered.svelte) | `trigger`, `style`, `transitionDuration`, `children` | — |  |
 | [`AnimateOutTriggered.svelte`](../src/lib/components/Animation/AnimateOutTriggered.svelte) | `trigger`, `style`, `transitionDuration`, `children` | — |  |
 | [`TriggerTransitionOnMount.svelte`](../src/lib/components/Animation/TriggerTransitionOnMount.svelte) | `children` | — |  |
-| [`BgVideo.svelte`](../src/lib/components/BgVideo.svelte) | `mp4`, `webm`, `poster` | — |  |
+| [`BgVideo.svelte`](../src/lib/components/BgVideo.svelte) | `mp4`, `webm`, `poster`, `controlClass` | 5 |  |
 | [`BrandIcon.svelte`](../src/lib/components/BrandIcon.svelte) | `platform` | 5 | Brand glyphs from simple-icons (CC0 / public domain) — facebook/x/reddit/ instagram from v16, linkedin from v10 (pre brand-removal) |
-| [`ButtonRow.svelte`](../src/lib/components/ButtonRow.svelte) | `items`, `fallback` | — |  |
+| [`ButtonRow.svelte`](../src/lib/components/ButtonRow.svelte) | `items`, `grounds`, `fallback` | — |  |
 | [`ContentBand.svelte`](../src/lib/components/ContentBand.svelte) | `sliceType`, `variation`, `sectionClass`, `contentClass`, `fallbackHeight`, `background`, `children` | — |  |
 | [`ContentWidth.svelte`](../src/lib/components/ContentWidth.svelte) | `reveals`, `style`, `children`, `edgeFadeColor` | 2 |  |
 | [`CountUp.svelte`](../src/lib/components/CountUp.svelte) | `value`, `startValue`, `duration`, `startOnVisible`, `once`, `label`, `decimals`, `prefix`, `suffix`, `useGrouping`, `locale` | 12 | The number to count up to |
@@ -85,4 +85,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-64 modules, 373 tests behind them.
+64 modules, 384 tests behind them.

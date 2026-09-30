@@ -39,3 +39,13 @@ has been quietly widened and nothing records who widened it, or why.
 - [deviation] video bands — 16:9 on mobile, 720px from `md`: the 720×480
   `home_drVid` file carries black bars top and bottom, which the reference
   hides by its band's aspect; a 400px band showed them.
+- [kept] our plan — an unselected shape's fill `#005a91` on the `#004a80` band
+  is 1.25:1, as in the reference. Each tab stays identifiable by its white step
+  number (9.2:1) and the selected one by its gold fill (3.1:1), so the shapes
+  keep the reference's colours.
+- [deviation] background videos — every `BgVideo` carries a pause/play button
+  (WCAG 2.2.2), which the reference does not have. Playback starts from script
+  after `prefers-reduced-motion` is read, never from an `autoplay` attribute,
+  and turning that setting on later pauses the video.
+- [deviation] focus ring — the navy outline has a 2px white halo inside it, so
+  keyboard focus shows on the navy bands too, where a navy ring alone is 1:1.
