@@ -1,0 +1,27 @@
+{
+  "ref": "https://www.williamson-construction.com",
+  "cand": "http://localhost:5173",
+  "matrix": [
+    1440,
+    834,
+    390
+  ],
+  "threshold": 0.1,
+  "maxHeightDelta": 0.05,
+  "refMark": "data-wf-site=\"646d47bfeb53b0308e8d4379\"",
+  "candMark": "_app/immutable",
+  "selfHosts": [
+    "williamson-construction-co.netlify.app"
+  ],
+  "pages": {
+    "home": {
+      "uid": "home",
+      "ref": "/",
+      "cand": "/dev/match/home",
+      "published": "/",
+      "anchors": [],
+      "spec": "home",
+      "group": "nav"
+    }
+  }
+}
