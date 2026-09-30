@@ -13,6 +13,7 @@ import ContactCard from "./ContactCard/index.svelte";
 import CtaBlock from "./CtaBlock/index.svelte";
 import ClientLogos from "./ClientLogos/index.svelte";
 import type { ProjectCard } from "$lib/projects";
+import { BUTTON_CLASS, isLegibleOn, type ButtonVariant, type Ground } from "$lib/button-styles";
 
 afterEach(() => cleanup());
 
@@ -194,6 +195,16 @@ describe("OurPlan", () => {
       "0",
     ]);
   });
+
+  it("names the panel after the selected tab and does not re-announce it on every arrow key", async () => {
+    const { getAllByRole, getByRole } = render(OurPlan, { props: { slice: plan() } });
+    await fireEvent.keyDown(getAllByRole("tab")[0], { key: "ArrowRight" });
+    const panel = getByRole("tabpanel");
+    const tab = getAllByRole("tab")[1];
+    expect(panel.getAttribute("aria-labelledby")).toBe(tab.id);
+    expect(getByRole("tabpanel", { name: "Step 2: Bid Process" })).toBe(panel);
+    expect(panel.hasAttribute("aria-live")).toBe(false);
+  });
 });
 
 describe("QuoteSlider", () => {
@@ -259,6 +270,24 @@ describe("SectorFeature", () => {
     expect(accent.textContent?.trim()).toBe("help them heal.");
     expect(accent.className).toContain("text-secondary");
     expect(accent.className).not.toContain("text-gold");
+  });
+
+  it("does not put the card's label in the outline ahead of the slice's own h2", () => {
+    const { container } = render(SectorFeature, {
+      props: {
+        slice: slice("sector_feature", {
+          label: "Healthcare",
+          body: para("We have experience…"),
+          icon: image("icon"),
+          heading: "Modernizing spaces that",
+          accent: "help them heal.",
+          card_side: "left",
+        }),
+      },
+    });
+    const headings = [...container.querySelectorAll("h1, h2, h3, h4, h5, h6")];
+    expect(headings.map((h) => h.tagName)).toEqual(["H2"]);
+    expect(container.textContent).toContain("Healthcare");
   });
 });
 
@@ -367,4 +396,110 @@ describe("EmployeeApplication, ContactCard, CtaBlock, ClientLogos", () => {
     expect(logos).toHaveLength(1);
     expect(logos[0].getAttribute("alt")).toBe("Cedars-Sinai");
   });
+
+  it("marks a logo uploaded without alt text as decorative rather than leaving alt off", () => {
+    const { container } = render(ClientLogos, {
+      props: { slice: slice("client_logos", { heading: null }, [{ logo: image("c") }]) },
+    });
+    const img = container.querySelector("img")!;
+    expect(img.hasAttribute("alt")).toBe(true);
+    expect(img.getAttribute("alt")).toBe("");
+  });
+});
+
+describe("editor-picked button styles stay legible on the ground each slice paints", () => {
+  const variants = Object.keys(BUTTON_CLASS) as ButtonVariant[];
+
+  function groundsOf(el: Element): readonly Ground[] {
+    for (let node = el.parentElement; node; node = node.parentElement) {
+      const classes = node.className.split(/\s+/);
+      if (classes.includes("bg-primary/90")) return ["band-over-white", "band-over-black"];
+      if (classes.includes("bg-primary")) return ["primary"];
+      if (classes.includes("bg-light")) return ["light"];
+      if (classes.includes("bg-white")) return ["white"];
+    }
+    return ["white"];
+  }
+
+  function variantOf(el: Element): ButtonVariant {
+    const classes = new Set(el.className.split(/\s+/));
+    const hit = variants.find((v) => BUTTON_CLASS[v].split(" ").every((c) => classes.has(c)));
+    if (!hit) throw new Error(`no variant matches "${el.className}"`);
+    return hit;
+  }
+
+  const withStyle = (style: string) => [button("Contact", "/contact", style)];
+  const renders: Record<string, (style: string) => HTMLElement> = {
+    PageHero: (style) =>
+      render(PageHero, {
+        props: {
+          slice: slice(
+            "page_hero",
+            {
+              heading: "H",
+              body: [],
+              background_image: image("p"),
+              video_mp4: noMedia,
+              video_webm: noMedia,
+            },
+            withStyle(style),
+          ),
+        },
+      }).container,
+    CtaBlock: (style) =>
+      render(CtaBlock, {
+        props: { slice: slice("cta_block", { heading: "H", size: "medium" }, withStyle(style)) },
+      }).container,
+    SectorFeature: (style) =>
+      render(SectorFeature, {
+        props: {
+          slice: slice(
+            "sector_feature",
+            {
+              label: "L",
+              body: para("b"),
+              icon: image("i"),
+              heading: "H",
+              accent: null,
+              card_side: "left",
+            },
+            withStyle(style),
+          ),
+        },
+      }).container,
+    ContactCard: (style) =>
+      render(ContactCard, {
+        props: {
+          slice: slice(
+            "contact_card",
+            {
+              photo: image("p"),
+              name: "N",
+              role: "R",
+              heading: "H",
+              body: "B",
+              email: null,
+              address: null,
+              license: null,
+            },
+            withStyle(style),
+          ),
+        },
+      }).container,
+  };
+
+  it.each(Object.keys(renders).flatMap((name) => variants.map((style) => ({ name, style }))))(
+    "$name with $style",
+    ({ name, style }) => {
+      const container = renders[name]!(style);
+      const link = [...container.querySelectorAll("a")].find(
+        (a) => a.textContent?.trim() === "Contact",
+      );
+      expect(link, "the button did not render").toBeTruthy();
+      const grounds = groundsOf(link!);
+      const used = variantOf(link!);
+      expect(isLegibleOn(used, grounds), `${used} on ${grounds.join(" + ")}`).toBe(true);
+      if (isLegibleOn(style as ButtonVariant, grounds)) expect(used).toBe(style);
+    },
+  );
 });

@@ -23,6 +23,7 @@
           {webm}
           poster={slice.primary.background_image?.url}
           class="absolute inset-0 h-full w-full"
+          controlClass="top-20 right-4"
         />
       {:else if isFilled.image(slice.primary.background_image)}
         <PrismicImage
@@ -42,7 +43,11 @@
         {#if isFilled.richText(slice.primary.body)}
           <div class="wc-p mt-2"><PrismicRichText field={slice.primary.body} /></div>
         {/if}
-        <ButtonRow items={slice.items} class="mt-6" />
+        <ButtonRow
+          items={slice.items}
+          grounds={["band-over-white", "band-over-black"]}
+          class="mt-6"
+        />
       {/if}
     {/snippet}
   </TitlePanel>

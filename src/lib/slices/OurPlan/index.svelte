@@ -50,6 +50,7 @@
           <g
             bind:this={tabs[i]}
             role="tab"
+            id="{slice.id}-tab-{i}"
             tabindex={active === i ? 0 : -1}
             aria-selected={active === i}
             aria-controls="{slice.id}-step"
@@ -96,8 +97,8 @@
       <div
         id="{slice.id}-step"
         role="tabpanel"
+        aria-labelledby="{slice.id}-tab-{active}"
         class="w-full lg:w-[40%] lg:pr-[8%]"
-        aria-live="polite"
       >
         <div class="flex h-20 w-20 items-center justify-center rounded-full bg-gold">
           <span class="text-5xl text-navy" aria-hidden="true">{active + 1}</span>

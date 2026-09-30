@@ -30,7 +30,7 @@
       <div class="bg-primary px-6 py-8 text-white">
         <h3 class="text-left text-[30px] leading-[35px] text-white">{slice.primary.heading}</h3>
         <p class="mt-6 text-base leading-7">{slice.primary.body}</p>
-        <ButtonRow items={slice.items} class="mt-6" />
+        <ButtonRow items={slice.items} grounds={["primary"]} class="mt-6" />
       </div>
       <address class="mt-6 text-base leading-7 text-primary not-italic">
         {#if email}<a href="mailto:{email}" class="text-primary">{email}</a><br />{/if}
