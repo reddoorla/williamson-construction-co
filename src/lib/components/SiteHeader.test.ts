@@ -42,6 +42,39 @@ describe("SiteHeader", () => {
     expect(menuOf(container).className).not.toMatch(/(^|\s)invisible(\s|$)/);
   });
 
+  it("makes the closed panel inert at once, so Tab cannot land in it while it slides away", async () => {
+    const { container, getByRole } = render(SiteHeader);
+    const button = getByRole("button", { name: "Menu" });
+    expect(menuOf(container).inert).toBe(true);
+    await fireEvent.click(button);
+    expect(menuOf(container).inert).toBe(false);
+    await fireEvent.click(button);
+    expect(menuOf(container).inert).toBe(true);
+  });
+
+  it("is a labelled navigation list on a phone, where the desktop nav is not displayed", () => {
+    const { container } = render(SiteHeader);
+    const menu = menuOf(container);
+    expect(menu.tagName).toBe("NAV");
+    expect(menu.getAttribute("aria-label")).toBe("Menu");
+    expect(menu.querySelectorAll("ul > li > a")).toHaveLength(4);
+  });
+
+  it("closes when focus leaves the header, and not when it moves inside it", async () => {
+    const { container, getByRole } = render(SiteHeader);
+    const button = getByRole("button", { name: "Menu" });
+    const outside = container.ownerDocument.createElement("button");
+    container.ownerDocument.body.appendChild(outside);
+    await fireEvent.click(button);
+    const links = menuOf(container).querySelectorAll("a");
+    links[1]!.focus();
+    expect(button.getAttribute("aria-expanded")).toBe("true");
+    outside.focus();
+    await Promise.resolve();
+    expect(button.getAttribute("aria-expanded")).toBe("false");
+    outside.remove();
+  });
+
   it("closes on Escape and hands focus back to the button", async () => {
     const { container, getByRole } = render(SiteHeader);
     const button = getByRole("button", { name: "Menu" });
@@ -85,9 +118,11 @@ describe("SiteHeader", () => {
 
   it("marks the current section and links Services to /services", () => {
     const { container } = render(SiteHeader);
-    const current = [...container.querySelectorAll('nav a[aria-current="page"]')];
+    const current = [
+      ...container.querySelectorAll('nav[aria-label="Main"] a[aria-current="page"]'),
+    ];
     expect(current.map((a) => a.getAttribute("href"))).toEqual(["/services"]);
-    const services = [...container.querySelectorAll("nav a")].find(
+    const services = [...container.querySelectorAll('nav[aria-label="Main"] a')].find(
       (a) => a.textContent?.trim() === "Services",
     );
     expect(services?.getAttribute("href")).toBe("/services");

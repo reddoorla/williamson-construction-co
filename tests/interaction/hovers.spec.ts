@@ -63,8 +63,10 @@ async function expectColor(page: Page, el: Locator, prop: string, expected: stri
 }
 
 async function hovered(page: Page, el: Locator) {
+  await page.evaluate(() => document.fonts.ready);
   await page.mouse.move(0, 0);
   await el.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(200);
   const point = await el.evaluate((e) => {
     const r = e.getBoundingClientRect();
     for (let y = r.top + 2; y < r.bottom - 1; y += 3) {
@@ -77,7 +79,10 @@ async function hovered(page: Page, el: Locator) {
   });
   expect(point, "no point on the element is topmost").not.toBeNull();
   await page.mouse.move(point!.x, point!.y);
-  await page.waitForTimeout(900);
+  await expect
+    .poll(async () => el.evaluate((e) => e.matches(":hover")), { timeout: 3000 })
+    .toBe(true);
+  await page.waitForTimeout(1000);
 }
 
 type ButtonCase = [path: string, slice: string, label: string, bg: string, reference: string];
@@ -149,6 +154,12 @@ test("slider arrows fade to 0.8 on hover with no fill (.icon-2:hover)", async ({
   await hovered(page, next);
   expect(await css(next, "opacity")).toBe("0.8");
   await expectColor(page, next, "background-color", "transparent", "next arrow");
+
+  await next.click();
+  const previous = page.locator('[data-slice-type="phase_slider"]').getByLabel("Previous slide");
+  await expect(previous).not.toHaveAttribute("aria-disabled", "true");
+  await hovered(page, previous);
+  expect(await css(previous, "opacity"), "the left arrow is .icon, which has no hover").toBe("1");
 });
 
 test("a phase bubble does not fade on hover (.number-bubble:hover opacity 1)", async ({ page }) => {
@@ -158,30 +169,23 @@ test("a phase bubble does not fade on hover (.number-bubble:hover opacity 1)", a
   expect(await css(bubble, "opacity")).toBe("1");
 });
 
-test("the plan's shapes and discs fade to 0.6 on hover (inline polygon, circle, rect:hover)", async ({
-  page,
-}) => {
-  await page.goto("/");
-  const plan = page.locator('[data-slice-type="our_plan"] svg');
-  for (const shape of [plan.locator("polygon").first(), plan.locator("circle").first()]) {
-    await hovered(page, shape);
-    expect(await css(shape, "opacity")).toBe("0.6");
-  }
-});
-
 const ROUTES = ["/", "/about-us", "/services", "/contact", "/join-the-team", "/projects"];
 
 for (const path of ROUTES) {
   test(`${path}: every plain link fades as the reference's a:hover does, no further than AA allows`, async ({
     page,
   }) => {
-    await page.goto(path);
+    await page.goto(path, { waitUntil: "networkidle" });
     const links = page.locator("a:visible");
     const count = await links.count();
     let measured = 0;
     for (let i = 0; i < count; i++) {
       const link = links.nth(i);
-      const isButton = await link.evaluate((e) => /\bhover:opacity-100\b/.test(e.className));
+      const isButton = await link.evaluate(
+        (e) =>
+          (/\brounded-\[10px\]/.test(e.className) && /\bborder-2\b/.test(e.className)) ||
+          !!e.closest('[data-slice-type="phase_bubbles"]'),
+      );
       const box = await link.boundingBox();
       if (isButton || !box || box.width < 2 || box.height < 2) continue;
       await hovered(page, link);
@@ -240,3 +244,28 @@ for (const path of ROUTES) {
     expect(measured).toBeGreaterThan(3);
   });
 }
+
+test.describe("with motion allowed", () => {
+  test.use({ contextOptions: { reducedMotion: "no-preference" } });
+
+  test("the plan's shapes and discs fade to 0.6 on hover (inline polygon, circle, rect:hover)", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const plan = page.locator('[data-slice-type="our_plan"] svg');
+    const transition = (l: Locator) =>
+      l.evaluate(
+        (e) =>
+          `${getComputedStyle(e).transitionProperty} ${getComputedStyle(e).transitionDuration}`,
+      );
+    expect(
+      await transition(plan.locator("polygon").first()),
+      "the reference's script sets fill 400ms inline",
+    ).toBe("fill 0.4s");
+    expect(await transition(plan.locator("circle").first())).toBe("opacity 0.4s");
+    for (const shape of [plan.locator("polygon").first(), plan.locator("circle").first()]) {
+      await hovered(page, shape);
+      expect(await css(shape, "opacity")).toBe("0.6");
+    }
+  });
+});

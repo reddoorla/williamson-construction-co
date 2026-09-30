@@ -96,6 +96,29 @@ test("the icons cross-fade: menu out, close in, in the same 32px spot (.open-nav
   expect({ ...a!, x: a!.x - button.x }).toEqual({ x: 16, y: 16, width: 32, height: 32 });
 });
 
+test("Tab past the last menu link closes the menu, so the next control is not under it", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const button = await open(page);
+  await button.focus();
+  await expect(button).toBeFocused();
+  for (const name of ["About", "Services", "Projects", "Contact"]) {
+    await page.keyboard.press("Tab");
+    await expect(page.locator("#wc-menu").getByRole("link", { name })).toBeFocused();
+  }
+  await page.keyboard.press("Tab");
+  const where = await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 120));
+  await expect(button, `focus went to ${where}`).toHaveAttribute("aria-expanded", "false");
+  const covered = await page.evaluate(() => {
+    const el = document.activeElement as HTMLElement;
+    const r = el.getBoundingClientRect();
+    const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    return !!hit?.closest("#wc-menu");
+  });
+  expect(covered).toBe(false);
+});
+
 test("the toggle fades to 0.6 on hover (.open-nav:hover, .close-nav:hover)", async ({ page }) => {
   await page.goto("/");
   const button = page.getByRole("button", { name: "Menu" });
@@ -116,7 +139,22 @@ test.describe("with motion allowed", () => {
       page.locator('button[aria-controls="wc-menu"] img').nth(0),
       page.locator('button[aria-controls="wc-menu"] img').nth(1),
     ];
-    await open(page);
+    const button = page.getByRole("button", { name: "Menu" });
+    await expect(async () => {
+      await button.click();
+      await expect(button).toHaveAttribute("aria-expanded", "true", { timeout: 300 });
+    }).toPass({ timeout: 20000 });
+    const tops: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      tops.push((await box(page, "#wc-menu")).top);
+      await page.waitForTimeout(80);
+    }
+    expect(
+      tops.some((t) => t > -176 && t < 64),
+      `mid-slide positions ${tops}`,
+    ).toBe(true);
+    await expect.poll(async () => (await box(page, "#wc-menu")).top).toBe(64);
+
     const timing = async (l: typeof panel, prop: string) =>
       l.evaluate((e, prop) => {
         const s = getComputedStyle(e);
@@ -127,8 +165,31 @@ test.describe("with motion allowed", () => {
           ? null
           : `${at(s.transitionDuration)} ${at(s.transitionTimingFunction)} ${at(s.transitionDelay)}`;
       }, prop);
-    expect(await timing(panel, "transform")).toBe("0.5s ease 0s");
+    expect(await timing(panel, "translate")).toBe("0.5s ease 0s");
     expect(await timing(menu, "opacity")).toBe("0.5s ease 0s");
     expect(await timing(close, "opacity")).toBe("0.7s ease 0.2s");
+    await expect(close).toHaveCSS("opacity", "1");
+
+    await button.click();
+    await expect(button).toHaveAttribute("aria-expanded", "false");
+    expect(await timing(close, "opacity")).toBe("0.7s ease 0s");
+    expect(await timing(menu, "opacity")).toBe("0.5s ease 0.9s");
+    await page.waitForTimeout(600);
+    expect(Number(await menu.evaluate((e) => getComputedStyle(e).opacity))).toBe(0);
+    await expect(menu).toHaveCSS("opacity", "1", { timeout: 3000 });
+    await expect.poll(async () => (await box(page, "#wc-menu")).top).toBe(64 - 240);
+  });
+
+  test("Tab straight after closing goes on into the page, never into the sliding panel", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const button = await open(page);
+    await button.focus();
+    await page.keyboard.press("Escape");
+    await expect(button).toHaveAttribute("aria-expanded", "false");
+    await page.keyboard.press("Tab");
+    const inPanel = await page.evaluate(() => !!document.activeElement?.closest("#wc-menu"));
+    expect(inPanel).toBe(false);
   });
 });

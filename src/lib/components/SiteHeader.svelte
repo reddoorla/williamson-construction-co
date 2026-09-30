@@ -10,6 +10,12 @@
 
   const closeMenu = () => (menuOpen = false);
 
+  let header = $state<HTMLElement>();
+
+  const onFocusin = (event: FocusEvent) => {
+    if (menuOpen && header && !header.contains(event.target as Node)) closeMenu();
+  };
+
   const onKeydown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || !menuOpen) return;
     closeMenu();
@@ -17,9 +23,9 @@
   };
 </script>
 
-<svelte:window onkeydown={onKeydown} />
+<svelte:window onkeydown={onKeydown} onfocusin={onFocusin} />
 
-<header class="wc-header fixed inset-x-0 top-0 z-50 mx-auto max-w-[1280px]">
+<header class="wc-header fixed inset-x-0 top-0 z-50 mx-auto max-w-[1280px]" bind:this={header}>
   <div class="relative z-10 flex h-16 items-stretch justify-between bg-white/90">
     <a href="/" class="block h-full" aria-label="Williamson Construction, home">
       <img src="/images/wcc-header-logo.svg" alt="" class="h-full w-auto" />
@@ -53,7 +59,7 @@
           alt=""
           class="absolute inset-0 h-8 w-8 transition-opacity ease-[ease] {menuOpen
             ? 'opacity-0 duration-500'
-            : 'opacity-100 delay-200 duration-500'}"
+            : 'opacity-100 delay-[900ms] duration-500'}"
         />
         <img
           src="/images/close-icon_white.svg"
@@ -65,20 +71,26 @@
       </span>
     </button>
   </div>
-  <div
+  <nav
     id="wc-menu"
+    aria-label="Menu"
     data-open={menuOpen}
-    class="absolute inset-x-0 top-16 flex flex-col items-center justify-center bg-white motion-reduce:transition-none md:hidden {menuOpen
-      ? 'visible translate-y-0 [transition:transform_0.5s_ease,visibility_0s]'
-      : 'invisible -translate-y-[15rem] [transition:transform_0.5s_ease,visibility_0s_linear_0.5s]'}"
+    inert={!menuOpen}
+    class="absolute inset-x-0 top-16 bg-white motion-reduce:transition-none md:hidden {menuOpen
+      ? 'visible translate-y-0 [transition:translate_0.5s_ease,visibility_0s]'
+      : 'invisible -translate-y-[15rem] [transition:translate_0.5s_ease,visibility_0s_linear_0.5s]'}"
   >
-    {#each NAV_LINKS as link (link.href)}
-      <a
-        href={link.href}
-        aria-current={isCurrent(link.href) ? "page" : undefined}
-        class="rounded-[10px] p-4 text-[1.2rem] leading-5 font-medium text-primary"
-        onclick={closeMenu}>{link.label}</a
-      >
-    {/each}
-  </div>
+    <ul class="flex flex-col items-center justify-center">
+      {#each NAV_LINKS as link (link.href)}
+        <li>
+          <a
+            href={link.href}
+            aria-current={isCurrent(link.href) ? "page" : undefined}
+            class="block rounded-[10px] p-4 text-[1.2rem] leading-5 font-medium text-primary"
+            onclick={closeMenu}>{link.label}</a
+          >
+        </li>
+      {/each}
+    </ul>
+  </nav>
 </header>

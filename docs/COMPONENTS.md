@@ -53,9 +53,9 @@ source. It is the fastest way to recognise what a thing does.
 | [`ScreenWidthMedia.svelte`](../src/lib/components/ScreenWidthMedia.svelte) | `src`, `field`, `altText`, `vimeoId`, `darken`, `backdrop`, `percentHeight`, `children` | 11 |  |
 | [`Seo.svelte`](../src/lib/components/Seo.svelte) | `title`, `description`, `image`, `imageAlt`, `url`, `type`, `siteName`, `locale`, `noindex`, `jsonLd` | 14 | The page title — used verbatim for <title> and og/twitter:title |
 | [`SiteFooter.svelte`](../src/lib/components/SiteFooter.svelte) | — | — |  |
-| [`SiteHeader.svelte`](../src/lib/components/SiteHeader.svelte) | — | 9 |  |
+| [`SiteHeader.svelte`](../src/lib/components/SiteHeader.svelte) | — | 12 |  |
 | [`SkeletonLoader.svelte`](../src/lib/components/SkeletonLoader.svelte) | `lines`, `circle`, `height`, `width` | — |  |
-| [`Slider.svelte`](../src/lib/components/Slider.svelte) | `itemCount`, `label`, `children`, `cardsPerView`, `gap`, `mobileGap`, `mode`, `loop`, `autoplay`, `showDots`, `showArrows`, `transitionClass`, `navigationClass`, `arrowClass`, `pauseClass`, `dotClass`, `activeDotClass` | 23 | Accessible name for the carousel region — say what's inside ("Customer testimonials"), not "Slider" |
+| [`Slider.svelte`](../src/lib/components/Slider.svelte) | `itemCount`, `label`, `children`, `cardsPerView`, `gap`, `mobileGap`, `mode`, `loop`, `autoplay`, `showDots`, `showArrows`, `transitionClass`, `navigationClass`, `arrowClass`, `nextArrowClass`, `pauseClass`, `dotClass`, `activeDotClass` | 23 | Accessible name for the carousel region — say what's inside ("Customer testimonials"), not "Slider" |
 | [`TitlePanel.svelte`](../src/lib/components/TitlePanel.svelte) | `media`, `heading`, `aside`, `align` | — |  |
 | [`TransitionOverlay.svelte`](../src/lib/components/TransitionOverlay.svelte) | `visibleDuration`, `fadeInDuration`, `fadeOutDuration`, `so` | 9 | ms the cover holds once the incoming route has arrived |
 | [`TurnstileWidget.svelte`](../src/lib/components/TurnstileWidget.svelte) | — | 6 |  |
@@ -87,4 +87,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-66 modules, 413 tests behind them.
+66 modules, 416 tests behind them.

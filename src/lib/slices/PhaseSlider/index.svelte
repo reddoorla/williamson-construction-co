@@ -17,7 +17,8 @@
     <Slider
       itemCount={slice.items.length}
       label="Our phases"
-      arrowClass="text-gold! hover:bg-transparent! hover:opacity-80 aria-disabled:hover:opacity-40"
+      arrowClass="text-gold! hover:bg-transparent!"
+      nextArrowClass="hover:opacity-80 aria-disabled:hover:opacity-40"
       dotClass="bg-white/60"
       activeDotClass="bg-gold"
     >

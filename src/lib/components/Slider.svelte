@@ -31,6 +31,7 @@
     transitionClass?: string;
     navigationClass?: string;
     arrowClass?: string;
+    nextArrowClass?: string;
     pauseClass?: string;
     /** Style the dot visuals (the button hit areas stay 24px+). */
     dotClass?: string;
@@ -53,6 +54,7 @@
     transitionClass = "duration-500 ease-in-out",
     navigationClass = "",
     arrowClass = "",
+    nextArrowClass = "",
     pauseClass = "",
     dotClass = "bg-gray-500 group-hover:bg-gray-600 group-active:bg-gray-700",
     activeDotClass = "bg-gray-800",
@@ -330,7 +332,7 @@
           onclick={nextSlide}
           onkeydown={handleKeydown}
           aria-disabled={atEnd ? "true" : undefined}
-          class="w-8 h-8 rounded-full text-gray-700 hover:bg-gray-200 transition-colors duration-200 flex items-center justify-center aria-disabled:opacity-40 aria-disabled:hover:bg-transparent aria-disabled:cursor-default {arrowClass}"
+          class="w-8 h-8 rounded-full text-gray-700 hover:bg-gray-200 transition-colors duration-200 flex items-center justify-center aria-disabled:opacity-40 aria-disabled:hover:bg-transparent aria-disabled:cursor-default {arrowClass} {nextArrowClass}"
           aria-label="Next slide"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -61,45 +61,62 @@ has been quietly widened and nothing records who widened it, or why.
   that family; otherwise Chrome synthesizes 300 from the 400 face.
   `tests/smoke/fonts.spec.ts` asserts it per text node.
 - [a11y] link hover — the reference's `a:hover` (opacity 0.55, fill
-  `#6d6a690f`, 0.35s/0.7s) applies to every plain link. At 0.55 black text on
-  white stays AA (4.64:1), so those links and every image-only link fade to
-  exactly 0.55. Primary text on white does not (3.09:1), so a `--wc-link-fade`
-  floor raises it to 0.75 (on `bg-light`: 0.85), and black on `bg-light` to
-  0.6. `tests/interaction/hovers.spec.ts` measures each link in the browser and
-  refuses any value other than 0.55 where 0.55 passes. The hover is behind
-  `@media (hover: hover)`, like every Tailwind `hover:`, so a tap on a phone
-  leaves no faded link behind.
+  `#6d6a690f`, 0.35s/0.7s) applies to every plain link. At 0.55, with that
+  fill, black text on white stays AA (4.57:1), so those links and every
+  image-only link fade to exactly 0.55. Primary text on white does not
+  (2.82:1), so a `--wc-link-fade` floor raises it to 0.75 (4.54:1; on
+  `bg-light` 0.85), black on `bg-light` to 0.6, and white text to 0.65 for any
+  link a rich-text field puts on a navy band. `tests/interaction/hovers.spec.ts`
+  measures each link in the browser and refuses any value other than 0.55
+  where 0.55 passes. The hover is behind `@media (hover: hover)`, like every
+  Tailwind `hover:`, so a tap on a phone leaves no faded link behind.
 - [corrects the 2026-09-30 "buttons" entry, in part] gold — on white and light
   grounds gold now takes the reference's own hover, gold at 55%, under navy
-  text (8.9:1). On the blue grounds gold at 55% under navy is below 3:1, so it
-  keeps the white substitute there.
+  text (8.9:1). On the blue grounds gold at 55% under navy is 3.13:1, below
+  the 4.5:1 that 16px text needs, so it keeps the white substitute there.
+  Button transitions are the reference's `background-color .2s ease-in,
+opacity .25s ease-in`.
 - [kept] white button (About's testimonial "Contact") and the contact page's
   outline phone buttons — the reference shows no hover on either, because
-  `.bg-color-white` and `.button-default.mr-8.bg-color-transparent` sit later in
-  the stylesheet at the same specificity as `.button-default:hover` and undo it.
-  Their siblings `.bg-color-white.ml-8:hover` and `.bg-color-transparent.ml-8:hover`
-  do hover, so the missing state reads as a cascade accident, and both keep a
-  hover (gold, and white at 10%). Matching would also need a new Prismic select
-  option, because the phone buttons share `outline-light` with the hero's.
-- [deviation] `.number-bubble:hover` — the reference keeps the bubble at
-  opacity 1 but `a:hover`'s near-transparent fill (0,1,1) beats
-  `.number-bubble`'s navy (0,1,0), so the white number vanishes on hover. The
-  rebuild keeps opacity 1 and the navy disc.
+  `.button-default.bg-color-white` and `.button-default.bg-color-transparent`
+  sit later in the stylesheet at the same specificity as `.button-default:hover`
+  and undo it. Their siblings `.bg-color-white.ml-8:hover` and
+  `.bg-color-transparent.ml-8:hover` do hover, so the missing state reads as a
+  cascade accident, and both keep a hover (gold, and white at 10%). Matching
+  would also need a new Prismic select option, because the phone buttons share
+  `outline-light` with the hero's.
+- [deviation] phase bubbles — each reference phase is three links (number,
+  icon, label); the number link keeps opacity 1 (`.number-bubble:hover`, except
+  phase 1, whose number is wrapped in a plain link), and the icon and label
+  links fade to 0.55. The rebuild's phase is one link: its number stays at 1,
+  its icon fades to 0.55 and its label to the primary floor 0.75, together.
+  The reference's `a:hover` fill also replaces the number's navy (0,1,1 beats
+  0,1,0), so its white number vanishes on hover; the rebuild keeps the navy.
 - [kept] `.bg-color-transparent.ml-8:hover` is white at 11% (`#ffffff1c`); the
   Our Plan "Services" button shares `outline-light`'s white at 10%
   (`#ffffff1a`), 2/255 apart in alpha.
+- [measured] the plan's shapes — Webflow's script writes `transition: fill
+400ms` inline on every polygon and rect, so they snap to 0.6 on hover; only
+  the discs fade (`opacity 400ms`). The rebuild does the same. Only the right
+  slider arrow (`.icon-2`) fades to 0.8; the left one (`.icon`) has no hover.
 - [corrects the 2026-09-30 "header" entry, in part] mobile menu — the
   full-screen blue dialog is replaced by the reference's IX2 `open-nav` /
   `close-nav`: a 208px white panel of four 52px links (19.2px, weight 500,
-  primary) slides from `translateY(-15rem)` to 0 under the 64px bar over 500ms
-  `ease`, the menu icon fades out over 500ms and the close icon in over 700ms
-  after 200ms, and the toggle fades to 0.6 on hover. It uses the reference's
-  own icon files. [deviation] One `<button>` with `aria-expanded` replaces the
-  two clickable `<img>`s; the closed panel is `visibility: hidden` (the
-  reference only moves it), Escape closes it and returns focus, and
-  `prefers-reduced-motion` drops the slide. The panel is absolutely positioned
-  under the bar, so the fixed header stays 64px tall; the reference's in-flow
-  panel made its fixed header 272px tall, covering clicks on the top of the
-  page.
+  primary) slides from -15rem to 0 under the 64px bar over 500ms `ease`. On
+  open the menu icon fades out over 500ms and the close icon in over 700ms
+  after 200ms; on close the close icon fades out over 700ms and the menu icon
+  returns only after it, 200ms later, over 500ms. It uses the reference's own
+  icon files. [deviation] One `<button>` with `aria-expanded` replaces the two
+  clickable `<img>`s, and the panel is a `<nav aria-label="Menu">` list. The
+  closed panel is `inert` at once and `visibility: hidden` after its slide (the
+  reference only moves it). Escape closes it and returns focus, focus leaving
+  the header closes it (the old dialog trapped focus instead), and
+  `prefers-reduced-motion` drops the slide. The toggle fades to 0.6 on every
+  hover; in the reference IX2's inline opacity beats the stylesheet's
+  `.open-nav:hover` / `.close-nav:hover` after the first click, so it shows only
+  before one. The panel is absolutely positioned under the bar, so the fixed
+  header stays 64px tall; the reference's in-flow panel made its fixed header
+  272px tall, covering clicks on the top of the page.
 - [n/a] IX2 "Viewer Accordion" (events `e` / `e-2`) targets
-  `data-w-id="3470f1d8-…"`, which is on none of the 14 captured pages.
+  `data-w-id="3470f1d8-…"`, which is on none of the 14 captured pages. The
+  other three click events (`e-9`, `e-11`, `e-13`) drive the mobile menu.

@@ -105,6 +105,11 @@ const INLINE: Record<string, Disposition> = {
 };
 
 describe("every :hover rule in the reference has a disposition", () => {
+  it("counts no skipped or fixme test as a measurement", () => {
+    for (const spec of [HOVERS, NAV])
+      expect(spec).not.toMatch(/test\.(skip|fixme|only)\b|\.skip\(/);
+  });
+
   it("finds the 18 rules of the shared stylesheet and no others", () => {
     expect(sheet).toHaveLength(18);
     expect([...sheet].sort()).toEqual(Object.keys(RULES).sort());
@@ -161,6 +166,11 @@ describe("every IX2 click interaction in the reference has a disposition", () =>
     "88b40549-d323-22e0-e020-6be108f76823": { measured: "the panel slides for 500ms" },
     "3470f1d8-a34d-8ab9-44a3-af0ff660fa87": { absent: true },
   };
+
+  it("finds no IX2 event of any other type", () => {
+    const types = [...source.matchAll(/eventTypeId:"([A-Z_]+)"/g)].map((m) => m[1]);
+    expect([...new Set(types)].sort()).toEqual(["MOUSE_CLICK", "MOUSE_SECOND_CLICK"]);
+  });
 
   it("finds 4 MOUSE_CLICK and 1 MOUSE_SECOND_CLICK and nothing scroll-driven", () => {
     expect(events.map((e) => e.type).sort()).toEqual([
