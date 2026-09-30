@@ -30,7 +30,7 @@
         <svelte:element
           this={href ? "a" : "div"}
           {href}
-          class="group flex flex-col items-center text-center hover:opacity-100"
+          class="flex flex-col items-center text-center {href ? 'group hover:opacity-100' : ''}"
         >
           <span
             class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-[26px] text-white"
@@ -40,11 +40,15 @@
             <PrismicImage
               field={item.icon}
               alt=""
-              class="w-full transition-opacity duration-[350ms] ease-in group-hover:opacity-55"
+              class="w-full {href
+                ? 'transition-opacity duration-[350ms] ease-in group-hover:opacity-55'
+                : ''}"
             />
           {/if}
           <span
-            class="mt-8 block text-[30px] leading-[35px] text-primary transition-opacity duration-[350ms] ease-in group-hover:opacity-(--wc-link-fade) max-md:text-[25px]"
+            class="mt-8 block text-[30px] leading-[35px] text-primary max-md:text-[25px] {href
+              ? 'transition-opacity duration-[350ms] ease-in group-hover:opacity-(--wc-link-fade)'
+              : ''}"
           >
             <span class="sr-only">{`Phase ${i + 1}: `}</span>{item.label}
           </span>

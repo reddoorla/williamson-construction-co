@@ -96,9 +96,11 @@ opacity .25s ease-in`.
   Our Plan "Services" button shares `outline-light`'s white at 10%
   (`#ffffff1a`), 2/255 apart in alpha.
 - [measured] the plan's shapes — Webflow's script writes `transition: fill
-400ms` inline on every polygon and rect, so they snap to 0.6 on hover; only
-  the discs fade (`opacity 400ms`). The rebuild does the same. Only the right
-  slider arrow (`.icon-2`) fades to 0.8; the left one (`.icon`) has no hover.
+400ms ease` inline on every polygon and rect, so they snap to 0.6 on hover;
+  only the discs fade (`opacity 400ms`, `ease` by default). The rebuild uses
+  the same properties, durations and `ease`. Only the right slider arrow
+  (`.icon-2`) fades to 0.8; the left one (`.icon`) has no hover. A phase
+  with no anchor renders as plain content and does not fade.
 - [corrects the 2026-09-30 "header" entry, in part] mobile menu — the
   full-screen blue dialog is replaced by the reference's IX2 `open-nav` /
   `close-nav`: a 208px white panel of four 52px links (19.2px, weight 500,
@@ -120,3 +122,9 @@ opacity .25s ease-in`.
 - [n/a] IX2 "Viewer Accordion" (events `e` / `e-2`) targets
   `data-w-id="3470f1d8-…"`, which is on none of the 14 captured pages. The
   other three click events (`e-9`, `e-11`, `e-13`) drive the mobile menu.
+- [deviation] mobile menu, page click — a click or tap anywhere outside the
+  header closes the open menu, because `<main tabindex="-1">` takes focus and
+  focus leaving the header closes it. The reference's panel stays open until
+  its close icon is clicked. Kept on the operator's answer to BACKLOG 52: on
+  a phone, tapping the page to dismiss the menu is the expected behaviour.
+  Focus falling to `<body>` (a window blur) still leaves it open.

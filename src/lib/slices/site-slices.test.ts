@@ -316,6 +316,27 @@ describe("PhaseBubbles and PhaseDetail", () => {
     expect(link.textContent?.replace(/\s+/g, " ").trim()).toBe("1 Phase 1: Planning");
   });
 
+  it("fades only phases that are links, so an unlinked one does not look clickable", () => {
+    const { container } = render(PhaseBubbles, {
+      props: {
+        slice: slice(
+          "phase_bubbles",
+          { section_id: "approach", heading: "Phased Approach", intro: "", outro: [] },
+          [
+            { icon: image("p"), label: "Planning", anchor: "phase-1" },
+            { icon: image("d"), label: "Design", anchor: null },
+          ],
+        ),
+      },
+    });
+    const [linked, plain] = [...container.querySelectorAll("ol > li > *")];
+    expect(linked!.tagName).toBe("A");
+    expect(linked!.classList.contains("group")).toBe(true);
+    expect(plain!.tagName).toBe("DIV");
+    expect(plain!.classList.contains("group")).toBe(false);
+    expect(plain!.innerHTML).not.toMatch(/group-hover:/);
+  });
+
   it("gives the phase its anchor and renders its list", () => {
     const { container } = render(PhaseDetail, {
       props: {

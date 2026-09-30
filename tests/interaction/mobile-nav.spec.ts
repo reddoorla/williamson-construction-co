@@ -111,13 +111,34 @@ test("Tab past the last menu link closes the menu, so the next control is not un
   await page.keyboard.press("Tab");
   const where = await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 120));
   await expect(button, `focus went to ${where}`).toHaveAttribute("aria-expanded", "false");
-  const covered = await page.evaluate(() => {
-    const el = document.activeElement as HTMLElement;
-    const r = el.getBoundingClientRect();
-    const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
-    return !!hit?.closest("#wc-menu");
-  });
-  expect(covered).toBe(false);
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const nav = document.querySelector("#wc-menu") as HTMLElement;
+          if (getComputedStyle(nav).visibility === "hidden") return false;
+          const p = nav.getBoundingClientRect();
+          const f = (document.activeElement as HTMLElement).getBoundingClientRect();
+          return !(
+            p.bottom <= f.top ||
+            p.top >= f.bottom ||
+            p.right <= f.left ||
+            p.left >= f.right
+          );
+        }),
+      { timeout: 1500, message: "the painted panel still overlaps the focused control" },
+    )
+    .toBe(false);
+});
+
+test("a click on the page closes the open menu (ledgered deviation: the reference keeps it open)", async ({
+  page,
+}) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const button = await open(page);
+  await expect(page.locator("#wc-menu a").first()).toBeVisible();
+  await page.mouse.click(200, 700);
+  await expect(button).toHaveAttribute("aria-expanded", "false");
 });
 
 test("the toggle fades to 0.6 on hover (.open-nav:hover, .close-nav:hover)", async ({ page }) => {

@@ -254,15 +254,15 @@ test.describe("with motion allowed", () => {
     await page.goto("/");
     const plan = page.locator('[data-slice-type="our_plan"] svg');
     const transition = (l: Locator) =>
-      l.evaluate(
-        (e) =>
-          `${getComputedStyle(e).transitionProperty} ${getComputedStyle(e).transitionDuration}`,
-      );
+      l.evaluate((e) => {
+        const c = getComputedStyle(e);
+        return `${c.transitionProperty} ${c.transitionDuration} ${c.transitionTimingFunction}`;
+      });
     expect(
       await transition(plan.locator("polygon").first()),
       "the reference's script sets fill 400ms inline",
-    ).toBe("fill 0.4s");
-    expect(await transition(plan.locator("circle").first())).toBe("opacity 0.4s");
+    ).toBe("fill 0.4s ease");
+    expect(await transition(plan.locator("circle").first())).toBe("opacity 0.4s ease");
     for (const shape of [plan.locator("polygon").first(), plan.locator("circle").first()]) {
       await hovered(page, shape);
       expect(await css(shape, "opacity")).toBe("0.6");

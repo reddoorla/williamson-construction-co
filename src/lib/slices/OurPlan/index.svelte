@@ -63,7 +63,7 @@
               <polygon
                 points={shape.points}
                 fill={active === i ? PLAN_ACTIVE_FILL : PLAN_FILL}
-                class="transition-[fill] duration-[400ms] hover:opacity-60"
+                class="transition-[fill] duration-[400ms] ease-[ease] hover:opacity-60"
               />
             {:else}
               <rect
@@ -73,7 +73,7 @@
                 height={shape.height}
                 transform={shape.transform}
                 fill={active === i ? PLAN_ACTIVE_FILL : PLAN_FILL}
-                class="transition-[fill] duration-[400ms] hover:opacity-60"
+                class="transition-[fill] duration-[400ms] ease-[ease] hover:opacity-60"
               />
             {/if}
             <circle
@@ -81,7 +81,7 @@
               cy={disc.cy}
               r="18.39"
               fill={PLAN_DISC_FILL}
-              class="transition-opacity duration-[400ms] hover:opacity-60"
+              class="transition-opacity duration-[400ms] ease-[ease] hover:opacity-60"
             />
             <text
               x={disc.cx}
