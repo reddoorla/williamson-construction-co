@@ -49,6 +49,7 @@
           {@const { shape, disc } = PLAN_SHAPES[i]}
           <g
             bind:this={tabs[i]}
+            id="{slice.id}-tab-{i}"
             role="tab"
             id="{slice.id}-tab-{i}"
             tabindex={active === i ? 0 : -1}

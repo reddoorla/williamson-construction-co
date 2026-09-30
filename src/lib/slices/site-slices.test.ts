@@ -194,6 +194,8 @@ describe("OurPlan", () => {
       "-1",
       "0",
     ]);
+    expect(document.activeElement).toBe(getAllByRole("tab")[3]);
+    expect(getByRole("tabpanel").getAttribute("aria-labelledby")).toBe(getAllByRole("tab")[3].id);
   });
 
   it("names the panel after the selected tab and does not re-announce it on every arrow key", async () => {
@@ -381,6 +383,20 @@ describe("EmployeeApplication, ContactCard, CtaBlock, ClientLogos", () => {
       },
     });
     expect(container.querySelector("h2")?.className).toContain("wc-h2");
+    cleanup();
+    const large = render(CtaBlock, {
+      props: {
+        slice: slice("cta_block", { heading: "Start feeling like a top priority…", size: "large" }),
+      },
+    });
+    expect(large.container.querySelector("h2")?.className).toContain("wc-h1");
+  });
+
+  it("gives a logo the editor left without alt text an empty alt, never none", () => {
+    const { container } = render(ClientLogos, {
+      props: { slice: slice("client_logos", { heading: null }, [{ logo: image("c", null) }]) },
+    });
+    expect(container.querySelector("img")?.getAttribute("alt")).toBe("");
   });
 
   it("names each client logo from its alt text and skips empty ones", () => {

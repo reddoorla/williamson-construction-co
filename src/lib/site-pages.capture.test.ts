@@ -161,3 +161,69 @@ describe("site-pages documents against their custom types", () => {
     expect([...new Set(used)].filter((t) => !choices.includes(t))).toEqual([]);
   });
 });
+
+describe("site-pages buttons against the capture", () => {
+  type Link = { link_type?: string; url?: string; uid?: string; type?: string; key?: string };
+  const href = (link: Link | undefined): string | null => {
+    if (!link) return null;
+    if (link.link_type === "Document") return link.uid === "home" ? "/" : `/${link.uid}`;
+    if (link.link_type === "Web") return link.url ?? null;
+    if (link.link_type === "Media") return link.key ? `media:${link.key.split("/").pop()}` : null;
+    return null;
+  };
+
+  function fixtureButtons(uid: string): string[] {
+    const doc = docs.find((d) => d.uid === uid)!;
+    const out: string[] = [];
+    for (const s of (doc.data.slices as Array<{
+      slice_type: string;
+      primary: Record<string, unknown>;
+      items: Array<Record<string, unknown>>;
+    }>) ?? []) {
+      for (const item of s.items) {
+        for (const [label, link] of [
+          ["button_label", "button_link"],
+          ["button2_label", "button2_link"],
+        ]) {
+          const target = href(item[link] as Link);
+          if (item[label] && target) out.push(`${item[label]} -> ${target}`);
+        }
+        if (s.slice_type === "phase_slider" && item.anchor)
+          out.push(`${item.button_label} -> #${item.anchor}`);
+      }
+      if (s.slice_type === "employee_application")
+        out.push(`${s.primary.button_label} -> ${href(s.primary.file as Link)}`);
+    }
+    return out;
+  }
+
+  function captureButtons(uid: string): string[] {
+    const path = uid === "home" ? "pages/index.html" : `pages/${uid}/index.html`;
+    const html = readFileSync(join(SPEC, path), "utf8");
+    const main = html.slice(html.indexOf("</section>"), html.indexOf('<section class="footer'));
+    return [...main.matchAll(/<a href="([^"]+)" class="[^"]*\bw-button\b[^"]*">([^<]+)<\/a>/g)]
+      .map(([, target, label]) => {
+        const file = target.startsWith("https://cdn.prod.website-files.com/")
+          ? `media:${target.split("/").pop()}`
+          : target;
+        return `${label.trim()} -> ${file}`;
+      })
+      .filter((pair) => !pair.startsWith("View Project -> "));
+  }
+
+  // Deliberate, each with a matching/LEDGER.md line: the plan's "Services"
+  // buttons go to /services (the reference sent three of four to /contact), and
+  // phone links are digits only.
+  const deviate = (pair: string) =>
+    pair
+      .replace("Services -> /contact", "Services -> /services")
+      .replace("tel:310.570.7278", "tel:3105707278");
+
+  it.each(["home", "services", "about-us", "projects", "contact", "join-the-team"])(
+    "%s carries the reference's buttons, labels and targets, in order",
+    (uid) => {
+      const expected = captureButtons(uid).map(deviate);
+      expect(fixtureButtons(uid)).toEqual(expected);
+    },
+  );
+});

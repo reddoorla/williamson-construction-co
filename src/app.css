@@ -264,6 +264,9 @@ main > section.hero-band:first-child {
 
 @layer base {
   html {
+    /* The fixed header is 64px; in-page anchors (#approach, #phase-1) land
+       below it rather than under it. */
+    scroll-padding-top: 5rem;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
   }

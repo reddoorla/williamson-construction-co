@@ -161,7 +161,15 @@ const config = {
         // Prismic hosts non-image media (e.g. .mp4 assets) on
         // <repo>.cdn.prismic.io — first-party content, same origin family as
         // images.prismic.io already allowed under img-src.
-        "media-src": ["self", "https://*.vimeocdn.com", "https://*.prismic.io"],
+        "media-src": [
+          "self",
+          "https://*.vimeocdn.com",
+          "https://*.prismic.io",
+          // Link-to-media fields (the background videos) can come back on
+          // Prismic's S3 host rather than <repo>.cdn.prismic.io; the seeded
+          // williamson-construction documents store that host.
+          "https://prismic-io.s3.amazonaws.com",
+        ],
         "frame-src": [
           "self",
           "https://player.vimeo.com",
