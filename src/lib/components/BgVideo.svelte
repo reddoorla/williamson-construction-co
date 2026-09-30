@@ -21,25 +21,24 @@
 
   let video = $state<HTMLVideoElement>();
   let playing = $state(false);
+  let mounted = $state(false);
+
+  const hasSource = $derived(Boolean(mp4 || webm));
 
   function play() {
-    if (!video) return;
-    playing = true;
     try {
-      video.play()?.catch?.(() => {
-        playing = false;
-      });
+      video?.play()?.catch?.(() => {});
     } catch {
-      playing = false;
+      return;
     }
   }
 
   function pause() {
     video?.pause();
-    playing = false;
   }
 
   onMount(() => {
+    mounted = true;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     if (!reduce?.matches) play();
     const onChange = (event: MediaQueryListEvent) => {
@@ -61,19 +60,23 @@
   preload="metadata"
   aria-hidden="true"
   tabindex="-1"
+  onplay={() => (playing = true)}
+  onpause={() => (playing = false)}
 >
   {#if webm}<source src={webm} type="video/webm" />{/if}
   {#if mp4}<source src={mp4} type="video/mp4" />{/if}
 </video>
-<button
-  type="button"
-  class="absolute z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary/80 text-white hover:bg-primary {controlClass}"
-  aria-label={playing ? "Pause background video" : "Play background video"}
-  onclick={() => (playing ? pause() : play())}
->
-  {#if playing}
-    <Pause size={18} aria-hidden="true" />
-  {:else}
-    <Play size={18} aria-hidden="true" />
-  {/if}
-</button>
+{#if mounted && hasSource}
+  <button
+    type="button"
+    class="absolute z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary/80 text-white hover:bg-primary {controlClass}"
+    aria-label={playing ? "Pause background video" : "Play background video"}
+    onclick={() => (playing ? pause() : play())}
+  >
+    {#if playing}
+      <Pause size={18} aria-hidden="true" />
+    {:else}
+      <Play size={18} aria-hidden="true" />
+    {/if}
+  </button>
+{/if}

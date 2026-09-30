@@ -159,3 +159,29 @@ describe("where each variant may go", () => {
     expect(() => paint("bg-gold-dark/[.4] text-navy", "", "bg")).toThrow(/cannot read/);
   });
 });
+
+describe("focus on the dark grounds", () => {
+  const dark: Ground[] = ["primary", "band-over-white", "band-over-black"];
+
+  it.each(
+    (Object.keys(BUTTON_CLASS) as ButtonVariant[]).filter((v) =>
+      BUTTON_GROUNDS[v].some((g) => dark.includes(g)),
+    ),
+  )(
+    "%s shows a focus outline, not only the white halo, on every dark ground it may sit on",
+    (variant) => {
+      const classes = BUTTON_CLASS[variant];
+      const border = paint(classes, "", "border");
+      const edge = border && border.name === "white";
+      if (!edge) return;
+      const m = /(?:^|\s)focus-visible:outline-([a-z0-9-]+)(?=\s|$)/.exec(classes);
+      expect(
+        m,
+        `"${classes}" relies on the white halo, which merges with its white edge`,
+      ).not.toBeNull();
+      for (const ground of BUTTON_GROUNDS[variant].filter((g) => dark.includes(g))) {
+        expect(contrast(token(m![1]!), grounds[ground])).toBeGreaterThanOrEqual(3);
+      }
+    },
+  );
+});

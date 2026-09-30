@@ -5,10 +5,12 @@ export const BUTTON_BASE =
 
 export const BUTTON_CLASS: Record<ButtonVariant, string> = {
   gold: "border-gold bg-gold text-navy hover:bg-white",
-  "outline-light": "border-white bg-transparent text-white hover:bg-white/10",
+  "outline-light":
+    "border-white bg-transparent text-white hover:bg-white/10 focus-visible:outline-gold",
   primary: "border-primary bg-primary text-white hover:bg-primary/80",
   "outline-primary": "border-primary bg-white text-primary hover:bg-primary/15",
-  white: "border-white bg-white text-primary hover:border-gold hover:bg-gold hover:text-navy",
+  white:
+    "border-white bg-white text-primary hover:border-gold hover:bg-gold hover:text-navy focus-visible:outline-gold",
 };
 
 export type Ground = "white" | "light" | "primary" | "band-over-white" | "band-over-black";

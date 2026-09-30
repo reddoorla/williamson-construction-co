@@ -19,8 +19,17 @@ beforeEach(() => {
     addEventListener: (_: string, cb: MediaListener) => mediaListeners.add(cb),
     removeEventListener: (_: string, cb: MediaListener) => mediaListeners.delete(cb),
   }));
-  playSpy = vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined);
-  pauseSpy = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+  playSpy = vi.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(function (
+    this: HTMLMediaElement,
+  ) {
+    this.dispatchEvent(new Event("play"));
+    return Promise.resolve();
+  });
+  pauseSpy = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(function (
+    this: HTMLMediaElement,
+  ) {
+    this.dispatchEvent(new Event("pause"));
+  });
 });
 
 afterEach(() => {
@@ -68,9 +77,30 @@ describe("BgVideo", () => {
     expect(getByRole("button", { name: "Play background video" })).toBeTruthy();
   });
 
-  it("shows the play control again when the browser refuses to play", async () => {
+  it("keeps offering play when the browser refuses to start the video", async () => {
     playSpy.mockRejectedValue(new Error("NotAllowedError"));
     const { findByRole } = render(BgVideo, { props });
     expect(await findByRole("button", { name: "Play background video" })).toBeTruthy();
+  });
+
+  it("follows the video's own state when something else pauses it", async () => {
+    const { container, getByRole } = render(BgVideo, { props });
+    await tick();
+    container.querySelector("video")!.dispatchEvent(new Event("pause"));
+    await tick();
+    expect(getByRole("button", { name: "Play background video" })).toBeTruthy();
+  });
+
+  it("does not claim to be playing before the video has started", async () => {
+    playSpy.mockImplementation(() => new Promise(() => {}));
+    const { getByRole } = render(BgVideo, { props });
+    await tick();
+    expect(getByRole("button", { name: "Play background video" })).toBeTruthy();
+  });
+
+  it("offers no control when there is no video to play", async () => {
+    const { queryByRole } = render(BgVideo, { props: { mp4: null, webm: null, poster: "/p.jpg" } });
+    await tick();
+    expect(queryByRole("button")).toBeNull();
   });
 });
