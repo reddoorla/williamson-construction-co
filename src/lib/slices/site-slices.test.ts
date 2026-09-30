@@ -13,7 +13,13 @@ import ContactCard from "./ContactCard/index.svelte";
 import CtaBlock from "./CtaBlock/index.svelte";
 import ClientLogos from "./ClientLogos/index.svelte";
 import type { ProjectCard } from "$lib/projects";
-import { BUTTON_CLASS, isLegibleOn, type ButtonVariant, type Ground } from "$lib/button-styles";
+import {
+  BUTTON_CLASS,
+  BUTTON_CLASS_ON_LIGHT,
+  isLegibleOn,
+  type ButtonVariant,
+  type Ground,
+} from "$lib/button-styles";
 
 afterEach(() => cleanup());
 
@@ -439,7 +445,9 @@ describe("editor-picked button styles stay legible on the ground each slice pain
 
   function variantOf(el: Element): ButtonVariant {
     const classes = new Set(el.className.split(/\s+/));
-    const hit = variants.find((v) => BUTTON_CLASS[v].split(" ").every((c) => classes.has(c)));
+    const wears = (list: string | undefined) =>
+      !!list && list.split(" ").every((c) => classes.has(c));
+    const hit = variants.find((v) => wears(BUTTON_CLASS[v]) || wears(BUTTON_CLASS_ON_LIGHT[v]));
     if (!hit) throw new Error(`no variant matches "${el.className}"`);
     return hit;
   }
@@ -515,7 +523,11 @@ describe("editor-picked button styles stay legible on the ground each slice pain
       const grounds = groundsOf(link!);
       const used = variantOf(link!);
       expect(isLegibleOn(used, grounds), `${used} on ${grounds.join(" + ")}`).toBe(true);
-      if (isLegibleOn(style as ButtonVariant, grounds)) expect(used).toBe(style);
+      const restyled: Record<string, Partial<Record<ButtonVariant, ButtonVariant>>> = {
+        CtaBlock: { "outline-primary": "ghost-primary" },
+      };
+      const expected = restyled[name]?.[style as ButtonVariant] ?? style;
+      if (isLegibleOn(style as ButtonVariant, grounds)) expect(used).toBe(expected);
     },
   );
 });

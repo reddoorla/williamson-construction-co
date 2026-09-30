@@ -5,10 +5,14 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const CAPTURE = join(
-  ROOT,
-  "matching/spec/files/cdn.prod.website-files.com/646d47bfeb53b0308e8d4379",
-);
+const MANIFEST = JSON.parse(readFileSync(join(ROOT, "matching/spec/manifest.json"), "utf8")) as {
+  files: { file: string }[];
+};
+const captured = (name: string) => {
+  const hit = MANIFEST.files.find((f) => f.file.endsWith(`/${name}`));
+  if (!hit) throw new Error(`${name} is not in the capture`);
+  return join(ROOT, "matching/spec", hit.file);
+};
 const STARTER_FAVICON_MD5 = "3a387408ecc6cc283f724b39ca5fffb4";
 
 const html = readFileSync(join(ROOT, "src/app.html"), "utf8");
@@ -31,6 +35,6 @@ describe("the site's icons are the reference's own files", () => {
   ])("rel=%s serves %s byte for byte", (rel, file) => {
     const path = linked(rel);
     expect(digest("md5", path)).not.toBe(STARTER_FAVICON_MD5);
-    expect(digest("sha256", path)).toBe(digest("sha256", join(CAPTURE, file)));
+    expect(digest("sha256", path)).toBe(digest("sha256", captured(file)));
   });
 });

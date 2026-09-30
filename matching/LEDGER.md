@@ -88,3 +88,18 @@ has been quietly widened and nothing records who widened it, or why.
 - [kept] `.bg-color-transparent.ml-8:hover` is white at 11% (`#ffffff1c`); the
   Our Plan "Services" button shares `outline-light`'s white at 10%
   (`#ffffff1a`), 2/255 apart in alpha.
+- [corrects the 2026-09-30 "header" entry, in part] mobile menu — the
+  full-screen blue dialog is replaced by the reference's IX2 `open-nav` /
+  `close-nav`: a 208px white panel of four 52px links (19.2px, weight 500,
+  primary) slides from `translateY(-15rem)` to 0 under the 64px bar over 500ms
+  `ease`, the menu icon fades out over 500ms and the close icon in over 700ms
+  after 200ms, and the toggle fades to 0.6 on hover. It uses the reference's
+  own icon files. [deviation] One `<button>` with `aria-expanded` replaces the
+  two clickable `<img>`s; the closed panel is `visibility: hidden` (the
+  reference only moves it), Escape closes it and returns focus, and
+  `prefers-reduced-motion` drops the slide. The panel is absolutely positioned
+  under the bar, so the fixed header stays 64px tall; the reference's in-flow
+  panel made its fixed header 272px tall, covering clicks on the top of the
+  page.
+- [n/a] IX2 "Viewer Accordion" (events `e` / `e-2`) targets
+  `data-w-id="3470f1d8-…"`, which is on none of the 14 captured pages.
