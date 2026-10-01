@@ -1,0 +1,47 @@
+name: prismic-media-upload
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Public HTTPS directory the files are fetched from"
+        required: true
+        type: string
+      files:
+        description: "Comma-separated file names under base_url"
+        required: true
+        type: string
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Fetch each file and post it to the Prismic Asset API
+        env:
+          BASE_URL: ${{ inputs.base_url }}
+          FILES: ${{ inputs.files }}
+          PRISMIC_WRITE_TOKEN: ${{ secrets.PRISMIC_WRITE_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$PRISMIC_WRITE_TOKEN"
+          IFS=',' read -ra names <<< "$FILES"
+          for raw in "${names[@]}"; do
+            name="$(echo "$raw" | xargs)"
+            [ -z "$name" ] && continue
+            curl -fsSL -o "$name" "${BASE_URL%/}/$name"
+            case "$name" in
+              *.mp4) type=video/mp4 ;;
+              *.webm) type=video/webm ;;
+              *.jpg|*.jpeg) type=image/jpeg ;;
+              *.png) type=image/png ;;
+              *) type=application/octet-stream ;;
+            esac
+            out="$(curl -fsS -X POST https://asset-api.prismic.io/assets \
+              -H "Authorization: Bearer $PRISMIC_WRITE_TOKEN" \
+              -H "repository: williamson-construction" \
+              -F "file=@$name;type=$type")"
+            echo "UPLOADED $name $out"
+            rm -f "$name"
+          done
