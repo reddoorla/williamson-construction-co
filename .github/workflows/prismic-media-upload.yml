@@ -33,13 +33,13 @@ jobs:
             [ -z "$name" ] && continue
             enc="$(jq -rn --arg s "$name" '$s|@uri')"
             curl -fsSL --proto '=https' --proto-redir '=https' -o "$name" "${BASE_URL%/}/$enc"
-            type="$(file -b --mime-type "$name")"
+            type="$(file -b --mime-type -- "$name")"
             q=${name//\\/\\\\}
             q=${q//\"/\\\"}
             out="$(curl --fail-with-body -sS --retry 3 --retry-delay 2 -X POST https://asset-api.prismic.io/assets \
               -H "Authorization: Bearer $PRISMIC_WRITE_TOKEN" \
               -H "repository: williamson-construction" \
-              -F "file=@\"$q\";type=$type")"
+              -F "file=@\"$q\";type=$type")" || { echo "FAILED $name: $out"; exit 22; }
             echo "UPLOADED $name $out"
             rm -f -- "$name"
             sleep 1.2
