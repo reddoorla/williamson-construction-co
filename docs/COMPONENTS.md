@@ -67,10 +67,10 @@ source. It is the fastest way to recognise what a thing does.
 | [`intake.ts`](../src/lib/intake.ts) | `YES_NO`, `INTAKE_PAGE_UID`, `INTAKE_FIELDS`, `intakePayload` | 7 |  |
 | [`links.ts`](../src/lib/links.ts) | `hrefOf`, `buttonsOf`, `mediaUrl` | — |  |
 | [`page-load.ts`](../src/lib/page-load.ts) | `loadPage` | 4 |  |
-| [`page-meta.ts`](../src/lib/page-meta.ts) | `pageMeta` | 2 |  |
+| [`page-meta.ts`](../src/lib/page-meta.ts) | `pageMeta` | 3 |  |
 | [`plan-shapes.ts`](../src/lib/plan-shapes.ts) | `PLAN_VIEWBOX`, `PLAN_FILL`, `PLAN_ACTIVE_FILL`, `PLAN_DISC_FILL`, `PLAN_SHAPES`, `nextStep` | — |  |
 | [`prismicio.ts`](../src/lib/prismicio.ts) | `repositoryName`, `isPlaceholderRepo`, `linkResolver`, `createClient` | 5 |  |
-| [`projects.ts`](../src/lib/projects.ts) | `projectHref`, `toCard`, `loadProjectCards`, `pickProjects`, `projectMeta`, `loadProject` | 12 |  |
+| [`projects.ts`](../src/lib/projects.ts) | `projectHref`, `toCard`, `loadProjectCards`, `pickProjects`, `projectMeta`, `loadProject` | 13 |  |
 | [`seo.ts`](../src/lib/seo.ts) | `SITE_NAME`, `SITE_LOCALE`, `DEFAULT_DESCRIPTION`, `DEFAULT_OG_IMAGE`, `OG_IMAGE_WIDTH`, `OG_IMAGE_HEIGHT`, `NOINDEX_PREFIXES`, `isNoindexPath`, `NOINDEX_ENFORCED`, `composeTitle`, `jsonLdScript`, `canonicalUrl`, `resolveOgImage`, `organizationJsonLd` | 26 | Site-wide SEO configuration + helpers |
 | [`reply-copy.ts`](../src/lib/server/reply-copy.ts) | `replyCopyFor` | — |  |
 | [`site-config.ts`](../src/lib/site-config.ts) | `loadSiteConfig`, `footerColumns` | 4 | Site chrome (navigation + footer) from a checked-in JSON stub |
@@ -87,4 +87,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-66 modules, 427 tests behind them.
+66 modules, 429 tests behind them.

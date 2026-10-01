@@ -24,7 +24,7 @@
      title overrides would desync og:title, so pages set data, not tags. -->
 <Seo
   title={composeTitle(page.data.meta_title || page.data.title)}
-  description={page.data.meta_description}
+  description={page.data.meta_description || undefined}
   image={page.data.meta_image || DEFAULT_OG_IMAGE || undefined}
   imageAlt={page.data.meta_image_alt}
   url={page.url}

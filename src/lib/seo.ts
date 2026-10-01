@@ -7,9 +7,10 @@ import { imgix, isPrismicImageUrl } from "$lib/utils/image";
 export const SITE_NAME = "Williamson Construction";
 export const SITE_LOCALE = "en_US";
 
-/** Fallback meta description when a page has none. Empty = omit the tag —
- *  an absent description beats a generic one repeated on every result, since
- *  search engines then synthesize a snippet from the page copy instead. */
+/** Fallback meta description for a page whose SEO tab is empty. Prismic
+ *  sends `null` for an unfilled field, and a Svelte prop default fires only
+ *  for `undefined`, so every loader and the layout coalesce with `||` before
+ *  it reaches <Seo>. Empty = omit the tag. */
 export const DEFAULT_DESCRIPTION =
   "Williamson Construction builds and maintains the healthcare and education spaces that teach and heal our community, from planning to project closeout.";
 

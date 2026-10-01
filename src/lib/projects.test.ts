@@ -88,6 +88,13 @@ describe("loadProject", () => {
     expect(result.title).toBe("MBM Hospitality");
     expect(result.meta_image).toBe("https://images.prismic.io/x/mbm-hospitality.jpg");
   });
+
+  it("maps a null description to undefined, so the layout's default can fire", async () => {
+    const client = clientFor(async (uid) => doc(uid, "MBM Hospitality"));
+    const result = await loadProject(client, "mbm-hospitality");
+    expect(result.project.data.meta_description).toBeNull();
+    expect(result.meta_description).toBeUndefined();
+  });
 });
 
 describe("pickProjects", () => {
