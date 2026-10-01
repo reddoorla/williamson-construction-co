@@ -9,7 +9,7 @@
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
-  class="relative aspect-video overflow-hidden bg-primary md:aspect-auto md:h-[720px]"
+  class="relative aspect-[2/1] overflow-hidden bg-primary"
 >
   <BgVideo
     mp4={mediaUrl(slice.primary.video_mp4)}
