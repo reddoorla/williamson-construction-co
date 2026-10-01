@@ -325,3 +325,24 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   blue band of the reference's 256px apple-touch icon, which trims 26px of
   blue each side and keeps the whole W. The declared `rel=icon` is still
   the 32px PNG.
+
+## 2026-10-01 — HD background video from the Dropbox masters
+
+- [deviation] video sources — the reference serves Webflow's transcodes:
+  854×480 (home hero, school, first day, scan), 720×480 (doctor) and
+  640×360 (services) at 0.7–1.5 Mbps. The same six clips exist as masters
+  in Dropbox (`WC_website 2020/08_Art/`, five at 1920×1080, services at
+  1280×720), matched by duration and frame. The site now serves 1080p
+  (720p for services) H.264 and VP9 at ≤5 Mbps, plus a 720p H.264 phone
+  rendition behind `<source media="(max-width: 767px)">`. Frame 0 of each
+  clip is the same shot, so the gate's frozen first frame differs only in
+  sharpness; the doctor clip's baked-in letterbox bars are gone, so that
+  band is now filled edge to edge where the reference showed black bars.
+- [deviation] posters — the three video-band posters are frame 0 of the
+  new encodes at 1920×1080, replacing 854×480 and 720×480 stills of the
+  same frame.
+- [behaviour] `BgVideo` plays only within 200px of the viewport and pauses
+  off screen; the reference autoplayed every video at load. Measured on
+  the live home page before the change: 5.5 MB (desktop) and 7.8 MB
+  (phone) of video in 8 s without scrolling, 5.6 MB of it the doctor band
+  below the fold. A visitor's pause now survives scrolling away and back.

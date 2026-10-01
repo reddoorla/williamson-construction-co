@@ -37,6 +37,15 @@
             "select": "media",
             "allowTargetBlank": false
           }
+        },
+        "video_mp4_mobile": {
+          "type": "Link",
+          "config": {
+            "label": "video (mp4, phone)",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
         }
       },
       "items": {}

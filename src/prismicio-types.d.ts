@@ -1473,6 +1473,16 @@ export interface PageHeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
 	 */
 	video_webm: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+	/**
+	 * background video (mp4, phone) field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page_hero.default.primary.video_mp4_mobile
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video_mp4_mobile: prismic.LinkToMediaField<prismic.FieldState, never>;
 	
 	/**
 	 * heading alignment field in *PageHero → Default → Primary*
@@ -2543,6 +2553,16 @@ export interface VideoBandSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
 	 */
 	video_webm: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+	/**
+	 * video (mp4, phone) field in *VideoBand → Default → Primary*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: video_band.default.primary.video_mp4_mobile
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video_mp4_mobile: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**

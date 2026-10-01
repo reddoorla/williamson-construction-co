@@ -14,6 +14,7 @@
   <BgVideo
     mp4={mediaUrl(slice.primary.video_mp4)}
     webm={mediaUrl(slice.primary.video_webm)}
+    mobileMp4={mediaUrl(slice.primary.video_mp4_mobile)}
     poster={slice.primary.poster?.url}
     class="absolute inset-0 h-full w-full"
   />
