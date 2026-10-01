@@ -321,5 +321,7 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   fall back to `/favicon.ico` for bookmarks, history and search, so that is
   where the operator saw no favicon. `static/favicon.ico` carries the
   reference's 32px `favicon-32x32.png` exactly, a 16px downscale of it, and
-  a 48px frame cut from the reference's 256px apple-touch icon (its
-  204×204 blue square at +26+26). Google Search needs a multiple of 48px.
+  a 48px frame: a centred 204×204 square (+26+26) cut from the 256×204
+  blue band of the reference's 256px apple-touch icon, which trims 26px of
+  blue each side and keeps the whole W. The declared `rel=icon` is still
+  the 32px PNG.
