@@ -647,3 +647,38 @@ already that blue.
 
 Landed with `land-prs` pinned to `05a20aa`. Production served the new file
 (md5 `87717b7f…`) at 16:34Z.
+
+## 2026-10-01 — Background video plays only near the viewport, and phones get their own file (#13, `40dfd58`)
+
+The operator's "can we do better on video quality" turned up two things.
+The six clips were Webflow transcodes at 480p and 360p, under 1.5 Mbps,
+while their masters sit in Dropbox at 1080p (services at 720p), matched by
+duration and by the same frame side by side. And the home page, unscrolled,
+fetched 5.5 MB of video on desktop and 7.8 MB on a phone in eight seconds,
+5.6 MB of it the doctor band below the fold, because `BgVideo` called
+`play()` on every video at mount.
+
+`BgVideo` now observes its element, plays within 200px of the viewport,
+pauses when it leaves, and keeps a visitor's pause across scrolling. Where
+`IntersectionObserver` is missing it plays at mount as before. A new
+`video_mp4_mobile` field on PageHero and VideoBand carries a 720p H.264
+file offered first behind `<source media="(max-width: 767px)">`, which
+Chrome 120+, Firefox 120+ and Safari honour; the model push to Prismic ran
+from CI on merge.
+
+Two review rounds: the first found the two new fields in
+`src/prismicio-types.d.ts` separated by an empty line where Slice Machine
+writes a single tab, which the next regeneration would have rewritten; the
+second was clean. The test environment's no-op `IntersectionObserver`
+stub meant the old "plays on mount" test silently stopped exercising
+playback; every case now drives intersection itself. Six named mutations
+each turned a test red; the eight new cases were red against the old
+component before the change.
+
+The HD encodes, the Prismic uploads and the rewired documents are the
+content half, handed to a separate session with
+reddoor-maintenance's `docs/briefs/2026-10-01-williamson-video-hd.md`. The
+three LEDGER lines for the change are already in `matching/LEDGER.md`.
+One rollout note from review: `src/lib/site-pages.js`, the Webflow seed,
+still writes the 480p transcodes and no phone file, so a re-seed would
+overwrite the HD sources once they are live.
