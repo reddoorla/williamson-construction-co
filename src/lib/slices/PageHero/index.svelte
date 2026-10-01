@@ -37,7 +37,7 @@
         <PrismicImage
           field={slice.primary.background_image}
           alt=""
-          class="absolute inset-0 h-full w-full object-cover"
+          class="relative block h-auto w-full scale-110"
           imgixParams={{ w: 2400 }}
           loading="eager"
         />
