@@ -10,9 +10,35 @@ const mediaListeners = new Set<MediaListener>();
 let playSpy: ReturnType<typeof vi.spyOn>;
 let pauseSpy: ReturnType<typeof vi.spyOn>;
 
+type IOCallback = (entries: Array<{ isIntersecting: boolean }>) => void;
+let io: IOCallback | undefined;
+let observed: Element | undefined;
+let disconnected = false;
+
 beforeEach(() => {
   reducedMotion = false;
   mediaListeners.clear();
+  io = undefined;
+  observed = undefined;
+  disconnected = false;
+  window.IntersectionObserver = class {
+    constructor(cb: IOCallback) {
+      io = cb;
+    }
+    observe(el: Element) {
+      observed = el;
+    }
+    disconnect() {
+      disconnected = true;
+    }
+    unobserve() {}
+    takeRecords() {
+      return [];
+    }
+    root = null;
+    rootMargin = "";
+    thresholds = [];
+  } as unknown as typeof IntersectionObserver;
   window.matchMedia = vi.fn().mockImplementation((query: string) => ({
     matches: query.includes("prefers-reduced-motion") ? reducedMotion : false,
     media: query,
@@ -47,8 +73,10 @@ describe("BgVideo", () => {
     expect(video.muted).toBe(true);
   });
 
-  it("plays on mount and offers a pause control (WCAG 2.2.2)", async () => {
+  it("plays once near the viewport and offers a pause control (WCAG 2.2.2)", async () => {
     const { getByRole } = render(BgVideo, { props });
+    await tick();
+    io!([{ isIntersecting: true }]);
     await tick();
     expect(playSpy).toHaveBeenCalledTimes(1);
     const control = getByRole("button", { name: "Pause background video" });
@@ -71,6 +99,8 @@ describe("BgVideo", () => {
   it("pauses when reduced motion is switched on after load", async () => {
     const { getByRole } = render(BgVideo, { props });
     await tick();
+    io!([{ isIntersecting: true }]);
+    await tick();
     for (const listener of mediaListeners) listener({ matches: true });
     await tick();
     expect(pauseSpy).toHaveBeenCalled();
@@ -80,11 +110,15 @@ describe("BgVideo", () => {
   it("keeps offering play when the browser refuses to start the video", async () => {
     playSpy.mockRejectedValue(new Error("NotAllowedError"));
     const { findByRole } = render(BgVideo, { props });
+    await tick();
+    io!([{ isIntersecting: true }]);
     expect(await findByRole("button", { name: "Play background video" })).toBeTruthy();
   });
 
   it("follows the video's own state when something else pauses it", async () => {
     const { container, getByRole } = render(BgVideo, { props });
+    await tick();
+    io!([{ isIntersecting: true }]);
     await tick();
     container.querySelector("video")!.dispatchEvent(new Event("pause"));
     await tick();
@@ -95,6 +129,8 @@ describe("BgVideo", () => {
     playSpy.mockImplementation(() => new Promise(() => {}));
     const { getByRole } = render(BgVideo, { props });
     await tick();
+    io!([{ isIntersecting: true }]);
+    await tick();
     expect(getByRole("button", { name: "Play background video" })).toBeTruthy();
   });
 
@@ -102,5 +138,83 @@ describe("BgVideo", () => {
     const { queryByRole } = render(BgVideo, { props: { mp4: null, webm: null, poster: "/p.jpg" } });
     await tick();
     expect(queryByRole("button")).toBeNull();
+  });
+
+  describe("near the viewport", () => {
+    it("waits for the video to come near the viewport before it plays", async () => {
+      const { container } = render(BgVideo, { props });
+      await tick();
+      expect(observed).toBe(container.querySelector("video"));
+      expect(playSpy).not.toHaveBeenCalled();
+      io!([{ isIntersecting: true }]);
+      expect(playSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("pauses when it leaves the viewport and resumes when it returns", async () => {
+      render(BgVideo, { props });
+      await tick();
+      io!([{ isIntersecting: true }]);
+      io!([{ isIntersecting: false }]);
+      expect(pauseSpy).toHaveBeenCalledTimes(1);
+      io!([{ isIntersecting: true }]);
+      expect(playSpy).toHaveBeenCalledTimes(2);
+    });
+
+    it("keeps a visitor's pause across scrolling away and back", async () => {
+      const { getByRole } = render(BgVideo, { props });
+      await tick();
+      io!([{ isIntersecting: true }]);
+      await tick();
+      await fireEvent.click(getByRole("button", { name: "Pause background video" }));
+      io!([{ isIntersecting: false }]);
+      io!([{ isIntersecting: true }]);
+      expect(playSpy).toHaveBeenCalledTimes(1);
+      await fireEvent.click(getByRole("button", { name: "Play background video" }));
+      expect(playSpy).toHaveBeenCalledTimes(2);
+    });
+
+    it("never plays under reduced motion, even in view", async () => {
+      reducedMotion = true;
+      render(BgVideo, { props });
+      await tick();
+      io!([{ isIntersecting: true }]);
+      expect(playSpy).not.toHaveBeenCalled();
+    });
+
+    it("stops observing on unmount", async () => {
+      const { unmount } = render(BgVideo, { props });
+      await tick();
+      unmount();
+      expect(disconnected).toBe(true);
+    });
+
+    it("plays at mount where there is no IntersectionObserver", async () => {
+      delete (window as { IntersectionObserver?: unknown }).IntersectionObserver;
+      render(BgVideo, { props });
+      await tick();
+      expect(playSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it("offers the phone rendition first, behind a media query, so a phone never fetches the desktop file", () => {
+    const { container } = render(BgVideo, {
+      props: { ...props, mobileMp4: "/v/hero-720.mp4" },
+    });
+    const sources = [...container.querySelectorAll("source")];
+    expect(sources.map((s) => s.getAttribute("src"))).toEqual([
+      "/v/hero-720.mp4",
+      "/v/hero.webm",
+      "/v/hero.mp4",
+    ]);
+    expect(sources[0].getAttribute("media")).toBe("(max-width: 767px)");
+    expect(sources[1].getAttribute("media")).toBeNull();
+  });
+
+  it("offers a control when only the phone rendition is set", async () => {
+    const { getByRole } = render(BgVideo, {
+      props: { mp4: null, webm: null, mobileMp4: "/v/hero-720.mp4", poster: null },
+    });
+    await tick();
+    expect(getByRole("button")).toBeTruthy();
   });
 });

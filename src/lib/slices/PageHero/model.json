@@ -54,6 +54,15 @@
             "allowTargetBlank": false
           }
         },
+        "video_mp4_mobile": {
+          "type": "Link",
+          "config": {
+            "label": "background video (mp4, phone)",
+            "placeholder": "",
+            "select": "media",
+            "allowTargetBlank": false
+          }
+        },
         "heading_align": {
           "type": "Select",
           "config": {

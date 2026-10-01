@@ -10,7 +10,8 @@
 
   const mp4 = $derived(mediaUrl(slice.primary.video_mp4));
   const webm = $derived(mediaUrl(slice.primary.video_webm));
-  const hasVideo = $derived(Boolean(mp4 || webm));
+  const mobileMp4 = $derived(mediaUrl(slice.primary.video_mp4_mobile));
+  const hasVideo = $derived(Boolean(mp4 || webm || mobileMp4));
   const hasBody = $derived(isFilled.richText(slice.primary.body));
   const hasButtons = $derived(slice.items.length > 0);
   const layout = $derived(
@@ -29,6 +30,7 @@
         <BgVideo
           {mp4}
           {webm}
+          {mobileMp4}
           poster={slice.primary.background_image?.url}
           class="absolute inset-0 h-full w-full"
           controlClass="top-20 right-4"
