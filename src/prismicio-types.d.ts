@@ -1473,7 +1473,7 @@ export interface PageHeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
 	 */
 	video_webm: prismic.LinkToMediaField<prismic.FieldState, never>;
-
+	
 	/**
 	 * background video (mp4, phone) field in *PageHero → Default → Primary*
 	 *
@@ -2553,7 +2553,7 @@ export interface VideoBandSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
 	 */
 	video_webm: prismic.LinkToMediaField<prismic.FieldState, never>;
-
+	
 	/**
 	 * video (mp4, phone) field in *VideoBand → Default → Primary*
 	 *
