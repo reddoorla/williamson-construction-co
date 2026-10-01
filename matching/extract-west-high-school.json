@@ -1,533 +1,521 @@
 {
- "key": "west-high-school",
- "ref": "https://www.williamson-construction.com/projects/west-high-school",
- "cand": "http://localhost:5173/dev/match/west-high-school",
- "file": "pages/projects/west-high-school/index.html",
- "per": {
-  "390": {
-   "secs": [
-    {
-     "idx": 0,
-     "cls": "hero-section.overflow-hidden.position-relative",
-     "y": 0,
-     "h": 500,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": null,
-     "tokens": [
-      "hero-section",
-      "overflow-hidden",
-      "position-relative",
-      "bg-projects-template"
-     ],
-     "type": [],
-     "assets": [
-      "img 64dfc292aa2e0d93d942f9b4_westHighSign-p-500.jpg"
-     ],
-     "interactive": []
+  "key": "west-high-school",
+  "ref": "https://www.williamson-construction.com/projects/west-high-school",
+  "cand": "http://localhost:5173/dev/match/west-high-school",
+  "file": "pages/projects/west-high-school/index.html",
+  "per": {
+    "390": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 500,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "bg-projects-template"
+          ],
+          "type": [],
+          "assets": ["img 64dfc292aa2e0d93d942f9b4_westHighSign-p-500.jpg"],
+          "interactive": []
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 340,
+          "h": 369,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "West High School",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "w-row",
+            "w-col",
+            "w-col-8",
+            "text-color-white",
+            "p-2",
+            "m-6",
+            "projects",
+            "text-align-left",
+            "px-4",
+            "w-col-4",
+            "mt-8",
+            "pt-4",
+            "bold-text",
+            "w-richtext"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+              "text": "West High School"
+            },
+            {
+              "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "mt-8.pt-4.bold-text",
+              "text": "Scope of Work"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "",
+              "text": "Courtyard Modernization"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 2,
+          "cls": "gallery-section",
+          "y": 773,
+          "h": 1295,
+          "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "gallery-section",
+            "vimeo-iframe",
+            "w-dyn-bind-empty",
+            "w-video",
+            "w-embed",
+            "collection-list-wrapper",
+            "w-dyn-list",
+            "w-dyn-items",
+            "w-dyn-item",
+            "w-dyn-repeater-item",
+            "h-16",
+            "w-dyn-hide",
+            "w-dyn-empty"
+          ],
+          "type": [],
+          "assets": [
+            "img 64dfc29d3e972341f1acaed1_westHighDroneShot-p-500.jpg",
+            "img 64dfc2a8fe60bed12a7b1bda_westHighCons-p-500.jpg",
+            "img 64dfc2ac5dc9a62ea6026c4f_westHighBackHoe-p-500.jpg",
+            "img 64dfc2b1688272920a13a432_westHighTopDown-p-500.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "footer.bg-color-gray-300",
+          "y": 2132,
+          "h": 1001,
+          "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6 → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 3133
     },
-    {
-     "idx": 1,
-     "cls": "title-section",
-     "y": 340,
-     "h": 369,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": "West High School",
-     "tokens": [
-      "title-section",
-      "max-w-1280",
-      "_w-full",
-      "m-auto",
-      "bg-color-primary",
-      "opacity-90",
-      "offset-up",
-      "w-row",
-      "w-col",
-      "w-col-8",
-      "text-color-white",
-      "p-2",
-      "m-6",
-      "projects",
-      "text-align-left",
-      "px-4",
-      "w-col-4",
-      "mt-8",
-      "pt-4",
-      "bold-text",
-      "w-richtext"
-     ],
-     "type": [
-      {
-       "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
-       "tag": "h1",
-       "cls": "text-color-white.p-2.m-6.projects.text-align-left",
-       "text": "West High School"
-      },
-      {
-       "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
-       "tag": "p",
-       "cls": "mt-8.pt-4.bold-text",
-       "text": "Scope of Work"
-      },
-      {
-       "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
-       "tag": "p",
-       "cls": "",
-       "text": "Courtyard Modernization"
-      }
-     ],
-     "assets": [],
-     "interactive": []
+    "834": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 500,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "bg-projects-template"
+          ],
+          "type": [],
+          "assets": ["img 64dfc292aa2e0d93d942f9b4_westHighSign-p-1080.jpg"],
+          "interactive": []
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 340,
+          "h": 364,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "West High School",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "w-row",
+            "w-col",
+            "w-col-8",
+            "text-color-white",
+            "p-2",
+            "m-6",
+            "projects",
+            "text-align-left",
+            "px-4",
+            "w-col-4",
+            "mt-8",
+            "pt-4",
+            "bold-text",
+            "w-richtext"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+              "text": "West High School"
+            },
+            {
+              "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "mt-8.pt-4.bold-text",
+              "text": "Scope of Work"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "",
+              "text": "Courtyard Modernization"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 2,
+          "cls": "gallery-section",
+          "y": 768,
+          "h": 2478,
+          "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "gallery-section",
+            "vimeo-iframe",
+            "w-dyn-bind-empty",
+            "w-video",
+            "w-embed",
+            "collection-list-wrapper",
+            "w-dyn-list",
+            "w-dyn-items",
+            "w-dyn-item",
+            "w-dyn-repeater-item",
+            "h-16",
+            "w-dyn-hide",
+            "w-dyn-empty"
+          ],
+          "type": [],
+          "assets": [
+            "img 64dfc29d3e972341f1acaed1_westHighDroneShot-p-1080.jpg",
+            "img 64dfc2a8fe60bed12a7b1bda_westHighCons-p-1080.jpg",
+            "img 64dfc2ac5dc9a62ea6026c4f_westHighBackHoe-p-1080.jpg",
+            "img 64dfc2b1688272920a13a432_westHighTopDown-p-1080.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "footer.bg-color-gray-300",
+          "y": 3311,
+          "h": 736,
+          "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6 → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 4047
     },
-    {
-     "idx": 2,
-     "cls": "gallery-section",
-     "y": 773,
-     "h": 1295,
-     "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": null,
-     "tokens": [
-      "gallery-section",
-      "vimeo-iframe",
-      "w-dyn-bind-empty",
-      "w-video",
-      "w-embed",
-      "collection-list-wrapper",
-      "w-dyn-list",
-      "w-dyn-items",
-      "w-dyn-item",
-      "w-dyn-repeater-item",
-      "h-16",
-      "w-dyn-hide",
-      "w-dyn-empty"
-     ],
-     "type": [],
-     "assets": [
-      "img 64dfc29d3e972341f1acaed1_westHighDroneShot-p-500.jpg",
-      "img 64dfc2a8fe60bed12a7b1bda_westHighCons-p-500.jpg",
-      "img 64dfc2ac5dc9a62ea6026c4f_westHighBackHoe-p-500.jpg",
-      "img 64dfc2b1688272920a13a432_westHighTopDown-p-500.jpg"
-     ],
-     "interactive": []
-    },
-    {
-     "idx": 3,
-     "cls": "footer.bg-color-gray-300",
-     "y": 2132,
-     "h": 1001,
-     "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
-     "firstText": "Home",
-     "tokens": [
-      "footer",
-      "bg-color-gray-300",
-      "spacer-32",
-      "max-w-1280",
-      "_w-full",
-      "m-auto",
-      "position-relative",
-      "w-row",
-      "column-2",
-      "w-col",
-      "w-col-6",
-      "w-inline-block",
-      "h-24",
-      "display-block",
-      "spacer-16",
-      "column-3",
-      "display-flex",
-      "float-right",
-      "flex-vertical",
-      "su-float-left-mobile",
-      "text-color-black",
-      "p-6",
-      "italic-text",
-      "spacer-8"
-     ],
-     "type": [
-      {
-       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "a",
-       "cls": "text-color-black.p-6",
-       "text": "Home"
-      },
-      {
-       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "em",
-       "cls": "italic-text",
-       "text": "© Williamson Construction 2023, All Rights R"
-      },
-      {
-       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "div",
-       "cls": "max-w-1280._w-full.m-auto",
-       "text": "License 976074 SBE 2019518"
-      }
-     ],
-     "assets": [
-      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
-     ],
-     "interactive": [
-      "a.w-inline-block → / \"\"",
-      "a.text-color-black.p-6 → / \"Home\"",
-      "a.text-color-black.p-6 → /services \"Services\"",
-      "a.text-color-black.p-6 → /about-us \"About\"",
-      "a.text-color-black.p-6 → /projects \"Projects\"",
-      "a.text-color-black.p-6 → /contact \"Contact Us\"",
-      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
-     ]
+    "1440": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 700,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "bg-projects-template"
+          ],
+          "type": [],
+          "assets": ["img 64dfc292aa2e0d93d942f9b4_westHighSign-p-1600.jpg"],
+          "interactive": []
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 540,
+          "h": 314,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "West High School",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "w-row",
+            "w-col",
+            "w-col-8",
+            "text-color-white",
+            "p-2",
+            "m-6",
+            "projects",
+            "text-align-left",
+            "px-4",
+            "w-col-4",
+            "mt-8",
+            "pt-4",
+            "bold-text",
+            "w-richtext"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+              "text": "West High School"
+            },
+            {
+              "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "mt-8.pt-4.bold-text",
+              "text": "Scope of Work"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "",
+              "text": "Courtyard Modernization"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 2,
+          "cls": "gallery-section",
+          "y": 918,
+          "h": 3669,
+          "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "gallery-section",
+            "vimeo-iframe",
+            "w-dyn-bind-empty",
+            "w-video",
+            "w-embed",
+            "collection-list-wrapper",
+            "w-dyn-list",
+            "w-dyn-items",
+            "w-dyn-item",
+            "w-dyn-repeater-item",
+            "h-16",
+            "w-dyn-hide",
+            "w-dyn-empty"
+          ],
+          "type": [],
+          "assets": [
+            "img 64dfc29d3e972341f1acaed1_westHighDroneShot-p-1600.jpg",
+            "img 64dfc2a8fe60bed12a7b1bda_westHighCons-p-1600.jpg",
+            "img 64dfc2ac5dc9a62ea6026c4f_westHighBackHoe-p-1600.jpg",
+            "img 64dfc2b1688272920a13a432_westHighTopDown-p-1600.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "footer.bg-color-gray-300",
+          "y": 4651,
+          "h": 736,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6 → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 5387
     }
-   ],
-   "root": "16px",
-   "docH": 3133
-  },
-  "834": {
-   "secs": [
-    {
-     "idx": 0,
-     "cls": "hero-section.overflow-hidden.position-relative",
-     "y": 0,
-     "h": 500,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": null,
-     "tokens": [
-      "hero-section",
-      "overflow-hidden",
-      "position-relative",
-      "bg-projects-template"
-     ],
-     "type": [],
-     "assets": [
-      "img 64dfc292aa2e0d93d942f9b4_westHighSign-p-1080.jpg"
-     ],
-     "interactive": []
-    },
-    {
-     "idx": 1,
-     "cls": "title-section",
-     "y": 340,
-     "h": 364,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": "West High School",
-     "tokens": [
-      "title-section",
-      "max-w-1280",
-      "_w-full",
-      "m-auto",
-      "bg-color-primary",
-      "opacity-90",
-      "offset-up",
-      "w-row",
-      "w-col",
-      "w-col-8",
-      "text-color-white",
-      "p-2",
-      "m-6",
-      "projects",
-      "text-align-left",
-      "px-4",
-      "w-col-4",
-      "mt-8",
-      "pt-4",
-      "bold-text",
-      "w-richtext"
-     ],
-     "type": [
-      {
-       "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
-       "tag": "h1",
-       "cls": "text-color-white.p-2.m-6.projects.text-align-left",
-       "text": "West High School"
-      },
-      {
-       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
-       "tag": "p",
-       "cls": "mt-8.pt-4.bold-text",
-       "text": "Scope of Work"
-      },
-      {
-       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
-       "tag": "p",
-       "cls": "",
-       "text": "Courtyard Modernization"
-      }
-     ],
-     "assets": [],
-     "interactive": []
-    },
-    {
-     "idx": 2,
-     "cls": "gallery-section",
-     "y": 768,
-     "h": 2478,
-     "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": null,
-     "tokens": [
-      "gallery-section",
-      "vimeo-iframe",
-      "w-dyn-bind-empty",
-      "w-video",
-      "w-embed",
-      "collection-list-wrapper",
-      "w-dyn-list",
-      "w-dyn-items",
-      "w-dyn-item",
-      "w-dyn-repeater-item",
-      "h-16",
-      "w-dyn-hide",
-      "w-dyn-empty"
-     ],
-     "type": [],
-     "assets": [
-      "img 64dfc29d3e972341f1acaed1_westHighDroneShot-p-1080.jpg",
-      "img 64dfc2a8fe60bed12a7b1bda_westHighCons-p-1080.jpg",
-      "img 64dfc2ac5dc9a62ea6026c4f_westHighBackHoe-p-1080.jpg",
-      "img 64dfc2b1688272920a13a432_westHighTopDown-p-1080.jpg"
-     ],
-     "interactive": []
-    },
-    {
-     "idx": 3,
-     "cls": "footer.bg-color-gray-300",
-     "y": 3311,
-     "h": 736,
-     "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
-     "firstText": "Home",
-     "tokens": [
-      "footer",
-      "bg-color-gray-300",
-      "spacer-32",
-      "max-w-1280",
-      "_w-full",
-      "m-auto",
-      "position-relative",
-      "w-row",
-      "column-2",
-      "w-col",
-      "w-col-6",
-      "w-inline-block",
-      "h-24",
-      "display-block",
-      "spacer-16",
-      "column-3",
-      "display-flex",
-      "float-right",
-      "flex-vertical",
-      "su-float-left-mobile",
-      "text-color-black",
-      "p-6",
-      "italic-text",
-      "spacer-8"
-     ],
-     "type": [
-      {
-       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "a",
-       "cls": "text-color-black.p-6",
-       "text": "Home"
-      },
-      {
-       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "em",
-       "cls": "italic-text",
-       "text": "© Williamson Construction 2023, All Rights R"
-      },
-      {
-       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "div",
-       "cls": "max-w-1280._w-full.m-auto",
-       "text": "License 976074 SBE 2019518"
-      }
-     ],
-     "assets": [
-      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
-     ],
-     "interactive": [
-      "a.w-inline-block → / \"\"",
-      "a.text-color-black.p-6 → / \"Home\"",
-      "a.text-color-black.p-6 → /services \"Services\"",
-      "a.text-color-black.p-6 → /about-us \"About\"",
-      "a.text-color-black.p-6 → /projects \"Projects\"",
-      "a.text-color-black.p-6 → /contact \"Contact Us\"",
-      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
-     ]
-    }
-   ],
-   "root": "16px",
-   "docH": 4047
-  },
-  "1440": {
-   "secs": [
-    {
-     "idx": 0,
-     "cls": "hero-section.overflow-hidden.position-relative",
-     "y": 0,
-     "h": 700,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": null,
-     "tokens": [
-      "hero-section",
-      "overflow-hidden",
-      "position-relative",
-      "bg-projects-template"
-     ],
-     "type": [],
-     "assets": [
-      "img 64dfc292aa2e0d93d942f9b4_westHighSign-p-1600.jpg"
-     ],
-     "interactive": []
-    },
-    {
-     "idx": 1,
-     "cls": "title-section",
-     "y": 540,
-     "h": 314,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": "West High School",
-     "tokens": [
-      "title-section",
-      "max-w-1280",
-      "_w-full",
-      "m-auto",
-      "bg-color-primary",
-      "opacity-90",
-      "offset-up",
-      "w-row",
-      "w-col",
-      "w-col-8",
-      "text-color-white",
-      "p-2",
-      "m-6",
-      "projects",
-      "text-align-left",
-      "px-4",
-      "w-col-4",
-      "mt-8",
-      "pt-4",
-      "bold-text",
-      "w-richtext"
-     ],
-     "type": [
-      {
-       "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) left",
-       "tag": "h1",
-       "cls": "text-color-white.p-2.m-6.projects.text-align-left",
-       "text": "West High School"
-      },
-      {
-       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
-       "tag": "p",
-       "cls": "mt-8.pt-4.bold-text",
-       "text": "Scope of Work"
-      },
-      {
-       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
-       "tag": "p",
-       "cls": "",
-       "text": "Courtyard Modernization"
-      }
-     ],
-     "assets": [],
-     "interactive": []
-    },
-    {
-     "idx": 2,
-     "cls": "gallery-section",
-     "y": 918,
-     "h": 3669,
-     "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
-     "firstText": null,
-     "tokens": [
-      "gallery-section",
-      "vimeo-iframe",
-      "w-dyn-bind-empty",
-      "w-video",
-      "w-embed",
-      "collection-list-wrapper",
-      "w-dyn-list",
-      "w-dyn-items",
-      "w-dyn-item",
-      "w-dyn-repeater-item",
-      "h-16",
-      "w-dyn-hide",
-      "w-dyn-empty"
-     ],
-     "type": [],
-     "assets": [
-      "img 64dfc29d3e972341f1acaed1_westHighDroneShot-p-1600.jpg",
-      "img 64dfc2a8fe60bed12a7b1bda_westHighCons-p-1600.jpg",
-      "img 64dfc2ac5dc9a62ea6026c4f_westHighBackHoe-p-1600.jpg",
-      "img 64dfc2b1688272920a13a432_westHighTopDown-p-1600.jpg"
-     ],
-     "interactive": []
-    },
-    {
-     "idx": 3,
-     "cls": "footer.bg-color-gray-300",
-     "y": 4651,
-     "h": 736,
-     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
-     "firstText": "Home",
-     "tokens": [
-      "footer",
-      "bg-color-gray-300",
-      "spacer-32",
-      "max-w-1280",
-      "_w-full",
-      "m-auto",
-      "position-relative",
-      "w-row",
-      "column-2",
-      "w-col",
-      "w-col-6",
-      "w-inline-block",
-      "h-24",
-      "display-block",
-      "spacer-16",
-      "column-3",
-      "display-flex",
-      "float-right",
-      "flex-vertical",
-      "su-float-left-mobile",
-      "text-color-black",
-      "p-6",
-      "italic-text",
-      "spacer-8"
-     ],
-     "type": [
-      {
-       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "a",
-       "cls": "text-color-black.p-6",
-       "text": "Home"
-      },
-      {
-       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "em",
-       "cls": "italic-text",
-       "text": "© Williamson Construction 2023, All Rights R"
-      },
-      {
-       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
-       "tag": "div",
-       "cls": "max-w-1280._w-full.m-auto",
-       "text": "License 976074 SBE 2019518"
-      }
-     ],
-     "assets": [
-      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
-     ],
-     "interactive": [
-      "a.w-inline-block → / \"\"",
-      "a.text-color-black.p-6 → / \"Home\"",
-      "a.text-color-black.p-6 → /services \"Services\"",
-      "a.text-color-black.p-6 → /about-us \"About\"",
-      "a.text-color-black.p-6 → /projects \"Projects\"",
-      "a.text-color-black.p-6 → /contact \"Contact Us\"",
-      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
-     ]
-    }
-   ],
-   "root": "16px",
-   "docH": 5387
   }
- }
 }

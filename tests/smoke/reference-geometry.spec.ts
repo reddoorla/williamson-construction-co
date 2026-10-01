@@ -92,9 +92,9 @@ async function rect(page: Page, find: string) {
       ? page.getByText(find.slice(6), { exact: true }).first()
       : page.locator(find).first();
   const box = await loc.boundingBox();
-  const scrollY = await page.evaluate(() => scrollY);
+  const scrolled = await page.evaluate(() => window.scrollY);
   if (!box) throw new Error(`${find} has no box`);
-  return { x: box.x, y: box.y + scrollY, w: box.width, h: box.height };
+  return { x: box.x, y: box.y + scrolled, w: box.width, h: box.height };
 }
 
 for (const c of CASES) {
