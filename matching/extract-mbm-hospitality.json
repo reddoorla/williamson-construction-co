@@ -1,0 +1,559 @@
+{
+  "key": "mbm-hospitality",
+  "ref": "https://www.williamson-construction.com/projects/mbm-hospitality",
+  "cand": "http://localhost:5173/dev/match/mbm-hospitality",
+  "file": "pages/projects/mbm-hospitality/index.html",
+  "per": {
+    "390": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 500,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "bg-projects-template"
+          ],
+          "type": [],
+          "assets": ["img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3-p-500.jpg"],
+          "interactive": []
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 340,
+          "h": 369,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "MBM Hospitality",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "w-row",
+            "w-col",
+            "w-col-8",
+            "text-color-white",
+            "p-2",
+            "m-6",
+            "projects",
+            "text-align-left",
+            "px-4",
+            "w-col-4",
+            "mt-8",
+            "pt-4",
+            "bold-text",
+            "w-richtext"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+              "text": "MBM Hospitality"
+            },
+            {
+              "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "mt-8.pt-4.bold-text",
+              "text": "Scope of Work"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "",
+              "text": "MBM (Made by Meg)"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 2,
+          "cls": "gallery-section",
+          "y": 773,
+          "h": 6482,
+          "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "gallery-section",
+            "vimeo-iframe",
+            "w-dyn-bind-empty",
+            "w-video",
+            "w-embed",
+            "collection-list-wrapper",
+            "w-dyn-list",
+            "w-dyn-items",
+            "w-dyn-item",
+            "w-dyn-repeater-item",
+            "h-16",
+            "w-dyn-hide",
+            "w-dyn-empty"
+          ],
+          "type": [],
+          "assets": [
+            "img 66d0c4be8fcf627cc959eb2d_Entry%20Stairs_MBM_031124_0306-p-500.jpg",
+            "img 66d0c4bebb34b6c443ebc09b_Lobby%20Seating_MBM_031124_0333-p-500.jpg",
+            "img 66d0c4bebb2eb03c05647ad3_Tasting%20Kitchen%20and%20Wine%20Wall_MBM_031124_0508-p-500.jpg",
+            "img 66d0c4be3dfc24f52892f36a_Conference%20Room%20Setup_MBM_031124_0379-p-500.jpg",
+            "img 66d0c4be294e24b83eff6849_Conference%20Room%20Setup_MBM_031124_0524-p-500.jpg",
+            "img 66d0c4be49a19b716c399ef2_Kitchen%20Staff_MBM_031124_0135-p-500.jpg",
+            "img 66d0c4be197822a4b82ef288_Kitchen_MBM_031124_0084-p-500.jpg",
+            "img 66d0c4c09eba79753ba210bd_Flame_Cooking_MBM_031124_0189-p-500.jpg",
+            "img 66d0c4be6633b065e47da4ac_Kitchen_MBM_031124_0159-p-500.jpg",
+            "img 66d0c4beb4a08e84d145e55d_Office%20Hallway_MBM_031124_0447-p-500.jpg",
+            "img 66d0c562a5b40f82ba2606bc_Desks_MBM_031124_0442-p-500.jpeg",
+            "img 66d0c5625beb239fb505d525_Desks_MBM_031124_0426-p-500.jpg",
+            "img 66d0c4be3aa164543df06b7e_Tasting%20Setup%20in%20Conference%20Room_MBM_031124_0481-p-500.jpg",
+            "img 66d0c4be24b3c5e43106a4dd_Seating%20Area_MBM_031124_0503-p-500.jpg",
+            "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3-p-500.jpg",
+            "img 66d0c4be5cac65cf754e17bf_Vans%20Out%20Front_MBM_031124_0239-p-500.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "footer.bg-color-gray-300",
+          "y": 7319,
+          "h": 1001,
+          "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6 → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 8320
+    },
+    "834": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 500,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "bg-projects-template"
+          ],
+          "type": [],
+          "assets": [
+            "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3-p-1080.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 340,
+          "h": 400,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "MBM Hospitality",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "w-row",
+            "w-col",
+            "w-col-8",
+            "text-color-white",
+            "p-2",
+            "m-6",
+            "projects",
+            "text-align-left",
+            "px-4",
+            "w-col-4",
+            "mt-8",
+            "pt-4",
+            "bold-text",
+            "w-richtext"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+              "text": "MBM Hospitality"
+            },
+            {
+              "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "mt-8.pt-4.bold-text",
+              "text": "Scope of Work"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "",
+              "text": "MBM (Made by Meg)"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 2,
+          "cls": "gallery-section",
+          "y": 804,
+          "h": 12699,
+          "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "gallery-section",
+            "vimeo-iframe",
+            "w-dyn-bind-empty",
+            "w-video",
+            "w-embed",
+            "collection-list-wrapper",
+            "w-dyn-list",
+            "w-dyn-items",
+            "w-dyn-item",
+            "w-dyn-repeater-item",
+            "h-16",
+            "w-dyn-hide",
+            "w-dyn-empty"
+          ],
+          "type": [],
+          "assets": [
+            "img 66d0c4be8fcf627cc959eb2d_Entry%20Stairs_MBM_031124_0306.jpg",
+            "img 66d0c4bebb34b6c443ebc09b_Lobby%20Seating_MBM_031124_0333-p-1080.jpg",
+            "img 66d0c4bebb2eb03c05647ad3_Tasting%20Kitchen%20and%20Wine%20Wall_MBM_031124_0508-p-1080.jpg",
+            "img 66d0c4be3dfc24f52892f36a_Conference%20Room%20Setup_MBM_031124_0379-p-1080.jpg",
+            "img 66d0c4be294e24b83eff6849_Conference%20Room%20Setup_MBM_031124_0524-p-1080.jpg",
+            "img 66d0c4be49a19b716c399ef2_Kitchen%20Staff_MBM_031124_0135-p-1080.jpg",
+            "img 66d0c4be197822a4b82ef288_Kitchen_MBM_031124_0084.jpg",
+            "img 66d0c4c09eba79753ba210bd_Flame_Cooking_MBM_031124_0189-p-1080.jpg",
+            "img 66d0c4be6633b065e47da4ac_Kitchen_MBM_031124_0159-p-1080.jpg",
+            "img 66d0c4beb4a08e84d145e55d_Office%20Hallway_MBM_031124_0447.jpg",
+            "img 66d0c562a5b40f82ba2606bc_Desks_MBM_031124_0442-p-1080.jpeg",
+            "img 66d0c5625beb239fb505d525_Desks_MBM_031124_0426-p-1080.jpg",
+            "img 66d0c4be3aa164543df06b7e_Tasting%20Setup%20in%20Conference%20Room_MBM_031124_0481-p-1080.jpg",
+            "img 66d0c4be24b3c5e43106a4dd_Seating%20Area_MBM_031124_0503.jpg",
+            "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3-p-1080.jpg",
+            "img 66d0c4be5cac65cf754e17bf_Vans%20Out%20Front_MBM_031124_0239-p-1080.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "footer.bg-color-gray-300",
+          "y": 13567,
+          "h": 736,
+          "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6 → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 14303
+    },
+    "1440": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 700,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "bg-projects-template"
+          ],
+          "type": [],
+          "assets": ["img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3.jpg"],
+          "interactive": []
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 540,
+          "h": 314,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "MBM Hospitality",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "w-row",
+            "w-col",
+            "w-col-8",
+            "text-color-white",
+            "p-2",
+            "m-6",
+            "projects",
+            "text-align-left",
+            "px-4",
+            "w-col-4",
+            "mt-8",
+            "pt-4",
+            "bold-text",
+            "w-richtext"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+              "text": "MBM Hospitality"
+            },
+            {
+              "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "mt-8.pt-4.bold-text",
+              "text": "Scope of Work"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "",
+              "text": "MBM (Made by Meg)"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 2,
+          "cls": "gallery-section",
+          "y": 918,
+          "h": 18946,
+          "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "gallery-section",
+            "vimeo-iframe",
+            "w-dyn-bind-empty",
+            "w-video",
+            "w-embed",
+            "collection-list-wrapper",
+            "w-dyn-list",
+            "w-dyn-items",
+            "w-dyn-item",
+            "w-dyn-repeater-item",
+            "h-16",
+            "w-dyn-hide",
+            "w-dyn-empty"
+          ],
+          "type": [],
+          "assets": [
+            "img 66d0c4be8fcf627cc959eb2d_Entry%20Stairs_MBM_031124_0306.jpg",
+            "img 66d0c4bebb34b6c443ebc09b_Lobby%20Seating_MBM_031124_0333.jpg",
+            "img 66d0c4bebb2eb03c05647ad3_Tasting%20Kitchen%20and%20Wine%20Wall_MBM_031124_0508.jpg",
+            "img 66d0c4be3dfc24f52892f36a_Conference%20Room%20Setup_MBM_031124_0379.jpg",
+            "img 66d0c4be294e24b83eff6849_Conference%20Room%20Setup_MBM_031124_0524.jpg",
+            "img 66d0c4be49a19b716c399ef2_Kitchen%20Staff_MBM_031124_0135.jpg",
+            "img 66d0c4be197822a4b82ef288_Kitchen_MBM_031124_0084.jpg",
+            "img 66d0c4c09eba79753ba210bd_Flame_Cooking_MBM_031124_0189-p-1600.jpg",
+            "img 66d0c4be6633b065e47da4ac_Kitchen_MBM_031124_0159.jpg",
+            "img 66d0c4beb4a08e84d145e55d_Office%20Hallway_MBM_031124_0447.jpg",
+            "img 66d0c562a5b40f82ba2606bc_Desks_MBM_031124_0442-p-1600.jpeg",
+            "img 66d0c5625beb239fb505d525_Desks_MBM_031124_0426-p-1600.jpg",
+            "img 66d0c4be3aa164543df06b7e_Tasting%20Setup%20in%20Conference%20Room_MBM_031124_0481.jpg",
+            "img 66d0c4be24b3c5e43106a4dd_Seating%20Area_MBM_031124_0503.jpg",
+            "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3.jpg",
+            "img 66d0c4be5cac65cf754e17bf_Vans%20Out%20Front_MBM_031124_0239.jpg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "footer.bg-color-gray-300",
+          "y": 19928,
+          "h": 736,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6 → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 20664
+    }
+  }
+}

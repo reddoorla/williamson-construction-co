@@ -10,6 +10,7 @@
     grounds: readonly Ground[];
     fallback?: ButtonVariant;
     restyle?: Partial<Record<ButtonVariant, ButtonVariant>>;
+    gap?: string;
     class?: string;
   };
 
@@ -18,6 +19,7 @@
     grounds,
     fallback = "gold",
     restyle = {},
+    gap = "gap-x-8 gap-y-4",
     class: passedClasses = "",
   }: Props = $props();
 
@@ -31,7 +33,7 @@
 </script>
 
 {#if buttons.length > 0}
-  <div class="flex flex-wrap gap-x-8 gap-y-4 {passedClasses}">
+  <div class="flex flex-wrap {gap} {passedClasses}">
     {#each buttons as button, i (i)}
       <WcButton href={button.href} variant={pick(button.item.button_style)} {grounds}
         >{button.label}</WcButton

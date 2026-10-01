@@ -35,7 +35,7 @@
 {:else}
   <form
     method="POST"
-    class="wc-intake mx-auto mt-8 flex max-w-[560px] flex-col gap-4"
+    class="wc-intake mx-auto mb-[15px] flex w-[30rem] flex-col max-[768px]:w-full"
     use:enhance={({ cancel }) => {
       if (submitting) {
         cancel();
@@ -77,16 +77,27 @@
 
     {#each INTAKE_FIELDS as field (field.name)}
       {#if field.kind === "yes-no"}
-        <fieldset class="flex flex-wrap items-center gap-x-8 gap-y-2">
-          <legend class="float-left mr-4 w-full text-lg font-light text-primary sm:w-1/4">
+        <fieldset class="mb-4 flex w-full items-center justify-between">
+          <legend
+            class="float-left text-[18px] leading-10 font-light text-primary max-[768px]:text-[14px]"
+          >
             {field.label}
           </legend>
-          {#each YES_NO as option (option)}
-            <label class="flex min-h-6 items-center gap-2 text-primary">
-              <input type="radio" name={field.name} value={option} class="h-4 w-4 accent-primary" />
-              {option}
-            </label>
-          {/each}
+          <span class="-mb-[17px] flex w-3/4 justify-start">
+            {#each YES_NO as option (option)}
+              <label
+                class="mb-4 flex w-24 items-center text-[18px] leading-10 font-light text-primary max-[768px]:text-[14px]"
+              >
+                <input
+                  type="radio"
+                  name={field.name}
+                  value={option}
+                  class="mr-[10px] h-4 w-4 accent-primary"
+                />
+                {option}
+              </label>
+            {/each}
+          </span>
         </fieldset>
       {:else}
         <Field
@@ -97,6 +108,7 @@
           autocomplete={field.autocomplete}
           description={field.description}
           maxlength={500}
+          inline
         />
       {/if}
     {/each}

@@ -62,3 +62,7 @@ matching/*.png
 # The Webflow reference capture (OD7-P2): the reference dies when Webflow
 # cancels on 2026-10-19 and cannot be captured again, so its bytes are tracked.
 !matching/spec/
+
+# Computed-style extracts of the live reference (2026-10-01). Like the capture,
+# they cannot be re-read after the Webflow site goes dark on 2026-10-19.
+!matching/extract-*.json

@@ -14,42 +14,55 @@
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
-  class="wc-shell relative mb-48"
+  class="relative mb-48 max-[992px]:mx-[4%]"
 >
   <div
-    class="relative -mt-32 bg-primary bg-cover bg-center px-[6%] pt-16 pb-8 text-white md:pt-24"
-    style={bg
-      ? `background-image: linear-gradient(rgb(0 74 128 / 0.9), rgb(0 74 128 / 0.9)), url("${bg}")`
-      : undefined}
+    class="relative mx-auto -mt-32 max-w-[1280px] px-[6%] pt-24 pb-8 text-white max-[480px]:-mt-8 max-[480px]:pt-8 {bg
+      ? 'bg-transparent bg-[0_0] max-[768px]:-mt-8'
+      : 'bg-[#004a80f2]'}"
+    style={bg ? `background-image: url("${bg}")` : undefined}
   >
     <Slider
       itemCount={slice.items.length}
       label="Testimonials"
-      arrowClass="text-gold! hover:bg-transparent!"
+      class="min-h-[30rem] max-[992px]:px-[4%] {slice.items.some((item) => item.heading)
+        ? 'max-[768px]:pb-6'
+        : ''}"
+      showDots={!slice.items.some((item) => item.heading)}
+      navigationClass="pointer-events-none absolute inset-x-0 -bottom-4 mt-0! [&>*]:pointer-events-auto"
+      arrowClass="text-white! hover:bg-transparent!"
       nextArrowClass="hover:opacity-80 aria-disabled:hover:opacity-40"
+      pauseClass="text-white! hover:bg-transparent!"
       dotClass="bg-white/60"
-      activeDotClass="bg-gold"
+      activeDotClass="bg-white"
     >
       {#snippet children({ index })}
         {@const item = slice.items[index]}
         {@const href = hrefOf(item.button_link)}
-        <div class="min-h-[18rem] md:px-12">
+        <div
+          class="flex min-h-[30rem] flex-col items-start {item.heading
+            ? 'justify-between'
+            : 'justify-center'}"
+        >
           {#if item.heading}
-            <p class="text-left">
-              <span class="wc-h2 block text-gold">{item.heading}</span>
-              {#if item.accent}<span class="wc-h2 block text-gold">{item.accent}</span>{/if}
+            <p class="wc-h1 text-left text-gold">
+              {item.heading}{#if item.accent}<br />{item.accent}{/if}
             </p>
           {/if}
           {#if item.quote}
-            <blockquote class="{item.heading ? 'mt-12 font-light' : ''} wc-h3 text-left text-white">
+            <blockquote class="{item.heading ? 'font-light' : ''} wc-h3 text-left text-white">
               {item.quote}
             </blockquote>
           {/if}
           {#if item.attribution}
-            <p class="mt-6 text-base text-white">{item.attribution}</p>
+            <p
+              class="mt-8 text-[22px] leading-[35px] text-white max-[480px]:text-[18px] max-[480px]:leading-[25px]"
+            >
+              {item.attribution}
+            </p>
           {/if}
           {#if href && item.button_label}
-            <WcButton {href} variant="white" class="mt-12">{item.button_label}</WcButton>
+            <WcButton {href} variant="white">{item.button_label}</WcButton>
           {/if}
         </div>
       {/snippet}

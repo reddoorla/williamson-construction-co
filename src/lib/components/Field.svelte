@@ -25,6 +25,7 @@
      *  inside a dialog: on a plain page an autofocused control steals focus on
      *  load and skips whatever precedes it. */
     autofocus?: boolean;
+    inline?: boolean;
   }
 
   let {
@@ -43,6 +44,7 @@
     inputmode,
     rows = 4,
     autofocus = false,
+    inline = false,
   }: Props = $props();
 
   const uid = $props.id();
@@ -76,8 +78,15 @@
     "aria-invalid:border-red-600";
 </script>
 
-<div class="flex flex-col gap-1">
-  <label for={inputId} class="text-sm font-medium">
+<div
+  class={inline ? "mb-4 flex w-full flex-wrap items-center justify-between" : "flex flex-col gap-1"}
+>
+  <label
+    for={inputId}
+    class={inline
+      ? "self-start text-[18px] leading-10 font-light text-primary max-[768px]:text-[14px]"
+      : "text-sm font-medium"}
+  >
     {label}
     {#if required}
       <span aria-hidden="true" class="text-red-600">*</span>
@@ -85,7 +94,7 @@
     {/if}
   </label>
 
-  {#if description}
+  {#if description && !inline}
     <p id={descriptionId} class="text-sm text-secondary">{description}</p>
   {/if}
 
@@ -122,11 +131,17 @@
       bind:value
       aria-describedby={describedBy}
       aria-invalid={error ? "true" : undefined}
-      class={controlClass}
+      class={inline ? `${controlClass} h-[38px] w-3/4 text-[14px]` : controlClass}
     />
   {/if}
 
+  {#if description && inline}
+    <p id={descriptionId} class="ml-auto w-3/4 text-sm text-secondary">{description}</p>
+  {/if}
+
   {#if error}
-    <p id={errorId} role="alert" class="text-sm text-red-600">{error}</p>
+    <p id={errorId} role="alert" class="{inline ? 'ml-auto w-3/4 ' : ''}text-sm text-red-600">
+      {error}
+    </p>
   {/if}
 </div>

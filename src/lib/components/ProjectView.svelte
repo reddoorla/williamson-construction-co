@@ -14,34 +14,34 @@
 </script>
 
 <article data-project={project.uid}>
-  <TitlePanel>
+  <TitlePanel layout="project">
     {#snippet media()}
       {#if isFilled.image(project.data.hero_image)}
         <PrismicImage
           field={project.data.hero_image}
           alt=""
-          class="absolute inset-0 h-full w-full object-cover"
+          class="relative block h-auto w-full scale-110"
           imgixParams={{ w: 2400 }}
           loading="eager"
         />
       {/if}
     {/snippet}
-    {#snippet heading()}
-      <h1 class="wc-h1">{project.data.title}</h1>
+    {#snippet heading(cls: string)}
+      <h1 class="wc-h1 {cls}">{project.data.title}</h1>
     {/snippet}
     {#snippet aside()}
       {#if isFilled.richText(project.data.scope)}
-        <h2 class="text-base font-bold">Scope of Work</h2>
-        <div class="wc-scope mt-2 text-base leading-7">
+        <h2 class="wc-p mt-8 mb-[10px] pt-4 font-semibold">Scope of Work</h2>
+        <div class="wc-scope wc-p [&_p]:mb-[10px]">
           <PrismicRichText field={project.data.scope} />
         </div>
       {/if}
     {/snippet}
   </TitlePanel>
 
-  <section class="wc-shell my-16" aria-label="{project.data.title} gallery">
+  <section class="mx-auto my-16 w-full max-w-[1280px]" aria-label="{project.data.title} gallery">
     {#if video}
-      <div class="relative mb-16 aspect-video w-full">
+      <div class="relative aspect-video w-full">
         <iframe
           src={video}
           title="{project.data.title} video"
@@ -52,9 +52,9 @@
       </div>
     {/if}
     {#if gallery.length > 0}
-      <ul class="flex flex-col gap-8">
+      <ul class="mt-[60px]">
         {#each gallery as item, i (i)}
-          <li>
+          <li class="pb-16">
             <PrismicImage
               field={item.image}
               fallbackAlt=""

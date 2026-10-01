@@ -36,7 +36,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`CountUp.svelte`](../src/lib/components/CountUp.svelte) | `value`, `startValue`, `duration`, `startOnVisible`, `once`, `label`, `decimals`, `prefix`, `suffix`, `useGrouping`, `locale` | 12 | The number to count up to |
 | [`DefaultButton.svelte`](../src/lib/components/DefaultButton.svelte) | `href`, `onclick`, `children` | — | Shape and skin of the shared button, split so callers that must render a different element can still wear it |
 | [`DelayedLink.svelte`](../src/lib/components/DelayedLink.svelte) | `href`, `delay`, `children`, `beforeNavigate`, `onclick` | 5 |  |
-| [`Field.svelte`](../src/lib/components/Field.svelte) | `name`, `label`, `type`, `value`, `description`, `error`, `required`, `autocomplete`, `placeholder`, `minlength`, `maxlength`, `pattern`, `inputmode`, `rows`, `autofocus` | 11 | Marks this control as the one a containing dialog should open onto |
+| [`Field.svelte`](../src/lib/components/Field.svelte) | `name`, `label`, `type`, `value`, `description`, `error`, `required`, `autocomplete`, `placeholder`, `minlength`, `maxlength`, `pattern`, `inputmode`, `rows`, `autofocus`, `inline` | 11 | Marks this control as the one a containing dialog should open onto |
 | [`Footer.svelte`](../src/lib/components/Footer.svelte) | `columns`, `socials`, `text`, `owner` | 14 | Optional per-route override of the `$lib/site-config.json` footer (no route in the bare template supplies this) |
 | [`Form.svelte`](../src/lib/components/Form.svelte) | `errors`, `errorSummaryTitle`, `children` | 3 |  |
 | [`HeroBackgroundImage.svelte`](../src/lib/components/HeroBackgroundImage.svelte) | `image`, `altFallback`, `preload` | 8 | LCP-optimized hero image |
@@ -55,8 +55,8 @@ source. It is the fastest way to recognise what a thing does.
 | [`SiteFooter.svelte`](../src/lib/components/SiteFooter.svelte) | — | — |  |
 | [`SiteHeader.svelte`](../src/lib/components/SiteHeader.svelte) | — | 12 |  |
 | [`SkeletonLoader.svelte`](../src/lib/components/SkeletonLoader.svelte) | `lines`, `circle`, `height`, `width` | — |  |
-| [`Slider.svelte`](../src/lib/components/Slider.svelte) | `itemCount`, `label`, `children`, `cardsPerView`, `gap`, `mobileGap`, `mode`, `loop`, `autoplay`, `showDots`, `showArrows`, `transitionClass`, `navigationClass`, `arrowClass`, `nextArrowClass`, `pauseClass`, `dotClass`, `activeDotClass` | 23 | Accessible name for the carousel region — say what's inside ("Customer testimonials"), not "Slider" |
-| [`TitlePanel.svelte`](../src/lib/components/TitlePanel.svelte) | `media`, `heading`, `aside`, `align` | — |  |
+| [`Slider.svelte`](../src/lib/components/Slider.svelte) | `itemCount`, `label`, `children`, `cardsPerView`, `gap`, `mobileGap`, `mode`, `loop`, `autoplay`, `showDots`, `showArrows`, `transitionClass`, `navigationClass`, `trackClass`, `arrowClass`, `nextArrowClass`, `pauseClass`, `dotClass`, `activeDotClass` | 23 | Accessible name for the carousel region — say what's inside ("Customer testimonials"), not "Slider" |
+| [`TitlePanel.svelte`](../src/lib/components/TitlePanel.svelte) | `media`, `heading`, `aside`, `layout`, `align` | — |  |
 | [`TransitionOverlay.svelte`](../src/lib/components/TransitionOverlay.svelte) | `visibleDuration`, `fadeInDuration`, `fadeOutDuration`, `so` | 9 | ms the cover holds once the incoming route has arrived |
 | [`TurnstileWidget.svelte`](../src/lib/components/TurnstileWidget.svelte) | — | 6 |  |
 | [`VimeoBanner.svelte`](../src/lib/components/VimeoBanner.svelte) | `vimeoId`, `poster`, `alt` | 7 | Full-bleed background-video banner |

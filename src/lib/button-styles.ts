@@ -2,7 +2,7 @@ export type ButtonVariant =
   "gold" | "outline-light" | "primary" | "outline-primary" | "white" | "ghost-primary";
 
 export const BUTTON_BASE =
-  "inline-block rounded-[10px] border-2 px-8 py-2 text-base leading-6 [transition:background-color_0.2s_ease-in,opacity_0.25s_ease-in] hover:opacity-100";
+  "inline-block rounded-[10px] border-2 px-8 py-2 text-base leading-5 font-medium [transition:background-color_0.2s_ease-in,opacity_0.25s_ease-in] hover:opacity-100";
 
 export const BUTTON_CLASS: Record<ButtonVariant, string> = {
   gold: "border-gold bg-gold text-navy hover:bg-white",

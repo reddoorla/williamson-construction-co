@@ -11,12 +11,16 @@
   id={slice.primary.section_id || undefined}
 >
   {#if isFilled.image(slice.primary.image)}
-    <PrismicImage
-      field={slice.primary.image}
-      fallbackAlt=""
-      class="block w-full"
-      imgixParams={{ w: 2400 }}
-      loading="lazy"
-    />
+    <div class="relative aspect-video overflow-hidden">
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <PrismicImage
+          field={slice.primary.image}
+          fallbackAlt=""
+          class="block w-full"
+          imgixParams={{ w: 2400 }}
+          loading="lazy"
+        />
+      </div>
+    </div>
   {/if}
 </section>

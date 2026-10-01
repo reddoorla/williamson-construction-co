@@ -538,3 +538,88 @@ It still refuses a `none` hue. With the fix, the same probe passes both
 steps (15 tests), and the probe was removed. This is the first part of #152.
 Field's `red-600` failing AA off white, the issue's second part, is not
 touched here.
+
+## 2026-10-01 — The matching gate runs from the cloud: Phase 1 for 14 pages, proven on the reference itself (#9, held at round 2)
+
+BACKLOG 52 asked whether "the matching gate passes" could be shown at all
+from a cloud session. It said no for two reasons: `gate.sh` needs the
+`matching-a-page` skill, and this site had no `matching/SPEC.md`. Both turned
+out to be setup, not limits.
+
+- The skill is a clone of `reddoorla/claude-skills`, with
+  `MATCHING_SKILL_DIR` pointed at `skills/matching-a-page`.
+- The site's Playwright 1.63 wants a Chromium build the image lacks. An
+  untracked `pw.cloud.config.ts` (kept in `.git/info/exclude`) passes
+  `PW_CHROMIUM=/opt/pw-browsers/chromium-1234/chrome-linux64/chrome` as
+  `executablePath`.
+
+Phase 1 is generated from the live reference while it still serves (until
+2026-10-19):
+
+- `spec-extract.mjs` takes settled computed styles at 1440/834/390.
+- `spec-render.mjs` renders each section with its stylesheet rules cited by
+  line.
+- `spec-sections/` holds the shared chrome, written by hand.
+
+The extracts are tracked, so the spec survives the reference.
+
+**The instrument was proven before any FAIL counted.** `--check-ref` refuses a
+candidate on the reference's own host, so the known-good input is the apex
+domain, which 301s to www. On that input the gate printed 14 of 14 pages,
+165 regions, 0 FAIL and max mismatch 0.0%, including the video pages. The
+negative control pointed torrance's candidate at west-high-school. `top`
+failed at 65.6/74.0/52.4% and the shared footer passed at 0.0%. Only after
+that was the first real run read: home was 21 FAIL to 3 PASS.
+
+**Beliefs corrected on contact:**
+
+- **Video bands are 2:1, not 16:9 at 720px.** They are `.ratio-box-2._2-1`,
+  and about's is the `_16-9 .offset-up` variant.
+- **The ghost button is not a deviation.** A three-class rule (:5979) outranks
+  the two the first LEDGER entry cited.
+- **Webflow's `max-width: 991px` includes 991, and Tailwind's
+  `max-[991px]` does not.** Every variant moved to 992/768/480. The matrix
+  widths never hit those pixels, so no gate saw it; the round-2 review did.
+- **The census declarations were too wide.** One never read the candidate,
+  and the census figures predated the fix. The declarations are now exact
+  pairs, with 13 node tests and two mutations.
+
+**A trap worth knowing.** A Vite dev server left running in a git worktree
+kept serving old client modules after `git checkout`. Hydration mismatches
+reset half of each page, so gate runs r2–r5 measured a page that never
+existed. Restart the server cold (`--force`) before taking evidence, and
+check the served markup and `hydration_mismatch` count first. `pkill -f`
+on a pattern also killed the shell running it, so kill by PID instead.
+
+**Defects the review found, which no gate could.** The rebuild uses
+min-height slides, so it does not clip as the reference does (the reference
+clips its own focusable See More at 390). That exposed a new defect: the
+absolutely placed controls row sat over the tallest slide's See More and
+took its clicks. Round 2 found this as a major. It is fixed in `106d06e`,
+which nobody has reviewed. Two dirty rounds mean the PR goes to the
+operator, not into a third round (reddoor-maintenance BACKLOG, Operator
+decisions).
+
+**Final gate (r7 on `7db29f3`, a cold server):** 8 of 14 pages PASS. The
+failing regions are all ledgered:
+
+- **home "Committed to your", all three widths:** the testimonial's
+  straight-vs-curly quotes and the slide growing instead of clipping.
+- **services' slider at 390:** height only (growth).
+- **about's mission at 834:** the font kit wraps a line.
+- **join, all three widths:** the accessible form adds 80–175px.
+- **projects at 1440:** the photo pipeline. It passes with
+  `--mask-photos`.
+- **Providence Hospital `top`:** photos, plus the reference's empty 45px
+  paragraph. It still fails at 834 when masked.
+
+On `106d06e` (r8, cold server), home is unchanged. Services' slider region
+at 390 got worse, Δh 15.6 → 23.4%: the 32px that keeps the controls off
+the slide's links is height the reference does not have, because there the
+controls sit over a clipped slide. That trade is deliberate and ledgered.
+The final census found 0 undeclared rows across 42 runs, with 78 declared
+and 12 ambiguous same-text rows left for adjudication.
+
+Every mutation is in #9's body; M11's first form survived and was
+rewritten. History is not rewritten here either: commit-text errata
+are LEDGER lines.

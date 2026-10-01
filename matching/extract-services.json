@@ -1,0 +1,1988 @@
+{
+  "key": "services",
+  "ref": "https://www.williamson-construction.com/services",
+  "cand": "http://localhost:5173/dev/match/services",
+  "file": "pages/services/index.html",
+  "per": {
+    "390": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 500,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "hero-bg-vid",
+            "w-background-video",
+            "w-background-video-atom"
+          ],
+          "type": [],
+          "assets": [
+            "video 64f7b3e3df4652b1bc09b641_services_vid-transcode.mp4",
+            "source 64f7b3e3df4652b1bc09b641_services_vid-transcode.mp4",
+            "source 64f7b3e3df4652b1bc09b641_services_vid-transcode.webm",
+            "bg 64f7b3e3df4652b1bc09b641_services_vid-poster-00001.jpg"
+          ],
+          "interactive": ["div.hero-bg-vid.w-background-video.w-background-video-atom", "video"]
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 340,
+          "h": 507,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "A phased approach to your next project.",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "columns",
+            "px-4",
+            "w-row",
+            "p-0",
+            "w-col",
+            "w-col-8",
+            "w-col-stack",
+            "text-color-white",
+            "text-align-left",
+            "m-6",
+            "px-6",
+            "w-col-4",
+            "my-8",
+            "text-size-3xl",
+            "display-flex",
+            "button-holder",
+            "button-default",
+            "mr-8",
+            "w-button",
+            "white-outline",
+            "ml-8",
+            "spacer-16"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.text-align-left.m-6",
+              "text": "A phased approach to your next project."
+            },
+            {
+              "key": "freight-sans-pro 400 19.2px/30.72px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "text-color-white.my-8.text-size-3xl",
+              "text": "We're with you every step of the way - from "
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "a",
+              "cls": "button-default.mr-8.w-button",
+              "text": "Approach"
+            }
+          ],
+          "assets": [],
+          "interactive": [
+            "a.button-default.mr-8.w-button → #approach \"Approach\"",
+            "a.button-default.white-outline.ml-8 → #sliders \"See Plan\""
+          ]
+        },
+        {
+          "idx": 2,
+          "cls": "areas-of-section",
+          "y": 847,
+          "h": 158,
+          "box": "margin 0px / 256px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Areas of Expertise",
+          "tokens": ["areas-of-section", "w-container", "spacer-32", "text-color-primary"],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 25px/30px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Areas of Expertise"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "modernizing-section",
+          "y": 1261,
+          "h": 1278,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Healthcare",
+          "tokens": [
+            "modernizing-section",
+            "content-width",
+            "p-6",
+            "display-flex",
+            "flex-justify-between",
+            "areas-of-exp",
+            "offset-trans-block",
+            "services",
+            "bold-text",
+            "text-color-white",
+            "offset-icon-circle",
+            "_w-full",
+            "h-full",
+            "education"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
+              "tag": "strong",
+              "cls": "bold-text.text-color-white",
+              "text": "Healthcare"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "text-color-white",
+              "text": "We have experience building clinic spaces, i"
+            }
+          ],
+          "assets": [
+            "img 64f7b30f09d100c9e61ccf6b_healthcare-icon_blue.svg",
+            "img 64f7b31e148d73e91e4610c3_education-icon_blue.svg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 4,
+          "cls": "phased-approach-section",
+          "y": 2539,
+          "h": 2570,
+          "box": "margin 0px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phased Approach ‍",
+          "tokens": [
+            "phased-approach-section",
+            "content-width",
+            "text-color-primary",
+            "text-align-center",
+            "px-14pc",
+            "text-size-4xl",
+            "pb-8",
+            "phase-bubbles-holder",
+            "phase-bubble-instance",
+            "inline-link",
+            "w-inline-block",
+            "number-bubble",
+            "bubble-num",
+            "icon-bubble",
+            "bubble-label"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 25px/30px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Phased Approach ‍"
+            },
+            {
+              "key": "freight-sans-pro 300 22.4px/35.84px ls=normal rgb(0, 74, 128) center",
+              "tag": "div",
+              "cls": "text-align-center.px-14pc.text-size-4xl.pb-8.text-color-primary",
+              "text": "WCC strives to deliver comprehensive constru"
+            },
+            {
+              "key": "freight-sans-pro 500 26px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "div",
+              "cls": "bubble-num",
+              "text": "1"
+            },
+            {
+              "key": "freight-sans-pro 400 25px/30px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "bubble-label",
+              "text": "Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "text-color-primary",
+              "text": "Our day-to-day focus is on the objectives of"
+            }
+          ],
+          "assets": [
+            "img 64f7b718e40a8ee1f25f2381_planning-icon.svg",
+            "img 64f7b9a6498b85260adc540c_design-icon.svg",
+            "img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg",
+            "img 64f7b9bd3db5b644bb92f907_construction-icon.svg",
+            "img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"
+          ],
+          "interactive": [
+            "a.inline-link.w-inline-block → #phase-1 \"1\"",
+            "a.icon-bubble.w-inline-block → #phase-1 \"\"",
+            "a.w-inline-block → #phase-1 \"Planning\"",
+            "a.number-bubble.w-inline-block → #phase-2 \"2\"",
+            "a.icon-bubble.w-inline-block → #phase-2 \"\"",
+            "a.w-inline-block → #phase-2 \"Design\"",
+            "a.number-bubble.w-inline-block → #phase-3 \"3\"",
+            "a.icon-bubble.w-inline-block → #phase-3 \"\"",
+            "a.w-inline-block → #phase-3 \"Preconstruction\"",
+            "a.number-bubble.w-inline-block → #phase-4 \"4\"",
+            "a.icon-bubble.w-inline-block → #phase-4 \"\"",
+            "a.w-inline-block → #phase-4 \"Construction\"",
+            "a.number-bubble.w-inline-block → #phase-5 \"5\"",
+            "a.icon-bubble.w-inline-block → #phase-5 \"\"",
+            "a.w-inline-block → #phase-5 \"Closeout\""
+          ]
+        },
+        {
+          "idx": 5,
+          "cls": "full-width-image-section",
+          "y": 5173,
+          "h": 219,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "full-width-image-section",
+            "ratio-box-2",
+            "_16-9",
+            "content-block-2",
+            "p-0",
+            "_w-full"
+          ],
+          "type": [],
+          "assets": ["img 64f7bf7d034873377c2f8fe8_services_fullwidth-p-500.png"],
+          "interactive": []
+        },
+        {
+          "idx": 6,
+          "cls": "slider-section",
+          "y": 5360,
+          "h": 384,
+          "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 1: Planning",
+          "tokens": [
+            "slider-section",
+            "content-width",
+            "quote-slider-block",
+            "slider-services",
+            "w-slider",
+            "mask-services",
+            "w-slider-mask",
+            "slide",
+            "w-slide",
+            "phase-top-icon",
+            "slider-attribution",
+            "text-align-center",
+            "display-flex",
+            "flex-justify-center",
+            "button-default",
+            "mt-6",
+            "w-button",
+            "w-slider-aria-label",
+            "left-arrow",
+            "w-slider-arrow-left",
+            "icon",
+            "w-icon-slider-left",
+            "right-arrow",
+            "w-slider-arrow-right",
+            "icon-2",
+            "w-icon-slider-right",
+            "slide-nav",
+            "tesimonials",
+            "w-slider-nav",
+            "w-shadow",
+            "w-round",
+            "w-slider-dot",
+            "w-active"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 25px/30px ls=normal rgb(255, 255, 255) center",
+              "tag": "h3",
+              "cls": "",
+              "text": "Phase 1: Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28px ls=normal rgb(255, 255, 255) center",
+              "tag": "div",
+              "cls": "slider-attribution.text-align-center",
+              "text": "Early project planning is a necessary step t"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255) left",
+              "tag": "a",
+              "cls": "button-default.mt-6.w-button",
+              "text": "See More"
+            }
+          ],
+          "assets": [
+            "img 64f7b718e40a8ee1f25f2381_planning-icon.svg",
+            "img 64f7b9a6498b85260adc540c_design-icon.svg",
+            "img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg",
+            "img 64f7b9bd3db5b644bb92f907_construction-icon.svg",
+            "img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"
+          ],
+          "interactive": [
+            "div.slider-services.w-slider",
+            "a.button-default.mt-6.w-button → #phase-1 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-2 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-3 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-4 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-5 \"See More\"",
+            "div.left-arrow.w-slider-arrow-left",
+            "div.right-arrow.w-slider-arrow-right",
+            "div.w-slider-dot",
+            "div.w-slider-dot.w-active"
+          ]
+        },
+        {
+          "idx": 7,
+          "cls": "phases-expanded-section",
+          "y": 5840,
+          "h": 60,
+          "box": "margin 0px / 128px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phases Expanded ‍",
+          "tokens": ["phases-expanded-section", "content-width", "text-color-primary"],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 25px/30px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Phases Expanded ‍"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 8,
+          "cls": "phase-1-section",
+          "y": 6028,
+          "h": 875,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 1 - Project Planning",
+          "tokens": [
+            "phase-1-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/40px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 1 - Project Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "Early project planning is a necessary step t"
+            }
+          ],
+          "assets": ["img 64f7b718e40a8ee1f25f2381_planning-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 9,
+          "cls": "phase-two-section",
+          "y": 7143,
+          "h": 1192,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 2 - Design",
+          "tokens": [
+            "phase-two-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/40px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 2 - Design"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) During the Design phase, WCC will work in"
+            }
+          ],
+          "assets": ["img 64f7b9a6498b85260adc540c_design-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 10,
+          "cls": "phase-3-section",
+          "y": 8575,
+          "h": 1347,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 3 - Agency Review & Pre-Construction",
+          "tokens": [
+            "phase-3-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/40px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 3 - Agency Review & Pre-Construction"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) With the early participation of WCC in Ph"
+            }
+          ],
+          "assets": ["img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 11,
+          "cls": "phase-4-section",
+          "y": 10162,
+          "h": 1451,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 4 - Construction",
+          "tokens": [
+            "phase-4-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/40px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 4 - Construction"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) For WCC, the construction phase is, under"
+            }
+          ],
+          "assets": ["img 64f7b9bd3db5b644bb92f907_construction-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 12,
+          "cls": "phase-5-section",
+          "y": 11853,
+          "h": 1019,
+          "box": "margin 0px / 192px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 5 - Closeout",
+          "tokens": [
+            "phase-5-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/40px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 5 - Closeout"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) Upon completion of the construction phase"
+            }
+          ],
+          "assets": ["img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 13,
+          "cls": "cta-section",
+          "y": 13064,
+          "h": 490,
+          "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Start feeling like a top priority, and not like a bottom line. Let's build something together.",
+          "tokens": [
+            "cta-section",
+            "content-width",
+            "cta-block",
+            "text-color-primary",
+            "text-align-left",
+            "flex-justify-start",
+            "mt-6",
+            "pt-6",
+            "button-holder",
+            "button-default",
+            "mr-8",
+            "w-button",
+            "bg-color-transparent"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 45px/55px ls=normal rgb(0, 74, 128) left",
+              "tag": "h1",
+              "cls": "text-color-primary.text-align-left",
+              "text": "Start feeling like a top priority, and not l"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "a",
+              "cls": "button-default.mr-8.w-button",
+              "text": "Contact"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+              "tag": "a",
+              "cls": "button-default.bg-color-transparent.text-color-primary.w-button",
+              "text": "About"
+            }
+          ],
+          "assets": [],
+          "interactive": [
+            "a.button-default.mr-8.w-button → /contact \"Contact\"",
+            "a.button-default.bg-color-transparent.text-color-primary → /about-us \"About\""
+          ]
+        },
+        {
+          "idx": 14,
+          "cls": "footer.bg-color-gray-300",
+          "y": 13650,
+          "h": 1001,
+          "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "w--current",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6.w--current → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 14651
+    },
+    "834": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 500,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "hero-bg-vid",
+            "w-background-video",
+            "w-background-video-atom"
+          ],
+          "type": [],
+          "assets": [
+            "video 64f7b3e3df4652b1bc09b641_services_vid-transcode.mp4",
+            "source 64f7b3e3df4652b1bc09b641_services_vid-transcode.mp4",
+            "source 64f7b3e3df4652b1bc09b641_services_vid-transcode.webm",
+            "bg 64f7b3e3df4652b1bc09b641_services_vid-poster-00001.jpg"
+          ],
+          "interactive": ["div.hero-bg-vid.w-background-video.w-background-video-atom", "video"]
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 340,
+          "h": 452,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "A phased approach to your next project.",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "columns",
+            "px-4",
+            "w-row",
+            "p-0",
+            "w-col",
+            "w-col-8",
+            "w-col-stack",
+            "text-color-white",
+            "text-align-left",
+            "m-6",
+            "px-6",
+            "w-col-4",
+            "my-8",
+            "text-size-3xl",
+            "display-flex",
+            "button-holder",
+            "button-default",
+            "mr-8",
+            "w-button",
+            "white-outline",
+            "ml-8",
+            "spacer-16"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 55px/60px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.text-align-left.m-6",
+              "text": "A phased approach to your next project."
+            },
+            {
+              "key": "freight-sans-pro 400 30px/48px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "text-color-white.my-8.text-size-3xl",
+              "text": "We're with you every step of the way - from "
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "a",
+              "cls": "button-default.mr-8.w-button",
+              "text": "Approach"
+            }
+          ],
+          "assets": [],
+          "interactive": [
+            "a.button-default.mr-8.w-button → #approach \"Approach\"",
+            "a.button-default.white-outline.ml-8 → #sliders \"See Plan\""
+          ]
+        },
+        {
+          "idx": 2,
+          "cls": "areas-of-section",
+          "y": 792,
+          "h": 163,
+          "box": "margin 0px / 256px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Areas of Expertise",
+          "tokens": ["areas-of-section", "w-container", "spacer-32", "text-color-primary"],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/35px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Areas of Expertise"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "modernizing-section",
+          "y": 1211,
+          "h": 1269,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Healthcare",
+          "tokens": [
+            "modernizing-section",
+            "content-width",
+            "p-6",
+            "display-flex",
+            "flex-justify-between",
+            "areas-of-exp",
+            "offset-trans-block",
+            "services",
+            "bold-text",
+            "text-color-white",
+            "offset-icon-circle",
+            "_w-full",
+            "h-full",
+            "education"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "strong",
+              "cls": "bold-text.text-color-white",
+              "text": "Healthcare"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "text-color-white",
+              "text": "We have experience building clinic spaces, i"
+            }
+          ],
+          "assets": [
+            "img 64f7b30f09d100c9e61ccf6b_healthcare-icon_blue.svg",
+            "img 64f7b31e148d73e91e4610c3_education-icon_blue.svg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 4,
+          "cls": "phased-approach-section",
+          "y": 2480,
+          "h": 3161,
+          "box": "margin 0px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phased Approach ‍",
+          "tokens": [
+            "phased-approach-section",
+            "content-width",
+            "text-color-primary",
+            "text-align-center",
+            "px-14pc",
+            "text-size-4xl",
+            "pb-8",
+            "phase-bubbles-holder",
+            "phase-bubble-instance",
+            "inline-link",
+            "w-inline-block",
+            "number-bubble",
+            "bubble-num",
+            "icon-bubble",
+            "bubble-label"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/35px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Phased Approach ‍"
+            },
+            {
+              "key": "freight-sans-pro 300 32px/51.2px ls=normal rgb(0, 74, 128) center",
+              "tag": "div",
+              "cls": "text-align-center.px-14pc.text-size-4xl.pb-8.text-color-primary",
+              "text": "WCC strives to deliver comprehensive constru"
+            },
+            {
+              "key": "freight-sans-pro 500 26px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "div",
+              "cls": "bubble-num",
+              "text": "1"
+            },
+            {
+              "key": "freight-sans-pro 400 30px/35px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "bubble-label",
+              "text": "Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "text-color-primary",
+              "text": "Our day-to-day focus is on the objectives of"
+            }
+          ],
+          "assets": [
+            "img 64f7b718e40a8ee1f25f2381_planning-icon.svg",
+            "img 64f7b9a6498b85260adc540c_design-icon.svg",
+            "img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg",
+            "img 64f7b9bd3db5b644bb92f907_construction-icon.svg",
+            "img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"
+          ],
+          "interactive": [
+            "a.inline-link.w-inline-block → #phase-1 \"1\"",
+            "a.icon-bubble.w-inline-block → #phase-1 \"\"",
+            "a.w-inline-block → #phase-1 \"Planning\"",
+            "a.number-bubble.w-inline-block → #phase-2 \"2\"",
+            "a.icon-bubble.w-inline-block → #phase-2 \"\"",
+            "a.w-inline-block → #phase-2 \"Design\"",
+            "a.number-bubble.w-inline-block → #phase-3 \"3\"",
+            "a.icon-bubble.w-inline-block → #phase-3 \"\"",
+            "a.w-inline-block → #phase-3 \"Preconstruction\"",
+            "a.number-bubble.w-inline-block → #phase-4 \"4\"",
+            "a.icon-bubble.w-inline-block → #phase-4 \"\"",
+            "a.w-inline-block → #phase-4 \"Construction\"",
+            "a.number-bubble.w-inline-block → #phase-5 \"5\"",
+            "a.icon-bubble.w-inline-block → #phase-5 \"\"",
+            "a.w-inline-block → #phase-5 \"Closeout\""
+          ]
+        },
+        {
+          "idx": 5,
+          "cls": "full-width-image-section",
+          "y": 5705,
+          "h": 469,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "full-width-image-section",
+            "ratio-box-2",
+            "_16-9",
+            "content-block-2",
+            "p-0",
+            "_w-full"
+          ],
+          "type": [],
+          "assets": ["img 64f7bf7d034873377c2f8fe8_services_fullwidth-p-1080.png"],
+          "interactive": []
+        },
+        {
+          "idx": 6,
+          "cls": "slider-section",
+          "y": 6046,
+          "h": 448,
+          "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 1: Planning",
+          "tokens": [
+            "slider-section",
+            "content-width",
+            "quote-slider-block",
+            "slider-services",
+            "w-slider",
+            "mask-services",
+            "w-slider-mask",
+            "slide",
+            "w-slide",
+            "phase-top-icon",
+            "slider-attribution",
+            "text-align-center",
+            "display-flex",
+            "flex-justify-center",
+            "button-default",
+            "mt-6",
+            "w-button",
+            "w-slider-aria-label",
+            "left-arrow",
+            "w-slider-arrow-left",
+            "icon",
+            "w-icon-slider-left",
+            "right-arrow",
+            "w-slider-arrow-right",
+            "icon-2",
+            "w-icon-slider-right",
+            "slide-nav",
+            "tesimonials",
+            "w-slider-nav",
+            "w-shadow",
+            "w-round",
+            "w-slider-dot",
+            "w-active"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/35px ls=normal rgb(255, 255, 255) center",
+              "tag": "h3",
+              "cls": "",
+              "text": "Phase 1: Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 18px/28px ls=normal rgb(255, 255, 255) center",
+              "tag": "div",
+              "cls": "slider-attribution.text-align-center",
+              "text": "Early project planning is a necessary step t"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255) left",
+              "tag": "a",
+              "cls": "button-default.mt-6.w-button",
+              "text": "See More"
+            }
+          ],
+          "assets": [
+            "img 64f7b718e40a8ee1f25f2381_planning-icon.svg",
+            "img 64f7b9a6498b85260adc540c_design-icon.svg",
+            "img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg",
+            "img 64f7b9bd3db5b644bb92f907_construction-icon.svg",
+            "img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"
+          ],
+          "interactive": [
+            "div.slider-services.w-slider",
+            "a.button-default.mt-6.w-button → #phase-1 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-2 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-3 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-4 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-5 \"See More\"",
+            "div.left-arrow.w-slider-arrow-left",
+            "div.right-arrow.w-slider-arrow-right",
+            "div.w-slider-dot",
+            "div.w-slider-dot.w-active"
+          ]
+        },
+        {
+          "idx": 7,
+          "cls": "phases-expanded-section",
+          "y": 6590,
+          "h": 70,
+          "box": "margin 0px / 128px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phases Expanded ‍",
+          "tokens": ["phases-expanded-section", "content-width", "text-color-primary"],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 30px/35px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Phases Expanded ‍"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 8,
+          "cls": "phase-1-section",
+          "y": 6788,
+          "h": 906,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 1 - Project Planning",
+          "tokens": [
+            "phase-1-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 1 - Project Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "Early project planning is a necessary step t"
+            }
+          ],
+          "assets": ["img 64f7b718e40a8ee1f25f2381_planning-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 9,
+          "cls": "phase-two-section",
+          "y": 7934,
+          "h": 1258,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 2 - Design",
+          "tokens": [
+            "phase-two-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 2 - Design"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) During the Design phase, WCC will work in"
+            }
+          ],
+          "assets": ["img 64f7b9a6498b85260adc540c_design-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 10,
+          "cls": "phase-3-section",
+          "y": 9432,
+          "h": 1444,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 3 - Agency Review & Pre-Construction",
+          "tokens": [
+            "phase-3-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 3 - Agency Review & Pre-Construction"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) With the early participation of WCC in Ph"
+            }
+          ],
+          "assets": ["img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 11,
+          "cls": "phase-4-section",
+          "y": 11116,
+          "h": 1575,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 4 - Construction",
+          "tokens": [
+            "phase-4-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 4 - Construction"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) For WCC, the construction phase is, under"
+            }
+          ],
+          "assets": ["img 64f7b9bd3db5b644bb92f907_construction-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 12,
+          "cls": "phase-5-section",
+          "y": 12931,
+          "h": 941,
+          "box": "margin 0px / 192px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 5 - Closeout",
+          "tokens": [
+            "phase-5-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 5 - Closeout"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) Upon completion of the construction phase"
+            }
+          ],
+          "assets": ["img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 13,
+          "cls": "cta-section",
+          "y": 14064,
+          "h": 328,
+          "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Start feeling like a top priority, and not like a bottom line. Let's build something together.",
+          "tokens": [
+            "cta-section",
+            "content-width",
+            "cta-block",
+            "text-color-primary",
+            "text-align-left",
+            "flex-justify-start",
+            "mt-6",
+            "pt-6",
+            "button-holder",
+            "button-default",
+            "mr-8",
+            "w-button",
+            "bg-color-transparent"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 55px/60px ls=normal rgb(0, 74, 128) left",
+              "tag": "h1",
+              "cls": "text-color-primary.text-align-left",
+              "text": "Start feeling like a top priority, and not l"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "a",
+              "cls": "button-default.mr-8.w-button",
+              "text": "Contact"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+              "tag": "a",
+              "cls": "button-default.bg-color-transparent.text-color-primary.w-button",
+              "text": "About"
+            }
+          ],
+          "assets": [],
+          "interactive": [
+            "a.button-default.mr-8.w-button → /contact \"Contact\"",
+            "a.button-default.bg-color-transparent.text-color-primary → /about-us \"About\""
+          ]
+        },
+        {
+          "idx": 14,
+          "cls": "footer.bg-color-gray-300",
+          "y": 14488,
+          "h": 736,
+          "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "w--current",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6.w--current → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 15224
+    },
+    "1440": {
+      "secs": [
+        {
+          "idx": 0,
+          "cls": "hero-section.overflow-hidden.position-relative",
+          "y": 0,
+          "h": 700,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "hero-section",
+            "overflow-hidden",
+            "position-relative",
+            "hero-bg-vid",
+            "w-background-video",
+            "w-background-video-atom"
+          ],
+          "type": [],
+          "assets": [
+            "video 64f7b3e3df4652b1bc09b641_services_vid-transcode.mp4",
+            "source 64f7b3e3df4652b1bc09b641_services_vid-transcode.mp4",
+            "source 64f7b3e3df4652b1bc09b641_services_vid-transcode.webm",
+            "bg 64f7b3e3df4652b1bc09b641_services_vid-poster-00001.jpg"
+          ],
+          "interactive": ["div.hero-bg-vid.w-background-video.w-background-video-atom", "video"]
+        },
+        {
+          "idx": 1,
+          "cls": "title-section",
+          "y": 540,
+          "h": 352,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "A phased approach to your next project.",
+          "tokens": [
+            "title-section",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "bg-color-primary",
+            "opacity-90",
+            "offset-up",
+            "columns",
+            "px-4",
+            "w-row",
+            "p-0",
+            "w-col",
+            "w-col-8",
+            "w-col-stack",
+            "text-color-white",
+            "text-align-left",
+            "m-6",
+            "px-6",
+            "w-col-4",
+            "my-8",
+            "text-size-3xl",
+            "display-flex",
+            "button-holder",
+            "button-default",
+            "mr-8",
+            "w-button",
+            "white-outline",
+            "ml-8",
+            "spacer-16"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) left",
+              "tag": "h1",
+              "cls": "text-color-white.text-align-left.m-6",
+              "text": "A phased approach to your next project."
+            },
+            {
+              "key": "freight-sans-pro 400 30px/48px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "text-color-white.my-8.text-size-3xl",
+              "text": "We're with you every step of the way - from "
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "a",
+              "cls": "button-default.mr-8.w-button",
+              "text": "Approach"
+            }
+          ],
+          "assets": [],
+          "interactive": [
+            "a.button-default.mr-8.w-button → #approach \"Approach\"",
+            "a.button-default.white-outline.ml-8 → #sliders \"See Plan\""
+          ]
+        },
+        {
+          "idx": 2,
+          "cls": "areas-of-section",
+          "y": 892,
+          "h": 173,
+          "box": "margin 0px / 384px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Areas of Expertise",
+          "tokens": ["areas-of-section", "w-container", "spacer-32", "text-color-primary"],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Areas of Expertise"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 3,
+          "cls": "modernizing-section",
+          "y": 1449,
+          "h": 432,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Healthcare",
+          "tokens": [
+            "modernizing-section",
+            "content-width",
+            "p-6",
+            "display-flex",
+            "flex-justify-between",
+            "areas-of-exp",
+            "offset-trans-block",
+            "services",
+            "bold-text",
+            "text-color-white",
+            "offset-icon-circle",
+            "_w-full",
+            "h-full",
+            "education"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "strong",
+              "cls": "bold-text.text-color-white",
+              "text": "Healthcare"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+              "tag": "p",
+              "cls": "text-color-white",
+              "text": "We have experience building clinic spaces, i"
+            }
+          ],
+          "assets": [
+            "img 64f7b30f09d100c9e61ccf6b_healthcare-icon_blue.svg",
+            "img 64f7b31e148d73e91e4610c3_education-icon_blue.svg"
+          ],
+          "interactive": []
+        },
+        {
+          "idx": 4,
+          "cls": "phased-approach-section",
+          "y": 1881,
+          "h": 858,
+          "box": "margin 0px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phased Approach ‍",
+          "tokens": [
+            "phased-approach-section",
+            "content-width",
+            "text-color-primary",
+            "text-align-center",
+            "px-14pc",
+            "text-size-4xl",
+            "pb-8",
+            "phase-bubbles-holder",
+            "phase-bubble-instance",
+            "inline-link",
+            "w-inline-block",
+            "number-bubble",
+            "bubble-num",
+            "icon-bubble",
+            "bubble-label"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Phased Approach ‍"
+            },
+            {
+              "key": "freight-sans-pro 300 36px/57.6px ls=normal rgb(0, 74, 128) center",
+              "tag": "div",
+              "cls": "text-align-center.px-14pc.text-size-4xl.pb-8.text-color-primary",
+              "text": "WCC strives to deliver comprehensive constru"
+            },
+            {
+              "key": "freight-sans-pro 500 26px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "div",
+              "cls": "bubble-num",
+              "text": "1"
+            },
+            {
+              "key": "freight-sans-pro 400 35px/45px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "bubble-label",
+              "text": "Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "text-color-primary",
+              "text": "Our day-to-day focus is on the objectives of"
+            }
+          ],
+          "assets": [
+            "img 64f7b718e40a8ee1f25f2381_planning-icon.svg",
+            "img 64f7b9a6498b85260adc540c_design-icon.svg",
+            "img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg",
+            "img 64f7b9bd3db5b644bb92f907_construction-icon.svg",
+            "img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"
+          ],
+          "interactive": [
+            "a.inline-link.w-inline-block → #phase-1 \"1\"",
+            "a.icon-bubble.w-inline-block → #phase-1 \"\"",
+            "a.w-inline-block → #phase-1 \"Planning\"",
+            "a.number-bubble.w-inline-block → #phase-2 \"2\"",
+            "a.icon-bubble.w-inline-block → #phase-2 \"\"",
+            "a.w-inline-block → #phase-2 \"Design\"",
+            "a.number-bubble.w-inline-block → #phase-3 \"3\"",
+            "a.icon-bubble.w-inline-block → #phase-3 \"\"",
+            "a.w-inline-block → #phase-3 \"Preconstruction\"",
+            "a.number-bubble.w-inline-block → #phase-4 \"4\"",
+            "a.icon-bubble.w-inline-block → #phase-4 \"\"",
+            "a.w-inline-block → #phase-4 \"Construction\"",
+            "a.number-bubble.w-inline-block → #phase-5 \"5\"",
+            "a.icon-bubble.w-inline-block → #phase-5 \"\"",
+            "a.w-inline-block → #phase-5 \"Closeout\""
+          ]
+        },
+        {
+          "idx": 5,
+          "cls": "full-width-image-section",
+          "y": 2803,
+          "h": 810,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": null,
+          "tokens": [
+            "full-width-image-section",
+            "ratio-box-2",
+            "_16-9",
+            "content-block-2",
+            "p-0",
+            "_w-full"
+          ],
+          "type": [],
+          "assets": ["img 64f7bf7d034873377c2f8fe8_services_fullwidth-p-1600.png"],
+          "interactive": []
+        },
+        {
+          "idx": 6,
+          "cls": "slider-section",
+          "y": 3485,
+          "h": 448,
+          "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 1: Planning",
+          "tokens": [
+            "slider-section",
+            "content-width",
+            "quote-slider-block",
+            "slider-services",
+            "w-slider",
+            "mask-services",
+            "w-slider-mask",
+            "slide",
+            "w-slide",
+            "phase-top-icon",
+            "slider-attribution",
+            "text-align-center",
+            "display-flex",
+            "flex-justify-center",
+            "button-default",
+            "mt-6",
+            "w-button",
+            "w-slider-aria-label",
+            "left-arrow",
+            "w-slider-arrow-left",
+            "icon",
+            "w-icon-slider-left",
+            "right-arrow",
+            "w-slider-arrow-right",
+            "icon-2",
+            "w-icon-slider-right",
+            "slide-nav",
+            "tesimonials",
+            "w-slider-nav",
+            "w-shadow",
+            "w-round",
+            "w-slider-dot",
+            "w-active"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) center",
+              "tag": "h3",
+              "cls": "",
+              "text": "Phase 1: Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35px ls=normal rgb(255, 255, 255) center",
+              "tag": "div",
+              "cls": "slider-attribution.text-align-center",
+              "text": "Early project planning is a necessary step t"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255) left",
+              "tag": "a",
+              "cls": "button-default.mt-6.w-button",
+              "text": "See More"
+            }
+          ],
+          "assets": [
+            "img 64f7b718e40a8ee1f25f2381_planning-icon.svg",
+            "img 64f7b9a6498b85260adc540c_design-icon.svg",
+            "img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg",
+            "img 64f7b9bd3db5b644bb92f907_construction-icon.svg",
+            "img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"
+          ],
+          "interactive": [
+            "div.slider-services.w-slider",
+            "a.button-default.mt-6.w-button → #phase-1 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-2 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-3 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-4 \"See More\"",
+            "a.button-default.mt-6.w-button → #phase-5 \"See More\"",
+            "div.left-arrow.w-slider-arrow-left",
+            "div.right-arrow.w-slider-arrow-right",
+            "div.w-slider-dot",
+            "div.w-slider-dot.w-active"
+          ]
+        },
+        {
+          "idx": 7,
+          "cls": "phases-expanded-section",
+          "y": 4029,
+          "h": 90,
+          "box": "margin 0px / 128px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phases Expanded ‍",
+          "tokens": ["phases-expanded-section", "content-width", "text-color-primary"],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+              "tag": "h3",
+              "cls": "text-color-primary",
+              "text": "Phases Expanded ‍"
+            }
+          ],
+          "assets": [],
+          "interactive": []
+        },
+        {
+          "idx": 8,
+          "cls": "phase-1-section",
+          "y": 4247,
+          "h": 569,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 1 - Project Planning",
+          "tokens": [
+            "phase-1-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 1 - Project Planning"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "Early project planning is a necessary step t"
+            }
+          ],
+          "assets": ["img 64f7b718e40a8ee1f25f2381_planning-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 9,
+          "cls": "phase-two-section",
+          "y": 5056,
+          "h": 1026,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 2 - Design",
+          "tokens": [
+            "phase-two-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 2 - Design"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) During the Design phase, WCC will work in"
+            }
+          ],
+          "assets": ["img 64f7b9a6498b85260adc540c_design-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 10,
+          "cls": "phase-3-section",
+          "y": 6322,
+          "h": 921,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 3 - Agency Review & Pre-Construction",
+          "tokens": [
+            "phase-3-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 3 - Agency Review & Pre-Construction"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) With the early participation of WCC in Ph"
+            }
+          ],
+          "assets": ["img 64f7b9b2378f20f4786a1d53_preconstruction-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 11,
+          "cls": "phase-4-section",
+          "y": 7483,
+          "h": 1343,
+          "box": "margin 0px / 240px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 4 - Construction",
+          "tokens": [
+            "phase-4-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 4 - Construction"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) For WCC, the construction phase is, under"
+            }
+          ],
+          "assets": ["img 64f7b9bd3db5b644bb92f907_construction-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 12,
+          "cls": "phase-5-section",
+          "y": 9066,
+          "h": 745,
+          "box": "margin 0px / 192px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Phase 5 - Closeout",
+          "tokens": [
+            "phase-5-section",
+            "content-width",
+            "phase-header-container",
+            "text-align-left",
+            "p-6",
+            "m-6",
+            "text-color-primary",
+            "su-p-0-mobile",
+            "phase-header-image",
+            "mx-6",
+            "px-6",
+            "su-m-0-mobile"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+              "tag": "h2",
+              "cls": "text-align-left.p-6.m-6.text-color-primary.su-p-0-mobile",
+              "text": "Phase 5 - Closeout"
+            },
+            {
+              "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(0, 74, 128)",
+              "tag": "p",
+              "cls": "mx-6.px-6.text-color-primary.su-m-0-mobile",
+              "text": "1) Upon completion of the construction phase"
+            }
+          ],
+          "assets": ["img 64f7b9cdd970caf21845b3c3_closeout-icon.svg"],
+          "interactive": []
+        },
+        {
+          "idx": 13,
+          "cls": "cta-section",
+          "y": 10003,
+          "h": 322,
+          "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+          "firstText": "Start feeling like a top priority, and not like a bottom line. Let's build something together.",
+          "tokens": [
+            "cta-section",
+            "content-width",
+            "cta-block",
+            "text-color-primary",
+            "text-align-left",
+            "flex-justify-start",
+            "mt-6",
+            "pt-6",
+            "button-holder",
+            "button-default",
+            "mr-8",
+            "w-button",
+            "bg-color-transparent"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 62px/78px ls=normal rgb(0, 74, 128) left",
+              "tag": "h1",
+              "cls": "text-color-primary.text-align-left",
+              "text": "Start feeling like a top priority, and not l"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+              "tag": "a",
+              "cls": "button-default.mr-8.w-button",
+              "text": "Contact"
+            },
+            {
+              "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+              "tag": "a",
+              "cls": "button-default.bg-color-transparent.text-color-primary.w-button",
+              "text": "About"
+            }
+          ],
+          "assets": [],
+          "interactive": [
+            "a.button-default.mr-8.w-button → /contact \"Contact\"",
+            "a.button-default.bg-color-transparent.text-color-primary → /about-us \"About\""
+          ]
+        },
+        {
+          "idx": 14,
+          "cls": "footer.bg-color-gray-300",
+          "y": 10421,
+          "h": 736,
+          "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
+          "firstText": "Home",
+          "tokens": [
+            "footer",
+            "bg-color-gray-300",
+            "spacer-32",
+            "max-w-1280",
+            "_w-full",
+            "m-auto",
+            "position-relative",
+            "w-row",
+            "column-2",
+            "w-col",
+            "w-col-6",
+            "w-inline-block",
+            "h-24",
+            "display-block",
+            "spacer-16",
+            "column-3",
+            "display-flex",
+            "float-right",
+            "flex-vertical",
+            "su-float-left-mobile",
+            "text-color-black",
+            "p-6",
+            "w--current",
+            "italic-text",
+            "spacer-8"
+          ],
+          "type": [
+            {
+              "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "a",
+              "cls": "text-color-black.p-6",
+              "text": "Home"
+            },
+            {
+              "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "em",
+              "cls": "italic-text",
+              "text": "© Williamson Construction 2023, All Rights R"
+            },
+            {
+              "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+              "tag": "div",
+              "cls": "max-w-1280._w-full.m-auto",
+              "text": "License 976074 SBE 2019518"
+            }
+          ],
+          "assets": ["img 6514801e11f270f8acfd0544_wcc-logo.svg"],
+          "interactive": [
+            "a.w-inline-block → / \"\"",
+            "a.text-color-black.p-6 → / \"Home\"",
+            "a.text-color-black.p-6.w--current → /services \"Services\"",
+            "a.text-color-black.p-6 → /about-us \"About\"",
+            "a.text-color-black.p-6 → /projects \"Projects\"",
+            "a.text-color-black.p-6 → /contact \"Contact Us\"",
+            "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+          ]
+        }
+      ],
+      "root": "16px",
+      "docH": 11157
+    }
+  }
+}
