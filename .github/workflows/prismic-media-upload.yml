@@ -26,22 +26,21 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$PRISMIC_WRITE_TOKEN"
-          IFS=',' read -ra names <<< "$FILES"
+          case "$BASE_URL" in https://*) ;; *) echo "base_url must be https://"; exit 2 ;; esac
+          IFS=',' read -r -d '' -a names <<< "$FILES" || true
           for raw in "${names[@]}"; do
-            name="$(echo "$raw" | xargs)"
+            name="$(printf '%s' "$raw" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
             [ -z "$name" ] && continue
-            curl -fsSL -o "$name" "${BASE_URL%/}/$name"
-            case "$name" in
-              *.mp4) type=video/mp4 ;;
-              *.webm) type=video/webm ;;
-              *.jpg|*.jpeg) type=image/jpeg ;;
-              *.png) type=image/png ;;
-              *) type=application/octet-stream ;;
-            esac
-            out="$(curl -fsS -X POST https://asset-api.prismic.io/assets \
+            enc="$(jq -rn --arg s "$name" '$s|@uri')"
+            curl -fsSL --proto '=https' --proto-redir '=https' -o "$name" "${BASE_URL%/}/$enc"
+            type="$(file -b --mime-type "$name")"
+            q=${name//\\/\\\\}
+            q=${q//\"/\\\"}
+            out="$(curl --fail-with-body -sS --retry 3 --retry-delay 2 -X POST https://asset-api.prismic.io/assets \
               -H "Authorization: Bearer $PRISMIC_WRITE_TOKEN" \
               -H "repository: williamson-construction" \
-              -F "file=@$name;type=$type")"
+              -F "file=@\"$q\";type=$type")"
             echo "UPLOADED $name $out"
-            rm -f "$name"
+            rm -f -- "$name"
+            sleep 1.2
           done
