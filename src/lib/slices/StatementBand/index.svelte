@@ -8,16 +8,18 @@
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
-  class="wc-shell mb-32"
+  class="mb-32 max-[991px]:mx-[4%]"
 >
-  <div class="bg-primary px-[8%] py-12 text-center text-white">
-    <h2 class="wc-h3 text-white">
-      {slice.primary.heading}{#if slice.primary.accent}&nbsp;<span class="wc-h3 text-gold"
+  <div
+    class="mx-auto max-w-[1280px] bg-primary py-8 text-center text-white max-[991px]:px-[10%] max-[767px]:px-[4%]"
+  >
+    <h2 class="wc-h3 py-8 text-white">
+      {slice.primary.heading}{#if slice.primary.accent}&nbsp;<span class="text-gold"
           >{slice.primary.accent}</span
         >{/if}
     </h2>
     <div
-      class="wc-statement mx-auto mt-8 max-w-[920px] text-[30px] leading-[1.6em] font-light max-md:text-[22px]"
+      class="wc-statement mx-[14%] pb-8 text-[2.25rem] leading-[1.6em] font-light max-[991px]:mx-0 max-[991px]:text-[2rem] max-[767px]:text-[1.4rem]"
     >
       <PrismicRichText field={slice.primary.body} />
     </div>
