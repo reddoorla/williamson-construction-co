@@ -623,3 +623,27 @@ and 12 ambiguous same-text rows left for adjudication.
 Every mutation is in #9's body; M11's first form survived and was
 rewritten. History is not rewritten here either: commit-text errata
 are LEDGER lines.
+
+## 2026-10-01 — /favicon.ico was Netlify's (#10)
+
+The operator reported the site still had no favicon after #8. #8 had got
+`favicon.png` right: the reference's own 32px W, byte for byte, linked on
+every page including nested ones. But nothing answered `/favicon.ico`, so
+Netlify served its default teal icon there. Browsers fall back to that path
+for bookmarks, history and search results, and that is where the icon was
+missing. The reference itself 404s `/favicon.ico`, so the capture never
+showed the gap and no gate could have caught it.
+
+`static/favicon.ico` now holds 16, 32 and 48px frames. The 32px frame is
+the reference favicon. The 48px frame is a centred square cut from the
+reference's apple-touch icon.
+
+Review found the first test too weak: a frame-size check passes on
+Netlify's own icon, which also carries 16, 32 and 48px frames. The test now
+decodes the 32px BGRA frame and compares it, pixel for pixel, with
+`favicon.png`. It was shown red on Netlify's icon, on one changed pixel and
+on a resized W. The first one-pixel mutation was vacuous: the pixel was
+already that blue.
+
+Landed with `land-prs` pinned to `05a20aa`. Production served the new file
+(md5 `87717b7f…`) at 16:34Z.
