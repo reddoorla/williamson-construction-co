@@ -11,11 +11,15 @@
   const mp4 = $derived(mediaUrl(slice.primary.video_mp4));
   const webm = $derived(mediaUrl(slice.primary.video_webm));
   const hasVideo = $derived(Boolean(mp4 || webm));
-  const hasAside = $derived(isFilled.richText(slice.primary.body) || slice.items.length > 0);
+  const hasBody = $derived(isFilled.richText(slice.primary.body));
+  const hasButtons = $derived(slice.items.length > 0);
+  const layout = $derived(
+    hasBody && hasButtons ? "split" : hasButtons ? "buttons" : hasBody ? "columns" : "plain",
+  );
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-  <TitlePanel align={slice.primary.heading_align === "center" ? "center" : "left"}>
+  <TitlePanel {layout} align={slice.primary.heading_align === "center" ? "center" : "left"}>
     {#snippet media()}
       {#if hasVideo}
         <BgVideo
@@ -35,19 +39,31 @@
         />
       {/if}
     {/snippet}
-    {#snippet heading()}
-      <h1 class="wc-h1">{slice.primary.heading}</h1>
+    {#snippet heading(cls: string)}
+      <h1 class="wc-h1 {cls}">{slice.primary.heading}</h1>
     {/snippet}
     {#snippet aside()}
-      {#if hasAside}
-        {#if isFilled.richText(slice.primary.body)}
-          <div class="wc-p mt-2"><PrismicRichText field={slice.primary.body} /></div>
-        {/if}
+      {#if layout === "split"}
+        <div class="wc-p [&_p]:my-8"><PrismicRichText field={slice.primary.body} /></div>
         <ButtonRow
           items={slice.items}
           grounds={["band-over-white", "band-over-black"]}
-          class="mt-6"
+          gap="gap-x-8 gap-y-8"
+          class="max-[479px]:flex-col max-[479px]:items-center"
         />
+        <div class="h-16"></div>
+      {:else if layout === "buttons"}
+        <ButtonRow
+          items={slice.items}
+          grounds={["band-over-white", "band-over-black"]}
+          class="pb-4 max-[479px]:flex-col max-[479px]:items-start max-[479px]:pb-0"
+        />
+      {:else if layout === "columns"}
+        <div
+          class="[&_p]:my-8 [&_p]:text-[1.875rem] [&_p]:leading-[1.6em] max-[479px]:[&_p]:text-[1.2rem]"
+        >
+          <PrismicRichText field={slice.primary.body} />
+        </div>
       {/if}
     {/snippet}
   </TitlePanel>
