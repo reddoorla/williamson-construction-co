@@ -1,0 +1,527 @@
+{
+ "key": "cedars-sinai-beverly-hills",
+ "ref": "https://www.williamson-construction.com/projects/cedars-sinai-beverly-hills",
+ "cand": "http://localhost:5173/dev/match/cedars-sinai-beverly-hills",
+ "file": "pages/projects/cedars-sinai-beverly-hills/index.html",
+ "per": {
+  "390": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 500,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "bg-projects-template"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfc30498546f189bf235e3_cedarsBHWilshire-p-500.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 340,
+     "h": 385,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Cedars-Sinai, Beverly Hills",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "w-row",
+      "w-col",
+      "w-col-8",
+      "text-color-white",
+      "p-2",
+      "m-6",
+      "projects",
+      "text-align-left",
+      "px-4",
+      "w-col-4",
+      "mt-8",
+      "pt-4",
+      "bold-text",
+      "w-richtext"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
+       "tag": "h1",
+       "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+       "text": "Cedars-Sinai, Beverly Hills"
+      },
+      {
+       "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "mt-8.pt-4.bold-text",
+       "text": "Scope of Work"
+      },
+      {
+       "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "",
+       "text": "Mink Radiology"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 2,
+     "cls": "gallery-section",
+     "y": 789,
+     "h": 647,
+     "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "gallery-section",
+      "vimeo-iframe",
+      "w-dyn-bind-empty",
+      "w-video",
+      "w-embed",
+      "collection-list-wrapper",
+      "w-dyn-list",
+      "w-dyn-items",
+      "w-dyn-item",
+      "w-dyn-repeater-item",
+      "h-16",
+      "w-dyn-hide",
+      "w-dyn-empty"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfc30c3e972341f1ad5b0c_cedarsBHSign-p-500.jpg",
+      "img 64dfc319688272920a143a35_cedarsBHOEC-p-500.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 3,
+     "cls": "footer.bg-color-gray-300",
+     "y": 1501,
+     "h": 1001,
+     "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block → / \"\"",
+      "a.text-color-black.p-6 → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6 → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 2502
+  },
+  "834": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 500,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "bg-projects-template"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfc30498546f189bf235e3_cedarsBHWilshire-p-1080.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 340,
+     "h": 284,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Cedars-Sinai, Beverly Hills",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "w-row",
+      "w-col",
+      "w-col-8",
+      "text-color-white",
+      "p-2",
+      "m-6",
+      "projects",
+      "text-align-left",
+      "px-4",
+      "w-col-4",
+      "mt-8",
+      "pt-4",
+      "bold-text",
+      "w-richtext"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 40px/55px ls=normal rgb(255, 255, 255) left",
+       "tag": "h1",
+       "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+       "text": "Cedars-Sinai, Beverly Hills"
+      },
+      {
+       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "mt-8.pt-4.bold-text",
+       "text": "Scope of Work"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "",
+       "text": "Mink Radiology"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 2,
+     "cls": "gallery-section",
+     "y": 688,
+     "h": 1240,
+     "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "gallery-section",
+      "vimeo-iframe",
+      "w-dyn-bind-empty",
+      "w-video",
+      "w-embed",
+      "collection-list-wrapper",
+      "w-dyn-list",
+      "w-dyn-items",
+      "w-dyn-item",
+      "w-dyn-repeater-item",
+      "h-16",
+      "w-dyn-hide",
+      "w-dyn-empty"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfc30c3e972341f1ad5b0c_cedarsBHSign-p-1080.jpg",
+      "img 64dfc319688272920a143a35_cedarsBHOEC-p-1080.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 3,
+     "cls": "footer.bg-color-gray-300",
+     "y": 1992,
+     "h": 736,
+     "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block → / \"\"",
+      "a.text-color-black.p-6 → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6 → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 2728
+  },
+  "1440": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 700,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "bg-projects-template"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfc30498546f189bf235e3_cedarsBHWilshire-p-1600.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 540,
+     "h": 269,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Cedars-Sinai, Beverly Hills",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "w-row",
+      "w-col",
+      "w-col-8",
+      "text-color-white",
+      "p-2",
+      "m-6",
+      "projects",
+      "text-align-left",
+      "px-4",
+      "w-col-4",
+      "mt-8",
+      "pt-4",
+      "bold-text",
+      "w-richtext"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) left",
+       "tag": "h1",
+       "cls": "text-color-white.p-2.m-6.projects.text-align-left",
+       "text": "Cedars-Sinai, Beverly Hills"
+      },
+      {
+       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "mt-8.pt-4.bold-text",
+       "text": "Scope of Work"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "",
+       "text": "Mink Radiology"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 2,
+     "cls": "gallery-section",
+     "y": 873,
+     "h": 1835,
+     "box": "margin 64px / 64px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "gallery-section",
+      "vimeo-iframe",
+      "w-dyn-bind-empty",
+      "w-video",
+      "w-embed",
+      "collection-list-wrapper",
+      "w-dyn-list",
+      "w-dyn-items",
+      "w-dyn-item",
+      "w-dyn-repeater-item",
+      "h-16",
+      "w-dyn-hide",
+      "w-dyn-empty"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfc30c3e972341f1ad5b0c_cedarsBHSign-p-1600.jpg",
+      "img 64dfc319688272920a143a35_cedarsBHOEC-p-1600.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 3,
+     "cls": "footer.bg-color-gray-300",
+     "y": 2772,
+     "h": 736,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block → / \"\"",
+      "a.text-color-black.p-6 → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6 → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 3508
+  }
+ }
+}

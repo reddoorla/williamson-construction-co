@@ -1,0 +1,704 @@
+{
+ "key": "projects",
+ "ref": "https://www.williamson-construction.com/projects",
+ "cand": "http://localhost:5173/dev/match/projects",
+ "file": "pages/projects/index.html",
+ "per": {
+  "390": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 500,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "bg-projects-template"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfcae7c99427c2cc87b620_project-bg-p-500.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 340,
+     "h": 363,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We build spaces that teach and heal our community.",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "w-row",
+      "w-col",
+      "w-col-8",
+      "text-color-white",
+      "p-2",
+      "m-6",
+      "px-4",
+      "w-col-4",
+      "my-8",
+      "text-size-3xl"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) center",
+       "tag": "h1",
+       "cls": "text-color-white.p-2.m-6",
+       "text": "We build spaces that teach and heal our comm"
+      },
+      {
+       "key": "freight-sans-pro 400 19.2px/30.72px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.my-8.text-size-3xl",
+       "text": "Williamson Construction is committed to buil"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 2,
+     "cls": "projects-section",
+     "y": 703,
+     "h": 5734,
+     "box": "margin 0px / 0px, padding 64px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Featured Projects",
+     "tokens": [
+      "projects-section",
+      "content-width",
+      "text-color-primary",
+      "my-8",
+      "pt-8",
+      "w-dyn-list",
+      "text-color-white",
+      "text-align-left",
+      "w-dyn-items",
+      "w-dyn-item",
+      "project-div",
+      "ratio-box-2",
+      "_16-9",
+      "content-block-2",
+      "p-0",
+      "h-full",
+      "_w-full",
+      "inline-link",
+      "w-inline-block",
+      "project-caption-box",
+      "mb-8",
+      "font-weight-bold",
+      "mb-1",
+      "su-mb-8-desk-4-mobile",
+      "w-richtext",
+      "button-default",
+      "w-button"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+       "tag": "h2",
+       "cls": "text-color-primary.my-8.pt-8",
+       "text": "Featured Projects"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+       "tag": "h2",
+       "cls": "text-color-white.text-align-left.mb-8",
+       "text": "Cedars-Sinai Cooling Tower Refurbishment"
+      },
+      {
+       "key": "freight-sans-pro 700 18px/28.8px ls=normal rgb(255, 255, 255) left",
+       "tag": "p",
+       "cls": "font-weight-bold.mb-1",
+       "text": "Scope of Work"
+      },
+      {
+       "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255) left",
+       "tag": "p",
+       "cls": "",
+       "text": "Upgrade deteriorated structural steel platfo"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255) left",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "View Project"
+      }
+     ],
+     "assets": [
+      "img 691ce9282a35b6bc5a2d74eb_CSMC%20-%20Cooling%20Tower%20-%20North%20-2-p-500.jpeg",
+      "img 64dfc1537201985fa6041acb_pExpressExt-p-500.jpeg",
+      "img 64dfc2547e30e94826c8e262_providenceSJExt-p-500.jpg",
+      "img 64dfc30498546f189bf235e3_cedarsBHWilshire-p-500.jpg",
+      "img 64dfc292aa2e0d93d942f9b4_westHighSign-p-500.jpg",
+      "img 64dfc6acd0afd862f87683e2_torranceHighFacade-p-500.jpg",
+      "img 64dfc6e7f8704e43a1354957_providenceMaryExt-p-500.jpg",
+      "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3-p-500.jpg"
+     ],
+     "interactive": [
+      "a.inline-link.w-inline-block → /projects/cedars-sinai-pro-building-cooling-tower-refurbishment \"\"",
+      "a.button-default.w-button → /projects/cedars-sinai-pro-building-cooling-tower-refurbishment \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-express-care \"\"",
+      "a.button-default.w-button → /projects/providence-express-care \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-saint-johns \"\"",
+      "a.button-default.w-button → /projects/providence-saint-johns \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/cedars-sinai-beverly-hills \"\"",
+      "a.button-default.w-button → /projects/cedars-sinai-beverly-hills \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/west-high-school \"\"",
+      "a.button-default.w-button → /projects/west-high-school \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/torrance-high-school \"\"",
+      "a.button-default.w-button → /projects/torrance-high-school \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-hospital-little-company-of-mary \"\"",
+      "a.button-default.w-button → /projects/providence-hospital-little-company-of-mary \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/mbm-hospitality \"\"",
+      "a.button-default.w-button → /projects/mbm-hospitality \"View Project\""
+     ]
+    },
+    {
+     "idx": 3,
+     "cls": "footer.bg-color-gray-300",
+     "y": 6501,
+     "h": 1001,
+     "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "w--current",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block → / \"\"",
+      "a.text-color-black.p-6 → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6.w--current → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 7502
+  },
+  "834": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 500,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "bg-projects-template"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfcae7c99427c2cc87b620_project-bg-p-1080.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 340,
+     "h": 468,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We build spaces that teach and heal our community.",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "w-row",
+      "w-col",
+      "w-col-8",
+      "text-color-white",
+      "p-2",
+      "m-6",
+      "px-4",
+      "w-col-4",
+      "my-8",
+      "text-size-3xl"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 55px/60px ls=normal rgb(255, 255, 255) center",
+       "tag": "h1",
+       "cls": "text-color-white.p-2.m-6",
+       "text": "We build spaces that teach and heal our comm"
+      },
+      {
+       "key": "freight-sans-pro 400 30px/48px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.my-8.text-size-3xl",
+       "text": "Williamson Construction is committed to buil"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 2,
+     "cls": "projects-section",
+     "y": 808,
+     "h": 6739,
+     "box": "margin 0px / 0px, padding 64px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Featured Projects",
+     "tokens": [
+      "projects-section",
+      "content-width",
+      "text-color-primary",
+      "my-8",
+      "pt-8",
+      "w-dyn-list",
+      "text-color-white",
+      "text-align-left",
+      "w-dyn-items",
+      "w-dyn-item",
+      "project-div",
+      "ratio-box-2",
+      "_16-9",
+      "content-block-2",
+      "p-0",
+      "h-full",
+      "_w-full",
+      "inline-link",
+      "w-inline-block",
+      "project-caption-box",
+      "mb-8",
+      "font-weight-bold",
+      "mb-1",
+      "su-mb-8-desk-4-mobile",
+      "w-richtext",
+      "button-default",
+      "w-button"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+       "tag": "h2",
+       "cls": "text-color-primary.my-8.pt-8",
+       "text": "Featured Projects"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+       "tag": "h2",
+       "cls": "text-color-white.text-align-left.mb-8",
+       "text": "Cedars-Sinai Cooling Tower Refurbishment"
+      },
+      {
+       "key": "freight-sans-pro 700 22px/35.2px ls=normal rgb(255, 255, 255) left",
+       "tag": "p",
+       "cls": "font-weight-bold.mb-1",
+       "text": "Scope of Work"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255) left",
+       "tag": "p",
+       "cls": "",
+       "text": "Upgrade deteriorated structural steel platfo"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255) left",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "View Project"
+      }
+     ],
+     "assets": [
+      "img 691ce9282a35b6bc5a2d74eb_CSMC%20-%20Cooling%20Tower%20-%20North%20-2-p-1080.jpeg",
+      "img 64dfc1537201985fa6041acb_pExpressExt-p-1080.jpeg",
+      "img 64dfc2547e30e94826c8e262_providenceSJExt-p-1080.jpg",
+      "img 64dfc30498546f189bf235e3_cedarsBHWilshire-p-1080.jpg",
+      "img 64dfc292aa2e0d93d942f9b4_westHighSign-p-1080.jpg",
+      "img 64dfc6acd0afd862f87683e2_torranceHighFacade-p-1080.jpg",
+      "img 64dfc6e7f8704e43a1354957_providenceMaryExt-p-1080.jpg",
+      "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3-p-1080.jpg"
+     ],
+     "interactive": [
+      "a.inline-link.w-inline-block → /projects/cedars-sinai-pro-building-cooling-tower-refurbishment \"\"",
+      "a.button-default.w-button → /projects/cedars-sinai-pro-building-cooling-tower-refurbishment \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-express-care \"\"",
+      "a.button-default.w-button → /projects/providence-express-care \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-saint-johns \"\"",
+      "a.button-default.w-button → /projects/providence-saint-johns \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/cedars-sinai-beverly-hills \"\"",
+      "a.button-default.w-button → /projects/cedars-sinai-beverly-hills \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/west-high-school \"\"",
+      "a.button-default.w-button → /projects/west-high-school \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/torrance-high-school \"\"",
+      "a.button-default.w-button → /projects/torrance-high-school \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-hospital-little-company-of-mary \"\"",
+      "a.button-default.w-button → /projects/providence-hospital-little-company-of-mary \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/mbm-hospitality \"\"",
+      "a.button-default.w-button → /projects/mbm-hospitality \"View Project\""
+     ]
+    },
+    {
+     "idx": 3,
+     "cls": "footer.bg-color-gray-300",
+     "y": 7611,
+     "h": 736,
+     "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "w--current",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block → / \"\"",
+      "a.text-color-black.p-6 → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6.w--current → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 8347
+  },
+  "1440": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 700,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "bg-projects-template"
+     ],
+     "type": [],
+     "assets": [
+      "img 64dfcae7c99427c2cc87b620_project-bg.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 540,
+     "h": 296,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We build spaces that teach and heal our community.",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "w-row",
+      "w-col",
+      "w-col-8",
+      "text-color-white",
+      "p-2",
+      "m-6",
+      "px-4",
+      "w-col-4",
+      "my-8",
+      "text-size-3xl"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) center",
+       "tag": "h1",
+       "cls": "text-color-white.p-2.m-6",
+       "text": "We build spaces that teach and heal our comm"
+      },
+      {
+       "key": "freight-sans-pro 400 30px/48px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.my-8.text-size-3xl",
+       "text": "Williamson Construction is committed to buil"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 2,
+     "cls": "projects-section",
+     "y": 836,
+     "h": 8297,
+     "box": "margin 0px / 0px, padding 64px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Featured Projects",
+     "tokens": [
+      "projects-section",
+      "content-width",
+      "text-color-primary",
+      "my-8",
+      "pt-8",
+      "w-dyn-list",
+      "text-color-white",
+      "text-align-left",
+      "w-dyn-items",
+      "w-dyn-item",
+      "project-div",
+      "ratio-box-2",
+      "_16-9",
+      "content-block-2",
+      "p-0",
+      "h-full",
+      "_w-full",
+      "inline-link",
+      "w-inline-block",
+      "project-caption-box",
+      "mb-8",
+      "font-weight-bold",
+      "mb-1",
+      "su-mb-8-desk-4-mobile",
+      "w-richtext",
+      "button-default",
+      "w-button"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) center",
+       "tag": "h2",
+       "cls": "text-color-primary.my-8.pt-8",
+       "text": "Featured Projects"
+      },
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(255, 255, 255) left",
+       "tag": "h2",
+       "cls": "text-color-white.text-align-left.mb-8",
+       "text": "Cedars-Sinai Cooling Tower Refurbishment"
+      },
+      {
+       "key": "freight-sans-pro 700 22px/35.2px ls=normal rgb(255, 255, 255) left",
+       "tag": "p",
+       "cls": "font-weight-bold.mb-1",
+       "text": "Scope of Work"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255) left",
+       "tag": "p",
+       "cls": "",
+       "text": "Upgrade deteriorated structural steel platfo"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255) left",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "View Project"
+      }
+     ],
+     "assets": [
+      "img 691ce9282a35b6bc5a2d74eb_CSMC%20-%20Cooling%20Tower%20-%20North%20-2-p-1600.jpeg",
+      "img 64dfc1537201985fa6041acb_pExpressExt-p-1600.jpeg",
+      "img 64dfc2547e30e94826c8e262_providenceSJExt-p-1600.jpg",
+      "img 64dfc30498546f189bf235e3_cedarsBHWilshire-p-1600.jpg",
+      "img 64dfc292aa2e0d93d942f9b4_westHighSign-p-1600.jpg",
+      "img 64dfc6acd0afd862f87683e2_torranceHighFacade.jpg",
+      "img 64dfc6e7f8704e43a1354957_providenceMaryExt.jpg",
+      "img 66d0c4b3d615a010bfa3c3fd_Office%20Exterior_MBM_031124_0366_V3.jpg"
+     ],
+     "interactive": [
+      "a.inline-link.w-inline-block → /projects/cedars-sinai-pro-building-cooling-tower-refurbishment \"\"",
+      "a.button-default.w-button → /projects/cedars-sinai-pro-building-cooling-tower-refurbishment \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-express-care \"\"",
+      "a.button-default.w-button → /projects/providence-express-care \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-saint-johns \"\"",
+      "a.button-default.w-button → /projects/providence-saint-johns \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/cedars-sinai-beverly-hills \"\"",
+      "a.button-default.w-button → /projects/cedars-sinai-beverly-hills \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/west-high-school \"\"",
+      "a.button-default.w-button → /projects/west-high-school \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/torrance-high-school \"\"",
+      "a.button-default.w-button → /projects/torrance-high-school \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/providence-hospital-little-company-of-mary \"\"",
+      "a.button-default.w-button → /projects/providence-hospital-little-company-of-mary \"View Project\"",
+      "a.inline-link.w-inline-block → /projects/mbm-hospitality \"\"",
+      "a.button-default.w-button → /projects/mbm-hospitality \"View Project\""
+     ]
+    },
+    {
+     "idx": 3,
+     "cls": "footer.bg-color-gray-300",
+     "y": 9165,
+     "h": 736,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "w--current",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block → / \"\"",
+      "a.text-color-black.p-6 → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6.w--current → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 9901
+  }
+ }
+}

@@ -19,9 +19,179 @@
       "ref": "/",
       "cand": "/dev/match/home",
       "published": "/",
-      "anchors": [],
+      "anchors": [
+        "We're setting out to rebuild spaces",
+        "Healthcare",
+        "Keep your space clear so",
+        "Committed to your",
+        "Our Plan for Your Project",
+        "Start feeling like a top priority",
+        "Home"
+      ],
       "spec": "home",
       "group": "nav"
+    },
+    "services": {
+      "uid": "services",
+      "ref": "/services",
+      "cand": "/dev/match/services",
+      "published": "/services",
+      "anchors": [
+        "Areas of Expertise",
+        "Healthcare",
+        "Phased Approach",
+        "Phase 1: Planning",
+        "Phases Expanded",
+        "Phase 1 - Project Planning",
+        "Phase 2 - Design",
+        "Phase 3 - Agency Review &",
+        "Phase 4 - Construction",
+        "Phase 5 - Closeout",
+        "Start feeling like a top priority",
+        "Home"
+      ],
+      "spec": "services",
+      "group": "nav"
+    },
+    "about-us": {
+      "uid": "about-us",
+      "ref": "/about-us",
+      "cand": "/dev/match/about-us",
+      "published": "/about-us",
+      "anchors": [
+        "Our Mission is to serve the",
+        "We are changing the industry by",
+        "Leadership",
+        "Keeping your space clear",
+        "Home"
+      ],
+      "spec": "about-us",
+      "group": "nav"
+    },
+    "projects": {
+      "uid": "projects",
+      "ref": "/projects",
+      "cand": "/dev/match/projects",
+      "published": "/projects",
+      "anchors": [
+        "Featured Projects",
+        "Home"
+      ],
+      "spec": "projects",
+      "group": "nav"
+    },
+    "contact": {
+      "uid": "contact",
+      "ref": "/contact",
+      "cand": "/dev/match/contact",
+      "published": "/contact",
+      "anchors": [
+        "We care more about your project",
+        "Brian Williamson",
+        "Home"
+      ],
+      "spec": "contact",
+      "group": "nav"
+    },
+    "join-the-team": {
+      "uid": "join-the-team",
+      "ref": "/join-the-team",
+      "cand": "/dev/match/join-the-team",
+      "published": "/join-the-team",
+      "anchors": [
+        "Are you interested in joining the",
+        "Home"
+      ],
+      "spec": "join-the-team",
+      "group": "nav"
+    },
+    "cedars-sinai-beverly-hills": {
+      "uid": "cedars-sinai-beverly-hills",
+      "ref": "/projects/cedars-sinai-beverly-hills",
+      "cand": "/dev/match/cedars-sinai-beverly-hills",
+      "published": "/projects/cedars-sinai-beverly-hills",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "cedars-sinai-beverly-hills",
+      "group": "project"
+    },
+    "cedars-sinai-pro-building-cooling-tower-refurbishment": {
+      "uid": "cedars-sinai-pro-building-cooling-tower-refurbishment",
+      "ref": "/projects/cedars-sinai-pro-building-cooling-tower-refurbishment",
+      "cand": "/dev/match/cedars-sinai-pro-building-cooling-tower-refurbishment",
+      "published": "/projects/cedars-sinai-pro-building-cooling-tower-refurbishment",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "cedars-sinai-pro-building-cooling-tower-refurbishment",
+      "group": "project"
+    },
+    "mbm-hospitality": {
+      "uid": "mbm-hospitality",
+      "ref": "/projects/mbm-hospitality",
+      "cand": "/dev/match/mbm-hospitality",
+      "published": "/projects/mbm-hospitality",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "mbm-hospitality",
+      "group": "project"
+    },
+    "providence-express-care": {
+      "uid": "providence-express-care",
+      "ref": "/projects/providence-express-care",
+      "cand": "/dev/match/providence-express-care",
+      "published": "/projects/providence-express-care",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "providence-express-care",
+      "group": "project"
+    },
+    "providence-hospital-little-company-of-mary": {
+      "uid": "providence-hospital-little-company-of-mary",
+      "ref": "/projects/providence-hospital-little-company-of-mary",
+      "cand": "/dev/match/providence-hospital-little-company-of-mary",
+      "published": "/projects/providence-hospital-little-company-of-mary",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "providence-hospital-little-company-of-mary",
+      "group": "project"
+    },
+    "providence-saint-johns": {
+      "uid": "providence-saint-johns",
+      "ref": "/projects/providence-saint-johns",
+      "cand": "/dev/match/providence-saint-johns",
+      "published": "/projects/providence-saint-johns",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "providence-saint-johns",
+      "group": "project"
+    },
+    "torrance-high-school": {
+      "uid": "torrance-high-school",
+      "ref": "/projects/torrance-high-school",
+      "cand": "/dev/match/torrance-high-school",
+      "published": "/projects/torrance-high-school",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "torrance-high-school",
+      "group": "project"
+    },
+    "west-high-school": {
+      "uid": "west-high-school",
+      "ref": "/projects/west-high-school",
+      "cand": "/dev/match/west-high-school",
+      "published": "/projects/west-high-school",
+      "anchors": [
+        "Home"
+      ],
+      "spec": "west-high-school",
+      "group": "project"
     }
   }
 }

@@ -1,0 +1,2177 @@
+{
+ "key": "home",
+ "ref": "https://www.williamson-construction.com/",
+ "cand": "http://localhost:5173/dev/match/home",
+ "file": "pages/index.html",
+ "per": {
+  "390": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 500,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "hero-bg-vid",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.mp4",
+      "source 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.mp4",
+      "source 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.webm",
+      "bg 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div.hero-bg-vid.w-background-video.w-background-video-atom",
+      "video"
+     ]
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 340,
+     "h": 532,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We build spaces that teach and heal our community.",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "columns",
+      "px-4",
+      "w-row",
+      "p-0",
+      "w-col",
+      "w-col-8",
+      "w-col-stack",
+      "text-color-white",
+      "text-align-left",
+      "m-6",
+      "px-6",
+      "w-col-4",
+      "my-8",
+      "display-flex",
+      "button-holder",
+      "button-default",
+      "w-button",
+      "white-outline",
+      "ml-8",
+      "spacer-16"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+       "tag": "h1",
+       "cls": "text-color-white.text-align-left.m-6",
+       "text": "We build spaces that teach and heal our comm"
+      },
+      {
+       "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.my-8",
+       "text": "Williamson Construction is committed to buil"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "Contact"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.w-button → /contact \"Contact\"",
+      "a.button-default.white-outline.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 2,
+     "cls": "rebuild-spaces-section",
+     "y": 872,
+     "h": 316,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We're setting out to rebuild spaces in healthcare and education.",
+     "tokens": [
+      "rebuild-spaces-section",
+      "w-container",
+      "spacer-32",
+      "text-color-primary"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 25px/30px ls=normal rgb(0, 74, 128) center",
+       "tag": "h3",
+       "cls": "text-color-primary",
+       "text": "We're setting out to rebuild spaces in healt"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 3,
+     "cls": "bg-video-section",
+     "y": 1188,
+     "h": 195,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "bg-video-section",
+      "ratio-box-2",
+      "_2-1",
+      "content-block-2",
+      "p-0",
+      "_w-full",
+      "h-full",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.mp4",
+      "source 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.mp4",
+      "source 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.webm",
+      "bg 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div._w-full.h-full.w-background-video",
+      "video"
+     ]
+    },
+    {
+     "idx": 4,
+     "cls": "modernizing-section",
+     "y": 1383,
+     "h": 771,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Healthcare",
+     "tokens": [
+      "modernizing-section",
+      "content-width",
+      "p-6",
+      "display-flex",
+      "flex-justify-between",
+      "offset-trans-block",
+      "bold-text",
+      "text-color-white",
+      "offset-icon-circle",
+      "_w-full",
+      "h-full",
+      "_w-46pc",
+      "my-8",
+      "su-w-full-mobile",
+      "text-color-primary",
+      "text-align-left",
+      "text-color-secondary",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "bg-color-primary",
+      "mr-8",
+      "w-button",
+      "bg-color-white",
+      "ml-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "strong",
+       "cls": "bold-text.text-color-white",
+       "text": "Healthcare"
+      },
+      {
+       "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white",
+       "text": "We have experience building clinic spaces, i"
+      },
+      {
+       "key": "freight-sans-pro 500 45px/55px ls=normal rgb(0, 74, 128) left",
+       "tag": "h2",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Modernizing spaces that"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(198, 166, 71) left",
+       "tag": "h2",
+       "cls": "text-color-secondary.text-align-left",
+       "text": "help them heal."
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.bg-color-primary.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-white.ml-8.w-button",
+       "text": "Services"
+      }
+     ],
+     "assets": [
+      "img 64da84cd743d7dd19c6cd39d_healthcare_circ_white.svg"
+     ],
+     "interactive": [
+      "a.button-default.bg-color-primary.mr-8 → /contact \"Contact\"",
+      "a.button-default.bg-color-white.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 5,
+     "cls": "bg-video-section",
+     "y": 2154,
+     "h": 195,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "bg-video-section",
+      "ratio-box-2",
+      "_2-1",
+      "content-block-2",
+      "p-0",
+      "_w-full",
+      "h-full",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 64da8614020f42a5804854d3_school_vid-transcode.mp4",
+      "source 64da8614020f42a5804854d3_school_vid-transcode.mp4",
+      "source 64da8614020f42a5804854d3_school_vid-transcode.webm",
+      "bg 64da8614020f42a5804854d3_school_vid-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div._w-full.h-full.w-background-video",
+      "video"
+     ]
+    },
+    {
+     "idx": 6,
+     "cls": "keep-learning-section",
+     "y": 2381,
+     "h": 704,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Keep your space clear so",
+     "tokens": [
+      "keep-learning-section",
+      "content-width",
+      "desk-cols",
+      "_w-46pc",
+      "p-6",
+      "my-8",
+      "su-w-full-tablet",
+      "text-color-primary",
+      "text-align-left",
+      "text-color-secondary",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "bg-color-primary",
+      "mr-8",
+      "w-button",
+      "bg-color-white",
+      "ml-8",
+      "offset-trans-block",
+      "bold-text",
+      "text-color-white",
+      "offset-icon-circle",
+      "education",
+      "_w-full",
+      "h-full"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 45px/55px ls=normal rgb(0, 74, 128) left",
+       "tag": "h2",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Keep your space clear so"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(198, 166, 71) left",
+       "tag": "h2",
+       "cls": "text-color-secondary.text-align-left",
+       "text": "they can keep learning"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.bg-color-primary.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-white.ml-8.w-button",
+       "text": "Services"
+      },
+      {
+       "key": "freight-sans-pro 600 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "strong",
+       "cls": "bold-text.text-color-white",
+       "text": "Education"
+      },
+      {
+       "key": "freight-sans-pro 400 18px/28.8px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white",
+       "text": "We are passionately invested in modernizatio"
+      }
+     ],
+     "assets": [
+      "img 64da94e57b43c071cfe34277_education_circ_white.svg"
+     ],
+     "interactive": [
+      "a.button-default.bg-color-primary.mr-8 → /contact \"Contact\"",
+      "a.button-default.bg-color-white.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 7,
+     "cls": "committed-block",
+     "y": 3117,
+     "h": 441,
+     "box": "margin 0px / 128px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Committed to your",
+     "tokens": [
+      "committed-block",
+      "content-width",
+      "bg-color-primary",
+      "py-8",
+      "text-color-white",
+      "text-color-secondary",
+      "text-align-center",
+      "px-14pc",
+      "text-size-4xl",
+      "pb-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 25px/30px ls=normal rgb(255, 255, 255) center",
+       "tag": "span",
+       "cls": "text-color-white",
+       "text": "Committed to your"
+      },
+      {
+       "key": "freight-sans-pro 500 25px/30px ls=normal rgb(198, 166, 71) center",
+       "tag": "span",
+       "cls": "text-color-secondary",
+       "text": "Success"
+      },
+      {
+       "key": "freight-sans-pro 300 22.4px/35.84px ls=normal rgb(255, 255, 255) center",
+       "tag": "div",
+       "cls": "text-align-center.px-14pc.text-size-4xl.pb-8",
+       "text": "We get that you are accountable for the proj"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 8,
+     "cls": "full-width-image-section",
+     "y": 3686,
+     "h": 219,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "full-width-image-section",
+      "ratio-box-2",
+      "_16-9",
+      "content-block-2",
+      "p-0",
+      "_w-full"
+     ],
+     "type": [],
+     "assets": [
+      "img 64da891d6c0e42f6e7c7f07d_patient_dropoff-p-500.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 9,
+     "cls": "testimonials-section",
+     "y": 3873,
+     "h": 544,
+     "box": "margin 0px / 192px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "\"We choose Williamson Construction because they can be counted on to complete projects on time, within budget, and with a high degree of quality. We also like that they are all named Brian, which makes it easier to remember their names.\"",
+     "tokens": [
+      "testimonials-section",
+      "content-width",
+      "quote-slider-block",
+      "slider",
+      "w-slider",
+      "w-slider-mask",
+      "slide",
+      "w-slide",
+      "w-layout-vflex",
+      "flex-justify-center",
+      "h-full",
+      "text-align-left",
+      "slider-attribution",
+      "slide-2",
+      "flex-vertical",
+      "w-slider-aria-label",
+      "left-arrow",
+      "w-slider-arrow-left",
+      "icon",
+      "w-icon-slider-left",
+      "right-arrow",
+      "w-slider-arrow-right",
+      "icon-2",
+      "w-icon-slider-right",
+      "slide-nav",
+      "tesimonials",
+      "w-slider-nav",
+      "w-shadow",
+      "w-round",
+      "w-slider-dot",
+      "w-active"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 25px/30px ls=normal rgb(255, 255, 255) left",
+       "tag": "h3",
+       "cls": "text-align-left",
+       "text": "\"We choose Williamson Construction because t"
+      },
+      {
+       "key": "freight-sans-pro 400 18px/25px ls=normal rgb(255, 255, 255) left",
+       "tag": "div",
+       "cls": "slider-attribution",
+       "text": "— Steve Thompson | Physical Optics Corporati"
+      },
+      {
+       "key": "freight-sans-pro 500 25px/30px ls=normal rgb(255, 255, 255) center",
+       "tag": "h3",
+       "cls": "",
+       "text": "\"Williamson Construction demonstrates the ex"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "div.slider.w-slider",
+      "div.left-arrow.w-slider-arrow-left",
+      "div.right-arrow.w-slider-arrow-right",
+      "div.w-slider-dot",
+      "div.w-slider-dot.w-active"
+     ]
+    },
+    {
+     "idx": 10,
+     "cls": "clients-section",
+     "y": 4609,
+     "h": 300,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "clients-section",
+      "content-width",
+      "w-slider",
+      "w-slider-mask",
+      "w-slide",
+      "_w-full",
+      "flex-justify-between",
+      "client-slider-logo",
+      "w-slider-aria-label",
+      "display-none",
+      "w-slider-arrow-left",
+      "w-icon-slider-left",
+      "w-slider-arrow-right",
+      "w-icon-slider-right",
+      "slide-nav",
+      "clients",
+      "w-slider-nav",
+      "w-round",
+      "w-slider-dot",
+      "w-active"
+     ],
+     "type": [],
+     "assets": [
+      "img 64da8ee2df5077be76c13ee3_torance-school.png",
+      "img 64da8f62a89ac42abc3f9345_cedars-logo.png",
+      "img 64da8f816c21a97562b1594b_poc_logo.png",
+      "img 64da8fad8ef95adc337dea13_providence_logo.png",
+      "img 64da8fd9f862276f3c62c8f8_labiomed_logo.png",
+      "img 64da9140dbf6666fa2d7404e_pvschools_logo.png",
+      "img 64da91635ce2afe9568fa1a8_esschools_logo.jpg",
+      "img 64da918b6c673529ecb02fd2_rbschools_logo.jpg",
+      "img 64da91ba91ec99a63ba7f0fc_mbschools_logo.png",
+      "img 64da91d74fd91631ad907afc_faceymed_logo.png"
+     ],
+     "interactive": [
+      "div.content-width.w-slider",
+      "div.display-none.w-slider-arrow-left",
+      "div.display-none.w-slider-arrow-right",
+      "div.w-slider-dot",
+      "div.w-slider-dot.w-active"
+     ]
+    },
+    {
+     "idx": 11,
+     "cls": "our-plan-section",
+     "y": 4909,
+     "h": 960,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Our Plan for Your Project",
+     "tokens": [
+      "our-plan-section",
+      "text-color-primary",
+      "mb-8",
+      "pb-8",
+      "content-width",
+      "ourplan-holder",
+      "_w-60pc",
+      "p-8",
+      "su-w-full-tablet",
+      "su-p-0-mobile",
+      "interactive-logo-container",
+      "_w-full",
+      "h-full",
+      "w-embed",
+      "shape-target",
+      "cls-3",
+      "_w-40pc",
+      "plan-container",
+      "plan-1",
+      "active",
+      "gold-circled-number",
+      "white-number",
+      "text-align-left",
+      "text-color-white",
+      "text-size-2xl",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-default",
+      "w-button",
+      "bg-color-transparent",
+      "ml-8",
+      "plan-2",
+      "plan-3",
+      "plan-4"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+       "tag": "h2",
+       "cls": "text-color-primary.mb-8.pb-8",
+       "text": "Our Plan for Your Project"
+      },
+      {
+       "key": "freight-sans-pro 400 48px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "div",
+       "cls": "white-number",
+       "text": "1"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+       "tag": "h2",
+       "cls": "text-align-left.text-color-white",
+       "text": "Are we the right fit?"
+      },
+      {
+       "key": "freight-sans-pro 400 24px/38.4px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.text-size-2xl",
+       "text": "We meet and discuss your project/ determine "
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "Contact"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.w-button → /contact \"Contact\"",
+      "a.button-default.bg-color-transparent.ml-8 → /contact \"Services\"",
+      "a.button-default.bg-color-transparent.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 12,
+     "cls": "cta-section",
+     "y": 5933,
+     "h": 490,
+     "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Start feeling like a top priority, and not like a bottom line. Let's build something together.",
+     "tokens": [
+      "cta-section",
+      "content-width",
+      "cta-block",
+      "text-color-primary",
+      "text-align-left",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "mr-8",
+      "w-button",
+      "bg-color-transparent"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 45px/55px ls=normal rgb(0, 74, 128) left",
+       "tag": "h1",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Start feeling like a top priority, and not l"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-transparent.text-color-primary.w-button",
+       "text": "About"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.mr-8.w-button → /contact \"Contact\"",
+      "a.button-default.bg-color-transparent.text-color-primary → /about-us \"About\""
+     ]
+    },
+    {
+     "idx": 13,
+     "cls": "footer.bg-color-gray-300",
+     "y": 6519,
+     "h": 1001,
+     "box": "margin 0px / 0px, padding 0px 15.5938px 0px 15.5938px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "w--current",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6.w--current",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block.w--current → / \"\"",
+      "a.text-color-black.p-6.w--current → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6 → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 7520
+  },
+  "834": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 500,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "hero-bg-vid",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.mp4",
+      "source 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.mp4",
+      "source 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.webm",
+      "bg 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div.hero-bg-vid.w-background-video.w-background-video-atom",
+      "video"
+     ]
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 340,
+     "h": 426,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We build spaces that teach and heal our community.",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "columns",
+      "px-4",
+      "w-row",
+      "p-0",
+      "w-col",
+      "w-col-8",
+      "w-col-stack",
+      "text-color-white",
+      "text-align-left",
+      "m-6",
+      "px-6",
+      "w-col-4",
+      "my-8",
+      "display-flex",
+      "button-holder",
+      "button-default",
+      "w-button",
+      "white-outline",
+      "ml-8",
+      "spacer-16"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 55px/60px ls=normal rgb(255, 255, 255) left",
+       "tag": "h1",
+       "cls": "text-color-white.text-align-left.m-6",
+       "text": "We build spaces that teach and heal our comm"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.my-8",
+       "text": "Williamson Construction is committed to buil"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "Contact"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.w-button → /contact \"Contact\"",
+      "a.button-default.white-outline.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 2,
+     "cls": "rebuild-spaces-section",
+     "y": 766,
+     "h": 326,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We're setting out to rebuild spaces in healthcare and education.",
+     "tokens": [
+      "rebuild-spaces-section",
+      "w-container",
+      "spacer-32",
+      "text-color-primary"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 30px/35px ls=normal rgb(0, 74, 128) center",
+       "tag": "h3",
+       "cls": "text-color-primary",
+       "text": "We're setting out to rebuild spaces in healt"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 3,
+     "cls": "bg-video-section",
+     "y": 1092,
+     "h": 417,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "bg-video-section",
+      "ratio-box-2",
+      "_2-1",
+      "content-block-2",
+      "p-0",
+      "_w-full",
+      "h-full",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.mp4",
+      "source 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.mp4",
+      "source 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.webm",
+      "bg 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div._w-full.h-full.w-background-video",
+      "video"
+     ]
+    },
+    {
+     "idx": 4,
+     "cls": "modernizing-section",
+     "y": 1509,
+     "h": 634,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Healthcare",
+     "tokens": [
+      "modernizing-section",
+      "content-width",
+      "p-6",
+      "display-flex",
+      "flex-justify-between",
+      "offset-trans-block",
+      "bold-text",
+      "text-color-white",
+      "offset-icon-circle",
+      "_w-full",
+      "h-full",
+      "_w-46pc",
+      "my-8",
+      "su-w-full-mobile",
+      "text-color-primary",
+      "text-align-left",
+      "text-color-secondary",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "bg-color-primary",
+      "mr-8",
+      "w-button",
+      "bg-color-white",
+      "ml-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "strong",
+       "cls": "bold-text.text-color-white",
+       "text": "Healthcare"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white",
+       "text": "We have experience building clinic spaces, i"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+       "tag": "h2",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Modernizing spaces that"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(198, 166, 71) left",
+       "tag": "h2",
+       "cls": "text-color-secondary.text-align-left",
+       "text": "help them heal."
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.bg-color-primary.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-white.ml-8.w-button",
+       "text": "Services"
+      }
+     ],
+     "assets": [
+      "img 64da84cd743d7dd19c6cd39d_healthcare_circ_white.svg"
+     ],
+     "interactive": [
+      "a.button-default.bg-color-primary.mr-8 → /contact \"Contact\"",
+      "a.button-default.bg-color-white.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 5,
+     "cls": "bg-video-section",
+     "y": 2143,
+     "h": 417,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "bg-video-section",
+      "ratio-box-2",
+      "_2-1",
+      "content-block-2",
+      "p-0",
+      "_w-full",
+      "h-full",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 64da8614020f42a5804854d3_school_vid-transcode.mp4",
+      "source 64da8614020f42a5804854d3_school_vid-transcode.mp4",
+      "source 64da8614020f42a5804854d3_school_vid-transcode.webm",
+      "bg 64da8614020f42a5804854d3_school_vid-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div._w-full.h-full.w-background-video",
+      "video"
+     ]
+    },
+    {
+     "idx": 6,
+     "cls": "keep-learning-section",
+     "y": 2592,
+     "h": 522,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Keep your space clear so",
+     "tokens": [
+      "keep-learning-section",
+      "content-width",
+      "desk-cols",
+      "_w-46pc",
+      "p-6",
+      "my-8",
+      "su-w-full-tablet",
+      "text-color-primary",
+      "text-align-left",
+      "text-color-secondary",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "bg-color-primary",
+      "mr-8",
+      "w-button",
+      "bg-color-white",
+      "ml-8",
+      "offset-trans-block",
+      "bold-text",
+      "text-color-white",
+      "offset-icon-circle",
+      "education",
+      "_w-full",
+      "h-full"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) left",
+       "tag": "h2",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Keep your space clear so"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(198, 166, 71) left",
+       "tag": "h2",
+       "cls": "text-color-secondary.text-align-left",
+       "text": "they can keep learning"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.bg-color-primary.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-white.ml-8.w-button",
+       "text": "Services"
+      },
+      {
+       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "strong",
+       "cls": "bold-text.text-color-white",
+       "text": "Education"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white",
+       "text": "We are passionately invested in modernizatio"
+      }
+     ],
+     "assets": [
+      "img 64da94e57b43c071cfe34277_education_circ_white.svg"
+     ],
+     "interactive": [
+      "a.button-default.bg-color-primary.mr-8 → /contact \"Contact\"",
+      "a.button-default.bg-color-white.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 7,
+     "cls": "committed-block",
+     "y": 3146,
+     "h": 451,
+     "box": "margin 0px / 128px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Committed to your",
+     "tokens": [
+      "committed-block",
+      "content-width",
+      "bg-color-primary",
+      "py-8",
+      "text-color-white",
+      "text-color-secondary",
+      "text-align-center",
+      "px-14pc",
+      "text-size-4xl",
+      "pb-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 30px/35px ls=normal rgb(255, 255, 255) center",
+       "tag": "span",
+       "cls": "text-color-white",
+       "text": "Committed to your"
+      },
+      {
+       "key": "freight-sans-pro 500 30px/35px ls=normal rgb(198, 166, 71) center",
+       "tag": "span",
+       "cls": "text-color-secondary",
+       "text": "Success"
+      },
+      {
+       "key": "freight-sans-pro 300 32px/51.2px ls=normal rgb(255, 255, 255) center",
+       "tag": "div",
+       "cls": "text-align-center.px-14pc.text-size-4xl.pb-8",
+       "text": "We get that you are accountable for the proj"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 8,
+     "cls": "full-width-image-section",
+     "y": 3725,
+     "h": 469,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "full-width-image-section",
+      "ratio-box-2",
+      "_16-9",
+      "content-block-2",
+      "p-0",
+      "_w-full"
+     ],
+     "type": [],
+     "assets": [
+      "img 64da891d6c0e42f6e7c7f07d_patient_dropoff-p-1080.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 9,
+     "cls": "testimonials-section",
+     "y": 4067,
+     "h": 608,
+     "box": "margin 0px / 192px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "\"We choose Williamson Construction because they can be counted on to complete projects on time, within budget, and with a high degree of quality. We also like that they are all named Brian, which makes it easier to remember their names.\"",
+     "tokens": [
+      "testimonials-section",
+      "content-width",
+      "quote-slider-block",
+      "slider",
+      "w-slider",
+      "w-slider-mask",
+      "slide",
+      "w-slide",
+      "w-layout-vflex",
+      "flex-justify-center",
+      "h-full",
+      "text-align-left",
+      "slider-attribution",
+      "slide-2",
+      "flex-vertical",
+      "w-slider-aria-label",
+      "left-arrow",
+      "w-slider-arrow-left",
+      "icon",
+      "w-icon-slider-left",
+      "right-arrow",
+      "w-slider-arrow-right",
+      "icon-2",
+      "w-icon-slider-right",
+      "slide-nav",
+      "tesimonials",
+      "w-slider-nav",
+      "w-shadow",
+      "w-round",
+      "w-slider-dot",
+      "w-active"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 30px/35px ls=normal rgb(255, 255, 255) left",
+       "tag": "h3",
+       "cls": "text-align-left",
+       "text": "\"We choose Williamson Construction because t"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35px ls=normal rgb(255, 255, 255) left",
+       "tag": "div",
+       "cls": "slider-attribution",
+       "text": "— Steve Thompson | Physical Optics Corporati"
+      },
+      {
+       "key": "freight-sans-pro 500 30px/35px ls=normal rgb(255, 255, 255) center",
+       "tag": "h3",
+       "cls": "",
+       "text": "\"Williamson Construction demonstrates the ex"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "div.slider.w-slider",
+      "div.left-arrow.w-slider-arrow-left",
+      "div.right-arrow.w-slider-arrow-right",
+      "div.w-slider-dot",
+      "div.w-slider-dot.w-active"
+     ]
+    },
+    {
+     "idx": 10,
+     "cls": "clients-section",
+     "y": 4867,
+     "h": 300,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "clients-section",
+      "content-width",
+      "w-slider",
+      "w-slider-mask",
+      "w-slide",
+      "_w-full",
+      "flex-justify-between",
+      "client-slider-logo",
+      "w-slider-aria-label",
+      "display-none",
+      "w-slider-arrow-left",
+      "w-icon-slider-left",
+      "w-slider-arrow-right",
+      "w-icon-slider-right",
+      "slide-nav",
+      "clients",
+      "w-slider-nav",
+      "w-round",
+      "w-slider-dot",
+      "w-active"
+     ],
+     "type": [],
+     "assets": [
+      "img 64da8ee2df5077be76c13ee3_torance-school.png",
+      "img 64da8f62a89ac42abc3f9345_cedars-logo.png",
+      "img 64da8f816c21a97562b1594b_poc_logo.png",
+      "img 64da8fad8ef95adc337dea13_providence_logo.png",
+      "img 64da8fd9f862276f3c62c8f8_labiomed_logo.png",
+      "img 64da9140dbf6666fa2d7404e_pvschools_logo.png",
+      "img 64da91635ce2afe9568fa1a8_esschools_logo.jpg",
+      "img 64da918b6c673529ecb02fd2_rbschools_logo.jpg",
+      "img 64da91ba91ec99a63ba7f0fc_mbschools_logo.png",
+      "img 64da91d74fd91631ad907afc_faceymed_logo.png"
+     ],
+     "interactive": [
+      "div.content-width.w-slider",
+      "div.display-none.w-slider-arrow-left",
+      "div.display-none.w-slider-arrow-right",
+      "div.w-slider-dot",
+      "div.w-slider-dot.w-active"
+     ]
+    },
+    {
+     "idx": 11,
+     "cls": "our-plan-section",
+     "y": 5167,
+     "h": 1252,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Our Plan for Your Project",
+     "tokens": [
+      "our-plan-section",
+      "text-color-primary",
+      "mb-8",
+      "pb-8",
+      "content-width",
+      "ourplan-holder",
+      "_w-60pc",
+      "p-8",
+      "su-w-full-tablet",
+      "su-p-0-mobile",
+      "interactive-logo-container",
+      "_w-full",
+      "h-full",
+      "w-embed",
+      "shape-target",
+      "cls-3",
+      "_w-40pc",
+      "plan-container",
+      "plan-1",
+      "active",
+      "gold-circled-number",
+      "white-number",
+      "text-align-left",
+      "text-color-white",
+      "text-size-2xl",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-default",
+      "w-button",
+      "bg-color-transparent",
+      "ml-8",
+      "plan-2",
+      "plan-3",
+      "plan-4"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+       "tag": "h2",
+       "cls": "text-color-primary.mb-8.pb-8",
+       "text": "Our Plan for Your Project"
+      },
+      {
+       "key": "freight-sans-pro 400 48px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "div",
+       "cls": "white-number",
+       "text": "1"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+       "tag": "h2",
+       "cls": "text-align-left.text-color-white",
+       "text": "Are we the right fit?"
+      },
+      {
+       "key": "freight-sans-pro 400 24px/38.4px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.text-size-2xl",
+       "text": "We meet and discuss your project/ determine "
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "Contact"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.w-button → /contact \"Contact\"",
+      "a.button-default.bg-color-transparent.ml-8 → /contact \"Services\"",
+      "a.button-default.bg-color-transparent.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 12,
+     "cls": "cta-section",
+     "y": 6483,
+     "h": 328,
+     "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Start feeling like a top priority, and not like a bottom line. Let's build something together.",
+     "tokens": [
+      "cta-section",
+      "content-width",
+      "cta-block",
+      "text-color-primary",
+      "text-align-left",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "mr-8",
+      "w-button",
+      "bg-color-transparent"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 55px/60px ls=normal rgb(0, 74, 128) left",
+       "tag": "h1",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Start feeling like a top priority, and not l"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-transparent.text-color-primary.w-button",
+       "text": "About"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.mr-8.w-button → /contact \"Contact\"",
+      "a.button-default.bg-color-transparent.text-color-primary → /about-us \"About\""
+     ]
+    },
+    {
+     "idx": 13,
+     "cls": "footer.bg-color-gray-300",
+     "y": 6907,
+     "h": 736,
+     "box": "margin 0px / 0px, padding 0px 33.3594px 0px 33.3594px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "w--current",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6.w--current",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block.w--current → / \"\"",
+      "a.text-color-black.p-6.w--current → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6 → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 7643
+  },
+  "1440": {
+   "secs": [
+    {
+     "idx": 0,
+     "cls": "hero-section.overflow-hidden.position-relative",
+     "y": 0,
+     "h": 700,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "hero-section",
+      "overflow-hidden",
+      "position-relative",
+      "hero-bg-vid",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.mp4",
+      "source 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.mp4",
+      "source 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-transcode.webm",
+      "bg 646fe45468720e506da8fa8e_williamsonConstruction_homeVidTeacher-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div.hero-bg-vid.w-background-video.w-background-video-atom",
+      "video"
+     ]
+    },
+    {
+     "idx": 1,
+     "cls": "title-section",
+     "y": 540,
+     "h": 314,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We build spaces that teach and heal our community.",
+     "tokens": [
+      "title-section",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "bg-color-primary",
+      "opacity-90",
+      "offset-up",
+      "columns",
+      "px-4",
+      "w-row",
+      "p-0",
+      "w-col",
+      "w-col-8",
+      "w-col-stack",
+      "text-color-white",
+      "text-align-left",
+      "m-6",
+      "px-6",
+      "w-col-4",
+      "my-8",
+      "display-flex",
+      "button-holder",
+      "button-default",
+      "w-button",
+      "white-outline",
+      "ml-8",
+      "spacer-16"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 62px/78px ls=normal rgb(255, 255, 255) left",
+       "tag": "h1",
+       "cls": "text-color-white.text-align-left.m-6",
+       "text": "We build spaces that teach and heal our comm"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.my-8",
+       "text": "Williamson Construction is committed to buil"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "Contact"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.w-button → /contact \"Contact\"",
+      "a.button-default.white-outline.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 2,
+     "cls": "rebuild-spaces-section",
+     "y": 854,
+     "h": 346,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "We're setting out to rebuild spaces in healthcare and education.",
+     "tokens": [
+      "rebuild-spaces-section",
+      "w-container",
+      "spacer-32",
+      "text-color-primary"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(0, 74, 128) center",
+       "tag": "h3",
+       "cls": "text-color-primary",
+       "text": "We're setting out to rebuild spaces in healt"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 3,
+     "cls": "bg-video-section",
+     "y": 1200,
+     "h": 720,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "bg-video-section",
+      "ratio-box-2",
+      "_2-1",
+      "content-block-2",
+      "p-0",
+      "_w-full",
+      "h-full",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.mp4",
+      "source 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.mp4",
+      "source 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-transcode.webm",
+      "bg 646ff29fd6b1000a85c630fb_williamsonConstruction_home_drVid-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div._w-full.h-full.w-background-video",
+      "video"
+     ]
+    },
+    {
+     "idx": 4,
+     "cls": "modernizing-section",
+     "y": 1920,
+     "h": 432,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Healthcare",
+     "tokens": [
+      "modernizing-section",
+      "content-width",
+      "p-6",
+      "display-flex",
+      "flex-justify-between",
+      "offset-trans-block",
+      "bold-text",
+      "text-color-white",
+      "offset-icon-circle",
+      "_w-full",
+      "h-full",
+      "_w-46pc",
+      "my-8",
+      "su-w-full-mobile",
+      "text-color-primary",
+      "text-align-left",
+      "text-color-secondary",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "bg-color-primary",
+      "mr-8",
+      "w-button",
+      "bg-color-white",
+      "ml-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "strong",
+       "cls": "bold-text.text-color-white",
+       "text": "Healthcare"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white",
+       "text": "We have experience building clinic spaces, i"
+      },
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+       "tag": "h2",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Modernizing spaces that"
+      },
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(198, 166, 71) left",
+       "tag": "h2",
+       "cls": "text-color-secondary.text-align-left",
+       "text": "help them heal."
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.bg-color-primary.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-white.ml-8.w-button",
+       "text": "Services"
+      }
+     ],
+     "assets": [
+      "img 64da84cd743d7dd19c6cd39d_healthcare_circ_white.svg"
+     ],
+     "interactive": [
+      "a.button-default.bg-color-primary.mr-8 → /contact \"Contact\"",
+      "a.button-default.bg-color-white.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 5,
+     "cls": "bg-video-section",
+     "y": 2352,
+     "h": 720,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "bg-video-section",
+      "ratio-box-2",
+      "_2-1",
+      "content-block-2",
+      "p-0",
+      "_w-full",
+      "h-full",
+      "w-background-video",
+      "w-background-video-atom"
+     ],
+     "type": [],
+     "assets": [
+      "video 64da8614020f42a5804854d3_school_vid-transcode.mp4",
+      "source 64da8614020f42a5804854d3_school_vid-transcode.mp4",
+      "source 64da8614020f42a5804854d3_school_vid-transcode.webm",
+      "bg 64da8614020f42a5804854d3_school_vid-poster-00001.jpg"
+     ],
+     "interactive": [
+      "div._w-full.h-full.w-background-video",
+      "video"
+     ]
+    },
+    {
+     "idx": 6,
+     "cls": "keep-learning-section",
+     "y": 3072,
+     "h": 384,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Keep your space clear so",
+     "tokens": [
+      "keep-learning-section",
+      "content-width",
+      "desk-cols",
+      "_w-46pc",
+      "p-6",
+      "my-8",
+      "su-w-full-tablet",
+      "text-color-primary",
+      "text-align-left",
+      "text-color-secondary",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "bg-color-primary",
+      "mr-8",
+      "w-button",
+      "bg-color-white",
+      "ml-8",
+      "offset-trans-block",
+      "bold-text",
+      "text-color-white",
+      "offset-icon-circle",
+      "education",
+      "_w-full",
+      "h-full"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) left",
+       "tag": "h2",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Keep your space clear so"
+      },
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(198, 166, 71) left",
+       "tag": "h2",
+       "cls": "text-color-secondary.text-align-left",
+       "text": "they can keep learning"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.bg-color-primary.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-white.ml-8.w-button",
+       "text": "Services"
+      },
+      {
+       "key": "freight-sans-pro 600 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "strong",
+       "cls": "bold-text.text-color-white",
+       "text": "Education"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35.2px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white",
+       "text": "We are passionately invested in modernizatio"
+      }
+     ],
+     "assets": [
+      "img 64da94e57b43c071cfe34277_education_circ_white.svg"
+     ],
+     "interactive": [
+      "a.button-default.bg-color-primary.mr-8 → /contact \"Contact\"",
+      "a.button-default.bg-color-white.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 7,
+     "cls": "committed-block",
+     "y": 3456,
+     "h": 435,
+     "box": "margin 0px / 128px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Committed to your",
+     "tokens": [
+      "committed-block",
+      "content-width",
+      "bg-color-primary",
+      "py-8",
+      "text-color-white",
+      "text-color-secondary",
+      "text-align-center",
+      "px-14pc",
+      "text-size-4xl",
+      "pb-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) center",
+       "tag": "span",
+       "cls": "text-color-white",
+       "text": "Committed to your"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(198, 166, 71) center",
+       "tag": "span",
+       "cls": "text-color-secondary",
+       "text": "Success"
+      },
+      {
+       "key": "freight-sans-pro 300 36px/57.6px ls=normal rgb(255, 255, 255) center",
+       "tag": "div",
+       "cls": "text-align-center.px-14pc.text-size-4xl.pb-8",
+       "text": "We get that you are accountable for the proj"
+      }
+     ],
+     "assets": [],
+     "interactive": []
+    },
+    {
+     "idx": 8,
+     "cls": "full-width-image-section",
+     "y": 4019,
+     "h": 810,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "full-width-image-section",
+      "ratio-box-2",
+      "_16-9",
+      "content-block-2",
+      "p-0",
+      "_w-full"
+     ],
+     "type": [],
+     "assets": [
+      "img 64da891d6c0e42f6e7c7f07d_patient_dropoff-p-1600.jpg"
+     ],
+     "interactive": []
+    },
+    {
+     "idx": 9,
+     "cls": "testimonials-section",
+     "y": 4701,
+     "h": 608,
+     "box": "margin 0px / 192px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "\"We choose Williamson Construction because they can be counted on to complete projects on time, within budget, and with a high degree of quality. We also like that they are all named Brian, which makes it easier to remember their names.\"",
+     "tokens": [
+      "testimonials-section",
+      "content-width",
+      "quote-slider-block",
+      "slider",
+      "w-slider",
+      "w-slider-mask",
+      "slide",
+      "w-slide",
+      "w-layout-vflex",
+      "flex-justify-center",
+      "h-full",
+      "text-align-left",
+      "slider-attribution",
+      "slide-2",
+      "flex-vertical",
+      "w-slider-aria-label",
+      "left-arrow",
+      "w-slider-arrow-left",
+      "icon",
+      "w-icon-slider-left",
+      "right-arrow",
+      "w-slider-arrow-right",
+      "icon-2",
+      "w-icon-slider-right",
+      "slide-nav",
+      "tesimonials",
+      "w-slider-nav",
+      "w-shadow",
+      "w-round",
+      "w-slider-dot",
+      "w-active"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) left",
+       "tag": "h3",
+       "cls": "text-align-left",
+       "text": "\"We choose Williamson Construction because t"
+      },
+      {
+       "key": "freight-sans-pro 400 22px/35px ls=normal rgb(255, 255, 255) left",
+       "tag": "div",
+       "cls": "slider-attribution",
+       "text": "— Steve Thompson | Physical Optics Corporati"
+      },
+      {
+       "key": "freight-sans-pro 500 35px/45px ls=normal rgb(255, 255, 255) center",
+       "tag": "h3",
+       "cls": "",
+       "text": "\"Williamson Construction demonstrates the ex"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "div.slider.w-slider",
+      "div.left-arrow.w-slider-arrow-left",
+      "div.right-arrow.w-slider-arrow-right",
+      "div.w-slider-dot",
+      "div.w-slider-dot.w-active"
+     ]
+    },
+    {
+     "idx": 10,
+     "cls": "clients-section",
+     "y": 5501,
+     "h": 300,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": null,
+     "tokens": [
+      "clients-section",
+      "content-width",
+      "w-slider",
+      "w-slider-mask",
+      "w-slide",
+      "_w-full",
+      "flex-justify-between",
+      "client-slider-logo",
+      "w-slider-aria-label",
+      "display-none",
+      "w-slider-arrow-left",
+      "w-icon-slider-left",
+      "w-slider-arrow-right",
+      "w-icon-slider-right",
+      "slide-nav",
+      "clients",
+      "w-slider-nav",
+      "w-round",
+      "w-slider-dot",
+      "w-active"
+     ],
+     "type": [],
+     "assets": [
+      "img 64da8ee2df5077be76c13ee3_torance-school.png",
+      "img 64da8f62a89ac42abc3f9345_cedars-logo.png",
+      "img 64da8f816c21a97562b1594b_poc_logo.png",
+      "img 64da8fad8ef95adc337dea13_providence_logo.png",
+      "img 64da8fd9f862276f3c62c8f8_labiomed_logo.png",
+      "img 64da9140dbf6666fa2d7404e_pvschools_logo.png",
+      "img 64da91635ce2afe9568fa1a8_esschools_logo.jpg",
+      "img 64da918b6c673529ecb02fd2_rbschools_logo.jpg",
+      "img 64da91ba91ec99a63ba7f0fc_mbschools_logo.png",
+      "img 64da91d74fd91631ad907afc_faceymed_logo.png"
+     ],
+     "interactive": [
+      "div.content-width.w-slider",
+      "div.display-none.w-slider-arrow-left",
+      "div.display-none.w-slider-arrow-right",
+      "div.w-slider-dot",
+      "div.w-slider-dot.w-active"
+     ]
+    },
+    {
+     "idx": 11,
+     "cls": "our-plan-section",
+     "y": 5801,
+     "h": 913,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Our Plan for Your Project",
+     "tokens": [
+      "our-plan-section",
+      "text-color-primary",
+      "mb-8",
+      "pb-8",
+      "content-width",
+      "ourplan-holder",
+      "_w-60pc",
+      "p-8",
+      "su-w-full-tablet",
+      "su-p-0-mobile",
+      "interactive-logo-container",
+      "_w-full",
+      "h-full",
+      "w-embed",
+      "shape-target",
+      "cls-3",
+      "_w-40pc",
+      "plan-container",
+      "plan-1",
+      "active",
+      "gold-circled-number",
+      "white-number",
+      "text-align-left",
+      "text-color-white",
+      "text-size-2xl",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-default",
+      "w-button",
+      "bg-color-transparent",
+      "ml-8",
+      "plan-2",
+      "plan-3",
+      "plan-4"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(0, 74, 128) center",
+       "tag": "h2",
+       "cls": "text-color-primary.mb-8.pb-8",
+       "text": "Our Plan for Your Project"
+      },
+      {
+       "key": "freight-sans-pro 400 48px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "div",
+       "cls": "white-number",
+       "text": "1"
+      },
+      {
+       "key": "freight-sans-pro 500 45px/60px ls=normal rgb(255, 255, 255) left",
+       "tag": "h2",
+       "cls": "text-align-left.text-color-white",
+       "text": "Are we the right fit?"
+      },
+      {
+       "key": "freight-sans-pro 400 24px/38.4px ls=normal rgb(255, 255, 255)",
+       "tag": "p",
+       "cls": "text-color-white.text-size-2xl",
+       "text": "We meet and discuss your project/ determine "
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.w-button",
+       "text": "Contact"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.w-button → /contact \"Contact\"",
+      "a.button-default.bg-color-transparent.ml-8 → /contact \"Services\"",
+      "a.button-default.bg-color-transparent.ml-8 → /services \"Services\""
+     ]
+    },
+    {
+     "idx": 12,
+     "cls": "cta-section",
+     "y": 6778,
+     "h": 322,
+     "box": "margin 0px / 96px, padding 0px 0px 0px 0px, bg rgba(0, 0, 0, 0)",
+     "firstText": "Start feeling like a top priority, and not like a bottom line. Let's build something together.",
+     "tokens": [
+      "cta-section",
+      "content-width",
+      "cta-block",
+      "text-color-primary",
+      "text-align-left",
+      "flex-justify-start",
+      "mt-6",
+      "pt-6",
+      "button-holder",
+      "button-default",
+      "mr-8",
+      "w-button",
+      "bg-color-transparent"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 62px/78px ls=normal rgb(0, 74, 128) left",
+       "tag": "h1",
+       "cls": "text-color-primary.text-align-left",
+       "text": "Start feeling like a top priority, and not l"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(255, 255, 255)",
+       "tag": "a",
+       "cls": "button-default.mr-8.w-button",
+       "text": "Contact"
+      },
+      {
+       "key": "freight-sans-pro 500 16px/20px ls=normal rgb(0, 74, 128)",
+       "tag": "a",
+       "cls": "button-default.bg-color-transparent.text-color-primary.w-button",
+       "text": "About"
+      }
+     ],
+     "assets": [],
+     "interactive": [
+      "a.button-default.mr-8.w-button → /contact \"Contact\"",
+      "a.button-default.bg-color-transparent.text-color-primary → /about-us \"About\""
+     ]
+    },
+    {
+     "idx": 13,
+     "cls": "footer.bg-color-gray-300",
+     "y": 7196,
+     "h": 736,
+     "box": "margin 0px / 0px, padding 0px 0px 0px 0px, bg rgb(226, 226, 226)",
+     "firstText": "Home",
+     "tokens": [
+      "footer",
+      "bg-color-gray-300",
+      "spacer-32",
+      "max-w-1280",
+      "_w-full",
+      "m-auto",
+      "position-relative",
+      "w-row",
+      "column-2",
+      "w-col",
+      "w-col-6",
+      "w-inline-block",
+      "w--current",
+      "h-24",
+      "display-block",
+      "spacer-16",
+      "column-3",
+      "display-flex",
+      "float-right",
+      "flex-vertical",
+      "su-float-left-mobile",
+      "text-color-black",
+      "p-6",
+      "italic-text",
+      "spacer-8"
+     ],
+     "type": [
+      {
+       "key": "freight-sans-pro 500 19.2px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "a",
+       "cls": "text-color-black.p-6.w--current",
+       "text": "Home"
+      },
+      {
+       "key": "freight-sans-pro 400 italic 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "em",
+       "cls": "italic-text",
+       "text": "© Williamson Construction 2023, All Rights R"
+      },
+      {
+       "key": "freight-sans-pro 400 14px/20px ls=normal rgb(0, 0, 0)",
+       "tag": "div",
+       "cls": "max-w-1280._w-full.m-auto",
+       "text": "License 976074 SBE 2019518"
+      }
+     ],
+     "assets": [
+      "img 6514801e11f270f8acfd0544_wcc-logo.svg"
+     ],
+     "interactive": [
+      "a.w-inline-block.w--current → / \"\"",
+      "a.text-color-black.p-6.w--current → / \"Home\"",
+      "a.text-color-black.p-6 → /services \"Services\"",
+      "a.text-color-black.p-6 → /about-us \"About\"",
+      "a.text-color-black.p-6 → /projects \"Projects\"",
+      "a.text-color-black.p-6 → /contact \"Contact Us\"",
+      "a.text-color-black.p-6 → /join-the-team \"Join the Team\""
+     ]
+    }
+   ],
+   "root": "16px",
+   "docH": 7932
+  }
+ }
+}
