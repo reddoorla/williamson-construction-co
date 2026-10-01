@@ -128,3 +128,32 @@ opacity .25s ease-in`.
   its close icon is clicked. Kept on the operator's answer to BACKLOG 52: on
   a phone, tapping the page to dismiss the menu is the expected behaviour.
   Focus falling to `<body>` (a window blur) still leaves it open.
+
+## 2026-10-01 — matching gate, Phase 0 and the shared footer (cloud)
+
+- [fix] scrollbar gutter — the starter's `html { scrollbar-gutter: stable }`
+  reserved 15px at every width (`body.clientWidth` 1425 / 819 / 375 against
+  the reference's 1440 / 834 / 390, measured headless in the gate's own
+  browser). The reference reserves none, so every section was 15px narrower
+  and wrapped differently. Set to `auto` site-locally (the skill's Phase 0
+  step 4); `tests/smoke/gutter.spec.ts` pins it.
+- [fix] footer — rebuilt to the reference's structure: 128px spacers top and
+  bottom (`.spacer-32`, shared.css:5853), six `p-6` links at the global `a`
+  type (500 19.2px/20px, shared.css:2165, 3952), logo column with its 4rem
+  spacer (shared.css:5849), `.column-3` 40px margins when stacked
+  (shared.css:7690). Was 488px tall against 736 (1001 at 390). The top
+  spacing is padding on an inner `div` rather than on `<footer>`, because
+  page-diff's anchor search does not look at `<footer>` elements: with the
+  padding on the landmark, the "Home" cut landed 128px lower on the candidate
+  than on the reference. `tests/smoke/footer.spec.ts` pins height, the Home
+  link's offset and the copyright's offset at all three widths.
+- [deviation] footer copyright year — the reference prints "2023" as a
+  literal; the rebuild prints the current year (`SiteFooter.svelte`). A
+  copyright line that goes stale every January is worse than a 4-character
+  text-diff row.
+- [deviation] fonts — `freight-sans-pro` comes from kit `noj4tji` on the
+  candidate and `htt1asl` on the reference. Confirmed loading on the
+  localhost candidate (400, 400 italic, 500, 700, and
+  `freight-sans-pro-lights` 300). Advance widths differ by up to 3px per
+  footer link ("Contact Us" 136 vs 133px at 19.2px), so a wrapped line can
+  break one word differently. Not chased.
