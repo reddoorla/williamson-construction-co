@@ -39,9 +39,9 @@
     {/snippet}
   </TitlePanel>
 
-  <section class="wc-shell my-16" aria-label="{project.data.title} gallery">
+  <section class="mx-auto my-16 w-full max-w-[1280px]" aria-label="{project.data.title} gallery">
     {#if video}
-      <div class="relative mb-16 aspect-video w-full">
+      <div class="relative aspect-video w-full">
         <iframe
           src={video}
           title="{project.data.title} video"
@@ -52,9 +52,9 @@
       </div>
     {/if}
     {#if gallery.length > 0}
-      <ul class="flex flex-col gap-8">
+      <ul class="mt-[60px]">
         {#each gallery as item, i (i)}
-          <li>
+          <li class="pb-16">
             <PrismicImage
               field={item.image}
               fallbackAlt=""
