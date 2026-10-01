@@ -157,3 +157,67 @@ opacity .25s ease-in`.
   `freight-sans-pro-lights` 300). Advance widths differ by up to 3px per
   footer link ("Contact Us" 136 vs 133px at 19.2px), so a wrapped line can
   break one word differently. Not chased.
+
+## 2026-10-01 — matching gate, Phase 1 for 14 pages and the first rounds (cloud)
+
+- [harness] anchors — every page's first section (the title band) carries no
+  anchor: on the candidate the first element whose text starts with the
+  title is the slice wrapper at y=0, so the cut landed 540px above the
+  reference's. Hero and title are scored together as `top`.
+- [harness] home testimonials — no anchor. The reference prints the quote
+  with straight `"` and the content carries `“ ”`, so no prefix is shared;
+  the region "Committed to your" runs from the statement band through the
+  photo, the testimonial and the client logos.
+- [harness] services slider — anchored on its first body line ("Early
+  project planning is a"), not "Phase 1: Planning": the phase bubble's
+  screen-reader label reads "Phase 1: Planning" too and cut the region
+  inside Phased Approach on the candidate only.
+- [deviation] testimonial quote marks — `“ ”` in the content, `"` on the
+  reference. Typographic; a content edit if anyone wants it.
+- [corrects the 2026-09-30 "video bands" entry] video bands are
+  `.ratio-box-2._2-1` (padding-top 50%, shared.css:6153) at every width:
+  720/417/195px. A 2:1 crop of the 720×480 file hides its bars at every
+  width, so the 16:9 / 720px rule is gone. About's band is `_16-9` with
+  `.offset-up` (below).
+- [structure] one slice type, several reference sections — Headline is four
+  sections on the reference (home `.rebuild-spaces-section`, services
+  `.areas-of-section` and `.phases-expanded-section`, contact
+  `.project-goals-section`), VideoBand two (`_2-1`, and about's `_16-9`
+  `.offset-up`), and PageHero's body is `.text-size-3xl` everywhere but home,
+  with about's h1/aside dropping their margins below 767. No field tells
+  them apart, so the rebuild picks by the slice that follows (CSS
+  `:has(+ …)`), which today's content fixes. A Prismic slice variation
+  would say it explicitly but needs a content edit in four documents
+  (BACKLOG Operator decisions).
+- [deviation] slider controls — testimonials and phase slider keep the
+  shared Slider's one row (pause, previous, dots, next), pinned to the
+  box's foot where the reference has its dots; the reference has 80px
+  full-height side arrows. The pause button is WCAG 2.2.2 for an
+  auto-advancing carousel.
+- [a11y] ghost button — the reference's `.bg-color-transparent.text-color-
+primary` has a white border with a primary bottom edge (shared.css:5966,
+  :5924): on white the boundary is the bottom edge only.
+  `button-styles.test.ts` measures each variant's boundary at 3:1, so it
+  keeps a full primary border.
+- [a11y] trade-partner form — the reference's 1px `#ccc` input border is
+  1.6:1 on white; inputs keep the 2px `--color-secondary` border (4.8:1).
+  The rebuild adds a "* marks a required field" line, shows "For example,
+  5K to 100K" as a description where the reference uses a placeholder (not
+  an accessible label), a Turnstile widget, and a "Questions? Email us at"
+  line. Together 80–175px of height in the join region.
+- [deviation] content — the reference's Providence Hospital scope ends in
+  an empty `<p>&zwj;</p>` (45px on /projects); the migrated content does
+  not carry it.
+- [deviation] header — the current page's nav link is underlined
+  (`aria-current`); the reference shows no current state.
+- [deviation] projects alternation — the reference moves every second
+  caption box left from an inline jQuery `onresize` handler above 992px;
+  here it is CSS (`nth-child(even)` from 993px), no runtime.
+- [census] `matching/census-deviations.mjs` declares four row classes, each an
+  exact before/after pair with every other field equal: weight 300 set in
+  `freight-sans-pro-lights` (2026-09-30 "type"), gold text `#c6a647` →
+  `#735a14` and white-on-gold button text → navy `#002e52` (2026-09-30
+  a11y palette), and Our Plan's disc number in navy with the SVG step
+  labels (2026-09-30 "our plan"). Census 2026-10-01 at `659f9a7`: 92 rows,
+  87 of them in these classes; the other five were the phase-bubble
+  numbers at weight 400 where the reference's link gives them 500, fixed.

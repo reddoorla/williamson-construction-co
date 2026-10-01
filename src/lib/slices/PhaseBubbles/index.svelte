@@ -36,7 +36,8 @@
             <span
               class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary"
               aria-hidden="true"
-              ><span class="mb-[5px] inline-block text-[26px] leading-5 text-white">{i + 1}</span
+              ><span class="mb-[5px] inline-block text-[26px] leading-5 font-medium text-white"
+                >{i + 1}</span
               ></span
             >
             {#if isFilled.image(item.icon)}
