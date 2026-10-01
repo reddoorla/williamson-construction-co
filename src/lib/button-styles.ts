@@ -12,7 +12,7 @@ export const BUTTON_CLASS: Record<ButtonVariant, string> = {
   "outline-primary": "border-primary bg-white text-primary hover:bg-primary/15",
   white:
     "border-white bg-white text-primary hover:border-gold hover:bg-gold hover:text-navy focus-visible:outline-gold",
-  "ghost-primary": "border-white border-b-primary bg-transparent text-primary hover:bg-primary/10",
+  "ghost-primary": "border-primary bg-transparent text-primary hover:bg-primary/10",
 };
 
 export const BUTTON_CLASS_ON_LIGHT: Partial<Record<ButtonVariant, string>> = {

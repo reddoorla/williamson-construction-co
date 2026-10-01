@@ -61,6 +61,7 @@ export async function load({ params, url }) {
 
   return {
     uid: params.uid,
+    formTs: Date.now(),
     slices: doc.data.slices ?? [],
     project,
     projects: projects.map(toCard),

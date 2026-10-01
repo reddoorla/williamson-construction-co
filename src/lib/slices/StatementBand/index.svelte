@@ -14,7 +14,7 @@
     class="mx-auto max-w-[1280px] bg-primary py-8 text-center text-white max-[991px]:px-[10%] max-[767px]:px-[4%]"
   >
     <h2 class="wc-h3 py-8 text-white">
-      {slice.primary.heading}{#if slice.primary.accent}&nbsp;<span class="text-gold"
+      {slice.primary.heading}{#if slice.primary.accent}&nbsp;<span class="wc-h3 text-gold"
           >{slice.primary.accent}</span
         >{/if}
     </h2>
