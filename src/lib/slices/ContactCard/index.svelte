@@ -10,7 +10,7 @@
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="mb-16">
   <div
-    class="mx-auto flex max-w-[1280px] max-[991px]:flex-col max-[991px]:items-center max-[991px]:px-[10%] max-[767px]:px-[4%]"
+    class="mx-auto flex max-w-[1280px] max-[992px]:flex-col max-[992px]:items-center max-[992px]:px-[10%] max-[768px]:px-[4%]"
   >
     <div class="flex w-1/2 flex-col items-center p-4 text-center">
       {#if isFilled.image(slice.primary.photo)}
@@ -24,14 +24,14 @@
       <h2 class="wc-h2 mt-4 text-primary">{slice.primary.name}</h2>
       <p class="wc-h3 text-primary">{slice.primary.role}</p>
     </div>
-    <div class="w-1/2 p-4 max-[991px]:w-full">
-      <div class="mb-8 bg-primary px-8 pb-4 text-white max-[479px]:bg-[#004a80e6]">
+    <div class="w-1/2 p-4 max-[992px]:w-full">
+      <div class="mb-8 bg-primary px-8 pb-4 text-white max-[480px]:bg-[#004a80e6]">
         <h3 class="wc-h3 mb-8 pt-8 text-left text-white">{slice.primary.heading}</h3>
         <p class="wc-p mb-[10px]">{slice.primary.body}</p>
         <ButtonRow
           items={slice.items}
           grounds={["primary"]}
-          class="my-8 pb-4 max-[479px]:flex-col max-[479px]:items-start max-[479px]:pb-0"
+          class="my-8 pb-4 max-[480px]:flex-col max-[480px]:items-start max-[480px]:pb-0"
         />
       </div>
       <address class="wc-p mb-[10px] text-primary not-italic">

@@ -84,7 +84,7 @@
   <label
     for={inputId}
     class={inline
-      ? "self-start text-[18px] leading-10 font-light text-primary max-[767px]:text-[14px]"
+      ? "self-start text-[18px] leading-10 font-light text-primary max-[768px]:text-[14px]"
       : "text-sm font-medium"}
   >
     {label}

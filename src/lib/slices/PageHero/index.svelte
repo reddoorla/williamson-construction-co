@@ -53,18 +53,18 @@
           items={slice.items}
           grounds={["band-over-white", "band-over-black"]}
           gap="gap-x-8 gap-y-8"
-          class="max-[479px]:flex-col max-[479px]:items-center"
+          class="max-[480px]:flex-col max-[480px]:items-center"
         />
         <div class="h-16"></div>
       {:else if layout === "buttons"}
         <ButtonRow
           items={slice.items}
           grounds={["band-over-white", "band-over-black"]}
-          class="pb-4 max-[479px]:flex-col max-[479px]:items-start max-[479px]:pb-0"
+          class="pb-4 max-[480px]:flex-col max-[480px]:items-start max-[480px]:pb-0"
         />
       {:else if layout === "columns"}
         <div
-          class="[&_p]:my-8 [&_p]:text-[1.875rem] [&_p]:leading-[1.6em] max-[479px]:[&_p]:text-[1.2rem]"
+          class="[&_p]:my-8 [&_p]:text-[1.875rem] [&_p]:leading-[1.6em] max-[480px]:[&_p]:text-[1.2rem]"
         >
           <PrismicRichText field={slice.primary.body} />
         </div>

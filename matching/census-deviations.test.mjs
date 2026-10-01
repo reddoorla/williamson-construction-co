@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { declared } from "./census-deviations.mjs";
 
-const row = (label, refs, cands) => ({ label: `"${label}"`, refs, cands });
+const row = (label, refs, cands, y = 100) => ({ y, label: `"${label}"`, refs, cands });
 const tuple = (fam, wt, size, lh, colour) => `${fam} | ${wt} | ${size} | ${lh} | ls=normal | none | ${colour}`;
 const BLUE = "rgb(0, 74, 128)";
 const WHITE = "rgb(255, 255, 255)";
@@ -20,7 +20,9 @@ const CASES = [
   ["the disc number at the wrong size", row("1", [tuple(FSP, 400, "48px", "20px", WHITE)], [tuple(FSP, 400, "18px", "20px", "rgb(0, 0, 0)"), tuple(FSP, 400, "30px", "20px", NAVY)]), false],
   ["the disc number missing", row("1", [tuple(FSP, 400, "48px", "20px", WHITE)], [tuple(FSP, 400, "18px", "20px", "rgb(0, 0, 0)")]), false],
   ["a bubble number at 400 for 500", row("1", [tuple(FSP, 500, "26px", "20px", WHITE)], [tuple(FSP, 400, "26px", "20px", WHITE)]), false],
-  ["the closed mobile link absent beside a gold button", row("contact", [tuple(FSP, 500, "16px", "20px", WHITE), tuple(FSP, 500, "19px", "20px", BLUE)], [tuple(FSP, 500, "16px", "20px", NAVY)]), true],
+  ["the closed mobile link absent (off canvas) beside a gold button", row("contact", [tuple(FSP, 500, "16px", "20px", WHITE), tuple(FSP, 500, "19px", "20px", BLUE)], [tuple(FSP, 500, "16px", "20px", NAVY)], -20), true],
+  ["a nav link absent on the page", row("contact", [tuple(FSP, 500, "16px", "20px", WHITE), tuple(FSP, 500, "19px", "20px", BLUE)], [tuple(FSP, 500, "16px", "20px", NAVY)], 22), false],
+  ["the disc-number change on another label", row("x", [tuple(FSP, 400, "48px", "20px", WHITE)], [tuple(FSP, 400, "48px", "20px", NAVY)]), false],
   ["an unledgered extra candidate", row("x", [tuple(FSP, 300, "18px", "40px", BLUE)], [tuple(LIGHTS, 300, "18px", "40px", BLUE), tuple(FSP, 400, "16px", "24px", BLUE)]), false],
 ];
 

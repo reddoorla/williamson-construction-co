@@ -276,3 +276,25 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   :5684 for the nav type; the column is `.w-col-medium-6` (:824) with
   `.p-2` (:3936) on the icon holder. a923409 says nine geometry cases;
   a90b17a added a tenth.
+
+## 2026-10-01 — round-2 review findings, fixed and unreviewed
+
+- [a11y] slider controls over slide content — with min-height slides, the
+  tallest phase slide's See More button reached the region's foot, where
+  the absolutely placed controls row sat over it and took its clicks; on
+  about's heading slides the controls sat over the Contact button at 390.
+  The row now passes pointer events through except on its own buttons, and
+  below 768 the phase slider (32px) and heading slides (24px) reserve room
+  for it. `slider-content.spec.ts` checks no slide link sits under a
+  control (M18, M19 red).
+- [fix] the phase icon's offsets are fixed px (-16rem, -10rem at 991, -14rem
+  at 767: 80/50/70% of the 20rem slide, shared.css:6819, :7324, :7740), so
+  a taller slide no longer moves or clips its icon.
+- [fix] Webflow's `max-width: 991/767/479px` include those widths; Tailwind's
+  `max-[Npx]` is `width < N`, so every variant moved to 992/768/480. The
+  matrix widths do not change; 991, 767 and 479 now match.
+- [census] the closed-menu declaration only applies off canvas (y < 0), and
+  the disc-number transformation only to labels 1–4.
+- [deviation] gate r7 on 7db29f3: services' slider region and home's
+  "Committed to your" fail at 390 on height alone, because the slides grow
+  rather than clip (see the "fixed heights that clip" entry).

@@ -14,20 +14,22 @@
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
-  class="relative mb-48 max-[991px]:mx-[4%]"
+  class="relative mb-48 max-[992px]:mx-[4%]"
 >
   <div
-    class="relative mx-auto -mt-32 max-w-[1280px] px-[6%] pt-24 pb-8 text-white max-[479px]:-mt-8 max-[479px]:pt-8 {bg
-      ? 'bg-transparent bg-[0_0] max-[767px]:-mt-8'
+    class="relative mx-auto -mt-32 max-w-[1280px] px-[6%] pt-24 pb-8 text-white max-[480px]:-mt-8 max-[480px]:pt-8 {bg
+      ? 'bg-transparent bg-[0_0] max-[768px]:-mt-8'
       : 'bg-[#004a80f2]'}"
     style={bg ? `background-image: url("${bg}")` : undefined}
   >
     <Slider
       itemCount={slice.items.length}
       label="Testimonials"
-      class="min-h-[30rem] max-[991px]:px-[4%]"
+      class="min-h-[30rem] max-[992px]:px-[4%] {slice.items.some((item) => item.heading)
+        ? 'max-[768px]:pb-6'
+        : ''}"
       showDots={!slice.items.some((item) => item.heading)}
-      navigationClass="absolute inset-x-0 -bottom-4 mt-0!"
+      navigationClass="pointer-events-none absolute inset-x-0 -bottom-4 mt-0! [&>*]:pointer-events-auto"
       arrowClass="text-white! hover:bg-transparent!"
       nextArrowClass="hover:opacity-80 aria-disabled:hover:opacity-40"
       pauseClass="text-white! hover:bg-transparent!"
@@ -54,7 +56,7 @@
           {/if}
           {#if item.attribution}
             <p
-              class="mt-8 text-[22px] leading-[35px] text-white max-[479px]:text-[18px] max-[479px]:leading-[25px]"
+              class="mt-8 text-[22px] leading-[35px] text-white max-[480px]:text-[18px] max-[480px]:leading-[25px]"
             >
               {item.attribution}
             </p>

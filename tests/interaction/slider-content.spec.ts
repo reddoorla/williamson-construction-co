@@ -18,6 +18,19 @@ async function clipped(page: Page, slice: string) {
           );
       }
     });
+    const region = root.querySelector('[aria-roledescription="carousel"]')!.getBoundingClientRect();
+    const controls = [...root.querySelectorAll("button")].map((b) => b.getBoundingClientRect());
+    slides.forEach((slide, i) => {
+      const s = slide.getBoundingClientRect();
+      for (const a of slide.querySelectorAll("a")) {
+        const r = a.getBoundingClientRect();
+        const left = r.left - s.left + region.left;
+        const right = left + r.width;
+        for (const c of controls)
+          if (left < c.right && right > c.left && r.top < c.bottom && r.bottom > c.top)
+            out.push(`slide ${i + 1} "${a.textContent?.trim()}" sits under a slider control`);
+      }
+    });
     return out;
   }, slice);
 }

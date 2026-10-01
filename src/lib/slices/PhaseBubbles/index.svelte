@@ -13,19 +13,19 @@
   id={slice.primary.section_id || undefined}
   class="mb-16"
 >
-  <div class="mx-auto max-w-[1280px] max-[991px]:px-[10%] max-[767px]:px-[4%]">
+  <div class="mx-auto max-w-[1280px] max-[992px]:px-[10%] max-[768px]:px-[4%]">
     <h2 class="wc-h3 text-center text-primary">{slice.primary.heading}<br />&zwj;</h2>
     {#if slice.primary.intro}
       <p
-        class="pb-8 text-center text-[2.25rem] leading-[1.6em] font-light text-primary max-[991px]:text-[2rem] max-[767px]:text-[1.4rem]"
+        class="pb-8 text-center text-[2.25rem] leading-[1.6em] font-light text-primary max-[992px]:text-[2rem] max-[768px]:text-[1.4rem]"
       >
         {slice.primary.intro}
       </p>
     {/if}
-    <ol class="flex justify-between max-[991px]:flex-col max-[991px]:items-center">
+    <ol class="flex justify-between max-[992px]:flex-col max-[992px]:items-center">
       {#each slice.items as item, i (i)}
         {@const href = anchorHref(item.anchor)}
-        <li class="my-16 flex w-[16%] max-[991px]:w-[40%]">
+        <li class="my-16 flex w-[16%] max-[992px]:w-[40%]">
           <svelte:element
             this={href ? "a" : "div"}
             {href}

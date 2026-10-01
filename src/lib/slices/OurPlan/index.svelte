@@ -33,9 +33,9 @@
     <h2 class="wc-h2 mb-8 pb-8 text-center text-primary">{slice.primary.heading}</h2>
   {/if}
   <div
-    class="mx-auto mb-16 flex max-w-[1280px] flex-wrap items-center justify-between bg-[#004a7e] max-[991px]:px-[10%] max-[767px]:px-[4%]"
+    class="mx-auto mb-16 flex max-w-[1280px] flex-wrap items-center justify-between bg-[#004a7e] max-[992px]:px-[10%] max-[768px]:px-[4%]"
   >
-    <div class="w-[60%] p-8 max-[991px]:w-full max-[767px]:p-0">
+    <div class="w-[60%] p-8 max-[992px]:w-full max-[768px]:p-0">
       <div class="my-8 text-[14px] leading-5">
         <svg
           viewBox={PLAN_VIEWBOX}
@@ -100,15 +100,15 @@
       {@const step = steps[active]}
       {@const first = hrefOf(step.button_link)}
       {@const second = hrefOf(step.button2_link)}
-      <div class="mx-auto w-[40%] max-[991px]:w-full">
+      <div class="mx-auto w-[40%] max-[992px]:w-full">
         <div
-          class="relative mb-16 h-96 pl-[8%] max-[991px]:flex max-[991px]:h-auto max-[991px]:min-h-96 max-[991px]:pl-0"
+          class="relative mb-16 h-96 pl-[8%] max-[992px]:flex max-[992px]:h-auto max-[992px]:min-h-96 max-[992px]:pl-0"
         >
           <div
             id="{slice.id}-step"
             role="tabpanel"
             aria-labelledby="{slice.id}-tab-{active}"
-            class="absolute flex h-full w-full flex-col justify-between max-[991px]:relative max-[991px]:h-auto {PLAN_PANEL_PAD[
+            class="absolute flex h-full w-full flex-col justify-between max-[992px]:relative max-[992px]:h-auto {PLAN_PANEL_PAD[
               active
             ] ?? 'pr-[8%]'}"
           >
@@ -121,7 +121,7 @@
               <h3 class="wc-h2 text-left text-white">{step.title}</h3>
               <p class="mb-[10px] text-[1.5rem] leading-[1.6em] text-white">{step.body}</p>
             </div>
-            <div class="mt-6 flex flex-wrap gap-8 pt-6">
+            <div class="mt-6 flex gap-8 pt-6 max-[992px]:flex-wrap">
               {#if first && step.button_label}<WcButton href={first}>{step.button_label}</WcButton
                 >{/if}
               {#if second && step.button2_label}

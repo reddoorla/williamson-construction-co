@@ -22,8 +22,8 @@ const TRANSFORMS = [
     a.slice(1, 4).join(" ") === "500 16px 20px"
       ? swap(a, 6, "rgb(255, 255, 255)", "rgb(0, 46, 82)")
       : null,
-  (a) =>
-    a.slice(0, 4).join(" ") === "freight-sans-pro 400 48px 20px"
+  (a, label) =>
+    /^"[1-4]"$/.test(label) && a.slice(0, 4).join(" ") === "freight-sans-pro 400 48px 20px"
       ? swap(a, 6, "rgb(255, 255, 255)", "rgb(0, 46, 82)")
       : null,
 ];
@@ -33,7 +33,8 @@ const EXTRA_CAND = (label, b) =>
   same(b, T("freight-sans-pro | 400 | 18px | 20px | ls=normal | none | rgb(0, 0, 0)"));
 
 const NAV = /^"(about|services|projects|contact)"$/;
-const DROPPED_REF = (label, a) =>
+const DROPPED_REF = (label, a, y) =>
+  y < 0 &&
   NAV.test(label) &&
   same(a, T("freight-sans-pro | 500 | 19px | 20px | ls=normal | none | rgb(0, 74, 128)"));
 
@@ -50,14 +51,14 @@ export function declared(r) {
   for (const a of refs) {
     if (take(a)) continue;
     const hit = TRANSFORMS.some((f) => {
-      const want = f(a);
+      const want = f(a, r.label);
       return want !== null && take(want);
     });
     if (hit) {
       ledgered = true;
       continue;
     }
-    if (DROPPED_REF(r.label, a)) {
+    if (DROPPED_REF(r.label, a, r.y)) {
       ledgered = true;
       continue;
     }

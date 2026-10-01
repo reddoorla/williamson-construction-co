@@ -35,7 +35,7 @@
 {:else}
   <form
     method="POST"
-    class="wc-intake mx-auto mb-[15px] flex w-[30rem] flex-col max-[767px]:w-full"
+    class="wc-intake mx-auto mb-[15px] flex w-[30rem] flex-col max-[768px]:w-full"
     use:enhance={({ cancel }) => {
       if (submitting) {
         cancel();
@@ -79,14 +79,14 @@
       {#if field.kind === "yes-no"}
         <fieldset class="mb-4 flex w-full items-center justify-between">
           <legend
-            class="float-left text-[18px] leading-10 font-light text-primary max-[767px]:text-[14px]"
+            class="float-left text-[18px] leading-10 font-light text-primary max-[768px]:text-[14px]"
           >
             {field.label}
           </legend>
           <span class="-mb-[17px] flex w-3/4 justify-start">
             {#each YES_NO as option (option)}
               <label
-                class="mb-4 flex w-24 items-center text-[18px] leading-10 font-light text-primary max-[767px]:text-[14px]"
+                class="mb-4 flex w-24 items-center text-[18px] leading-10 font-light text-primary max-[768px]:text-[14px]"
               >
                 <input
                   type="radio"

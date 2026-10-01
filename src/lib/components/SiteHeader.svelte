@@ -38,7 +38,7 @@
     <a href="/" class="block h-full" aria-label="Williamson Construction, home">
       <img src="/images/wcc-header-logo.svg" alt="" class="h-full w-auto" />
     </a>
-    <nav aria-label="Main" class="hidden w-1/3 items-center px-6 max-[991px]:w-1/2 md:flex">
+    <nav aria-label="Main" class="hidden w-1/3 items-center px-6 max-[992px]:w-1/2 md:flex">
       <ul
         class="flex w-full items-center justify-between before:block before:w-4 before:content-['']"
       >
