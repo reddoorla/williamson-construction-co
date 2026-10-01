@@ -29,7 +29,7 @@
       max-width: 728px;
     }
   }
-  @media (max-width: 767px) {
+  @media (max-width: 479px) {
     .wc-headline-box {
       max-width: none;
     }

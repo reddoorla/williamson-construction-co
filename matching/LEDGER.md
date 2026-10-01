@@ -221,3 +221,58 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   labels (2026-09-30 "our plan"). Census 2026-10-01 at `659f9a7`: 92 rows,
   87 of them in these classes; the other five were the phase-bubble
   numbers at weight 400 where the reference's link gives them 500, fixed.
+
+## 2026-10-01 — after the three-lens review of 205608d..a90b17a
+
+- [corrects the 2026-10-01 "[a11y] ghost button" entry] there is no
+  deviation. `.button-default.bg-color-transparent.text-color-primary`
+  (shared.css:5979, three classes) sets `border-color: var(--primary)` and
+  outranks the two-class rules :5966 and :5924 that entry cited, so the
+  reference's border is primary all round. a48d2c1's bottom-edge-only
+  border was wrong; 16b293d's full primary border is the reference, kept
+  for the wrong stated reason.
+- [corrects the 2026-10-01 "[census]" entry] the figures were not a census
+  after the fix. Recounted over the same logs (all taken before b241c57):
+  92 rows, 77 declared, 15 real, the 15 being the phase-bubble numbers at
+  three viewports. The declarations were also wider than that entry said:
+  the disc-number one never looked at the candidate, and the `-lights` one
+  did not require weight 300. `census-deviations.mjs` now declares a row
+  only when every reference element is matched by an identical candidate
+  or by one named transformation, and every leftover candidate is a named
+  extra; `census-deviations.test.mjs` (node --test) pins eleven cases, and
+  dropping the weight guard or the extra-candidate check each turns one
+  red. `census-count.mjs` passes every element of a row (it kept the first
+  of each) and parses a negative `y`. Known limit: the tuple carries no
+  background, so a gold-to-#735a14 swap on a navy band would also be
+  declared; none exists today.
+- [census] the closed mobile menu — the reference's off-canvas `.mobile-nav`
+  links are in the DOM at 19.2px primary; the rebuild's closed panel is
+  hidden (2026-09-30 OD7-P2b "mobile menu"). Declared only as a reference
+  element with no candidate, on the four nav labels.
+- [structure] PhaseDetail picks the last phase section (12rem below, not
+  15rem; shared.css:6867) by sibling order, the same content-order
+  dependence as the `:has(+ …)` cases above.
+- [a11y] slider dots — the reference's inactive `.w-slider-dot` is `#fff6`,
+  2.62:1 on the `#004a80f2` box; inactive dots are white at 60% (4.0:1).
+- [deviation] fixed heights that clip — the reference's slides are 20rem
+  (phase slider) and 30rem (testimonials) with the mask's overflow hidden,
+  which at 390 clips its own "See More" button, a focusable control. The
+  rebuild's slides are `min-height` at those values: identical wherever
+  the content fits, taller where it does not.
+  `tests/interaction/slider-content.spec.ts` checks every slide at three
+  widths. Our Plan's 24rem panel goes in flow below 992 the same way, and
+  its buttons wrap.
+- [corrects the 2026-10-01 "[a11y] trade-partner form" entry, in part] the
+  2px `--color-secondary` border is `#735a14`, 6.56:1 on white, not 4.8:1.
+- [fix] `.w-container`'s `max-width: none` is the 479 rule (shared.css:929),
+  not 767; the radio labels take `.form-input-container`'s 1rem bottom
+  margin (:6942), not `.w-radio`'s 5px; at exactly 992px every caption box
+  sits left, as the reference's script's else branch does.
+- [measured] footer: the logo column's 83px below 768 is `.spacer-16` (64px)
+  plus the empty second logo link's 20px line box, less a 1px line-box
+  rounding; `md:pr-[10px]` is `.w-col`'s 10px padding (shared.css:725).
+- [errata] commit text, not code: d3c1a69 credits the footer links' 20px
+  line-height to the `a` rule (:2165); it is `body` (:2091). 659f9a7 cites
+  :5684 for the nav type; the column is `.w-col-medium-6` (:824) with
+  `.p-2` (:3936) on the icon holder. a923409 says nine geometry cases;
+  a90b17a added a tenth.

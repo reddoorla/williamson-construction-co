@@ -25,12 +25,12 @@
       arrowClass="text-gold! hover:bg-transparent!"
       nextArrowClass="hover:opacity-80 aria-disabled:hover:opacity-40"
       pauseClass="text-white! hover:bg-transparent!"
-      dotClass="bg-white/40"
+      dotClass="bg-white/60"
       activeDotClass="bg-white"
     >
       {#snippet children({ index })}
         {@const item = slice.items[index]}
-        <div class="relative h-80 text-center">
+        <div class="relative min-h-80 text-center">
           {#if isFilled.image(item.icon)}
             <PrismicImage
               field={item.icon}

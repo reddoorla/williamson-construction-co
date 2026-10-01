@@ -60,6 +60,11 @@
 </section>
 
 <style>
+  @media (width: 992px) {
+    .wc-caption {
+      margin-left: 2rem;
+    }
+  }
   @media (min-width: 993px) {
     li:nth-child(even) > .wc-caption {
       margin-left: 2rem;

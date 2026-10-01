@@ -18,7 +18,9 @@ gutter: `body.clientWidth` equals the viewport at all three widths.
 **Header** (`section.header.max-w-1280.m-auto`, williamson-construction.shared.3b91c7675.css:5684): `position: fixed;
 inset: 0 0 auto; z-index: 10; width: 100%`. A 64px `.bg-color-white.h-16.opacity-90`
 row: logo link left (`.w-col-8`), four `.nav-item` links right (About,
-Services, Projects, Contact; `text-color-primary`). Below 991px the links hide
+Services, Projects, Contact; `text-color-primary`). Below 768px (the 767 block, `.text-color-primary.nav-item { display: none }` at
+williamson-construction.shared.3b91c7675.css:7643) the links hide; from 768 to 991 the column is half
+width (`.w-col-medium-6`, :824)
 and the IX2 `.open-nav` / `.close-nav` icons drive `.mobile-nav`
 (williamson-construction.shared.3b91c7675.css:6740–6749, 7696–7736). The mobile menu, its timings and its deviations are
 in LEDGER 2026-09-30 OD7-P2b and are not re-specified here.

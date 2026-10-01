@@ -11,7 +11,9 @@
     align?: "left" | "center";
   };
 
-  let { media, heading, aside, layout = "plain", align = "left" }: Props = $props();
+  let { media, heading, aside, layout: given, align = "left" }: Props = $props();
+
+  const layout = $derived(given ?? (aside ? "columns" : "plain"));
 
   const headingClass = $derived(
     {

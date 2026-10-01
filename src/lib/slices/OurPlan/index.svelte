@@ -101,13 +101,16 @@
       {@const first = hrefOf(step.button_link)}
       {@const second = hrefOf(step.button2_link)}
       <div class="mx-auto w-[40%] max-[991px]:w-full">
-        <div class="relative mb-16 h-96 pl-[8%] max-[991px]:pl-0">
+        <div
+          class="relative mb-16 h-96 pl-[8%] max-[991px]:flex max-[991px]:h-auto max-[991px]:min-h-96 max-[991px]:pl-0"
+        >
           <div
             id="{slice.id}-step"
             role="tabpanel"
             aria-labelledby="{slice.id}-tab-{active}"
-            class="absolute flex h-full w-full flex-col justify-between {PLAN_PANEL_PAD[active] ??
-              'pr-[8%]'}"
+            class="absolute flex h-full w-full flex-col justify-between max-[991px]:relative max-[991px]:h-auto {PLAN_PANEL_PAD[
+              active
+            ] ?? 'pr-[8%]'}"
           >
             <div class="flex h-20 w-20 items-center justify-center rounded-full bg-gold">
               <span class="-mt-4 text-[3rem] leading-5 text-navy" aria-hidden="true"
@@ -118,7 +121,7 @@
               <h3 class="wc-h2 text-left text-white">{step.title}</h3>
               <p class="mb-[10px] text-[1.5rem] leading-[1.6em] text-white">{step.body}</p>
             </div>
-            <div class="mt-6 flex gap-8 pt-6">
+            <div class="mt-6 flex flex-wrap gap-8 pt-6">
               {#if first && step.button_label}<WcButton href={first}>{step.button_label}</WcButton
                 >{/if}
               {#if second && step.button2_label}

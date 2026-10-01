@@ -140,6 +140,8 @@
   {/if}
 
   {#if error}
-    <p id={errorId} role="alert" class="text-sm text-red-600">{error}</p>
+    <p id={errorId} role="alert" class="{inline ? 'ml-auto w-3/4 ' : ''}text-sm text-red-600">
+      {error}
+    </p>
   {/if}
 </div>

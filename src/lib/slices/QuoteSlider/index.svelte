@@ -25,20 +25,20 @@
     <Slider
       itemCount={slice.items.length}
       label="Testimonials"
-      class="h-[30rem] max-[991px]:px-[4%]"
+      class="min-h-[30rem] max-[991px]:px-[4%]"
       showDots={!slice.items.some((item) => item.heading)}
       navigationClass="absolute inset-x-0 -bottom-4 mt-0!"
       arrowClass="text-white! hover:bg-transparent!"
       nextArrowClass="hover:opacity-80 aria-disabled:hover:opacity-40"
       pauseClass="text-white! hover:bg-transparent!"
-      dotClass="bg-white/40"
+      dotClass="bg-white/60"
       activeDotClass="bg-white"
     >
       {#snippet children({ index })}
         {@const item = slice.items[index]}
         {@const href = hrefOf(item.button_link)}
         <div
-          class="flex h-[30rem] flex-col items-start {item.heading
+          class="flex min-h-[30rem] flex-col items-start {item.heading
             ? 'justify-between'
             : 'justify-center'}"
         >

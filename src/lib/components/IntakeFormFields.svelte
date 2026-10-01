@@ -86,7 +86,7 @@
           <span class="-mb-[17px] flex w-3/4 justify-start">
             {#each YES_NO as option (option)}
               <label
-                class="mb-[5px] flex w-24 items-center text-[18px] leading-10 font-light text-primary max-[767px]:text-[14px]"
+                class="mb-4 flex w-24 items-center text-[18px] leading-10 font-light text-primary max-[767px]:text-[14px]"
               >
                 <input
                   type="radio"

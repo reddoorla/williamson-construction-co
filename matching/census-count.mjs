@@ -37,7 +37,7 @@ function rows(section) {
   const lines = section.split("\n");
   for (let i = 0; i < lines.length; i++) {
     if (!/^ {2}y=/.test(lines[i])) continue;
-    const label = lines[i].replace(/^\s*y=\s*\d+\s*/, "").trim();
+    const label = lines[i].replace(/^\s*y=\s*-?\d+\s*/, "").trim();
     const refs = [];
     const cands = [];
     for (
@@ -48,9 +48,7 @@ function rows(section) {
       const v = lines[j].replace(/^\s*(ref|cand):\s*/, "").trim();
       (lines[j].trim().startsWith("ref:") ? refs : cands).push(v);
     }
-    if (refs.length && cands.length)
-      out.push({ label, ref: refs[0], cand: cands[0] });
-    else out.push({ label, ref: refs[0] ?? "", cand: cands[0] ?? "" });
+    out.push({ label, ref: refs[0] ?? "", cand: cands[0] ?? "", refs, cands });
   }
   return out;
 }
