@@ -8,26 +8,32 @@
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
-  class="wc-shell relative z-10 pt-8"
+  class="relative z-10"
 >
-  {#if slice.primary.heading}
-    <h2 class="wc-h3 text-center text-primary">{slice.primary.heading}</h2>
-  {/if}
-  <ul class="mt-32 flex flex-col gap-32 lg:flex-row lg:items-start lg:justify-around lg:gap-4">
-    {#each slice.items as item, i (i)}
-      <li class="relative bg-primary/90 px-8 pt-32 pb-24 text-white lg:w-[32%]">
-        {#if isFilled.image(item.photo)}
-          <PrismicImage
-            field={item.photo}
-            alt=""
-            class="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full object-cover"
-            imgixParams={{ w: 400, h: 400, fit: "crop" }}
-          />
-        {/if}
-        <h3 class="wc-h2 text-center text-white">{item.name}</h3>
-        <p class="wc-h2 text-center text-white">{item.role}</p>
-        <div class="mt-8 text-base leading-7 font-light"><PrismicRichText field={item.bio} /></div>
-      </li>
-    {/each}
-  </ul>
+  <div class="mx-auto max-w-[1280px] max-[991px]:px-[10%] max-[767px]:px-[4%]">
+    {#if slice.primary.heading}
+      <h2 class="wc-h3 mb-8 pb-8 text-center text-primary">{slice.primary.heading}</h2>
+    {/if}
+    <ul class="mt-24 flex items-start justify-around max-[991px]:flex-col">
+      {#each slice.items as item, i (i)}
+        <li
+          class="relative w-[32%] bg-[#004a80e6] px-8 pt-32 pb-24 text-white max-[991px]:mb-32 max-[991px]:w-full"
+        >
+          {#if isFilled.image(item.photo)}
+            <div class="absolute -top-24 left-0 flex w-full justify-center">
+              <PrismicImage
+                field={item.photo}
+                alt=""
+                class="h-48 w-48 rounded-full object-cover"
+                imgixParams={{ w: 400, h: 400, fit: "crop" }}
+              />
+            </div>
+          {/if}
+          <h3 class="wc-h2 text-center text-white">{item.name}</h3>
+          <p class="wc-h2 text-center text-white">{item.role}</p>
+          <div class="wc-p [&_p]:mb-[10px]"><PrismicRichText field={item.bio} /></div>
+        </li>
+      {/each}
+    </ul>
+  </div>
 </section>

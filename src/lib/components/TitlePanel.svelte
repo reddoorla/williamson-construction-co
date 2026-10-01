@@ -25,7 +25,9 @@
 </script>
 
 <div class="relative">
-  <div class="relative h-[700px] overflow-hidden bg-primary max-[991px]:h-[500px]">
+  <div
+    class="relative flex h-[700px] items-center justify-center overflow-hidden max-[991px]:h-[500px]"
+  >
     {@render media?.()}
   </div>
   <div
@@ -36,7 +38,7 @@
         <div class="w-2/3 max-[991px]:w-full">
           {@render heading(headingClass)}
         </div>
-        <div class="w-1/3 px-6 max-[991px]:w-full">{@render aside?.()}</div>
+        <div class="wc-title-aside w-1/3 px-6 max-[991px]:w-full">{@render aside?.()}</div>
       </div>
     {:else if layout === "columns" || layout === "project"}
       <div class="flex max-[767px]:flex-col">

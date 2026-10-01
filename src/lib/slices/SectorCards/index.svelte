@@ -5,11 +5,7 @@
   let { slice }: { slice: Content.SectorCardsSlice } = $props();
 </script>
 
-<section
-  data-slice-type={slice.slice_type}
-  data-slice-variation={slice.variation}
-  class="mt-64 max-[991px]:mt-32"
->
+<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
   <ul
     class="relative mx-auto flex max-w-[1280px] justify-between p-6 max-[991px]:flex-col max-[991px]:px-[10%] max-[767px]:px-[4%]"
   >

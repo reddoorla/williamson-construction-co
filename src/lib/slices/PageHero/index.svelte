@@ -18,7 +18,11 @@
   );
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+<section
+  data-slice-type={slice.slice_type}
+  data-slice-variation={slice.variation}
+  class="wc-page-hero"
+>
   <TitlePanel {layout} align={slice.primary.heading_align === "center" ? "center" : "left"}>
     {#snippet media()}
       {#if hasVideo}
@@ -44,7 +48,7 @@
     {/snippet}
     {#snippet aside()}
       {#if layout === "split"}
-        <div class="wc-p [&_p]:my-8"><PrismicRichText field={slice.primary.body} /></div>
+        <div class="wc-hero-body [&_p]:my-8"><PrismicRichText field={slice.primary.body} /></div>
         <ButtonRow
           items={slice.items}
           grounds={["band-over-white", "band-over-black"]}
@@ -68,3 +72,36 @@
     {/snippet}
   </TitlePanel>
 </section>
+
+<style>
+  .wc-hero-body {
+    font-size: 1.875rem;
+    line-height: 1.6em;
+  }
+  @media (max-width: 479px) {
+    .wc-hero-body {
+      font-size: 1.2rem;
+    }
+  }
+  :global(
+    .wc-page-hero:has(+ [data-slice-type="headline"] + [data-slice-type="video_band"]) .wc-hero-body
+  ) {
+    font-size: 22px;
+  }
+  @media (max-width: 479px) {
+    :global(
+      .wc-page-hero:has(+ [data-slice-type="headline"] + [data-slice-type="video_band"])
+        .wc-hero-body
+    ) {
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 767px) {
+    :global(.wc-page-hero:has(+ [data-slice-type="lead_statement"]) h1) {
+      margin: 0;
+    }
+    :global(.wc-page-hero:has(+ [data-slice-type="lead_statement"]) .wc-title-aside) {
+      padding-inline: 0;
+    }
+  }
+</style>
