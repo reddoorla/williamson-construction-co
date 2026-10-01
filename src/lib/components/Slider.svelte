@@ -30,6 +30,7 @@
     /** Tailwind duration/easing utilities for the slide/fade movement. */
     transitionClass?: string;
     navigationClass?: string;
+    trackClass?: string;
     arrowClass?: string;
     nextArrowClass?: string;
     pauseClass?: string;
@@ -53,6 +54,7 @@
     showArrows = true,
     transitionClass = "duration-500 ease-in-out",
     navigationClass = "",
+    trackClass = "",
     arrowClass = "",
     nextArrowClass = "",
     pauseClass = "",
@@ -198,7 +200,7 @@
   onfocusin={onFocusIn}
 >
   <div
-    class="relative overflow-hidden w-full"
+    class="relative overflow-hidden w-full {trackClass}"
     {...useSwipe(handleSwipe, () => ({
       timeframe: 300,
       minSwipeDistance: 60,
