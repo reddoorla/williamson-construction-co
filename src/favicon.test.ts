@@ -38,3 +38,19 @@ describe("the site's icons are the reference's own files", () => {
     expect(digest("sha256", path)).toBe(digest("sha256", captured(file)));
   });
 });
+
+const NETLIFY_DEFAULT_ICO_MD5 = "e0dc6025f3ad91101529eaab3879cf79";
+
+describe("/favicon.ico", () => {
+  const ico = readFileSync(join(ROOT, "static/favicon.ico"));
+  const frames = Array.from({ length: ico.readUInt16LE(4) }, (_, i) => ico[6 + i * 16] || 256);
+
+  it("is an icon file of our own, so the host's default never answers", () => {
+    expect(ico.readUInt16LE(2)).toBe(1);
+    expect(createHash("md5").update(ico).digest("hex")).not.toBe(NETLIFY_DEFAULT_ICO_MD5);
+  });
+
+  it("carries 16, 32 and 48px frames", () => {
+    expect([...frames].sort((a, b) => a - b)).toEqual([16, 32, 48]);
+  });
+});
