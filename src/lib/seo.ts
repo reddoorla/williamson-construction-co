@@ -7,17 +7,19 @@ import { imgix, isPrismicImageUrl } from "$lib/utils/image";
 export const SITE_NAME = "Williamson Construction";
 export const SITE_LOCALE = "en_US";
 
-/** Fallback meta description when a page has none. Empty = omit the tag —
- *  an absent description beats a generic one repeated on every result, since
- *  search engines then synthesize a snippet from the page copy instead. */
-export const DEFAULT_DESCRIPTION = "";
+/** Fallback meta description for a page whose SEO tab is empty. Prismic
+ *  sends `null` for an unfilled field, and a Svelte prop default fires only
+ *  for `undefined`, so every loader and the layout coalesce with `||` before
+ *  it reaches <Seo>. Empty = omit the tag. */
+export const DEFAULT_DESCRIPTION =
+  "Williamson Construction builds and maintains the healthcare and education spaces that teach and heal our community, from planning to project closeout.";
 
 /** Fallback social-share card for pages with no `meta_image`. Empty = no
  *  card (Twitter downgrades to a small summary). Set this to a shipped asset
  *  (e.g. "/og-default.png") per site so shares are never imageless — a
  *  Reddoor-branded default is deliberately NOT shipped, since every cloned
  *  site would then leak the Reddoor card until the owner replaced it. */
-export const DEFAULT_OG_IMAGE = "";
+export const DEFAULT_OG_IMAGE = "/og-default.png";
 
 /** Social-card canvas. Prismic og images are cropped to this exact box so a
  *  card never ships a multi-MB original, and width/height can be advertised. */

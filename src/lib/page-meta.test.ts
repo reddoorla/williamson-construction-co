@@ -33,6 +33,13 @@ describe("pageMeta", () => {
     });
   });
 
+  it("maps Prismic's null description to undefined, so <Seo>'s default can fire", () => {
+    const blank = { ...page, data: { ...page.data, meta_description: null } };
+    expect(pageMeta(blank as unknown as PageDocument).meta_description).toBeUndefined();
+    const empty = { ...page, data: { ...page.data, meta_description: "" } };
+    expect(pageMeta(empty as unknown as PageDocument).meta_description).toBeUndefined();
+  });
+
   it("is undefined-safe when the SEO tab is empty", () => {
     const bare = { ...page, data: { ...page.data, meta_image: undefined } };
     expect(pageMeta(bare as unknown as PageDocument)).toMatchObject({

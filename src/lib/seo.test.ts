@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import sharp from "sharp";
 import {
   jsonLdScript,
   canonicalUrl,
@@ -11,6 +13,8 @@ import {
   SITE_NAME,
   OG_IMAGE_WIDTH,
   OG_IMAGE_HEIGHT,
+  DEFAULT_OG_IMAGE,
+  DEFAULT_DESCRIPTION,
 } from "./seo";
 
 const PRISMIC = "https://images.prismic.io/acme/abc.png?auto=compress";
@@ -203,5 +207,20 @@ describe("noindex routes", () => {
   // only. Vitest also runs with DEV=true, hence the MODE escape it relies on.
   it("is enforced under the test runner, which stands in for production", () => {
     expect(NOINDEX_ENFORCED).toBe(true);
+  });
+});
+
+describe("site defaults", () => {
+  it("ships a default share card at the advertised path, on the social canvas", async () => {
+    expect(DEFAULT_OG_IMAGE).toBe("/og-default.png");
+    const file = readFileSync(new URL("../../static" + DEFAULT_OG_IMAGE, import.meta.url));
+    const meta = await sharp(file).metadata();
+    expect([meta.width, meta.height]).toEqual([OG_IMAGE_WIDTH, OG_IMAGE_HEIGHT]);
+  });
+
+  it("has a default description that fits a search snippet", () => {
+    expect(DEFAULT_DESCRIPTION).toMatch(/Williamson Construction/);
+    expect(DEFAULT_DESCRIPTION.length).toBeGreaterThan(80);
+    expect(DEFAULT_DESCRIPTION.length).toBeLessThanOrEqual(160);
   });
 });
