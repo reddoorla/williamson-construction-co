@@ -75,6 +75,12 @@ const CASES: Case[] = [
     probes: [{ find: "text=Call to set up a meeting", x: 768, y: -381 }],
   },
   {
+    page: "join-the-team",
+    width: 1440,
+    origin: "body",
+    probes: [{ find: "text=Are you interested in joining", y: 864 }],
+  },
+  {
     page: "torrance-high-school",
     width: 1440,
     origin: "body",

@@ -49,7 +49,7 @@
       </div>
     {:else}
       {@render heading(headingClass)}
-      {#if aside}
+      {#if aside && layout === "buttons"}
         <div class="m-6 p-2 pb-8">{@render aside()}</div>
       {/if}
     {/if}
