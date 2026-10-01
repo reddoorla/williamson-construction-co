@@ -313,3 +313,15 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   834 (mm 10.0%), which leaves the reference's empty 45px paragraph (the
   2026-10-01 "[deviation] content" entry). Declared here, not in
   `floors.mjs`.
+
+## 2026-10-01 — /favicon.ico
+
+- [addition] `/favicon.ico`. The reference has none (404), and the rebuild
+  had none either, so Netlify answered with its own default icon. Browsers
+  fall back to `/favicon.ico` for bookmarks, history and search, so that is
+  where the operator saw no favicon. `static/favicon.ico` carries the
+  reference's 32px `favicon-32x32.png` exactly, a 16px downscale of it, and
+  a 48px frame: a centred 204×204 square (+26+26) cut from the 256×204
+  blue band of the reference's 256px apple-touch icon, which trims 26px of
+  blue each side and keeps the whole W. The declared `rel=icon` is still
+  the 32px PNG.
