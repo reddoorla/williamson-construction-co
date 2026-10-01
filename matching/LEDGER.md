@@ -298,3 +298,18 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
 - [deviation] gate r7 on 7db29f3: services' slider region and home's
   "Committed to your" fail at 390 on height alone, because the slides grow
   rather than clip (see the "fixed heights that clip" entry).
+- [deviation] gate r8 on 106d06e (cold server): services' slider region at
+  390 grows from Δh 15.6% to 23.4% (mm 30.6%). That is the 32px reserve
+  below 768 that keeps the controls off the slide's links, plus the slides
+  growing. The other 38 services regions and home are as in r7: home's
+  "Committed to your" fails at 1440, 834 and 390 (Δh 6.1/5.6/23.7%).
+- [census] final census at 7db29f3 (42 runs, 14 pages): 0 undeclared, 78
+  declared, and 12 ambiguous same-text rows. Those 12 are a candidate that
+  matches its reference element while another element shares its text;
+  they are left for adjudication, not fixed. Phase 3 CLEAN.
+- [floor] photo pipeline, final reads with `--mask-photos` at 7db29f3: projects
+  PASSes at every width (unmasked, 1440 "Featured Projects" fails at mm
+  27.5%). Providence Hospital's `top` passes at 1440 and 390 and fails at
+  834 (mm 10.0%), which leaves the reference's empty 45px paragraph (the
+  2026-10-01 "[deviation] content" entry). Declared here, not in
+  `floors.mjs`.
