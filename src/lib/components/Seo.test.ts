@@ -1,7 +1,7 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/svelte";
 import Seo from "./Seo.svelte";
-import { SITE_NAME } from "$lib/seo";
+import { SITE_NAME, DEFAULT_DESCRIPTION } from "$lib/seo";
 
 afterEach(() => cleanup());
 
@@ -36,8 +36,15 @@ describe("Seo head output", () => {
     expect(attr('meta[property="og:locale"]')).toBe("en_US");
   });
 
-  it("omits description tags when there is no description", () => {
+  it("falls back to the site's default description when a page sets none", () => {
     render(Seo, base);
+    expect(DEFAULT_DESCRIPTION.length).toBeGreaterThan(40);
+    expect(attr('meta[name="description"]')).toBe(DEFAULT_DESCRIPTION);
+    expect(attr('meta[property="og:description"]')).toBe(DEFAULT_DESCRIPTION);
+  });
+
+  it("omits description tags when a page explicitly sets an empty description", () => {
+    render(Seo, { ...base, description: "" });
     expect(head.querySelector('meta[name="description"]')).toBeNull();
     expect(head.querySelector('meta[property="og:description"]')).toBeNull();
   });

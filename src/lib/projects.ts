@@ -64,7 +64,7 @@ export function projectMeta(project: ProjectDocument) {
   return {
     title: project.data.title ?? project.uid,
     meta_title: project.data.meta_title,
-    meta_description: project.data.meta_description,
+    meta_description: project.data.meta_description || undefined,
     meta_image: project.data.meta_image?.url ?? project.data.hero_image?.url ?? undefined,
     meta_image_alt: project.data.meta_image?.alt ?? undefined,
   };
