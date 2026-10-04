@@ -778,3 +778,75 @@ first-day 6.0 MB and services 10.8 MB at 720p, against 1.2 MB for the
 10 s teacher clip. The recipe's phone cap (`-maxrate 2200k`) is the
 reading to revisit before the fleet rollout; the honest number for a
 phone visit to about-us is 6 MB, not the 1.5 MB home gets.
+
+## 2026-10-04 — About-us and services phones get 1200k renditions (reddoor-maintenance decision 63 step 0; content, no code)
+
+Step 0 of the fleet video rollout brief in reddoor-maintenance
+(`docs/briefs/2026-10-04-fleet-video-rollout.md`): before any other site
+gets long clips, lower the recipe's phone cap and re-encode the two long
+clips here with it. Nothing in `src/` changed; two Prismic fields did.
+
+**The masters, named.** The 2026-10-01 entry said the masters sit in
+Dropbox without saying which file is which. First-day is
+`08_Art/Final Videos/Implemented/1044044281-hd.mp4` (1920×1080, 60 fps,
+21.017 s, 32,490,563 bytes); the proof is the 1080 mp4 the recipe produced
+from it, 13,581,360 bytes against the library's 13,581,768, 408 bytes
+apart, so the same source went through the same recipe on 10-01. Services
+is `08_Art/Asset Export/04_Services-Video01.mov` (1280×720, 59.94 fps,
+43.077 s, 59,340,723 bytes); the five `Implemented/` files are all 1080p,
+so the 720p master lives one folder over. The folder names are Vimeo ids,
+which is worth knowing for the other sites: the Dropbox copies here were
+downloaded from Vimeo, not the reverse.
+
+**The cap.** `reddoor-maint video` with the phone rendition at
+`-maxrate 1200k -bufsize 2400k` (reddoor-maintenance#1128; crf 24 and the
+main profile unchanged) wrote `wc-first-day-phone-720.mp4` at 3,272,310
+bytes, 1246 kbps, against the 5,987,262 bytes / 2279 kbps file that was
+live (−45%), and `wc-services-phone-720.mp4` at 6,591,803 bytes, 1224
+kbps, against 10,841,182 / 2013 kbps (−39%). Against the master scaled to
+720p, mean SSIM over the 1261 first-day frames is 0.9636 for the 2200k
+file and 0.9390 for the 1200k one. At the size that matters, a 332×720
+centre crop scaled to a 390×844 phone, frames at 3, 9 and 15 s of master,
+2200k and 1200k side by side are not tellable apart; the asphalt texture
+is a shade softer at 1200k and nothing blocks or bands. 1200k stands; the
+brief's 1600k fallback was not needed.
+
+**Staging and upload, from a cloud session.** The cloud container has the
+Netlify PAT the maintenance repo already uses for its audits, so
+`netlify deploy --dir --no-build` without `--prod` made draft deploy
+`6ac29285eea0b219abeaf017` carrying only `/video/`; production stayed on
+`6ac283ceb571a8000872c14e`. Both files read back from the draft byte for
+byte (md5 `98cac161…`, `82331f38…`). `prismic-media-upload.yml`, run
+37222251406 on `main`, fetched them from the draft and posted them in 3 s:
+`Rsl_8dKDlgOaXLDz` and `vnOy-CjCSsIfsUSi`, both named `-phone-720-v2`
+because the Asset API does not dedupe and the recipe refuses a same-name,
+different-size file. The CDN copies match the staged md5s.
+
+**Rewire and publish.** Release `asKS8RIAAAqrTzbS` carried exactly two
+deltas, `video_mp4_mobile` on the about-us hero
+(`page_hero$b9fc710e…`) and the services hero (`page_hero$85aa1e41…`),
+read back with `diff_release` before publishing; the three other link
+fields and the 1080/720 renditions are untouched. Published a few
+minutes after a 19:22:02Z clock read (the publish minute itself was not
+read); the Prismic → Netlify hook rebuilds production as on 10-01.
+
+**Measured before, not after.** With the CDP byte counter from the 10-04
+entry (proved again on two controls: a 39,976-byte and a 7,557,295-byte
+file both reported exactly), the netlify host before the publish read
+about-us 4.00 MB in 8 s at 390px with the first-day phone file playing at
+4.07 s, and services 6.48 MB with the services phone file at 6.1 s. The
+after-publish readings are not in this entry: the session's permission
+classifier refused the same read-only measurement, and a Netlify deploy
+read, once a publish had happened in the session, as a production deploy.
+The bound is known without them, because a playing hero is fetched whole:
+about-us can now cost at most 3.27 MB, services at most 6.59 MB. The
+first is inside decision 63's 3 MB line only if Chromium stops short of
+the file end; the second cannot be, because the clip is 43 s long and the
+cap is per second. A 43 s background loop is a content decision, not an
+encoding one.
+
+**One belief corrected.** `www.williamson-construction.com` is not this
+site. It answers from Cloudflare with a 20-day `age` header and serves the
+Webflow transcodes; the Netlify host is where the Prismic content is, and
+the first reading of the morning, 5.26 MB of `cdn.prod.website-files.com`
+on "production", was a wrong host, not a regression.
