@@ -682,3 +682,33 @@ three LEDGER lines for the change are already in `matching/LEDGER.md`.
 One rollout note from review: `src/lib/site-pages.js`, the Webflow seed,
 still writes the 480p transcodes and no phone file, so a re-seed would
 overwrite the HD sources once they are live.
+
+## 2026-10-01 — Every page has a description and a share image (#15, Prismic release `ar6tURIAANxvSIoF`)
+
+All 14 pages shipped a title and nothing else: `DEFAULT_DESCRIPTION` and
+`DEFAULT_OG_IMAGE` were empty strings, and no Prismic document had its SEO
+fields filled. Webflow had none either, so it was parity, not a
+regression, but it was the cheapest search and sharing win before cutover.
+
+The code half (#15) gives the site a one-sentence default description
+drawn from its own copy and a default share card, `/og-default.png`: the
+footer logo on `--color-light` at 1200×630, built with sharp from
+`wcc-logo.svg`. The content half is a Prismic release, published by the
+operator on 10-04: a description written from each page's copy (94–160
+characters) and a share image per page, each project's hero photo, and for
+home, about and services the 1080p video posters, since their heroes are
+480p stills. Verified live on all 14 paths after the webhook rebuild.
+
+The review earned its keep. Prismic sends `null` for an unfilled text
+field, and a Svelte prop default fires only for `undefined`, so the new
+default would never have reached a live page; the first test passed only
+because its fixture omitted the prop. The reviewer proved it with a
+rendered probe, control first. `pageMeta`, `projectMeta` and the layout
+now coalesce `null` and `""` to `undefined`, with tests that feed `null`.
+One mutation run was vacuous (it resized the card to a scratch path) and
+was redone in place.
+
+Corrected on contact: decision 40 said there was no Prismic → Netlify
+publish webhook. A build hook "Prismic publish" had existed since 09-30
+05:32Z and fires on publish; the operator found it, and the deploy list
+confirmed it (reddoor-maintenance #1115).
