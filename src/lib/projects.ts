@@ -8,7 +8,7 @@ import {
   type RichTextField,
 } from "@prismicio/client";
 
-import type { ProjectDocument } from "../prismicio-types";
+import type { ProjectDocument } from "../../prismicio-types";
 
 export type ProjectCard = {
   id: string;
