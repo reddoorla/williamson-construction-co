@@ -346,3 +346,26 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   the live home page before the change: 5.5 MB (desktop) and 7.8 MB
   (phone) of video in 8 s without scrolling, 5.6 MB of it the doctor band
   below the fold. A visitor's pause now survives scrolling away and back.
+
+## 2026-10-04 — The HD sources are published (reddoor-maintenance decision 63, release `ar6sFBIAABZvSIhQ`)
+
+- [measured] video regions after the publish. page-diff on the published
+  routes against www (r9hd, 2026-10-01 19:14Z), read against a baseline the
+  same hour on the seed-backed `/dev/match` candidate, which still carries
+  the 480p transcodes (r9base): home `top` 1.6→3.1 / 1.1→2.8 / 0.4→2.8% at
+  390/834/1440, about `top` 2.1→5.0 / 1.7→4.4 / 0.6→3.6%, services `top`
+  1.9→2.4 / 1.6→1.9 / 0.7→1.1%, every one PASS with no height delta. The
+  rise is the sharper first frame against Webflow's 480p, as the 2026-10-01
+  line predicted; the doctor band's letterbox bars are gone (home
+  `Healthcare` at 1440: 0.2→4.2%, PASS).
+- [behaviour] one run in three painted the doctor band solid `bg-primary`
+  at 834 (home "We're setting out to rebuild spaces" 0.4→39.0%, FAIL): the
+  capture landed before the 1920×1080 poster or the first decoded frame
+  arrived. Two re-runs on 2026-10-04 read 0.6% and 0.6% (PASS), and `top`
+  held at 1.6 / 1.1 / 0.4%. A loading race the larger poster lengthens, not
+  a layout change. If it recurs, the fix is a narrower poster (`?w=1280` on
+  the imgix url), never a gate exception.
+- [note] `/dev/match/<uid>` renders `src/lib/site-pages.js`, the Webflow
+  seed, so the gate's candidate does not see a Prismic publish. The seed
+  still names the 480p transcodes and no `video_mp4_mobile`; a re-seed
+  would put them back. Fixing the seed is separate work.

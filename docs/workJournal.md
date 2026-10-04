@@ -712,3 +712,69 @@ Corrected on contact: decision 40 said there was no Prismic → Netlify
 publish webhook. A build hook "Prismic publish" had existed since 09-30
 05:32Z and fires on publish; the operator found it, and the deploy list
 confirmed it (reddoor-maintenance #1115).
+
+## 2026-10-04 — The six background videos play from the 1080p encodes (reddoor-maintenance decision 63; content, no code)
+
+The content half of the HD video work, handed over on 2026-10-01 by
+`docs/briefs/2026-10-01-williamson-video-hd.md` in reddoor-maintenance.
+Nothing in `src/` changed; what changed is Prismic, and the numbers below.
+
+**Upload.** `prismic-media-upload.yml` (#12), dispatched on `main` at
+18:48Z with the draft deploy's `/video/` as the base and 17 names, printed
+17 `UPLOADED` lines in 58 s. The eighteenth, `wc-scan-1080.webm`, was
+already in the library as `asQyRGCf2JNssgga`, uploaded at 18:11Z by the
+previous session with no workflow run behind it; its md5
+(`eb73c901c3cdf66a27c308a8261ae066`) matched the staged file byte for byte,
+so it was kept rather than uploaded twice. The library holds 18 `wc-` videos.
+
+**Rewire and publish.** Release `ar6sFBIAABZvSIhQ` staged home, about-us
+and services with exactly 21 deltas (11, 7, 3): the three link fields on
+each of the six slices and the three video-band posters, nothing else. The
+public Content API lists no release ref without an access token, so a
+cookie preview on the dev server was not possible; the deltas and a plain
+page that fetched the same CDN urls stood as the check. Published at 19:05Z;
+the Prismic → Netlify build hook (BACKLOG 40, confirmed in #1115) rebuilt
+the site, and production served the new urls at 19:06Z.
+
+**What the visitor downloads.** Measured in headless Chromium on
+production, unscrolled, 8 s, counting bytes on the wire from CDP
+`Network.dataReceived`. Home at 390px: 1.30, 1.52 and 1.49 MB over three
+runs, the hero playing the phone mp4 at 5.6–6.8 s in with no interaction,
+the two bands below the fold holding 50–190 KB each. Home at 1440px:
+1.67 MB, the 1080 webm. About-us at 390: 5.93 MB, almost all of it the
+first-day phone mp4 (6.0 MB), fetched whole in 8 s. Services at 390:
+6.42 MB of the 10.8 MB phone mp4. `hydration_mismatch` 0 on every load;
+zero console errors, warnings or failed requests on four loads; no Vimeo
+frame anywhere. Lighthouse (lhci, desktop preset): production home Best
+Practices 100, Performance 97; the dev fixtures route Best Practices 100.
+
+**The instrument was wrong first.** The first counter summed response
+bodies and fell back to `content-length` for a body it could not read.
+Chromium cancels its first `bytes=0-` request for a `preload=metadata`
+video after a few hundred KB and reads the tail with a second range, so
+every cancelled request counted as the whole file: 16.8 MB at 390 on the
+old transcodes, which looked like a damning finding. A control page with
+one `preload=auto` autoplay of a known 1,220,168-byte file settled it: the
+CDP count reported 1,220,168, the first instrument did not. The real figure
+for the old transcodes was 2.9 MB on a plain page.
+
+**Beliefs corrected.** A plain test page without `<meta name="viewport">`
+showed Chromium choosing the 1080 webm at 390px, which read as "Chromium
+ignores `media` on `<source>`"; production, which has the meta, chose the
+phone mp4. The attribute works; the test page laid out at 980px. Both the
+Webflow webm and the new one carry their Cues before the first cluster
+(offsets 96 and 102), so a hero stall seen once on the old transcode was
+not a Cues-at-the-end seek. The `/dev/match` candidate renders the Webflow
+seed, not Prismic, so the gate was run on the published routes instead
+(LEDGER, 2026-10-04).
+
+**Gate.** Video regions 1–3 points higher than the seed-backed baseline
+and PASS everywhere; one capture in three caught the doctor band at 834
+before its poster painted (39%), two re-runs read 0.6%. LEDGER has the
+lines.
+
+**For the recipe.** The phone renditions for the two long clips are heavy:
+first-day 6.0 MB and services 10.8 MB at 720p, against 1.2 MB for the
+10 s teacher clip. The recipe's phone cap (`-maxrate 2200k`) is the
+reading to revisit before the fleet rollout; the honest number for a
+phone visit to about-us is 6 MB, not the 1.5 MB home gets.
