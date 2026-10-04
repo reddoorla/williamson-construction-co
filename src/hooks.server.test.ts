@@ -5,6 +5,7 @@ import {
   isCmsFramedRoute,
   widenFrameAncestors,
 } from "$lib/security/cms-framing";
+import { prerender as simulatorPrerender } from "./routes/slice-simulator/+page";
 
 const POLICY =
   "default-src 'self'; frame-src 'self' https://williamson-construction.prismic.io; frame-ancestors 'self'; base-uri 'self'";
@@ -35,6 +36,13 @@ describe("handle", () => {
 });
 
 describe("CMS framing", () => {
+  // A prerendered /slice-simulator is a static file on Netlify: the hook never
+  // runs for it and netlify.toml's `/*` X-Frame-Options: SAMEORIGIN reaches it,
+  // so every test below would pass while the Type Builder still cannot frame it.
+  it("keeps /slice-simulator server-rendered, so the hook decides its headers", () => {
+    expect(simulatorPrerender).toBe(false);
+  });
+
   it("keeps every ordinary page SAMEORIGIN with frame-ancestors 'self'", async () => {
     const headers = await headersFor("/about-us");
     expect(headers.get("X-Frame-Options")).toBe("SAMEORIGIN");
