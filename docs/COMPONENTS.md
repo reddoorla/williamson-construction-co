@@ -28,7 +28,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`AnimateInTriggered.svelte`](../src/lib/components/Animation/AnimateInTriggered.svelte) | `trigger`, `style`, `transitionDuration`, `children` | — |  |
 | [`AnimateOutTriggered.svelte`](../src/lib/components/Animation/AnimateOutTriggered.svelte) | `trigger`, `style`, `transitionDuration`, `children` | — |  |
 | [`TriggerTransitionOnMount.svelte`](../src/lib/components/Animation/TriggerTransitionOnMount.svelte) | `children` | — |  |
-| [`BgVideo.svelte`](../src/lib/components/BgVideo.svelte) | `mp4`, `webm`, `mobileMp4`, `poster`, `posterWidth`, `sizes`, `controlClass`, `priority` | 31 |  |
+| [`BgVideo.svelte`](../src/lib/components/BgVideo.svelte) | `mp4`, `webm`, `mobileMp4`, `poster`, `posterWidth`, `sizes`, `controlClass`, `priority` | 33 |  |
 | [`BrandIcon.svelte`](../src/lib/components/BrandIcon.svelte) | `platform` | 5 | Brand glyphs from simple-icons (CC0 / public domain) — facebook/x/reddit/ instagram from v16, linkedin from v10 (pre brand-removal) |
 | [`ButtonRow.svelte`](../src/lib/components/ButtonRow.svelte) | — | — |  |
 | [`ContentBand.svelte`](../src/lib/components/ContentBand.svelte) | `sliceType`, `variation`, `sectionClass`, `contentClass`, `fallbackHeight`, `background`, `children` | — |  |
@@ -88,4 +88,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-67 modules, 444 tests behind them.
+67 modules, 446 tests behind them.
