@@ -49,6 +49,7 @@ beforeEach(() => {
     this: HTMLMediaElement,
   ) {
     this.dispatchEvent(new Event("play"));
+    this.dispatchEvent(new Event("playing"));
     return Promise.resolve();
   });
   pauseSpy = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(function (
@@ -213,17 +214,53 @@ describe("BgVideo", () => {
   describe("poster and fade-in", () => {
     const prismicPoster =
       "https://images.prismic.io/williamson-construction/abc_wc-teacher-poster-1080.jpg?auto=format,compress";
+    const placed = "absolute inset-0 h-full w-full";
+    const heroSizes = "(max-width: 888px) 889px, 100vw";
+    const preloadLink = () => document.head.querySelector('link[rel="preload"][as="image"]');
+    const widthsOf = (img: HTMLImageElement) =>
+      img
+        .getAttribute("srcset")!
+        .split(", ")
+        .map((c) => Number(c.split(" ")[1].replace("w", "")));
 
     it("paints the poster as a responsive image, so a phone fetches a phone-sized file", () => {
       const { container } = render(BgVideo, { props: { ...props, poster: prismicPoster } });
       const img = container.querySelector("img")!;
-      expect(img).toBeTruthy();
       expect(img.getAttribute("alt")).toBe("");
       expect(img.getAttribute("sizes")).toBe("100vw");
       const candidates = img.getAttribute("srcset")!.split(", ");
       expect(candidates[0]).toMatch(/[?&]w=480 480w$/);
       expect(candidates.at(-1)).toMatch(/ 2560w$/);
       expect(img.getAttribute("src")).toContain("w=1920");
+    });
+
+    it("never offers a candidate wider than the poster itself, since imgix would upscale it", () => {
+      const { container } = render(BgVideo, {
+        props: { ...props, poster: prismicPoster, posterWidth: 854 },
+      });
+      const img = container.querySelector("img")!;
+      expect(widthsOf(img)).toEqual([480, 768, 854]);
+      expect(img.getAttribute("src")).toMatch(/[?&]w=854(&|$)/);
+    });
+
+    it("takes the caller's sizes, for a box the poster overflows", () => {
+      const { container } = render(BgVideo, {
+        props: { ...props, poster: prismicPoster, sizes: heroSizes },
+      });
+      expect(container.querySelector("img")!.getAttribute("sizes")).toBe(heroSizes);
+    });
+
+    it("places the poster beneath the video, in the caller's box", () => {
+      const { container } = render(BgVideo, {
+        props: { ...props, poster: prismicPoster, class: placed },
+      });
+      const img = container.querySelector("img")!;
+      const video = container.querySelector("video")!;
+      expect(img.compareDocumentPosition(video) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      for (const el of [img, video]) {
+        expect(el.classList.contains("absolute")).toBe(true);
+        expect(el.classList.contains("inset-0")).toBe(true);
+      }
     });
 
     it("leaves the poster to the image, so the video never downloads it a second time", () => {
@@ -233,20 +270,32 @@ describe("BgVideo", () => {
       expect(video.getAttribute("style") ?? "").not.toContain("background-image");
     });
 
-    it("makes the hero poster the page's priority image", () => {
+    it("preloads the hero poster as the same file the image picks", () => {
       const { container } = render(BgVideo, {
-        props: { ...props, poster: prismicPoster, priority: true },
+        props: {
+          ...props,
+          poster: prismicPoster,
+          posterWidth: 854,
+          sizes: heroSizes,
+          priority: true,
+        },
       });
       const img = container.querySelector("img")!;
       expect(img.getAttribute("fetchpriority")).toBe("high");
       expect(img.getAttribute("loading")).toBe("eager");
-      const preload = document.head.querySelector('link[rel="preload"][as="image"]');
-      expect(preload?.getAttribute("imagesrcset")).toBe(img.getAttribute("srcset"));
+      const preload = preloadLink()!;
+      expect(preload.getAttribute("href")).toBe(img.getAttribute("src"));
+      expect(preload.getAttribute("imagesrcset")).toBe(img.getAttribute("srcset"));
+      expect(preload.getAttribute("imagesizes")).toBe(img.getAttribute("sizes"));
+      expect(preload.getAttribute("fetchpriority")).toBe("high");
     });
 
-    it("lazy-loads a poster that is not the hero", () => {
+    it("lazy-loads a poster that is not the hero, and never preloads it", () => {
       const { container } = render(BgVideo, { props: { ...props, poster: prismicPoster } });
-      expect(container.querySelector("img")!.getAttribute("loading")).toBe("lazy");
+      const img = container.querySelector("img")!;
+      expect(img.getAttribute("loading")).toBe("lazy");
+      expect(img.getAttribute("fetchpriority")).toBe("auto");
+      expect(preloadLink()).toBeNull();
     });
 
     it("starts the video transparent, over the poster", () => {
@@ -254,6 +303,14 @@ describe("BgVideo", () => {
       const video = container.querySelector("video")!;
       expect(video.classList.contains("opacity-0")).toBe(true);
       expect(video.classList.contains("opacity-100")).toBe(false);
+    });
+
+    it("shows a video that has no poster at once, rather than an empty box", () => {
+      const { container } = render(BgVideo, { props: { ...props, poster: null } });
+      const video = container.querySelector("video")!;
+      expect(container.querySelector("img")).toBeNull();
+      expect(video.classList.contains("opacity-100")).toBe(true);
+      expect(video.classList.contains("opacity-0")).toBe(false);
     });
 
     it("fades the video in on its first playing event, not when it can merely play", async () => {
@@ -268,8 +325,18 @@ describe("BgVideo", () => {
       video.dispatchEvent(new Event("playing"));
       await tick();
       expect(video.classList.contains("opacity-100")).toBe(true);
+      expect(video.classList.contains("opacity-0")).toBe(false);
+      expect(video.classList.contains("transition-opacity")).toBe(true);
       expect(video.classList.contains("duration-700")).toBe(true);
       expect(video.classList.contains("ease-out")).toBe(true);
+    });
+
+    it("fades in once autoplay is accepted near the viewport", async () => {
+      const { container } = render(BgVideo, { props });
+      await tick();
+      io!([{ isIntersecting: true }]);
+      await tick();
+      expect(container.querySelector("video")!.classList.contains("opacity-100")).toBe(true);
     });
 
     it("keeps the poster when the browser refuses to play", async () => {
@@ -281,14 +348,24 @@ describe("BgVideo", () => {
       expect(container.querySelector("video")!.classList.contains("opacity-0")).toBe(true);
     });
 
-    it("shows the video at once, with no fade, under prefers-reduced-motion", async () => {
+    it("stays visible once revealed, through a pause", async () => {
+      const { container } = render(BgVideo, { props });
+      await tick();
+      const video = container.querySelector("video")!;
+      video.dispatchEvent(new Event("playing"));
+      video.dispatchEvent(new Event("pause"));
+      await tick();
+      expect(video.classList.contains("opacity-100")).toBe(true);
+    });
+
+    it("keeps the poster under prefers-reduced-motion, and shows a started video at once", async () => {
       reducedMotion = true;
       const { container, getByRole } = render(BgVideo, { props });
       await tick();
       const video = container.querySelector("video")!;
+      expect(video.classList.contains("opacity-0")).toBe(true);
       expect(video.classList.contains("transition-opacity")).toBe(false);
       await fireEvent.click(getByRole("button", { name: "Play background video" }));
-      video.dispatchEvent(new Event("playing"));
       await tick();
       expect(video.classList.contains("opacity-100")).toBe(true);
       expect(video.classList.contains("transition-opacity")).toBe(false);

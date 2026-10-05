@@ -12,6 +12,7 @@ import EmployeeApplication from "./EmployeeApplication/index.svelte";
 import ContactCard from "./ContactCard/index.svelte";
 import CtaBlock from "./CtaBlock/index.svelte";
 import ClientLogos from "./ClientLogos/index.svelte";
+import VideoBand from "./VideoBand/index.svelte";
 import type { ProjectCard } from "$lib/projects";
 import {
   BUTTON_CLASS,
@@ -64,6 +65,26 @@ const rel = (id: string) => ({
   project: { link_type: "Document", id, type: "project", uid: id, isBroken: false },
 });
 
+describe("VideoBand", () => {
+  it("lazy-loads its poster beneath the video, capped at the poster's own width", () => {
+    const { container } = render(VideoBand, {
+      props: {
+        slice: slice("video_band", {
+          poster: image("band"),
+          video_mp4: mediaLink("band.mp4"),
+          video_webm: noMedia,
+          video_mp4_mobile: noMedia,
+        }),
+      },
+    });
+    const poster = container.querySelector("img")!;
+    expect(poster.getAttribute("loading")).toBe("lazy");
+    expect(poster.getAttribute("sizes")).toBe("100vw");
+    expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);
+    expect(poster.classList.contains("absolute")).toBe(true);
+  });
+});
+
 describe("PageHero", () => {
   const primary = {
     heading: "We build spaces that teach and heal our community.",
@@ -82,6 +103,12 @@ describe("PageHero", () => {
     expect(poster.getAttribute("src")).toContain("/poster.jpg");
     expect(poster.getAttribute("fetchpriority")).toBe("high");
     expect(poster.getAttribute("loading")).toBe("eager");
+    expect(poster.getAttribute("sizes")).toBe(
+      "(max-width: 888px) 889px, (max-width: 991px) 100vw, (max-width: 1244px) 1245px, 100vw",
+    );
+    expect(poster.classList.contains("absolute")).toBe(true);
+    expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);
+    expect(poster.getAttribute("srcset")).not.toMatch(/ (1920|2560)w/);
     expect(video.muted).toBe(true);
     expect(video.getAttribute("aria-hidden")).toBe("true");
     expect(video.getAttribute("tabindex")).toBe("-1");

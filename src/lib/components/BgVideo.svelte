@@ -2,13 +2,16 @@
   import { onMount } from "svelte";
   import Pause from "@lucide/svelte/icons/pause";
   import Play from "@lucide/svelte/icons/play";
-  import { imgix, srcset } from "$lib/utils/image";
+  import { cappedWidths } from "@reddoorla/maintenance/images";
+  import { DEFAULT_IMAGE_WIDTHS, imgix, srcset } from "$lib/utils/image";
 
   type Props = {
     mp4?: string | null;
     webm?: string | null;
     mobileMp4?: string | null;
     poster?: string | null;
+    posterWidth?: number | null;
+    sizes?: string;
     class?: string;
     controlClass?: string;
     priority?: boolean;
@@ -19,6 +22,8 @@
     webm,
     mobileMp4,
     poster,
+    posterWidth,
+    sizes = "100vw",
     class: passedClasses = "",
     controlClass = "bottom-4 right-4",
     priority = false,
@@ -32,8 +37,11 @@
   let userPaused = false;
 
   const hasSource = $derived(Boolean(mp4 || webm || mobileMp4));
-  const posterSrc = $derived(imgix(poster, { w: 1920 }));
-  const posterSrcset = $derived(srcset(poster));
+  const posterWidths = $derived(
+    cappedWidths({ dimensions: { width: posterWidth ?? 0 } }, DEFAULT_IMAGE_WIDTHS),
+  );
+  const posterSrc = $derived(imgix(poster, { w: Math.min(1920, posterWidth || 1920) }));
+  const posterSrcset = $derived(srcset(poster, posterWidths));
   const fade = $derived(motionOk ? "transition-opacity duration-700 ease-out" : "");
 
   function play() {
@@ -98,7 +106,7 @@
       as="image"
       href={posterSrc}
       imagesrcset={posterSrcset}
-      imagesizes="100vw"
+      imagesizes={sizes}
       fetchpriority="high"
     />
   {/if}
@@ -108,7 +116,7 @@
   <img
     src={posterSrc}
     srcset={posterSrcset}
-    sizes="100vw"
+    {sizes}
     alt=""
     fetchpriority={priority ? "high" : "auto"}
     loading={priority ? "eager" : "lazy"}
@@ -118,7 +126,7 @@
 {/if}
 <video
   bind:this={video}
-  class="object-cover {revealed ? 'opacity-100' : 'opacity-0'} {fade} {passedClasses}"
+  class="object-cover {revealed || !posterSrc ? 'opacity-100' : 'opacity-0'} {fade} {passedClasses}"
   muted
   loop
   playsinline

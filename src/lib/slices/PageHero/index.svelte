@@ -11,6 +11,8 @@
   const mp4 = $derived(mediaUrl(slice.primary.video_mp4));
   const webm = $derived(mediaUrl(slice.primary.video_webm));
   const mobileMp4 = $derived(mediaUrl(slice.primary.video_mp4_mobile));
+  const heroPosterSizes =
+    "(max-width: 888px) 889px, (max-width: 991px) 100vw, (max-width: 1244px) 1245px, 100vw";
   const hasVideo = $derived(Boolean(mp4 || webm || mobileMp4));
   const hasBody = $derived(isFilled.richText(slice.primary.body));
   const hasButtons = $derived(slice.items.length > 0);
@@ -32,6 +34,8 @@
           {webm}
           {mobileMp4}
           poster={slice.primary.background_image?.url}
+          posterWidth={slice.primary.background_image?.dimensions?.width}
+          sizes={heroPosterSizes}
           priority
           class="absolute inset-0 h-full w-full"
           controlClass="top-20 right-4"
