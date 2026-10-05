@@ -850,3 +850,62 @@ site. It answers from Cloudflare with a 20-day `age` header and serves the
 Webflow transcodes; the Netlify host is where the Prismic content is, and
 the first reading of the morning, 5.26 MB of `cdn.prod.website-files.com`
 on "production", was a wrong host, not a regression.
+
+## 2026-10-04 — Off Slice Machine, onto the Prismic CLI (reddoor-maintenance#1090, `claude/prismic-cli`)
+
+Phase 4 of the fleet migration, following espada#79, caltex-landing and
+vida-legacy-foundation. Slice Machine is deprecated by Prismic since
+2026-09-18; models are now edited in the Type Builder, and the generated
+files come from `pnpm prismic:gen`. `prismic.config.json` replaces
+`slicemachine.config.json` in all five places that read it (svelte.config.js,
+`$lib/prismicio`, `scripts/csp-policy.test.ts`, `tests/smoke/routes.ts`,
+`.env.example`), and the eight relative imports of the types file follow it
+to the project root. Because those imports already name the file by path,
+svelte-check keeps its `@prismicio/client` augmentation without an
+`app.d.ts` import: 0 errors on 4735 files.
+
+**The simulator could not be framed, and the cause was prerendering.** This
+site's hook already sent `X-Frame-Options: SAMEORIGIN` on every
+server-rendered response and `kit.csp` sets `frame-ancestors 'self'`, but on
+`main` `/slice-simulator` was neither: the root layout's `prerender = "auto"`
+built it to `slice-simulator.html`, so Netlify served it as a static file
+with netlify.toml's `/*` `SAMEORIGIN` and only a `<meta>` CSP, which cannot
+carry `frame-ancestors`. Read live on
+`williamson-construction-co.netlify.app` at 22:17Z: `/slice-simulator`, `/`
+and `/health` all answer `SAMEORIGIN`. The route is now `prerender = false`,
+and the hook, on that path only, drops X-Frame-Options and widens the CSP to
+`frame-ancestors 'self' http://localhost:* https://*.prismic.io https://prismic.io`
+(`$lib/security/cms-framing.ts`, the starter's). From `vite preview`, before
+and after: `/` and `/about-us` are static with neither header both times,
+`/health` sends `SAMEORIGIN` both times, and `/slice-simulator` went from a
+static file with neither header to a 200 with the widened policy and no
+X-Frame-Options. The prerendered set went from 14 HTML files to 13.
+
+What this cannot show locally is that Netlify's `/*` static header stays off
+a function response here: on this site the hook sends the same `SAMEORIGIN`
+on every other server-rendered route, so the live `/health` reading cannot
+tell the two sources apart. caltex-landing measured it on a site with no
+hook (`/health` there carries none). The deploy preview of this branch's PR
+is where to read it.
+
+**Six mutations, each red.** In `src/hooks.server.test.ts`: `prerender = true`
+(the new guard, 1 of 7 red), the hook's framed branch disabled (2 red),
+`widenFrameAncestors` keeping the old directive (1 red), the trailing-slash
+normalisation removed (1 red), and SAMEORIGIN dropped from ordinary pages
+(1 red). The codegen gate went red when a field was added to Headline's
+model without regenerating, and green on the committed tree. Two of the
+first-attempt mutations were `sed` patterns that matched nothing and passed
+7/7; a diff of each mutation is what caught that.
+
+**No stale model, and Prismic agrees.** The regenerated types export the
+same 109 names as the Slice Machine file and the slice index maps the same
+29 components. This site is not in the nightly drift log, so the 3 custom
+types and 29 slices were read through the Prismic connector and compared
+field by field (type and config; slice-zone choices by key): 0
+differences. The comparison was first shown to fail on three deliberate
+local edits (a dropped Select option, a dropped slice choice, a changed
+label), each reported, then restored.
+
+The Type Builder's simulator URL belongs on the netlify.app host:
+`www.williamson-construction.com` is still the old Webflow site (see the
+entry above).

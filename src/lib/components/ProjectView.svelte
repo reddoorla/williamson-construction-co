@@ -3,7 +3,7 @@
   import { isFilled } from "@prismicio/client";
   import TitlePanel from "$lib/components/TitlePanel.svelte";
   import { vimeoEmbedUrl } from "$lib/vimeo-url";
-  import type { ProjectDocument } from "../../prismicio-types";
+  import type { ProjectDocument } from "../../../prismicio-types";
 
   type Props = { project: ProjectDocument };
 
