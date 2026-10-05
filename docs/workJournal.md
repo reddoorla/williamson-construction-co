@@ -979,7 +979,7 @@ The operator asked for a better hero placeholder and a fade-in once the video st
 - At 390×844 (DPR 3, `isMobile`), the LCP element moved from the `VIDEO` (via its poster) at 1140–1176 ms to the poster `IMG` at 708–1048 ms.
 - Lighthouse mobile median of 3 went from LCP 3025 to 2888 ms. CLS is 0 on both sides.
 - At 1440×900 the LCP element is still the video, now as the 1080p webm's first frame. Chrome scores an image by its natural pixels, and an 854×480 poster (0.41 MP) loses to a 1440×700 frame. Lighthouse desktop: 887 vs 896 ms, CLS 0.0031 both, unchanged.
-- Bytes at 390, video plus every poster: before 2.21 and 2.13 MB, after 1.89 and 1.90 MB, under the 3 MB line. The hero poster itself is 40 KB at w=854.
+- Bytes at 390, video plus every poster: before 2.20 and 2.13 MB, after 1.89 and 1.90 MB, under the 3 MB line. The hero poster itself is 40 KB at w=854.
 - Mid-fade frames were caught at opacity 0.78–0.89, about 330 ms after `playing`.
 
 **Not done: the sharper poster itself.** Frame 0 of each hero video (`wc-teacher-1080`, `wc-first-day-1080`, `wc-services-720`) was extracted with `ffmpeg -frames:v 1 -q:v 1` and matches the old poster's shot and framing exactly, at 1920×1080, 1920×1080 and 1280×720. Services has no 1080p: its master is 1280×720. Uploading the frames needs a public URL for the Prismic connector, or the media-upload workflow, and this session's permission policy refused both as a public upload. So no asset and no release exist. The ask is reddoor-maintenance Operator decision 73. Once a 1920 poster is published, desktop LCP should move to the poster, and the srcset will reach 1920w with no code change, because the cap reads the field's dimensions.
