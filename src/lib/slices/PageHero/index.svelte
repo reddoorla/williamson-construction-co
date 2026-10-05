@@ -12,7 +12,7 @@
   const webm = $derived(mediaUrl(slice.primary.video_webm));
   const mobileMp4 = $derived(mediaUrl(slice.primary.video_mp4_mobile));
   const heroPosterSizes =
-    "(max-width: 888px) 889px, (max-width: 991px) 100vw, (max-width: 1244px) 1245px, 100vw";
+    "(max-width: 888px) 889px, (max-width: 991.98px) 100vw, (max-width: 1244px) 1245px, 100vw";
   const hasVideo = $derived(Boolean(mp4 || webm || mobileMp4));
   const hasBody = $derived(isFilled.richText(slice.primary.body));
   const hasButtons = $derived(slice.items.length > 0);

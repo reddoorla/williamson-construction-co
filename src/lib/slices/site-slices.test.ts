@@ -104,7 +104,7 @@ describe("PageHero", () => {
     expect(poster.getAttribute("fetchpriority")).toBe("high");
     expect(poster.getAttribute("loading")).toBe("eager");
     expect(poster.getAttribute("sizes")).toBe(
-      "(max-width: 888px) 889px, (max-width: 991px) 100vw, (max-width: 1244px) 1245px, 100vw",
+      "(max-width: 888px) 889px, (max-width: 991.98px) 100vw, (max-width: 1244px) 1245px, 100vw",
     );
     expect(poster.classList.contains("absolute")).toBe(true);
     expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);

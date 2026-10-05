@@ -243,6 +243,25 @@ describe("BgVideo", () => {
       expect(img.getAttribute("src")).toMatch(/[?&]w=854(&|$)/);
     });
 
+    it("asks for at most 1920px as the fallback src of a wider poster", () => {
+      const { container } = render(BgVideo, {
+        props: { ...props, poster: prismicPoster, posterWidth: 4000, priority: true },
+      });
+      const img = container.querySelector("img")!;
+      expect(img.getAttribute("src")).toMatch(/[?&]w=1920(&|$)/);
+      expect(preloadLink()!.getAttribute("href")).toBe(img.getAttribute("src"));
+      expect(widthsOf(img).at(-1)).toBe(2560);
+    });
+
+    it("treats a poster width of 0 as unknown", () => {
+      const { container } = render(BgVideo, {
+        props: { ...props, poster: prismicPoster, posterWidth: 0 },
+      });
+      const img = container.querySelector("img")!;
+      expect(img.getAttribute("src")).toMatch(/[?&]w=1920(&|$)/);
+      expect(widthsOf(img)).toEqual([480, 768, 1024, 1440, 1920, 2560]);
+    });
+
     it("takes the caller's sizes, for a box the poster overflows", () => {
       const { container } = render(BgVideo, {
         props: { ...props, poster: prismicPoster, sizes: heroSizes },
