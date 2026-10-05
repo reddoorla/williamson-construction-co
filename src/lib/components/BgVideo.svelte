@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Pause from "@lucide/svelte/icons/pause";
   import Play from "@lucide/svelte/icons/play";
+  import { imgix, srcset } from "$lib/utils/image";
 
   type Props = {
     mp4?: string | null;
@@ -10,6 +11,7 @@
     poster?: string | null;
     class?: string;
     controlClass?: string;
+    priority?: boolean;
   };
 
   let {
@@ -19,15 +21,20 @@
     poster,
     class: passedClasses = "",
     controlClass = "bottom-4 right-4",
+    priority = false,
   }: Props = $props();
 
   let video = $state<HTMLVideoElement>();
   let playing = $state(false);
+  let revealed = $state(false);
   let mounted = $state(false);
-  let motionOk = true;
+  let motionOk = $state(true);
   let userPaused = false;
 
   const hasSource = $derived(Boolean(mp4 || webm || mobileMp4));
+  const posterSrc = $derived(imgix(poster, { w: 1920 }));
+  const posterSrcset = $derived(srcset(poster));
+  const fade = $derived(motionOk ? "transition-opacity duration-700 ease-out" : "");
 
   function play() {
     try {
@@ -84,11 +91,34 @@
   }
 </script>
 
+<svelte:head>
+  {#if priority && posterSrc}
+    <link
+      rel="preload"
+      as="image"
+      href={posterSrc}
+      imagesrcset={posterSrcset}
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+  {/if}
+</svelte:head>
+
+{#if posterSrc}
+  <img
+    src={posterSrc}
+    srcset={posterSrcset}
+    sizes="100vw"
+    alt=""
+    fetchpriority={priority ? "high" : "auto"}
+    loading={priority ? "eager" : "lazy"}
+    decoding="async"
+    class="object-cover {passedClasses}"
+  />
+{/if}
 <video
   bind:this={video}
-  class="bg-cover bg-center object-cover {passedClasses}"
-  style={poster ? `background-image: url("${poster}")` : undefined}
-  poster={poster ?? undefined}
+  class="object-cover {revealed ? 'opacity-100' : 'opacity-0'} {fade} {passedClasses}"
   muted
   loop
   playsinline
@@ -96,6 +126,7 @@
   aria-hidden="true"
   tabindex="-1"
   onplay={() => (playing = true)}
+  onplaying={() => (revealed = true)}
   onpause={() => (playing = false)}
 >
   {#if mobileMp4}<source src={mobileMp4} type="video/mp4" media="(max-width: 767px)" />{/if}

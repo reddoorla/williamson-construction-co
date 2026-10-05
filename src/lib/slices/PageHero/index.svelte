@@ -32,6 +32,7 @@
           {webm}
           {mobileMp4}
           poster={slice.primary.background_image?.url}
+          priority
           class="absolute inset-0 h-full w-full"
           controlClass="top-20 right-4"
         />

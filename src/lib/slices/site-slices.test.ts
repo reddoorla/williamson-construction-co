@@ -78,7 +78,10 @@ describe("PageHero", () => {
     const { container } = render(PageHero, { props: { slice: slice("page_hero", primary) } });
     const video = container.querySelector("video")!;
     expect(video).not.toBeNull();
-    expect(video.getAttribute("poster")).toContain("/poster.jpg");
+    const poster = container.querySelector("img")!;
+    expect(poster.getAttribute("src")).toContain("/poster.jpg");
+    expect(poster.getAttribute("fetchpriority")).toBe("high");
+    expect(poster.getAttribute("loading")).toBe("eager");
     expect(video.muted).toBe(true);
     expect(video.getAttribute("aria-hidden")).toBe("true");
     expect(video.getAttribute("tabindex")).toBe("-1");
