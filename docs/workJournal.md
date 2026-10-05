@@ -909,3 +909,59 @@ label), each reported, then restored.
 The Type Builder's simulator URL belongs on the netlify.app host:
 `www.williamson-construction.com` is still the old Webflow site (see the
 entry above).
+
+## 2026-10-04 — The simulator leaves every public page's bundle; an encoded path gets the simulator's framing (`fix/simulator-chunk-and-encoded-framing`)
+
+Ported from reddoor-starter#168 on the caltex-landing#70 pattern, and
+shaped like williamson-homes#21, whose hook test this file matched
+byte for byte apart from the hostnames. The starter's entry records the
+bundle fixes that failed before this one. `/slice-simulator` imports
+`SliceSimulator` from the `@prismicio/svelte` barrel, which re-exports it
+statically, so Rolldown put the simulator into the barrel's shared chunk
+(`DIDVsZdL.js` on `main`), and every node that renders a `SliceZone`
+loaded it. `scripts/prismic-barrel.ts`, identical to the starter's,
+declares that re-export-only module side-effect-free.
+
+Measured from the build manifest as each client node's static-import
+closure, gzipped, `main` → branch: home and `[uid]` went 73,917 → 69,487,
+`/join-the-team` 73,930 → 69,500, `projects/[uid]` 34,615 → 29,848,
+`/dev/a11y-fixtures` 57,109 → 52,403 and `/dev/match/[uid]` 75,218 →
+70,789. Each reached the simulator chunk before, and none does after.
+`/slice-simulator` went 73,951 → 74,065 and carries the code in its own
+node. The root layout (44,125) never reached it. Two builds of the same
+source differ by up to 10 B gz here, so read the last digit as noise.
+
+The hook asked `isCmsFramedRoute(event.url.pathname)`, the raw path, while
+SvelteKit routes on the decoded one. From `vite preview` of `main`,
+`/slice%2Dsimulator` and `/slice%2dsimulator` rendered the simulator with
+`X-Frame-Options: SAMEORIGIN` and `frame-ancestors 'self'`: failed closed,
+but the wrong test. The hook now asks `event.route.id`, and both encoded
+paths answer like `/slice-simulator`.
+
+All nine hook tests stay, each event now carrying a route id, the
+upstream-`X-Frame-Options` and literal-framer tests unchanged. The
+trailing-slash test became an exact-match test; the encoded-path,
+null-route and route-exists tests are new. The bundle check is vitest
+(`scripts/prismic-barrel.test.ts`), so the smoke spec carries only framing.
+Its "ordinary page" control does not use `/` as the other sites' do: `/` is
+prerendered, so under `vite preview` it carries no CSP and no
+`X-Frame-Options` at all, and a "not framed by Prismic" assertion there
+passes whatever the hook does. It asks `/join-the-team`, which is
+server-rendered, and requires `SAMEORIGIN` and a `frame-ancestors` that
+names no Prismic host. Framing every route turns it red.
+
+Against a `main` build with the new tests copied in, vitest failed 4 of 20
+(the bundle check, encoded path, null route, exact match) and the smoke spec
+2 of 4 (both encoded paths). On the branch all pass. Mutations, each red:
+plugin removed and rebuilt (bundle check); hook back on the pathname
+(encoded path, null route); the hook's `X-Frame-Options` delete removed
+(the upstream-header test); `https://prismic.io` dropped from the framers
+(the literal-framer test); a null route treated as framed (null route,
+exact match); a framed id with no page (route-exists); trailing-slash
+tolerance put back (exact match); every route framed (the smoke control).
+
+One instrument slip on the way: the first plugin-removal mutation was
+restored with `git checkout vite.config.ts` while the edit was unstaged,
+which restored `main`'s config, and the "restored" build stayed red. The
+test was right; the restore was not. Everything was staged before the
+remaining mutations.
