@@ -965,3 +965,25 @@ restored with `git checkout vite.config.ts` while the edit was unstaged,
 which restored `main`'s config, and the "restored" build stayed red. The
 test was right; the restore was not. Everything was staged before the
 remaining mutations.
+
+## 2026-10-05 — The hero poster becomes the LCP image and the video fades in on `playing` (#21)
+
+The operator asked for a better hero placeholder and a fade-in once the video starts. The placeholder the visitor sees was the old Webflow poster, `background_image` at 854×480 on home and about-us and 640×360 on services, fed raw into `<video poster>` and a CSS background on the same element. On a 1440 desktop the video, not a picture, was the LCP element.
+
+**What changed.** `BgVideo` renders the poster as an `<img>` beneath the video: imgix `srcset` capped at the poster's native width, `sizes` from the caller, and, for the page hero, a preload link with the same `href`, `imagesrcset` and `imagesizes`, `fetchpriority=high` and `loading=eager`. The video no longer carries a `poster` attribute or a background, so the picture is fetched once. The video starts at opacity 0 and goes to 1 over 700 ms ease-out on its first `playing`, which is the only event that means a frame is moving. A refused autoplay fires no `playing`, so the poster stays. Under reduced motion the fade class is never applied, so a video the visitor starts appears at once. A video with no poster is shown at once, so a band an editor leaves without one does not become an empty box.
+
+**Two review findings changed the design.** imgix's default `fit=clip` upscales: the 854-wide poster asked for at `w=2560` came back 2560×1439, 57 KB of AVIF against 19 KB for the original, for no added detail. The srcset now stops at the native width (`cappedWidths`). And `sizes="100vw"` lied about the hero. The box is 500 px tall below 992 px and 700 px from there up, so a 16:9 poster under `object-cover` is at least 889 or 1245 CSS px wide. A 390 px phone was told 390 and upscaled the 1024w file 1.74×. PageHero now says `(max-width: 888px) 889px, (max-width: 991.98px) 100vw, (max-width: 1244px) 1245px, 100vw`. That string assumes a 16:9 poster, which every hero poster here is, because each is a frame of its video.
+
+**Measured on the deploy preview against production, headless Chromium, CDP bytes in 8 s, two runs each.**
+
+- At 390×844 (DPR 3, `isMobile`), the LCP element moved from the `VIDEO` (via its poster) at 1140–1176 ms to the poster `IMG` at 708–1048 ms.
+- Lighthouse mobile median of 3 went from LCP 3025 to 2888 ms. CLS is 0 on both sides.
+- At 1440×900 the LCP element is still the video, now as the 1080p webm's first frame. Chrome scores an image by its natural pixels, and an 854×480 poster (0.41 MP) loses to a 1440×700 frame. Lighthouse desktop: 887 vs 896 ms, CLS 0.0031 both, unchanged.
+- Bytes at 390, video plus every poster: before 2.20 and 2.13 MB, after 1.89 and 1.90 MB, under the 3 MB line. The hero poster itself is 40 KB at w=854.
+- Mid-fade frames were caught at opacity 0.78–0.89, about 330 ms after `playing`.
+
+**Not done: the sharper poster itself.** Frame 0 of each hero video (`wc-teacher-1080`, `wc-first-day-1080`, `wc-services-720`) was extracted with `ffmpeg -frames:v 1 -q:v 1` and matches the old poster's shot and framing exactly, at 1920×1080, 1920×1080 and 1280×720. Services has no 1080p: its master is 1280×720. Uploading the frames needs a public URL for the Prismic connector, or the media-upload workflow, and this session's permission policy refused both as a public upload. So no asset and no release exist. The ask is reddoor-maintenance Operator decision 73. Once a 1920 poster is published, desktop LCP should move to the poster, and the srcset will reach 1920w with no code change, because the cap reads the field's dimensions.
+
+**Instruments.** The first byte-counting run waited 30 s for a hero `<img>` that production does not have, and summed bytes over the whole wait. Its numbers were discarded, and the script now freezes the sum at 8 s. The fidelity gate's `page-diff` lives in the operator's user-level skills, which do not reach a cloud session. Its substitute, the SSIM of hero stills, was shown to fail on a known-different pair (0.519) before its passes were read. One local smoke failure (`/projects` hover sweep, 30 s timeout) also failed on a clean `main` worktree and passed in CI, so it is the container's speed. One CI red was mine: two new tests without regenerating `docs/COMPONENTS.md`.
+
+Mutations: the brief's four, plus fourteen more from two review rounds. All eighteen go red, plus two more for the 1920 clamp and width 0. The table is in #21.

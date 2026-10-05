@@ -369,3 +369,15 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   seed, so the gate's candidate does not see a Prismic publish. The seed
   still names the 480p transcodes and no `video_mp4_mobile`; a re-seed
   would put them back. Fixing the seed is separate work.
+
+## 2026-10-05 — The hero poster is an `<img>` under the video, which fades in on `playing` (#21)
+
+- [behaviour] `BgVideo` paints its poster as an `<img>` (imgix srcset capped
+  at the poster's own width) beneath the `<video>`, which starts at opacity
+  0 and fades to 1 over 700 ms on its first `playing`. The reference showed
+  the poster through the video element and cut to the first frame. The
+  still frame is unchanged: hero crops before and after at 1440/834/390 on
+  home, about-us and services, both sides under emulated reduced motion so
+  the poster holds, read SSIM 0.989–0.995 and a mean difference under
+  0.75/255 (control: home against about-us, 0.519). page-diff itself was
+  not run: its skill is not in a cloud session.
