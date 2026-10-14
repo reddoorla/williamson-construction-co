@@ -41,18 +41,19 @@ source. It is the fastest way to recognise what a thing does.
 | [`Form.svelte`](../src/lib/components/Form.svelte) | `errors`, `errorSummaryTitle`, `children` | 3 |  |
 | [`HeroBackgroundImage.svelte`](../src/lib/components/HeroBackgroundImage.svelte) | `image`, `altFallback`, `preload` | 8 | LCP-optimized hero image |
 | [`Img.svelte`](../src/lib/components/Img.svelte) | `src` | 5 | Progressive-loading wrapper around @zerodevx/svelte-img: the image renders blurred (`.progressive-img` in app.css) and sharpens once the underlying <img> finishes — or fails — loading |
-| [`IntakeFormFields.svelte`](../src/lib/components/IntakeFormFields.svelte) | `formTs`, `result`, `successMessage` | 8 |  |
+| [`IntakeFormFields.svelte`](../src/lib/components/IntakeFormFields.svelte) | `formTs`, `result`, `successMessage` | 9 |  |
 | [`LandscapeModal.svelte`](../src/lib/components/LandscapeModal.svelte) | — | 3 | Orientation lockout — a primitive the template deliberately does NOT mount (tests/smoke/landscape.spec.ts fails if it is re-mounted), because an undismissable landscape overlay fails WCAG 2.1 SC 1.3.4 (Orientation) |
 | [`Modal.svelte`](../src/lib/components/Modal.svelte) | `open`, `onclose`, `label`, `labelledby`, `children` | 16 | Accessible name for the dialog |
 | [`Nav.svelte`](../src/lib/components/Nav.svelte) | `navLinks`, `items`, `logo` | 17 | Optional per-route override of the `$lib/site-config.json` nav (no route in the bare template supplies this) |
 | [`PreNavTransition.svelte`](../src/lib/components/PreNavTransition.svelte) | `duration`, `holdDuration` | 10 | ms the overlay fades in before the deferred navigation is issued |
+| [`PrivacyNotice.svelte`](../src/lib/components/PrivacyNotice.svelte) | — | 1 |  |
 | [`ProjectView.svelte`](../src/lib/components/ProjectView.svelte) | `project` | 4 |  |
 | [`RichTextBody.svelte`](../src/lib/components/RichTextBody.svelte) | `field` | 4 |  |
 | [`RichTextHeading.svelte`](../src/lib/components/RichTextHeading.svelte) | `node`, `children` | — |  |
 | [`ScaleTextToContainer.svelte`](../src/lib/components/ScaleTextToContainer.svelte) | `children` | — |  |
 | [`ScreenWidthMedia.svelte`](../src/lib/components/ScreenWidthMedia.svelte) | `src`, `field`, `altText`, `vimeoId`, `darken`, `backdrop`, `percentHeight`, `children` | 11 |  |
 | [`Seo.svelte`](../src/lib/components/Seo.svelte) | `title`, `description`, `image`, `imageAlt`, `url`, `type`, `siteName`, `locale`, `noindex`, `jsonLd` | 15 | The page title — used verbatim for <title> and og/twitter:title |
-| [`SiteFooter.svelte`](../src/lib/components/SiteFooter.svelte) | — | — |  |
+| [`SiteFooter.svelte`](../src/lib/components/SiteFooter.svelte) | — | 1 |  |
 | [`SiteHeader.svelte`](../src/lib/components/SiteHeader.svelte) | — | 12 |  |
 | [`SkeletonLoader.svelte`](../src/lib/components/SkeletonLoader.svelte) | `lines`, `circle`, `height`, `width` | — |  |
 | [`Slider.svelte`](../src/lib/components/Slider.svelte) | `itemCount`, `label`, `children`, `cardsPerView`, `gap`, `mobileGap`, `mode`, `loop`, `autoplay`, `showDots`, `showArrows`, `transitionClass`, `navigationClass`, `trackClass`, `arrowClass`, `nextArrowClass`, `pauseClass`, `dotClass`, `activeDotClass` | 23 | Accessible name for the carousel region — say what's inside ("Customer testimonials"), not "Slider" |
@@ -70,9 +71,11 @@ source. It is the fastest way to recognise what a thing does.
 | [`page-meta.ts`](../src/lib/page-meta.ts) | `pageMeta` | 3 |  |
 | [`plan-shapes.ts`](../src/lib/plan-shapes.ts) | `PLAN_VIEWBOX`, `PLAN_FILL`, `PLAN_ACTIVE_FILL`, `PLAN_DISC_FILL`, `PLAN_SHAPES`, `nextStep` | — |  |
 | [`prismicio.ts`](../src/lib/prismicio.ts) | `repositoryName`, `isPlaceholderRepo`, `linkResolver`, `createClient` | 5 |  |
+| [`policy.ts`](../src/lib/privacy/policy.ts) | `PRIVACY_POLICY_DRAFT`, `PRIVACY_PATH`, `formatEffectiveDate` | 2 |  |
+| [`services.ts`](../src/lib/privacy/services.ts) | `SERVICE_HOSTS`, `maskComments`, `startsAnalytics`, `CSP_FALLBACK`, `cspAdmits`, `deriveBuildServices`, `withRuntime`, `discloseAhead` | 29 |  |
 | [`projects.ts`](../src/lib/projects.ts) | `projectHref`, `toCard`, `loadProjectCards`, `pickProjects`, `projectMeta`, `loadProject` | 13 |  |
 | [`cms-framing.ts`](../src/lib/security/cms-framing.ts) | `CMS_FRAMED_ROUTES`, `CMS_FRAME_ANCESTORS`, `isCmsFramedRoute`, `widenFrameAncestors` | — | Routes the CMS loads in an iframe from another origin |
-| [`seo.ts`](../src/lib/seo.ts) | `SITE_NAME`, `SITE_LOCALE`, `DEFAULT_DESCRIPTION`, `DEFAULT_OG_IMAGE`, `OG_IMAGE_WIDTH`, `OG_IMAGE_HEIGHT`, `NOINDEX_PREFIXES`, `isNoindexPath`, `NOINDEX_ENFORCED`, `composeTitle`, `jsonLdScript`, `canonicalUrl`, `resolveOgImage`, `organizationJsonLd` | 26 | Site-wide SEO configuration + helpers |
+| [`seo.ts`](../src/lib/seo.ts) | `SITE_NAME`, `SITE_LOCALE`, `DEFAULT_DESCRIPTION`, `DEFAULT_OG_IMAGE`, `OG_IMAGE_WIDTH`, `OG_IMAGE_HEIGHT`, `NOINDEX_PREFIXES`, `isNoindexPath`, `isNoindexPage`, `NOINDEX_ENFORCED`, `composeTitle`, `jsonLdScript`, `canonicalUrl`, `resolveOgImage`, `organizationJsonLd` | 28 | Site-wide SEO configuration + helpers |
 | [`reply-copy.ts`](../src/lib/server/reply-copy.ts) | `replyCopyFor` | — |  |
 | [`site-config.ts`](../src/lib/site-config.ts) | `loadSiteConfig`, `footerColumns` | 4 | Site chrome (navigation + footer) from a checked-in JSON stub |
 | [`site-pages.js`](../src/lib/site-pages.js) | `lang`, `PROJECTS`, `phaseBody`, `docRef`, `projectRef`, `documents` | 3 |  |
@@ -88,4 +91,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-67 modules, 446 tests behind them.
+70 modules, 482 tests behind them.

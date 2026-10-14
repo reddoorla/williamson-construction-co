@@ -3,6 +3,7 @@
 // Footer; a site fills it in, or swaps this module for a Prismic
 // `settings`-document loader behind the same exports.
 import config from "./site-config.json";
+import type { AheadService } from "$lib/privacy/services";
 
 export type NavItem = { label: string; href: string; children?: NavItem[] };
 export type FooterSocial = { network: string; href?: string };
@@ -18,7 +19,20 @@ export type FooterImage = {
 export type FooterItem = FooterText | FooterImage;
 export type FooterColumn = { items: FooterItem[] };
 
+export type PrivacyConfig = {
+  /** The owner the policy names, as the footer's copyright line names it. */
+  legalName?: string;
+  /** Where privacy requests go. Empty renders "[privacy contact email]". */
+  contactEmail?: string;
+  /** ISO date (YYYY-MM-DD). Empty renders "[effective date]". */
+  effectiveDate?: string;
+  /** Services disclosed before the code that starts them lands
+   *  (see discloseAhead in $lib/privacy/services). */
+  discloseAhead?: AheadService[];
+};
+
 export type SiteConfig = {
+  privacy?: PrivacyConfig;
   nav: {
     logo?: { url: string; maxWidth?: string };
     items: NavItem[];

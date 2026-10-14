@@ -2,6 +2,7 @@
   import { enhance } from "$app/forms";
   import Field from "$lib/components/Field.svelte";
   import TurnstileWidget from "$lib/components/TurnstileWidget.svelte";
+  import PrivacyNotice from "$lib/components/PrivacyNotice.svelte";
   import { buttonClass } from "$lib/button-styles";
   import { INTAKE_FIELDS, YES_NO } from "$lib/intake";
 
@@ -114,6 +115,8 @@
     {/each}
 
     <TurnstileWidget />
+
+    <PrivacyNotice />
 
     <button
       type="submit"

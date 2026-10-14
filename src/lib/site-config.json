@@ -1,4 +1,13 @@
 {
-  "nav": { "items": [] },
-  "footer": { "socials": [] }
+  "nav": {
+    "items": []
+  },
+  "footer": {
+    "socials": []
+  },
+  "privacy": {
+    "legalName": "Williamson Construction",
+    "contactEmail": "info@williamson-construction.com",
+    "effectiveDate": "2026-10-14"
+  }
 }

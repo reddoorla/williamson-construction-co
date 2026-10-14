@@ -60,6 +60,11 @@ describe("GET /sitemap.xml", () => {
     ]);
   });
 
+  it("keeps the privacy page out while its policy is a DRAFT", async () => {
+    wired();
+    expect(await body("https://www.example.com")).not.toContain("/privacy");
+  });
+
   it("dates each entry by its publication", async () => {
     wired();
     const xml = await body("https://www.example.com");
