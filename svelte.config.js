@@ -155,6 +155,10 @@ const config = {
           SVELTE_EVENT_REPLAY_HASH,
           // Cloudflare Turnstile contact-form widget (enable via PUBLIC_TURNSTILE_SITE_KEY).
           "https://challenges.cloudflare.com",
+          // GA4 loader, injected by initAnalytics (src/hooks.client.ts). The
+          // analytics-tag recipe cannot edit kit.csp, so the hosts are added by
+          // hand, the list it prints (the same as 1836dig and 29 Navy).
+          "https://www.googletagmanager.com",
         ],
         // Google Fonts stylesheet host (paired with fonts.gstatic.com under
         // font-src). Self-hosted fonts need nothing extra.
@@ -165,7 +169,13 @@ const config = {
           "https://use.typekit.net",
           "https://p.typekit.net",
         ],
-        "img-src": ["self", "data:", "https://*.prismic.io"],
+        "img-src": [
+          "self",
+          "data:",
+          "https://*.prismic.io",
+          "https://www.googletagmanager.com",
+          "https://*.google-analytics.com",
+        ],
         // Prismic hosts non-image media (e.g. .mp4 assets) on
         // <repo>.cdn.prismic.io — first-party content, same origin family as
         // images.prismic.io already allowed under img-src.
@@ -185,7 +195,13 @@ const config = {
           // Cloudflare Turnstile renders its challenge in an iframe from this host.
           "https://challenges.cloudflare.com",
         ],
-        "connect-src": ["self", "https://*.prismic.io"],
+        "connect-src": [
+          "self",
+          "https://*.prismic.io",
+          "https://www.googletagmanager.com",
+          "https://*.google-analytics.com",
+          "https://*.google.com",
+        ],
         "font-src": ["self", "data:", "https://fonts.gstatic.com", "https://use.typekit.net"],
         "base-uri": ["self"],
         "form-action": ["self"],
