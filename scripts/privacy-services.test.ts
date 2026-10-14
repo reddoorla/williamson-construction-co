@@ -88,11 +88,11 @@ describe("this site itself", () => {
   //   youtube    — no CSP directive admits a YouTube host
   //   googleFonts— style-src admits fonts.googleapis.com, but nothing loads it
   //   adobeFonts — src/app.html loads use.typekit.net/noj4tji.css, and style-src admits it
-  it("lists forms, Netlify, Vimeo and Adobe Fonts, and nothing it never loads", async () => {
+  it("lists forms, Netlify, Vimeo, Adobe Fonts and the GA4 its hook starts, and nothing it never loads", async () => {
     expect(await collectBuildServices(site)).toEqual({
       forms: true,
       newsletter: false,
-      ga4: false,
+      ga4: true,
       netlify: true,
       vimeo: true,
       youtube: false,

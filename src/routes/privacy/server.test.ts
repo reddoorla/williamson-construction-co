@@ -56,9 +56,11 @@ describe("the privacy page's load", () => {
     expect((out as unknown as { noindex: boolean }).noindex).toBe(true);
   });
 
-  it("discloses GA4 ahead of the tag, as site-config asks, though the build derives none", () => {
-    // The mocked build says ga4: false; site-config's discloseAhead says ga4.
-    expect(run().privacy.services.ga4).toBe(true);
+  it("no longer discloses GA4 from site-config alone", () => {
+    // The mocked build says ga4: false, and site-config no longer carries
+    // discloseAhead now the tag ships; scripts/privacy-services.test.ts
+    // asserts the build derives GA4 from src/hooks.client.ts.
+    expect(run().privacy.services.ga4).toBe(false);
   });
 
   it("names the owner from site-config", () => {
