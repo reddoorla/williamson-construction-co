@@ -75,13 +75,18 @@ const SITE_PATHS: Array<[string, string]> = [
   ["/projects/west-high-school", "project: West High School"],
 ];
 
-export const smokeRoutes: SmokeRoute[] = SITE_PATHS.map(([path, name]) =>
-  isPlaceholderRepo
-    ? {
-        path,
-        name: `${name} — placeholder repo, expecting 404`,
-        hydrationMarker: "footer",
-        expectStatus: 404,
-      }
-    : { path, name, hydrationMarker: "footer" },
-);
+export const smokeRoutes: SmokeRoute[] = [
+  ...SITE_PATHS.map(([path, name]) =>
+    isPlaceholderRepo
+      ? {
+          path,
+          name: `${name} — placeholder repo, expecting 404`,
+          hydrationMarker: "footer",
+          expectStatus: 404,
+        }
+      : { path, name, hydrationMarker: "footer" },
+  ),
+  // /privacy reads no Prismic document, so it answers 200 on the placeholder
+  // repo and on the wired site alike.
+  { path: "/privacy", name: "privacy policy", hydrationMarker: "footer" },
+];

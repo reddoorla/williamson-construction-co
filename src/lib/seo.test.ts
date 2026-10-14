@@ -8,6 +8,7 @@ import {
   organizationJsonLd,
   composeTitle,
   isNoindexPath,
+  isNoindexPage,
   NOINDEX_ENFORCED,
   NOINDEX_PREFIXES,
   SITE_NAME,
@@ -222,5 +223,18 @@ describe("site defaults", () => {
     expect(DEFAULT_DESCRIPTION).toMatch(/Williamson Construction/);
     expect(DEFAULT_DESCRIPTION.length).toBeGreaterThan(80);
     expect(DEFAULT_DESCRIPTION.length).toBeLessThanOrEqual(160);
+  });
+});
+
+describe("isNoindexPage", () => {
+  it("keeps a page whose data asks for it out of the index", () => {
+    expect(isNoindexPage("/privacy", { noindex: true })).toBe(true);
+    expect(isNoindexPage("/privacy", { noindex: false })).toBe(false);
+    expect(isNoindexPage("/privacy", { noindex: "yes" })).toBe(false);
+    expect(isNoindexPage("/privacy")).toBe(false);
+  });
+
+  it("still honours the noindex prefixes", () => {
+    expect(isNoindexPage("/dev/a11y-fixtures", {})).toBe(true);
   });
 });

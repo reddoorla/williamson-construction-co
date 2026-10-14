@@ -1,4 +1,5 @@
 import { isNetlifyMirrorHost } from "$lib/indexability";
+import { PRIVACY_PATH, PRIVACY_POLICY_DRAFT } from "$lib/privacy/policy";
 import { createClient, isPlaceholderRepo } from "$lib/prismicio";
 import { projectHref } from "$lib/projects";
 import type { RequestHandler } from "./$types";
@@ -7,6 +8,11 @@ import type { RequestHandler } from "./$types";
 // build origin's URLs on every host the build is served from, including the
 // netlify.app mirror. See robots.txt/+server.ts.
 export const prerender = false;
+
+/** Filesystem routes with no Prismic document behind them. The privacy page
+ *  joins the sitemap only once its policy is out of DRAFT: until then its load
+ *  returns `noindex: true`, and a sitemap must not list a noindexed URL. */
+const STATIC_ROUTES = PRIVACY_POLICY_DRAFT ? [] : [PRIVACY_PATH];
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
   const origin = url.origin;
@@ -32,6 +38,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
       path: projectHref(project.uid),
       lastmod: publishedAt(project),
     })),
+    ...(client ? STATIC_ROUTES.map((path) => ({ path })) : []),
   ];
 
   const urls = pageEntries.map(

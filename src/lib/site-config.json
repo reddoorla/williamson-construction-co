@@ -1,4 +1,10 @@
 {
   "nav": { "items": [] },
-  "footer": { "socials": [] }
+  "footer": { "socials": [] },
+  "privacy": {
+    "legalName": "Williamson Construction",
+    "contactEmail": "",
+    "effectiveDate": "",
+    "discloseAhead": ["ga4"]
+  }
 }

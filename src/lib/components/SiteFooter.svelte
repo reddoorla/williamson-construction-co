@@ -1,5 +1,6 @@
 <script lang="ts">
   import { FOOTER_LINKS, LICENSE_LINE } from "$lib/contact";
+  import { PRIVACY_PATH } from "$lib/privacy/policy";
 
   const year = new Date().getFullYear();
 </script>
@@ -32,7 +33,14 @@
     </div>
     <div class="wc-shell">
       <p><em>© Williamson Construction {year}, All Rights Reserved</em></p>
-      <p class="mt-8">{LICENSE_LINE}</p>
+      <!-- The privacy link shares the license line, not the copyright line: the
+           copyright line already fills a 390px phone, so a link there wraps and
+           grows the footer 20px past the reference (tests/smoke/footer.spec.ts). -->
+      <p class="mt-8">
+        {LICENSE_LINE}
+        <span aria-hidden="true">·</span>
+        <a href={PRIVACY_PATH} class="text-black underline">Privacy Policy</a>
+      </p>
     </div>
   </div>
 </footer>

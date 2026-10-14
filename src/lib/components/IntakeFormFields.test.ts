@@ -127,3 +127,13 @@ describe("IntakeFormFields", () => {
     expect(document.getElementById(describedBy!)?.textContent).toContain("5K to 100K");
   });
 });
+
+describe("the intake form's privacy notice", () => {
+  it("sits inside the form, before the submit button, and links to the privacy page", () => {
+    const { container } = render(IntakeFormFields, { props: { formTs: 1, result: null } });
+    const notice = container.querySelector("form [data-testid='privacy-notice']");
+    expect(notice?.querySelector("a")?.getAttribute("href")).toBe("/privacy");
+    const submit = container.querySelector("form button[type='submit']")!;
+    expect(notice!.compareDocumentPosition(submit) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+});

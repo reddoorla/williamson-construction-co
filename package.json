@@ -26,7 +26,8 @@
       "/projects",
       "/about-us",
       "/contact",
-      "/projects/torrance-high-school"
+      "/projects/torrance-high-school",
+      "/privacy"
     ]
   },
   "devDependencies": {
