@@ -14,8 +14,11 @@ for (const path of ["/slice-simulator", "/slice%2Dsimulator", "/slice%2dsimulato
 
 // The Type Builder frames /slice-simulator from an https://*.prismic.io page
 // and sends it slices through @prismicio/simulator's channel. Outside
-// development the simulator ignores the handshake from any other origin, so
-// the host page is served at a prismic.io URL that Playwright answers itself.
+// development the simulator accepts that handshake only from Prismic's own
+// https origins (*.prismic.io, *.wroom.io and a few more), so the host page is
+// served at a prismic.io URL that Playwright answers itself. `vite dev`, which
+// this suite runs against, skips that origin check; a production build
+// enforces it.
 // The handshake mirrors the library's ChannelEmitter: the frame posts `ready`,
 // the host answers with `connect` and a MessagePort, acknowledges `ready`, then
 // sends `setSliceZone` over the port.
@@ -53,22 +56,28 @@ test("/slice-simulator renders a slice the Type Builder sends it", async ({ page
         channel.port1.postMessage(ok(data.requestID));
       }
     };
-    frame.contentWindow.postMessage({ requestID: "emitter-connect", type: "connect", data: {} }, "*", [channel.port2]);
+    frame.contentWindow.postMessage({ requestID: "emitter-connect", type: "connect", data: { activeSliceAPI: true, sliceZoneSizeAPI: true } }, "*", [channel.port2]);
   });
 </script>`,
     }),
   );
+  const errors: Error[] = [];
+  page.on("pageerror", (error) => errors.push(error));
   // Chrome's Local Network Access check blocks a public origin from framing
   // localhost unless the browser has granted that origin the permission.
   await page.context().grantPermissions(["local-network-access"], { origin: new URL(HOST).origin });
   await page.goto(HOST);
   await expect
-    .poll(() => page.evaluate(() => (window as { setSliceZoneStatus?: number }).setSliceZoneStatus))
+    .poll(
+      () => page.evaluate(() => (window as { setSliceZoneStatus?: number }).setSliceZoneStatus),
+      { timeout: 25_000 },
+    )
     .toBe(200);
   const slice = page
     .frameLocator("iframe")
     .locator('.slice-simulator--root [data-slice-type="headline"]');
   await expect(slice).toContainText(HEADING);
+  expect(errors).toEqual([]);
 });
 
 test("an ordinary server-rendered page does not let Prismic frame it", async ({ request }) => {
