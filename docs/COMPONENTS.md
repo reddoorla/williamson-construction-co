@@ -46,6 +46,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`Modal.svelte`](../src/lib/components/Modal.svelte) | `open`, `onclose`, `label`, `labelledby`, `children` | 16 | Accessible name for the dialog |
 | [`Nav.svelte`](../src/lib/components/Nav.svelte) | `navLinks`, `items`, `logo` | 17 | Optional per-route override of the `$lib/site-config.json` nav (no route in the bare template supplies this) |
 | [`PreNavTransition.svelte`](../src/lib/components/PreNavTransition.svelte) | `duration`, `holdDuration` | 10 | ms the overlay fades in before the deferred navigation is issued |
+| [`PrismicPreview.svelte`](../src/lib/components/PrismicPreview.svelte) | — | — |  |
 | [`PrivacyNotice.svelte`](../src/lib/components/PrivacyNotice.svelte) | — | 1 |  |
 | [`ProjectView.svelte`](../src/lib/components/ProjectView.svelte) | `project` | 4 |  |
 | [`RichTextBody.svelte`](../src/lib/components/RichTextBody.svelte) | `field` | 4 |  |
@@ -75,7 +76,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`services.ts`](../src/lib/privacy/services.ts) | `SERVICE_HOSTS`, `maskComments`, `startsAnalytics`, `CSP_FALLBACK`, `cspAdmits`, `deriveBuildServices`, `withRuntime`, `discloseAhead` | 29 |  |
 | [`projects.ts`](../src/lib/projects.ts) | `projectHref`, `toCard`, `loadProjectCards`, `pickProjects`, `projectMeta`, `loadProject` | 13 |  |
 | [`cms-framing.ts`](../src/lib/security/cms-framing.ts) | `CMS_FRAMED_ROUTES`, `CMS_FRAME_ANCESTORS`, `isCmsFramedRoute`, `widenFrameAncestors` | — | Routes the CMS loads in an iframe from another origin |
-| [`seo.ts`](../src/lib/seo.ts) | `SITE_NAME`, `SITE_LOCALE`, `DEFAULT_DESCRIPTION`, `DEFAULT_OG_IMAGE`, `OG_IMAGE_WIDTH`, `OG_IMAGE_HEIGHT`, `NOINDEX_PREFIXES`, `isNoindexPath`, `isNoindexPage`, `NOINDEX_ENFORCED`, `composeTitle`, `jsonLdScript`, `canonicalUrl`, `resolveOgImage`, `organizationJsonLd` | 28 | Site-wide SEO configuration + helpers |
+| [`seo.ts`](../src/lib/seo.ts) | `SITE_NAME`, `SITE_LOCALE`, `DEFAULT_DESCRIPTION`, `DEFAULT_OG_IMAGE`, `OG_IMAGE_WIDTH`, `OG_IMAGE_HEIGHT`, `NOINDEX_PREFIXES`, `isNoindexPath`, `isNoindexPage`, `NOINDEX_ENFORCED`, `composeTitle`, `jsonLdScript`, `PRERENDER_PLACEHOLDER_ORIGIN`, `siteOrigin`, `canonicalUrl`, `resolveOgImage`, `organizationJsonLd` | 31 | Site-wide SEO configuration + helpers |
 | [`reply-copy.ts`](../src/lib/server/reply-copy.ts) | `replyCopyFor` | — |  |
 | [`site-config.ts`](../src/lib/site-config.ts) | `loadSiteConfig`, `footerColumns` | 4 | Site chrome (navigation + footer) from a checked-in JSON stub |
 | [`site-pages.js`](../src/lib/site-pages.js) | `lang`, `PROJECTS`, `phaseBody`, `docRef`, `projectRef`, `documents` | 3 |  |
@@ -91,4 +92,4 @@ source. It is the fastest way to recognise what a thing does.
 | [`vimeo.ts`](../src/lib/utils/vimeo.ts) | `checkVimeoVideo` | 5 | True when the Vimeo video exists and is embeddable (oEmbed responds 200) |
 | [`vimeo-url.ts`](../src/lib/vimeo-url.ts) | `vimeoId`, `vimeoEmbedUrl` | 3 |  |
 
-70 modules, 482 tests behind them.
+71 modules, 485 tests behind them.

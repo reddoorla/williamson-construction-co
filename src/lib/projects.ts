@@ -76,7 +76,7 @@ export async function loadProject(client: ProjectClient, uid: string) {
     return { project, ...projectMeta(project) };
   } catch (err) {
     if (err instanceof NotFoundError && !(err instanceof RepositoryNotFoundError)) {
-      error(404, { message: "Project not found" });
+      error(404, "Project not found");
     }
     throw err;
   }
