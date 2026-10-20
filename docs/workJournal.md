@@ -1043,3 +1043,28 @@ Dependencies: kit 2.70.3 → 3.1.0, adapter 6.0.4 → 7.0.1, svelte 5.57.1 → 5
 
 - The unit test's claim above is now limited to what the test can see.
 - A comment on what `envReads` covers now names `svelte-check` as the backstop.
+
+## 2026-10-20 — `@prismicio/svelte` 3, landed after kit 3, and a smoke test that makes the simulator render a slice (#36)
+
+Renovate's bump (#33) was red on `svelte-check`: `'$$_rotalumiSecilS0.$$slot_def' is of type 'unknown'` at `<SliceSimulator let:slices>`. 3.0.0's `SliceSimulator` renders `{@render children?.({ slices })}` and has no `<slot>`, while 2.2.x has only the slot, so no page works on both versions and the fix ships with the bump. The page now uses the `children` snippet, which erp-industrial already had.
+
+**What else 3.0.0 changes**, read from the published `dist` (2.2.2's is byte-identical to 2.2.1's):
+
+- `PrismicImage` derives a missing `height`/`width` from the aspect ratio. No `PrismicImage` here passes either alone.
+- The kit `PrismicPreview`, which this site mounts during preview sessions, moved from `invalidateAll` to `refreshAll`. Its exit path now calls `goto(url, { refreshAll: true, reset: false })`.
+- The rest is formatting.
+
+**Why it waited.** Review round 1's correctness lens found that on kit 2.70.3, `_goto` reads only `invalidateAll` and `noScroll`. When an editor exits a preview from `/preview/about`, the page's load reads only `params.uid` and the layout's reads only the preview cookie, so neither re-runs: the draft stays on screen and the toolbar stays mounted. Visitors never mount the component. The operator chose to hold #36 until kit 3 landed (#37, kit 3.1.0, 21:46Z), then merge `main` into it. Kit 3.1.0's `_goto` reads both `refreshAll` and `reset`, so the defect is gone. On the merge, only `pnpm-lock.yaml` conflicted; it was regenerated with pnpm from `main`'s lockfile, and the PR's lockfile delta against `main` is the same 16 lines it was against kit 2.
+
+**The defect class that hid the break.** The simulator specs checked only framing headers, so a simulator that mounts and renders nothing passed them. The new test serves a host page at `https://simulator-smoke.prismic.io/` through `page.route`. It grants that host Chrome's `local-network-access` permission, runs `@prismicio/simulator`'s `ready` / `connect` / `setSliceZone` handshake, and asserts that a `headline` slice renders with no page error.
+
+The results:
+
+- It passed on v2.
+- It went red on v3 without the fix, and red with `SliceSimulator` imported from the wrong module.
+- It went red with the snippet renamed: the handshake returned 200, and still nothing rendered.
+- Driving the deploy preview through the same handshake rendered the slice on a production build.
+
+**Belief corrected on contact.** The test's first version failed on the known-good v2 page with `ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS`: Chrome blocks a public origin from framing localhost until the permission is granted.
+
+`tests/interaction/hovers.spec.ts:175` fails in the cloud container on `main` too while CI passes, so it is environment-only. The starter carries the same slot form: reddoorla/reddoor-starter#195.
