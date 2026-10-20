@@ -13,15 +13,15 @@ const put = (rel: string, text: string) => {
   writeFileSync(join(root, rel), text);
 };
 
-// SvelteKit 2: the options sit under `kit` in svelte.config.js.
+// SvelteKit 3: the options are top-level in sveltekit.config.js, with no `kit`.
 const config = (directives: Record<string, string[]> | null) =>
-  `export default { kit: { adapter: { name: "@sveltejs/adapter-netlify" }${
+  `export default { adapter: { name: "@sveltejs/adapter-netlify" }${
     directives ? `, csp: { directives: ${JSON.stringify(directives)} }` : ""
-  } } };`;
+  } };`;
 
 beforeEach(() => {
   root = mkdtempSync(join(tmpdir(), "privacy-"));
-  put("svelte.config.js", config({ "frame-src": ["self"] }));
+  put("sveltekit.config.js", config({ "frame-src": ["self"] }));
 });
 afterEach(() => rmSync(root, { recursive: true, force: true }));
 
@@ -48,9 +48,9 @@ describe("collectBuildServices", () => {
 
   it("reads the CSP the config resolves to, not the text it is written in", async () => {
     put(
-      "svelte.config.js",
+      "sveltekit.config.js",
       `const base = { "frame-src": ["https://*.vimeo.com"] };
-export default { kit: { csp: { directives: { ...base } } } };`,
+export default { csp: { directives: { ...base } } };`,
     );
     expect((await collectBuildServices(root)).vimeo).toBe(true);
   });
@@ -64,13 +64,13 @@ export default { kit: { csp: { directives: { ...base } } } };`,
   });
 
   it("keeps a CSP with no directives from counting as a CSP", async () => {
-    put("svelte.config.js", `export default { kit: { csp: { directives: {} } } };`);
+    put("sveltekit.config.js", `export default { csp: { directives: {} } };`);
     put("src/lib/V.svelte", `<iframe src="https://player.vimeo.com/video/1"></iframe>`);
     expect((await collectBuildServices(root)).vimeo).toBe(true);
   });
 
   it("falls back to the source when the config sets no CSP", async () => {
-    put("svelte.config.js", config(null));
+    put("sveltekit.config.js", config(null));
     put("src/lib/V.svelte", `<iframe src="https://player.vimeo.com/video/1"></iframe>`);
     expect((await collectBuildServices(root)).vimeo).toBe(true);
   });
@@ -83,7 +83,7 @@ describe("this site itself", () => {
   //   forms      — src/routes/join-the-team/+page.server.ts calls createIngestAction
   //   newsletter — no form posts formType "newsletter"
   //   ga4        — nothing calls initAnalytics yet (the analytics-tag PR follows)
-  //   netlify    — svelte.config.js builds with @sveltejs/adapter-netlify
+  //   netlify    — sveltekit.config.js builds with @sveltejs/adapter-netlify
   //   vimeo      — the CSP's frame-src admits player.vimeo.com (VideoBand, BgVideo)
   //   youtube    — no CSP directive admits a YouTube host
   //   googleFonts— style-src admits fonts.googleapis.com, but nothing loads it

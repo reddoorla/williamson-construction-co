@@ -1,12 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const publicEnv: Record<string, string | undefined> = {};
-vi.mock("$env/dynamic/public", () => ({ env: publicEnv }));
-vi.mock("$env/dynamic/private", () => ({
-  env: {
-    FORMS_INGEST_URL: "https://central.test/api/forms/williamson-construction-co",
-    FORMS_INGEST_TOKEN: "t",
-  },
+vi.mock("$app/env/public", () => publicEnv);
+vi.mock("$app/env/private", () => ({
+  FORMS_INGEST_URL: "https://central.test/api/forms/williamson-construction-co",
+  FORMS_INGEST_TOKEN: "t",
 }));
 vi.mock("$lib/server/reply-copy", () => ({ replyCopyFor: async () => undefined }));
 

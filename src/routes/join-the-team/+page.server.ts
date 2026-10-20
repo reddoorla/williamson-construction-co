@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { env } from "$env/dynamic/private";
+import * as env from "$app/env/private";
 import { createIngestAction } from "@reddoorla/maintenance/forms";
 
 import { INTAKE_PAGE_UID, intakePayload } from "$lib/intake";
@@ -12,7 +12,7 @@ import type { Actions, PageServerLoad } from "./$types";
 export const prerender = false;
 
 export const load: PageServerLoad = async ({ fetch, cookies }) => {
-  if (isPlaceholderRepo) error(404, { message: "Page not found" });
+  if (isPlaceholderRepo) error(404, "Page not found");
 
   const loaded = await loadPage(createClient({ fetch, cookies }), INTAKE_PAGE_UID);
   return { ...loaded, formTs: Date.now() };

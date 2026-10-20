@@ -997,3 +997,74 @@ The switches are derived, and `scripts/privacy-services.test.ts` pins what they 
 `/contact` has no form here (it is a `mailto:`), so the intake is the only form that gets the notice. The footer link went on the license line, not on the copyright line: on the copyright line it wrapped at 390px and grew the footer from 1001px to 1021px against the reference (`tests/smoke/footer.spec.ts`). The page stays DRAFT, so it is noindexed (the starter's `isNoindexPage` was ported into `$lib/seo` and the layout), and it is kept out of the sitemap until the DRAFT flag is cleared. The legal name is the footer's "Williamson Construction". The privacy contact email and the effective date are left empty, so the page shows "[privacy contact email]" and "[effective date]" until someone supplies them.
 
 `hovers.spec.ts`'s `/projects` link sweep times out at 30 s in a cloud container on `origin/main` too, so that failure was already there before this change.
+
+## 2026-10-20 — SvelteKit 3 and adapter-netlify 7, ported from reddoor-starter#187 and #188 with williamson-homes#47's review fixes (`claude/kit3-adapter7`, into `main`)
+
+Renovate's #28 (kit 3) and #27 (adapter-netlify 7) could only land together, because adapter 7 peers kit `^3`, and each was red alone. This replaces both. P1-53 held this repo behind P1-64, whose `@types/node` (#34) is on `main`. It is the same port as williamson-homes#47, done the same day: the starter's two kit 3 commits applied as a patch, the rest by hand, plus both majors that PR's review found in the starter's version.
+
+**The config was rebuilt from this site's own.** The new `sveltekit.config.js` is williamson-homes' new config plus this site's three additions: Adobe Fonts (`use.typekit.net` in `style-src` and `font-src`, `p.typekit.net` in `style-src`) and Prismic's S3 media host. I loaded it side by side with the old `svelte.config.js`. The CSP compares equal as JSON, the alias is equal apart from kit 3's `$lib`, the two prerender handlers are equal with whitespace normalised, and `compilerOptions` and `preprocess` are equal.
+
+**What the patch could not see**, all found by a sweep for every kit 2 spelling rather than by the build:
+
+- **The `join-the-team` intake form.** The only live form here read `FORMS_INGEST_URL` and `FORMS_INGEST_TOKEN` through `$env/dynamic/private`. Under kit 3 that read is `undefined` with no `src/env.ts` declaring them, so every applicant would be told "temporarily unavailable". It reads `$app/env/private` now. Its unit test mocked `$env/dynamic/private` and now mocks `$app/env/private`. The test feeds the action fixed values, so it shows the action forwards what `$app/env/private` gives it. It never sees `src/env.ts`: a variable removed from there leaves it green. Declaration is the gate's and `svelte-check`'s to catch, and both go red.
+- **Two `csp-policy.test.ts` cases**, the S3 media host and Adobe Fonts, read `config.kit?.csp`. On kit 3 that is `undefined`, which leaves both checking an empty list. Both read `config.csp`.
+- **Smaller fixes:**
+  - The privacy-services fixtures were kit 2-shaped.
+  - `ClientInit` now comes from `@sveltejs/kit/hooks`.
+  - The `/dev` harness routes and their guard test moved to `$app/env`.
+  - Seven `error(n, { message })` calls became `error(n, message)`.
+  - Two intake-form tests mocked `$env/dynamic/public` with `{}`. Vitest's strict mocks then failed nine tests once `TurnstileWidget` read `$app/env/public`, because a namespace import needs the export to exist. They now mock `$app/env/public` with `PUBLIC_TURNSTILE_SITE_KEY: undefined`.
+
+**From williamson-homes#47's review**:
+
+- **The gate's origin test runs under Netlify's whole build environment**, `NETLIFY`, `CI` and `CONTEXT` included, once per deploy context.
+- **`scripts/prerender-origin.mjs` runs first in `pnpm test`.** It builds with `URL=https://www.williamson-construction.com`, the origin the live site's canonical carries. The control was measured on `main`'s kit 2 build: 36 files and 13 carrying production, so it requires at least 28 and 10. The branch gives 35 and 13. The missing file is `build/_headers`, which adapter 7 writes into `.netlify/v1/config.json`.
+
+Dependencies: kit 2.70.3 → 3.1.0, adapter 6.0.4 → 7.0.1, svelte 5.57.1 → 5.57.2, cookie 0.7.2 → 2.0.1. Kit 2's `@types/cookie`, `kleur`, `set-cookie-parser` and adapter 6's esbuild and toml parser went. `@reddoorla/maintenance` stays at 0.108.
+
+**Measured.**
+
+- **Prerendered head tags:** `main` and this branch were built with the real origin and `NETLIFY` set. Every prerendered page's title, canonical, og and twitter tags are identical between the two, 221 lines each.
+- **`/health` on `vite preview`:** it reported the three form variables `true` when set and `false` when unset.
+- **The join-the-team action against a local stub ingest:** with the variables set, a `testMode=true` POST answered 200 and reached the stub with the configured `x-forms-token`. With them unset, it answered 500 "temporarily unavailable". A foreign `Origin` got 403 both times.
+- **Checks:** `pnpm check` gives 0/0, `pnpm lint` is clean, and vitest gives 880 passed and 3 skipped. The gate passes 16 of 16.
+- **Playwright** gives 80 of 81. The one failure, `hovers.spec.ts`'s `/projects` link sweep, timed out waiting on the 28th link. It fails on `main` in this container too.
+
+**Mutations**, each red:
+
+- `FORMS_INGEST_TOKEN` dropped from `src/env.ts` fails "declares every variable".
+- A restored `svelte.config.js` stops vitest and `pnpm check` with `config_file_unsupported`.
+- A `$app/stores` import fails the stores test and gives one `svelte-check` error.
+- A `paths.origin` set when `NETLIFY` is set fails all three context tests.
+
+`@prismicio/svelte` 3 is reddoorla/williamson-construction-co#36, another worker's. This branch is cut from `main` and will take #36 by merging `main` if #36 lands first.
+
+**Review round 1** ran three lenses. The runtime lens found nothing a visitor, a search engine, the form or Netlify would see. It compared all 35 built files (only `_app/version.json` differs), 26 server-rendered cases through both builds' Netlify function handlers, the form with and without JS, and navigation and background video in a browser with no CSP violation. The gate lens found no defect. Every mutation it tried went red, the 22 of them listed in the PR. Each `$app/env` spelling the gate's regex cannot see (dynamic import, `export * as`, an aliased namespace) fails `svelte-check`, which CI runs. CI ran 883 tests (the 3 local skips run there) and Playwright 81 of 81: the hover sweep that times out in this container passes in CI. The completeness lens found one major, and it is in `@reddoorla/maintenance`, not in this repo. The launch recipe decides whether `/dev/match` is guarded by looking for the string `$app/environment`, so this branch's `$app/env` import would stop a launch with a false "the matching twin would ship". williamson-homes, merged today, has the same routes. The fix is reddoorla/reddoor-maintenance#1565, in which the check accepts `$app/env` too. This PR's own findings were minors, so its round is clean. Reverting the import is no answer, because `svelte-check` on kit 3 cannot resolve `$app/environment`. Two wording minors are corrected here:
+
+- The unit test's claim above is now limited to what the test can see.
+- A comment on what `envReads` covers now names `svelte-check` as the backstop.
+
+## 2026-10-20 — `@prismicio/svelte` 3, landed after kit 3, and a smoke test that makes the simulator render a slice (#36)
+
+Renovate's bump (#33) was red on `svelte-check`: `'$$_rotalumiSecilS0.$$slot_def' is of type 'unknown'` at `<SliceSimulator let:slices>`. 3.0.0's `SliceSimulator` renders `{@render children?.({ slices })}` and has no `<slot>`, while 2.2.x has only the slot, so no page works on both versions and the fix ships with the bump. The page now uses the `children` snippet, which erp-industrial already had.
+
+**What else 3.0.0 changes**, read from the published `dist` (2.2.2's is byte-identical to 2.2.1's):
+
+- `PrismicImage` derives a missing `height`/`width` from the aspect ratio. No `PrismicImage` here passes either alone.
+- The kit `PrismicPreview`, which this site mounts during preview sessions, moved from `invalidateAll` to `refreshAll`. Its exit path now calls `goto(url, { refreshAll: true, reset: false })`.
+- The rest is formatting.
+
+**Why it waited.** Review round 1's correctness lens found that on kit 2.70.3, `_goto` reads only `invalidateAll` and `noScroll`. When an editor exits a preview from `/preview/about`, the page's load reads only `params.uid` and the layout's reads only the preview cookie, so neither re-runs: the draft stays on screen and the toolbar stays mounted. Visitors never mount the component. The operator chose to hold #36 until kit 3 landed (#37, kit 3.1.0, 21:46Z), then merge `main` into it. Kit 3.1.0's `_goto` reads both `refreshAll` and `reset`, so the defect is gone. On the merge, only `pnpm-lock.yaml` conflicted; it was regenerated with pnpm from `main`'s lockfile, and the PR's lockfile delta against `main` is the same 16 lines it was against kit 2.
+
+**The defect class that hid the break.** The simulator specs checked only framing headers, so a simulator that mounts and renders nothing passed them. The new test serves a host page at `https://simulator-smoke.prismic.io/` through `page.route`. It grants that host Chrome's `local-network-access` permission, runs `@prismicio/simulator`'s `ready` / `connect` / `setSliceZone` handshake, and asserts that a `headline` slice renders with no page error.
+
+The results:
+
+- It passed on v2.
+- It went red on v3 without the fix, and red with `SliceSimulator` imported from the wrong module.
+- It went red with the snippet renamed: the handshake returned 200, and still nothing rendered.
+- Driving the deploy preview through the same handshake rendered the slice on a production build.
+
+**Belief corrected on contact.** The test's first version failed on the known-good v2 page with `ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS`: Chrome blocks a public origin from framing localhost until the permission is granted.
+
+`tests/interaction/hovers.spec.ts:175` fails in the cloud container on `main` too while CI passes, so it is environment-only. The starter carries the same slot form: reddoorla/reddoor-starter#195.

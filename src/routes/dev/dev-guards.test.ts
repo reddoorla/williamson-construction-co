@@ -4,7 +4,7 @@ import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 const env = vi.hoisted(() => ({ dev: false }));
-vi.mock("$app/environment", () => ({
+vi.mock("$app/env", () => ({
   get dev() {
     return env.dev;
   },

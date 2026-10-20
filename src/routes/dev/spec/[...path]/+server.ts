@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { dev } from "$app/environment";
+import { dev } from "$app/env";
 import { readFile } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 
@@ -18,17 +18,17 @@ const TYPES: Record<string, string> = {
 };
 
 export async function GET({ params }) {
-  if (!dev) error(404, { message: "Not found" });
+  if (!dev) error(404, "Not found");
 
   const root = resolve("matching/spec");
   const target = resolve(root, params.path);
-  if (!target.startsWith(root + sep)) error(404, { message: "Not found" });
+  if (!target.startsWith(root + sep)) error(404, "Not found");
   const type = TYPES[extname(target).toLowerCase()];
-  if (!type) error(404, { message: "Not found" });
+  if (!type) error(404, "Not found");
 
   try {
     return new Response(await readFile(target), { headers: { "Content-Type": type } });
   } catch {
-    error(404, { message: "Not found" });
+    error(404, "Not found");
   }
 }
