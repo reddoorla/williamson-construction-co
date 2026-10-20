@@ -3,7 +3,9 @@
   import { components } from "$lib/slices";
 </script>
 
-<!-- Slot syntax is used for backward compatibility with Svelte <=4. -->
-<SliceSimulator let:slices>
-  <SliceZone {slices} {components} />
+<!-- @prismicio/svelte 3 hands the slices to a `children` snippet; it has no slot. -->
+<SliceSimulator>
+  {#snippet children({ slices })}
+    <SliceZone {slices} {components} />
+  {/snippet}
 </SliceSimulator>
