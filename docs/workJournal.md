@@ -1006,7 +1006,7 @@ Renovate's #28 (kit 3) and #27 (adapter-netlify 7) could only land together, bec
 
 **What the patch could not see**, all found by a sweep for every kit 2 spelling rather than by the build:
 
-- **The `join-the-team` intake form.** The only live form here read `FORMS_INGEST_URL` and `FORMS_INGEST_TOKEN` through `$env/dynamic/private`. Under kit 3 that read is `undefined` with no `src/env.ts` declaring them, so every applicant would be told "temporarily unavailable". It reads `$app/env/private` now. Its unit test mocked `$env/dynamic/private` and now mocks `$app/env/private`. That makes it a test that the action forwards with the declared variables.
+- **The `join-the-team` intake form.** The only live form here read `FORMS_INGEST_URL` and `FORMS_INGEST_TOKEN` through `$env/dynamic/private`. Under kit 3 that read is `undefined` with no `src/env.ts` declaring them, so every applicant would be told "temporarily unavailable". It reads `$app/env/private` now. Its unit test mocked `$env/dynamic/private` and now mocks `$app/env/private`. The test feeds the action fixed values, so it shows the action forwards what `$app/env/private` gives it. It never sees `src/env.ts`: a variable removed from there leaves it green. Declaration is the gate's and `svelte-check`'s to catch, and both go red.
 - **Two `csp-policy.test.ts` cases**, the S3 media host and Adobe Fonts, read `config.kit?.csp`. On kit 3 that is `undefined`, which leaves both checking an empty list. Both read `config.csp`.
 - **Smaller fixes:**
   - The privacy-services fixtures were kit 2-shaped.
@@ -1038,3 +1038,8 @@ Dependencies: kit 2.70.3 → 3.1.0, adapter 6.0.4 → 7.0.1, svelte 5.57.1 → 5
 - A `paths.origin` set when `NETLIFY` is set fails all three context tests.
 
 `@prismicio/svelte` 3 is reddoorla/williamson-construction-co#36, another worker's. This branch is cut from `main` and will take #36 by merging `main` if #36 lands first.
+
+**Review round 1** ran three lenses. The runtime lens is still to report below. The gate lens found no defect. Every mutation it tried went red, the 22 of them listed in the PR. Each `$app/env` spelling the gate's regex cannot see (dynamic import, `export * as`, an aliased namespace) fails `svelte-check`, which CI runs. CI ran 883 tests (the 3 local skips run there) and Playwright 81 of 81: the hover sweep that times out in this container passes in CI. The completeness lens found one major, and it is in `@reddoorla/maintenance`, not in this repo. The launch recipe decides whether `/dev/match` is guarded by looking for the string `$app/environment`, so this branch's `$app/env` import would stop a launch with a false "the matching twin would ship". williamson-homes, merged today, has the same routes. The fix is a maintenance PR in which the check accepts `$app/env` too. Reverting the import is no answer, because `svelte-check` on kit 3 cannot resolve `$app/environment`. Two wording minors are corrected here:
+
+- The unit test's claim above is now limited to what the test can see.
+- A comment on what `envReads` covers now names `svelte-check` as the backstop.

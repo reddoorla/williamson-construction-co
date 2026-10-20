@@ -187,7 +187,9 @@ function walk(dir: string, out: string[] = []): string[] {
 // What a source file reads from "$app/env/<type>": through a namespace import
 // (`env.NAME`, `env["NAME"]`, `const { NAME } = env`) or a named import. kit 3
 // exports only the declared names, so any of these on an undeclared name is
-// `undefined` at runtime with at most a build warning.
+// `undefined` at runtime. It does not see a dynamic import(), an `export * as`
+// re-export or an aliased namespace; svelte-check, which CI runs first, fails
+// on an undeclared name through any of those.
 function envReads(source: string): { type: "public" | "private"; name: string }[] {
   const reads: { type: "public" | "private"; name: string }[] = [];
   const add = (type: string, name: string) =>
@@ -228,7 +230,7 @@ describe("environment variables (kit 3 exposes only what src/env.ts declares)", 
     expect(names).toContain("PUBLIC_TURNSTILE_SITE_KEY");
   });
 
-  it("sees every way a file can read one (the instrument's own control)", () => {
+  it("sees each spelling envReads claims to read (the instrument's own control)", () => {
     const source = [
       'import * as env from "$app/env/private";',
       'import { NAMED_A, NAMED_B as b } from "$app/env/public";',
