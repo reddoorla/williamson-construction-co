@@ -4,7 +4,7 @@ import { createClient, isPlaceholderRepo } from "$lib/prismicio";
 import { loadProject } from "$lib/projects";
 
 export async function load({ params, fetch, cookies }) {
-  if (isPlaceholderRepo) error(404, { message: "Project not found" });
+  if (isPlaceholderRepo) error(404, "Project not found");
 
   return loadProject(createClient({ fetch, cookies }), params.uid);
 }

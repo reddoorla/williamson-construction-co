@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 
 vi.mock("$app/forms", () => ({ enhance: () => ({ destroy() {} }) }));
-vi.mock("$env/dynamic/public", () => ({ env: {} }));
+vi.mock("$app/env/public", () => ({ PUBLIC_TURNSTILE_SITE_KEY: undefined }));
 
 const { default: IntakeForm } = await import("./index.svelte");
 const { CONTACT_EMAIL } = await import("$lib/contact");
