@@ -30,7 +30,7 @@ const contrast = (a: number[], b: number[]) => {
   return (hi + 0.05) / (lo + 0.05);
 };
 /** The nearest `<prefix>-<theme token>` class on el or an ancestor. */
-const nearestToken = (el: Element | null, prefix: "text" | "bg"): string | undefined => {
+const nearestToken = (el: Element | null, prefix: "text" | "bg" | "border"): string | undefined => {
   for (let at = el; at; at = at.parentElement) {
     const token = [...at.classList]
       .map((c) => c.match(new RegExp(`^${prefix}-([a-z][a-z0-9-]*)$`))?.[1])
@@ -94,12 +94,28 @@ describe("CtaBanner slice", () => {
     ).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("does not draw a dark-bordered button on the dark ground", () => {
-    const { container } = render(CtaBanner, {
+  it("keeps the CTA button readable on the dark ground", () => {
+    // The button's own text clears AA (4.5:1) against the ground it sits on,
+    // and its outline clears the 3:1 that WCAG 1.4.11 asks of a control's
+    // boundary. Which tokens it wears is the design's choice.
+    const { getByRole } = render(CtaBanner, {
       props: { slice: makeSlice({ background: "dark" }) },
     });
-    const cta = container.querySelector("a");
-    expect(cta?.className).not.toContain("border-dark");
+    const cta = getByRole("link", { name: "Talk with us" });
+    const ground = nearestToken(cta, "bg");
+    const text = nearestToken(cta, "text");
+    const border = nearestToken(cta, "border");
+    expect(ground, "a bg-* theme token under the CTA").toBeDefined();
+    expect(text, "a text-* theme token on the CTA").toBeDefined();
+    expect(border, "a border-* theme token on the CTA").toBeDefined();
+    expect(
+      contrast(hex(THEME[text!]), hex(THEME[ground!])),
+      `text-${text} on bg-${ground}`,
+    ).toBeGreaterThanOrEqual(4.5);
+    expect(
+      contrast(hex(THEME[border!]), hex(THEME[ground!])),
+      `border-${border} on bg-${ground}`,
+    ).toBeGreaterThanOrEqual(3);
   });
 
   it("omits the CTA when the link or the label is missing", () => {

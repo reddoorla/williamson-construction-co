@@ -113,16 +113,24 @@ describe("Modal", () => {
 
   // WCAG 2.5.8: the glyph alone is under the 24px minimum. Tailwind preflight
   // zeroes button padding, so the hit target has to come from the class list.
+  // jsdom has no layout, so the size is read from the sizing utilities, in any
+  // of the forms a designer may write it: `min-h-11`, `h-11 w-11`, `size-11`,
+  // or an arbitrary `min-h-[44px]` / `h-[2.75rem]`.
   it("gives the close button a hit target of at least 24px", () => {
     const { getByLabelText } = render(Modal, { open: true, children: body() });
 
     const button = getByLabelText("Close");
+    const px = (v: string) => {
+      const arb = v.match(/^\[(\d+(?:\.\d+)?)(px|rem)\]$/);
+      if (arb) return Number(arb[1]) * (arb[2] === "rem" ? 16 : 1);
+      return /^\d+(?:\.\d+)?$/.test(v) ? Number(v) * 4 : 0;
+    };
     for (const axis of ["h", "w"]) {
-      const sizes = [...button.classList]
-        .map((c) => c.match(new RegExp(`^min-${axis}-(\\d+(?:\\.\\d+)?)$`))?.[1])
-        .filter((n): n is string => !!n)
-        .map((n) => Number(n) * 4);
-      expect(Math.max(0, ...sizes), `close button min-${axis} in px`).toBeGreaterThanOrEqual(24);
+      const sizes = [...button.classList].map((c) => {
+        const m = c.match(/^(?:min-)?(h|w|size)-(.+)$/);
+        return m && (m[1] === axis || m[1] === "size") ? px(m[2]) : 0;
+      });
+      expect(Math.max(0, ...sizes), `close button ${axis} in px`).toBeGreaterThanOrEqual(24);
     }
   });
 });

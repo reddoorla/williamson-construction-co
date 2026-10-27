@@ -148,15 +148,19 @@ describe("Field styling", () => {
       });
       const cls = getByLabelText("A").getAttribute("class") ?? "";
       expect(cls).not.toContain("border-light");
-      const borders = cls
-        .split(/\s+/)
-        .map((c) => c.match(/^border-([a-z][a-z0-9-]*)$/)?.[1])
-        .filter((t): t is string => !!t && t in THEME);
-      expect(borders.length, "a resting border-* colour token").toBeGreaterThan(0);
-      for (const token of borders) {
+      // A theme token (`border-dark`) or an arbitrary hex (`border-[#767676]`):
+      // either is a designer's legitimate way to name the colour.
+      const borders = cls.split(/\s+/).flatMap((c): [string, string][] => {
+        const token = c.match(/^border-([a-z][a-z0-9-]*)$/)?.[1];
+        if (token && token in THEME) return [[`border-${token}`, THEME[token]]];
+        const hex = c.match(/^border-\[(#[0-9a-f]{3}(?:[0-9a-f]{3})?)\]$/i)?.[1];
+        return hex ? [[c, hex]] : [];
+      });
+      expect(borders.length, "a resting border colour").toBeGreaterThan(0);
+      for (const [name, raw] of borders) {
         expect(
-          contrast(toRgb(THEME[token], token), [255, 255, 255]),
-          `border-${token} on white`,
+          contrast(toRgb(raw, name), [255, 255, 255]),
+          `${name} on white`,
         ).toBeGreaterThanOrEqual(3);
       }
     },
