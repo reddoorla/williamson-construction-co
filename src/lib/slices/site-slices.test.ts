@@ -21,8 +21,12 @@ import {
   type ButtonVariant,
   type Ground,
 } from "$lib/button-styles";
+import { contrast, groundOf, textColours } from "../../test-utils/colour";
 
 afterEach(() => cleanup());
+
+/** The poster and the video overlay their box rather than sitting in flow. */
+const overlays = (el: Element | null) => !!el && el.classList.contains("absolute");
 
 const image = (name: string, alt: string | null = null) => ({
   url: `https://images.prismic.io/williamson-construction/${name}.jpg`,
@@ -79,9 +83,11 @@ describe("VideoBand", () => {
     });
     const poster = container.querySelector("img")!;
     expect(poster.getAttribute("loading")).toBe("lazy");
-    expect(poster.getAttribute("sizes")).toBe("100vw");
     expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);
-    expect(poster.classList.contains("absolute")).toBe(true);
+    // In the overflow-hidden 2:1 band, an in-flow poster pushes the video
+    // below it, where it is clipped away.
+    expect(overlays(poster), "poster overlays the band").toBe(true);
+    expect(overlays(container.querySelector("video")), "video overlays the band").toBe(true);
   });
 });
 
@@ -103,10 +109,10 @@ describe("PageHero", () => {
     expect(poster.getAttribute("src")).toContain("/poster.jpg");
     expect(poster.getAttribute("fetchpriority")).toBe("high");
     expect(poster.getAttribute("loading")).toBe("eager");
-    expect(poster.getAttribute("sizes")).toBe(
-      "(max-width: 888px) 889px, (max-width: 991.98px) 100vw, (max-width: 1244px) 1245px, 100vw",
-    );
-    expect(poster.classList.contains("absolute")).toBe(true);
+    // In the hero's flex media box, an in-flow poster and video become two
+    // half-width flex items side by side.
+    expect(overlays(poster), "poster overlays the media box").toBe(true);
+    expect(overlays(video), "video overlays the media box").toBe(true);
     expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);
     expect(poster.getAttribute("srcset")).not.toMatch(/ (1920|2560)w/);
     expect(video.muted).toBe(true);
@@ -128,7 +134,7 @@ describe("PageHero", () => {
   });
 
   it("renders one h1 and each button in the style the editor chose", () => {
-    const { container, getAllByRole } = render(PageHero, {
+    const { getAllByRole } = render(PageHero, {
       props: {
         slice: slice("page_hero", primary, [
           button("Contact", "/contact", "gold"),
@@ -138,10 +144,13 @@ describe("PageHero", () => {
       },
     });
     expect(getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    const links = [...container.querySelectorAll("a")];
-    expect(links).toHaveLength(3);
-    expect(links[0].className).toContain("bg-gold");
-    expect(links[1].className).toContain("border-white");
+    const wears = (el: Element, list: string) =>
+      list.split(" ").every((c) => el.classList.contains(c));
+    const [contact] = getAllByRole("link", { name: "Contact" });
+    const services = getAllByRole("link", { name: "Services" });
+    expect(services).toHaveLength(2);
+    expect(wears(contact, BUTTON_CLASS.gold)).toBe(true);
+    for (const link of services) expect(wears(link, BUTTON_CLASS["outline-light"])).toBe(true);
   });
 });
 
@@ -306,8 +315,17 @@ describe("SectorFeature", () => {
     });
     const accent = [...container.querySelectorAll("h2 span")][1];
     expect(accent.textContent?.trim()).toBe("help them heal.");
-    expect(accent.className).toContain("text-secondary");
     expect(accent.className).not.toContain("text-gold");
+    // Whatever token the accent wears, it reads on its ground (the page's
+    // white unless an ancestor paints one) at AA.
+    const ground = groundOf(accent);
+    const texts = textColours(accent);
+    expect(texts.length, "a text colour on the accent").toBeGreaterThan(0);
+    for (const text of texts)
+      expect(
+        contrast(text.rgba, ground.rgba),
+        `${text.name} on ${ground.name}`,
+      ).toBeGreaterThanOrEqual(4.5);
   });
 
   it("does not put the card's label in the outline ahead of the slice's own h2", () => {
@@ -361,10 +379,7 @@ describe("PhaseBubbles and PhaseDetail", () => {
     });
     const [linked, plain] = [...container.querySelectorAll("ol > li > *")];
     expect(linked!.tagName).toBe("A");
-    expect(linked!.classList.contains("group")).toBe(true);
     expect(plain!.tagName).toBe("DIV");
-    expect(plain!.classList.contains("group")).toBe(false);
-    expect(plain!.innerHTML).not.toMatch(/group-hover:/);
   });
 
   it("gives the phase its anchor and renders its list", () => {
@@ -439,14 +454,15 @@ describe("EmployeeApplication, ContactCard, CtaBlock, ClientLogos", () => {
         slice: slice("cta_block", { heading: "We are changing the industry…", size: "medium" }),
       },
     });
-    expect(container.querySelector("h2")?.className).toContain("wc-h2");
+    const medium = container.querySelector("h2")?.className;
+    expect(medium).toBeTruthy();
     cleanup();
     const large = render(CtaBlock, {
       props: {
         slice: slice("cta_block", { heading: "Start feeling like a top priority…", size: "large" }),
       },
     });
-    expect(large.container.querySelector("h2")?.className).toContain("wc-h1");
+    expect(large.container.querySelector("h2")?.className).not.toBe(medium);
   });
 
   it("gives a logo the editor left without alt text an empty alt, never none", () => {

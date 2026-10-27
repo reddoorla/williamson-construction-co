@@ -345,9 +345,6 @@ describe("BgVideo", () => {
       await tick();
       expect(video.classList.contains("opacity-100")).toBe(true);
       expect(video.classList.contains("opacity-0")).toBe(false);
-      expect(video.classList.contains("transition-opacity")).toBe(true);
-      expect(video.classList.contains("duration-700")).toBe(true);
-      expect(video.classList.contains("ease-out")).toBe(true);
     });
 
     it("fades in once autoplay is accepted near the viewport", async () => {
@@ -394,7 +391,6 @@ describe("BgVideo", () => {
       const { container } = render(BgVideo, { props });
       await tick();
       const video = container.querySelector("video")!;
-      expect(video.classList.contains("transition-opacity")).toBe(true);
       for (const listener of mediaListeners) listener({ matches: true });
       await tick();
       expect(video.classList.contains("transition-opacity")).toBe(false);

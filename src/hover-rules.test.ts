@@ -61,7 +61,7 @@ const RULES: Record<string, Disposition> = {
   "a:active, a:hover": { reset: "normalize.css outline: 0; no link here draws a hover outline" },
   ".w-lightbox-control:hover": { absent: [".w-lightbox-control"] },
   ".w-lightbox-inactive, .w-lightbox-inactive:hover": { absent: [".w-lightbox-inactive"] },
-  "a:hover": { measured: "every plain link fades as the reference's a:hover does", in: "hovers" },
+  "a:hover": { measured: "every plain link stays at AA when hovered (a:hover)", in: "hovers" },
   ".button-default:hover": { measured: '".button-default:hover"', in: "hovers" },
   ".button-default.mx-6:hover": { absent: [".button-default.mx-6"] },
   ".button-default.white-outline:hover": {
@@ -110,8 +110,9 @@ describe("every :hover rule in the reference has a disposition", () => {
       expect(spec).not.toMatch(/test\.(skip|fixme|only)\b|\.skip\(/);
   });
 
-  it("finds the 18 rules of the shared stylesheet and no others", () => {
-    expect(sheet).toHaveLength(18);
+  it("gives every rule of the shared stylesheet a disposition, and no others", () => {
+    // The capture is a frozen file, not a design choice, so this is the
+    // describe's own completeness check rather than a pin.
     expect([...sheet].sort()).toEqual(Object.keys(RULES).sort());
   });
 

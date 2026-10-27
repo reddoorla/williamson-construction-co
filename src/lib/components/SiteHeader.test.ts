@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
+import { NAV_LINKS } from "$lib/contact";
 
 vi.mock("$app/state", () => ({ page: { url: new URL("https://example.test/services") } }));
 
@@ -57,7 +58,7 @@ describe("SiteHeader", () => {
     const menu = menuOf(container);
     expect(menu.tagName).toBe("NAV");
     expect(menu.getAttribute("aria-label")).toBe("Menu");
-    expect(menu.querySelectorAll("ul > li > a")).toHaveLength(4);
+    expect(menu.querySelectorAll("ul > li > a")).toHaveLength(NAV_LINKS.length);
   });
 
   it("closes when focus leaves the header, and not when it moves inside it", async () => {

@@ -1,6 +1,12 @@
 import { describe, expect, it, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/svelte";
 import CtaBanner from "./index.svelte";
+import { borderColours, contrast, groundOf, textColours } from "../../../test-utils/colour";
+
+// Contrast computed from the colour tokens through the shared resolver, so the
+// test names no colour: it asks whether the ground and the text an editor's
+// choice resolves to can be read against each other. Any colour a designer can
+// name is measured, and one the resolver cannot measure fails by name.
 
 afterEach(() => cleanup());
 
@@ -39,16 +45,45 @@ describe("CtaBanner slice", () => {
     expect(container.querySelector('[data-slice-type="cta_banner"]')).not.toBeNull();
   });
 
-  it("paints the selected ground and inverts the button on the dark one", () => {
-    const { container } = render(CtaBanner, {
+  it("keeps the headline readable on the dark ground", () => {
+    // An editor who picks "dark" must get a headline a visitor can read: the
+    // text token and the ground token it lands on clear AA (4.5:1).
+    const { getByRole } = render(CtaBanner, {
       props: { slice: makeSlice({ background: "dark" }) },
     });
-    const section = container.querySelector("section");
-    expect(section?.className).toContain("bg-dark");
-    expect(section?.className).toContain("text-white");
-    const cta = container.querySelector("a");
-    expect(cta?.className).toContain("border-white");
-    expect(cta?.className).not.toContain("border-dark");
+    const h = getByRole("heading", { level: 2 });
+    const ground = groundOf(h);
+    const texts = textColours(h);
+    expect(texts.length, "a text colour over the headline").toBeGreaterThan(0);
+    for (const text of texts)
+      expect(
+        contrast(text.rgba, ground.rgba),
+        `${text.name} on ${ground.name}`,
+      ).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("keeps the CTA button readable on the dark ground", () => {
+    // The button's own text clears AA (4.5:1) against the ground it sits on,
+    // and its outline clears the 3:1 that WCAG 1.4.11 asks of a control's
+    // boundary. Which tokens it wears is the design's choice.
+    const { getByRole } = render(CtaBanner, {
+      props: { slice: makeSlice({ background: "dark" }) },
+    });
+    const cta = getByRole("link", { name: "Talk with us" });
+    const ground = groundOf(cta);
+    const texts = textColours(cta);
+    const borders = borderColours(cta);
+    expect(texts.length, "a text colour on the CTA").toBeGreaterThan(0);
+    for (const text of texts)
+      expect(
+        contrast(text.rgba, ground.rgba),
+        `${text.name} on ${ground.name}`,
+      ).toBeGreaterThanOrEqual(4.5);
+    for (const border of borders)
+      expect(
+        contrast(border.rgba, ground.rgba),
+        `${border.name} (border) on ${ground.name}`,
+      ).toBeGreaterThanOrEqual(3);
   });
 
   it("omits the CTA when the link or the label is missing", () => {

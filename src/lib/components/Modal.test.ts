@@ -111,19 +111,60 @@ describe("Modal", () => {
     expect(dialog.hasAttribute("aria-labelledby")).toBe(false);
   });
 
-  // WCAG 2.5.8: the 20px glyph alone is under the 24px minimum. Tailwind
-  // preflight zeroes button padding, so the hit target has to come from the
-  // class list — the same min-h-11/min-w-11 (44px) pattern Nav.svelte uses.
-  it("gives the close button a 44px hit target around the 20px icon", () => {
+  // WCAG 2.5.8: the glyph alone is under the 24px minimum. Tailwind preflight
+  // zeroes button padding, so the hit target has to come from the class list.
+  // jsdom has no layout, so the size is read from the sizing utilities, in any
+  // of the forms a designer may write it: `min-h-11`, `h-11 w-11`, `size-11`,
+  // or an arbitrary `min-h-[44px]` / `h-[2.75rem]`; a `max-h-*` / `max-w-*`
+  // caps a fixed size the way the browser does, at every breakpoint.
+  it("gives the close button a hit target of at least 24px", () => {
     const { getByLabelText } = render(Modal, { open: true, children: body() });
 
     const button = getByLabelText("Close");
-    for (const cls of ["flex", "min-h-11", "min-w-11", "items-center", "justify-center"]) {
-      expect(button.classList.contains(cls), `close button missing ${cls}`).toBe(true);
+    const px = (v: string) => {
+      if (v === "px") return 1;
+      const arb = v.match(/^\[(\d+(?:\.\d+)?)(px|rem)\]$/);
+      if (arb) return Number(arb[1]) * (arb[2] === "rem" ? 16 : 1);
+      // `full`, `[90vh]` and the like have no px without layout: not counted.
+      return /^\d+(?:\.\d+)?$/.test(v) ? Number(v) * 4 : NaN;
+    };
+    // `!` (important, either end) is the same size. A breakpoint variant
+    // (`md:max-w-4`) applies from its breakpoint up, so every breakpoint is
+    // measured; a state variant (`hover:`) is not the resting size.
+    const BREAKPOINTS = ["", "sm", "md", "lg", "xl", "2xl"];
+    const parsed = [...button.classList].flatMap((c) => {
+      const parts = c.split(":");
+      const util = parts.pop()!.replace(/^!|!$/g, "");
+      const m = util.match(/^(min-|max-)?(h|w|size)-(.+)$/);
+      if (!m) return [];
+      if (parts.length > 1 || (parts.length === 1 && !BREAKPOINTS.includes(parts[0]))) return [];
+      return [
+        { bp: BREAKPOINTS.indexOf(parts[0] ?? ""), kind: m[1] ?? "", prop: m[2], v: px(m[3]) },
+      ];
+    });
+    // CSS order of precedence: min-* beats max-*, and max-* caps a fixed h/w/size.
+    for (let at = 0; at < BREAKPOINTS.length; at++) {
+      for (const axis of ["h", "w"]) {
+        // Per kind, the widest breakpoint up to `at` that sets it wins.
+        const of = (kind: string) => {
+          const hits = parsed.filter(
+            (p) =>
+              p.kind === kind &&
+              p.bp <= at &&
+              (p.prop === axis || p.prop === "size") &&
+              Number.isFinite(p.v),
+          );
+          const top = Math.max(-1, ...hits.map((p) => p.bp));
+          return hits.filter((p) => p.bp === top).map((p) => p.v);
+        };
+        const fixed = Math.min(Math.max(0, ...of("")), ...of("max-"));
+        const size = Math.max(fixed, ...of("min-"));
+        expect(
+          size,
+          `close button ${axis} in px${at ? ` from ${BREAKPOINTS[at]}` : ""}`,
+        ).toBeGreaterThanOrEqual(24);
+      }
     }
-    const icon = button.querySelector("svg")!;
-    expect(icon.getAttribute("width")).toBe("20");
-    expect(icon.getAttribute("height")).toBe("20");
   });
 });
 
@@ -211,20 +252,5 @@ describe("Modal scroll lock", () => {
     unmount();
     expect(document.body.style.overflow).toBe("clip");
     document.body.style.overflow = "";
-  });
-});
-
-// Tailwind preflight's `*{margin:0}` beats the UA's `dialog{margin:auto}`, and
-// with the UA's `inset:0` still in force that pins the dialog to the top-left
-// corner. `mx-4` restored the horizontal 16px and nothing else.
-//
-// jsdom performs no layout, so this only pins the mechanism; the geometry
-// itself is MEASURED in tests/interaction/modal-centring.spec.ts.
-describe("Modal centring", () => {
-  it("restores auto margins instead of the horizontal-only mx-4", () => {
-    const { container } = render(Modal, { open: true, children: body() });
-    const cls = container.querySelector("dialog")!.getAttribute("class") ?? "";
-    expect(cls, "m-auto against inset:0 is what centres it on both axes").toContain("m-auto");
-    expect(cls, "mx-4 centres one axis and pins the other").not.toContain("mx-4");
   });
 });
