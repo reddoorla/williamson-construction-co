@@ -1069,7 +1069,7 @@ The results:
 
 `tests/interaction/hovers.spec.ts:175` fails in the cloud container on `main` too while CI passes, so it is environment-only. The starter carries the same slot form: reddoorla/reddoor-starter#195.
 
-## 2026-10-27 — Fleet test audit: 24 design-value and unreachable pins go, 7 real catches kept as contracts (#TBD)
+## 2026-10-27 — Fleet test audit: 24 design-value and unreachable pins go, 7 real catches kept as contracts (#42)
 
 **Why.** The fleet test audit (reddoorla/reddoor-workspace `audits/2026-10-26-fleet-test-audit/report.md`, batch B) found that this site's unit and Playwright suites pin design values a human is entitled to change: class lists, px, ms, opacities, exact colours, exact counts. Each flagged assertion was given a reviewer mutant, the smallest source edit it was there to catch, and each mutant was classed by what a visitor would see. Of the 31 mutants, 16 are **invisible** (Modal, ScreenWidthMedia's Vimeo path and Slider's fade mode mount only on `/dev` routes, which 404 in production; `neutral-600` and `neutral-950` are used by no class; the noscript reveal rules guard markup no shipped slice server-renders), 8 are **design values** (the reveal stagger, the background video's fade timing, the invalid textarea's red border, the CTA heading sizes, the phase bubble's hover fade, the inverse button's border) and 7 are **contract losses**. The first two groups stay removed. The Playwright rewrites (the hover sweep, the mobile-nav icon cross-fade, the modal's narrow-screen gutter, the font check) drop the pins and keep what a visitor observes: hovered link contrast at AA, icons swapping, the dialog inside the viewport, every used face loaded.
 
