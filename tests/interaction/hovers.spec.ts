@@ -172,9 +172,7 @@ test("a phase bubble does not fade on hover (.number-bubble:hover opacity 1)", a
 const ROUTES = ["/", "/about-us", "/services", "/contact", "/join-the-team", "/projects"];
 
 for (const path of ROUTES) {
-  test(`${path}: every plain link fades as the reference's a:hover does, no further than AA allows`, async ({
-    page,
-  }) => {
+  test(`${path}: every plain link stays at AA when hovered (a:hover)`, async ({ page }) => {
     await page.goto(path, { waitUntil: "networkidle" });
     const links = page.locator("a:visible");
     const count = await links.count();

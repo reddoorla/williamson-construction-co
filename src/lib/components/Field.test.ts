@@ -4,16 +4,47 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import Field from "./Field.svelte";
 
-const THEME: Record<string, string> = (() => {
-  const css = readFileSync(resolve("src/app.css"), "utf8");
-  const block = css.match(/@theme\s*\{([\s\S]*?)\n\}/);
-  if (!block) throw new Error("app.css has no @theme block");
+// Every colour a `border-*` utility can name: Tailwind's default palette, with
+// app.css's @theme on top (it overrides and adds). A designer may pick any of
+// them, so the contrast check below has to be able to measure any of them.
+const tokens = (path: string) => {
+  const css = readFileSync(resolve(path), "utf8");
   const out: Record<string, string> = {};
-  for (const m of block[1].matchAll(/--color-([a-z0-9-]+):\s*(#[0-9a-fA-F]{6});/g))
-    out[m[1]] = m[2];
+  for (const m of css.matchAll(/--color-([a-z0-9-]+):\s*([^;]+);/g)) out[m[1]] = m[2].trim();
   return out;
-})();
-const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+};
+const THEME: Record<string, string> = {
+  ...tokens("node_modules/tailwindcss/theme.css"),
+  ...tokens("src/app.css"),
+};
+const NAMED: Record<string, string> = { white: "#ffffff", black: "#000000" };
+// sRGB 0-255 for a hex, a named white/black, or an oklch() (a `none` hue is 0).
+// Anything else (transparent, currentColor) throws: it is no visible boundary.
+const toRgb = (raw: string, token: string): number[] => {
+  const v = NAMED[raw] ?? raw;
+  if (/^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(v)) {
+    const h = v.length === 4 ? v.slice(1).replace(/./g, (c) => c + c) : v.slice(1);
+    return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  }
+  const m = /^oklch\(\s*([\d.]+)(%?)\s+([\d.]+)\s+([\d.]+|none)(?:deg)?\s*\)$/i.exec(v);
+  if (!m) throw new Error(`--color-${token} is "${raw}", which this test cannot measure`);
+  const L = Number(m[1]) / (m[2] ? 100 : 1);
+  const C = Number(m[3]);
+  const H = ((m[4] === "none" ? 0 : Number(m[4])) * Math.PI) / 180;
+  const [a, b] = [C * Math.cos(H), C * Math.sin(H)];
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const mm = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  const linear = [
+    4.0767416621 * l - 3.3077115913 * mm + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * mm - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * mm + 1.707614701 * s,
+  ];
+  return linear.map((c) => {
+    const x = Math.min(1, Math.max(0, c));
+    return Math.round((x <= 0.0031308 ? 12.92 * x : 1.055 * x ** (1 / 2.4) - 0.055) * 255);
+  });
+};
 const lum = (c: number[]) => {
   const [r, g, b] = c.map((v) => {
     v /= 255;
@@ -88,10 +119,10 @@ describe("Field styling", () => {
   // The input and the textarea once carried two copy-pasted class lists, which
   // is exactly how a fix lands on one control and not the other, so every
   // styling contract below runs over both.
-  const CONTROLS = [
-    { kind: "input", type: undefined },
-    { kind: "textarea", type: "textarea" },
-  ] as const;
+  const CONTROLS: [kind: string, type: "textarea" | undefined][] = [
+    ["input", undefined],
+    ["textarea", "textarea"],
+  ];
 
   it("gives the input and the textarea the same class string", () => {
     // One string, two controls: whatever the skin is, a fix to it (the focus
@@ -105,8 +136,8 @@ describe("Field styling", () => {
   });
 
   it.each(CONTROLS)(
-    "draws a $kind's resting border that clears the 3:1 non-text minimum",
-    ({ type }) => {
+    "draws the %s's resting border so it clears the 3:1 non-text minimum",
+    (_kind, type) => {
       // --color-light is #e2e2e2: 1.30:1 against the white card, so the
       // fields read as invisible boxes and a visitor has to hunt for where to
       // type. WCAG 1.4.11 wants 3:1 for a control's boundary.
@@ -117,14 +148,14 @@ describe("Field styling", () => {
       });
       const cls = getByLabelText("A").getAttribute("class") ?? "";
       expect(cls).not.toContain("border-light");
-      const tokens = cls
+      const borders = cls
         .split(/\s+/)
         .map((c) => c.match(/^border-([a-z][a-z0-9-]*)$/)?.[1])
         .filter((t): t is string => !!t && t in THEME);
-      expect(tokens.length, "a resting border-* colour token from @theme").toBeGreaterThan(0);
-      for (const token of tokens) {
+      expect(borders.length, "a resting border-* colour token").toBeGreaterThan(0);
+      for (const token of borders) {
         expect(
-          contrast(hex(THEME[token]), [255, 255, 255]),
+          contrast(toRgb(THEME[token], token), [255, 255, 255]),
           `border-${token} on white`,
         ).toBeGreaterThanOrEqual(3);
       }
@@ -132,8 +163,8 @@ describe("Field styling", () => {
   );
 
   it.each(CONTROLS)(
-    "keeps the $kind's forced-colors outline fallback on focus (Tailwind v4)",
-    ({ type }) => {
+    "keeps the %s's forced-colors outline fallback on focus (Tailwind v4)",
+    (_kind, type) => {
       // In Tailwind v4 `outline-none` resolves to `outline-style: none` and takes
       // the forced-colors fallback with it; `outline-hidden` keeps the 2px
       // transparent outline the forced-colors palette repaints. Under forced
