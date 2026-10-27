@@ -116,31 +116,54 @@ describe("Modal", () => {
   // jsdom has no layout, so the size is read from the sizing utilities, in any
   // of the forms a designer may write it: `min-h-11`, `h-11 w-11`, `size-11`,
   // or an arbitrary `min-h-[44px]` / `h-[2.75rem]`; a `max-h-*` / `max-w-*`
-  // caps a fixed size the way the browser does.
+  // caps a fixed size the way the browser does, at every breakpoint.
   it("gives the close button a hit target of at least 24px", () => {
     const { getByLabelText } = render(Modal, { open: true, children: body() });
 
     const button = getByLabelText("Close");
     const px = (v: string) => {
+      if (v === "px") return 1;
       const arb = v.match(/^\[(\d+(?:\.\d+)?)(px|rem)\]$/);
       if (arb) return Number(arb[1]) * (arb[2] === "rem" ? 16 : 1);
       // `full`, `[90vh]` and the like have no px without layout: not counted.
       return /^\d+(?:\.\d+)?$/.test(v) ? Number(v) * 4 : NaN;
     };
+    // `!` (important, either end) is the same size. A breakpoint variant
+    // (`md:max-w-4`) applies from its breakpoint up, so every breakpoint is
+    // measured; a state variant (`hover:`) is not the resting size.
+    const BREAKPOINTS = ["", "sm", "md", "lg", "xl", "2xl"];
+    const parsed = [...button.classList].flatMap((c) => {
+      const parts = c.split(":");
+      const util = parts.pop()!.replace(/^!|!$/g, "");
+      const m = util.match(/^(min-|max-)?(h|w|size)-(.+)$/);
+      if (!m) return [];
+      if (parts.length > 1 || (parts.length === 1 && !BREAKPOINTS.includes(parts[0]))) return [];
+      return [
+        { bp: BREAKPOINTS.indexOf(parts[0] ?? ""), kind: m[1] ?? "", prop: m[2], v: px(m[3]) },
+      ];
+    });
     // CSS order of precedence: min-* beats max-*, and max-* caps a fixed h/w/size.
-    for (const axis of ["h", "w"]) {
-      const of = (kind: "min-" | "" | "max-") =>
-        [...button.classList]
-          .flatMap((c) => {
-            const m = c.match(/^(min-|max-)?(h|w|size)-(.+)$/);
-            return m && (m[1] ?? "") === kind && (m[2] === axis || m[2] === "size")
-              ? [px(m[3])]
-              : [];
-          })
-          .filter(Number.isFinite);
-      const fixed = Math.min(Math.max(0, ...of("")), ...of("max-"));
-      const size = Math.max(fixed, ...of("min-"));
-      expect(size, `close button ${axis} in px`).toBeGreaterThanOrEqual(24);
+    for (let at = 0; at < BREAKPOINTS.length; at++) {
+      for (const axis of ["h", "w"]) {
+        // Per kind, the widest breakpoint up to `at` that sets it wins.
+        const of = (kind: string) => {
+          const hits = parsed.filter(
+            (p) =>
+              p.kind === kind &&
+              p.bp <= at &&
+              (p.prop === axis || p.prop === "size") &&
+              Number.isFinite(p.v),
+          );
+          const top = Math.max(-1, ...hits.map((p) => p.bp));
+          return hits.filter((p) => p.bp === top).map((p) => p.v);
+        };
+        const fixed = Math.min(Math.max(0, ...of("")), ...of("max-"));
+        const size = Math.max(fixed, ...of("min-"));
+        expect(
+          size,
+          `close button ${axis} in px${at ? ` from ${BREAKPOINTS[at]}` : ""}`,
+        ).toBeGreaterThanOrEqual(24);
+      }
     }
   });
 });
