@@ -1,7 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 
 import PageHero from "./PageHero/index.svelte";
 import ProjectList from "./ProjectList/index.svelte";
@@ -23,42 +21,10 @@ import {
   type ButtonVariant,
   type Ground,
 } from "$lib/button-styles";
+import { contrast, groundOf, textColours } from "../../test-utils/colour";
 
 afterEach(() => cleanup());
 
-// Contrast computed from the app.css @theme tokens, so a test names no colour.
-const THEME: Record<string, string> = (() => {
-  const css = readFileSync(resolve("src/app.css"), "utf8");
-  const block = css.match(/@theme\s*\{([\s\S]*?)\n\}/);
-  if (!block) throw new Error("app.css has no @theme block");
-  const named: Record<string, string> = { white: "#ffffff", black: "#000000" };
-  const out: Record<string, string> = {};
-  for (const m of block[1].matchAll(/--color-([a-z0-9-]+):\s*(#[0-9a-fA-F]{6}|white|black);/g))
-    out[m[1]] = named[m[2]] ?? m[2];
-  return out;
-})();
-const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-const lum = (c: number[]) => {
-  const [r, g, b] = c.map((v) => {
-    v /= 255;
-    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-};
-const contrast = (a: number[], b: number[]) => {
-  const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
-  return (hi + 0.05) / (lo + 0.05);
-};
-/** The nearest `<prefix>-<theme token>` class on el or an ancestor. */
-const nearestToken = (el: Element | null, prefix: "text" | "bg"): string | undefined => {
-  for (let at = el; at; at = at.parentElement) {
-    const token = [...at.classList]
-      .map((c) => c.match(new RegExp(`^${prefix}-([a-z][a-z0-9-]*)$`))?.[1])
-      .find((t) => t !== undefined && t in THEME);
-    if (token) return token;
-  }
-  return undefined;
-};
 /** The poster and the video overlay their box rather than sitting in flow. */
 const overlays = (el: Element | null) => !!el && el.classList.contains("absolute");
 
@@ -352,13 +318,14 @@ describe("SectorFeature", () => {
     expect(accent.className).not.toContain("text-gold");
     // Whatever token the accent wears, it reads on its ground (the page's
     // white unless an ancestor paints one) at AA.
-    const text = nearestToken(accent, "text");
-    const ground = nearestToken(accent, "bg") ?? "white";
-    expect(text, "a text-* theme token on the accent").toBeDefined();
-    expect(
-      contrast(hex(THEME[text!]), hex(THEME[ground])),
-      `text-${text} on bg-${ground}`,
-    ).toBeGreaterThanOrEqual(4.5);
+    const ground = groundOf(accent);
+    const texts = textColours(accent);
+    expect(texts.length, "a text colour on the accent").toBeGreaterThan(0);
+    for (const text of texts)
+      expect(
+        contrast(text.rgba, ground.rgba),
+        `${text.name} on ${ground.name}`,
+      ).toBeGreaterThanOrEqual(4.5);
   });
 
   it("does not put the card's label in the outline ahead of the slice's own h2", () => {
