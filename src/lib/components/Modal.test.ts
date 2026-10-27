@@ -115,7 +115,8 @@ describe("Modal", () => {
   // zeroes button padding, so the hit target has to come from the class list.
   // jsdom has no layout, so the size is read from the sizing utilities, in any
   // of the forms a designer may write it: `min-h-11`, `h-11 w-11`, `size-11`,
-  // or an arbitrary `min-h-[44px]` / `h-[2.75rem]`.
+  // or an arbitrary `min-h-[44px]` / `h-[2.75rem]`; a `max-h-*` / `max-w-*`
+  // caps a fixed size the way the browser does.
   it("gives the close button a hit target of at least 24px", () => {
     const { getByLabelText } = render(Modal, { open: true, children: body() });
 
@@ -123,14 +124,23 @@ describe("Modal", () => {
     const px = (v: string) => {
       const arb = v.match(/^\[(\d+(?:\.\d+)?)(px|rem)\]$/);
       if (arb) return Number(arb[1]) * (arb[2] === "rem" ? 16 : 1);
-      return /^\d+(?:\.\d+)?$/.test(v) ? Number(v) * 4 : 0;
+      // `full`, `[90vh]` and the like have no px without layout: not counted.
+      return /^\d+(?:\.\d+)?$/.test(v) ? Number(v) * 4 : NaN;
     };
+    // CSS order of precedence: min-* beats max-*, and max-* caps a fixed h/w/size.
     for (const axis of ["h", "w"]) {
-      const sizes = [...button.classList].map((c) => {
-        const m = c.match(/^(?:min-)?(h|w|size)-(.+)$/);
-        return m && (m[1] === axis || m[1] === "size") ? px(m[2]) : 0;
-      });
-      expect(Math.max(0, ...sizes), `close button ${axis} in px`).toBeGreaterThanOrEqual(24);
+      const of = (kind: "min-" | "" | "max-") =>
+        [...button.classList]
+          .flatMap((c) => {
+            const m = c.match(/^(min-|max-)?(h|w|size)-(.+)$/);
+            return m && (m[1] ?? "") === kind && (m[2] === axis || m[2] === "size")
+              ? [px(m[3])]
+              : [];
+          })
+          .filter(Number.isFinite);
+      const fixed = Math.min(Math.max(0, ...of("")), ...of("max-"));
+      const size = Math.max(fixed, ...of("min-"));
+      expect(size, `close button ${axis} in px`).toBeGreaterThanOrEqual(24);
     }
   });
 });
