@@ -1,5 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 import PageHero from "./PageHero/index.svelte";
 import ProjectList from "./ProjectList/index.svelte";
@@ -23,6 +25,42 @@ import {
 } from "$lib/button-styles";
 
 afterEach(() => cleanup());
+
+// Contrast computed from the app.css @theme tokens, so a test names no colour.
+const THEME: Record<string, string> = (() => {
+  const css = readFileSync(resolve("src/app.css"), "utf8");
+  const block = css.match(/@theme\s*\{([\s\S]*?)\n\}/);
+  if (!block) throw new Error("app.css has no @theme block");
+  const named: Record<string, string> = { white: "#ffffff", black: "#000000" };
+  const out: Record<string, string> = {};
+  for (const m of block[1].matchAll(/--color-([a-z0-9-]+):\s*(#[0-9a-fA-F]{6}|white|black);/g))
+    out[m[1]] = named[m[2]] ?? m[2];
+  return out;
+})();
+const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const lum = (c: number[]) => {
+  const [r, g, b] = c.map((v) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a: number[], b: number[]) => {
+  const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+/** The nearest `<prefix>-<theme token>` class on el or an ancestor. */
+const nearestToken = (el: Element | null, prefix: "text" | "bg"): string | undefined => {
+  for (let at = el; at; at = at.parentElement) {
+    const token = [...at.classList]
+      .map((c) => c.match(new RegExp(`^${prefix}-([a-z][a-z0-9-]*)$`))?.[1])
+      .find((t) => t !== undefined && t in THEME);
+    if (token) return token;
+  }
+  return undefined;
+};
+/** The poster and the video overlay their box rather than sitting in flow. */
+const overlays = (el: Element | null) => !!el && el.classList.contains("absolute");
 
 const image = (name: string, alt: string | null = null) => ({
   url: `https://images.prismic.io/williamson-construction/${name}.jpg`,
@@ -79,9 +117,11 @@ describe("VideoBand", () => {
     });
     const poster = container.querySelector("img")!;
     expect(poster.getAttribute("loading")).toBe("lazy");
-    expect(poster.getAttribute("sizes")).toBe("100vw");
     expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);
-    expect(poster.classList.contains("absolute")).toBe(true);
+    // In the overflow-hidden 2:1 band, an in-flow poster pushes the video
+    // below it, where it is clipped away.
+    expect(overlays(poster), "poster overlays the band").toBe(true);
+    expect(overlays(container.querySelector("video")), "video overlays the band").toBe(true);
   });
 });
 
@@ -103,10 +143,10 @@ describe("PageHero", () => {
     expect(poster.getAttribute("src")).toContain("/poster.jpg");
     expect(poster.getAttribute("fetchpriority")).toBe("high");
     expect(poster.getAttribute("loading")).toBe("eager");
-    expect(poster.getAttribute("sizes")).toBe(
-      "(max-width: 888px) 889px, (max-width: 991.98px) 100vw, (max-width: 1244px) 1245px, 100vw",
-    );
-    expect(poster.classList.contains("absolute")).toBe(true);
+    // In the hero's flex media box, an in-flow poster and video become two
+    // half-width flex items side by side.
+    expect(overlays(poster), "poster overlays the media box").toBe(true);
+    expect(overlays(video), "video overlays the media box").toBe(true);
     expect(poster.getAttribute("srcset")).toMatch(/ 1600w$/);
     expect(poster.getAttribute("srcset")).not.toMatch(/ (1920|2560)w/);
     expect(video.muted).toBe(true);
@@ -128,7 +168,7 @@ describe("PageHero", () => {
   });
 
   it("renders one h1 and each button in the style the editor chose", () => {
-    const { container, getAllByRole } = render(PageHero, {
+    const { getAllByRole } = render(PageHero, {
       props: {
         slice: slice("page_hero", primary, [
           button("Contact", "/contact", "gold"),
@@ -138,10 +178,13 @@ describe("PageHero", () => {
       },
     });
     expect(getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    const links = [...container.querySelectorAll("a")];
-    expect(links).toHaveLength(3);
-    expect(links[0].className).toContain("bg-gold");
-    expect(links[1].className).toContain("border-white");
+    const wears = (el: Element, list: string) =>
+      list.split(" ").every((c) => el.classList.contains(c));
+    const [contact] = getAllByRole("link", { name: "Contact" });
+    const services = getAllByRole("link", { name: "Services" });
+    expect(services).toHaveLength(2);
+    expect(wears(contact, BUTTON_CLASS.gold)).toBe(true);
+    for (const link of services) expect(wears(link, BUTTON_CLASS["outline-light"])).toBe(true);
   });
 });
 
@@ -306,8 +349,16 @@ describe("SectorFeature", () => {
     });
     const accent = [...container.querySelectorAll("h2 span")][1];
     expect(accent.textContent?.trim()).toBe("help them heal.");
-    expect(accent.className).toContain("text-secondary");
     expect(accent.className).not.toContain("text-gold");
+    // Whatever token the accent wears, it reads on its ground (the page's
+    // white unless an ancestor paints one) at AA.
+    const text = nearestToken(accent, "text");
+    const ground = nearestToken(accent, "bg") ?? "white";
+    expect(text, "a text-* theme token on the accent").toBeDefined();
+    expect(
+      contrast(hex(THEME[text!]), hex(THEME[ground])),
+      `text-${text} on bg-${ground}`,
+    ).toBeGreaterThanOrEqual(4.5);
   });
 
   it("does not put the card's label in the outline ahead of the slice's own h2", () => {
@@ -361,10 +412,7 @@ describe("PhaseBubbles and PhaseDetail", () => {
     });
     const [linked, plain] = [...container.querySelectorAll("ol > li > *")];
     expect(linked!.tagName).toBe("A");
-    expect(linked!.classList.contains("group")).toBe(true);
     expect(plain!.tagName).toBe("DIV");
-    expect(plain!.classList.contains("group")).toBe(false);
-    expect(plain!.innerHTML).not.toMatch(/group-hover:/);
   });
 
   it("gives the phase its anchor and renders its list", () => {
@@ -439,14 +487,15 @@ describe("EmployeeApplication, ContactCard, CtaBlock, ClientLogos", () => {
         slice: slice("cta_block", { heading: "We are changing the industry…", size: "medium" }),
       },
     });
-    expect(container.querySelector("h2")?.className).toContain("wc-h2");
+    const medium = container.querySelector("h2")?.className;
+    expect(medium).toBeTruthy();
     cleanup();
     const large = render(CtaBlock, {
       props: {
         slice: slice("cta_block", { heading: "Start feeling like a top priority…", size: "large" }),
       },
     });
-    expect(large.container.querySelector("h2")?.className).toContain("wc-h1");
+    expect(large.container.querySelector("h2")?.className).not.toBe(medium);
   });
 
   it("gives a logo the editor left without alt text an empty alt, never none", () => {

@@ -111,19 +111,19 @@ describe("Modal", () => {
     expect(dialog.hasAttribute("aria-labelledby")).toBe(false);
   });
 
-  // WCAG 2.5.8: the 20px glyph alone is under the 24px minimum. Tailwind
-  // preflight zeroes button padding, so the hit target has to come from the
-  // class list — the same min-h-11/min-w-11 (44px) pattern Nav.svelte uses.
-  it("gives the close button a 44px hit target around the 20px icon", () => {
+  // WCAG 2.5.8: the glyph alone is under the 24px minimum. Tailwind preflight
+  // zeroes button padding, so the hit target has to come from the class list.
+  it("gives the close button a hit target of at least 24px", () => {
     const { getByLabelText } = render(Modal, { open: true, children: body() });
 
     const button = getByLabelText("Close");
-    for (const cls of ["flex", "min-h-11", "min-w-11", "items-center", "justify-center"]) {
-      expect(button.classList.contains(cls), `close button missing ${cls}`).toBe(true);
+    for (const axis of ["h", "w"]) {
+      const sizes = [...button.classList]
+        .map((c) => c.match(new RegExp(`^min-${axis}-(\\d+(?:\\.\\d+)?)$`))?.[1])
+        .filter((n): n is string => !!n)
+        .map((n) => Number(n) * 4);
+      expect(Math.max(0, ...sizes), `close button min-${axis} in px`).toBeGreaterThanOrEqual(24);
     }
-    const icon = button.querySelector("svg")!;
-    expect(icon.getAttribute("width")).toBe("20");
-    expect(icon.getAttribute("height")).toBe("20");
   });
 });
 
@@ -211,20 +211,5 @@ describe("Modal scroll lock", () => {
     unmount();
     expect(document.body.style.overflow).toBe("clip");
     document.body.style.overflow = "";
-  });
-});
-
-// Tailwind preflight's `*{margin:0}` beats the UA's `dialog{margin:auto}`, and
-// with the UA's `inset:0` still in force that pins the dialog to the top-left
-// corner. `mx-4` restored the horizontal 16px and nothing else.
-//
-// jsdom performs no layout, so this only pins the mechanism; the geometry
-// itself is MEASURED in tests/interaction/modal-centring.spec.ts.
-describe("Modal centring", () => {
-  it("restores auto margins instead of the horizontal-only mx-4", () => {
-    const { container } = render(Modal, { open: true, children: body() });
-    const cls = container.querySelector("dialog")!.getAttribute("class") ?? "";
-    expect(cls, "m-auto against inset:0 is what centres it on both axes").toContain("m-auto");
-    expect(cls, "mx-4 centres one axis and pins the other").not.toContain("mx-4");
   });
 });

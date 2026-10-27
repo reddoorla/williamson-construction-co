@@ -1068,3 +1068,21 @@ The results:
 **Belief corrected on contact.** The test's first version failed on the known-good v2 page with `ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS`: Chrome blocks a public origin from framing localhost until the permission is granted.
 
 `tests/interaction/hovers.spec.ts:175` fails in the cloud container on `main` too while CI passes, so it is environment-only. The starter carries the same slot form: reddoorla/reddoor-starter#195.
+
+## 2026-10-27 — Fleet test audit: 24 design-value and unreachable pins go, 7 real catches kept as contracts (#TBD)
+
+**Why.** The fleet test audit (reddoorla/reddoor-workspace `audits/2026-10-26-fleet-test-audit/report.md`, batch B) found that this site's unit and Playwright suites pin design values a human is entitled to change: class lists, px, ms, opacities, exact colours, exact counts. Each flagged assertion was given a reviewer mutant, the smallest source edit it was there to catch, and each mutant was classed by what a visitor would see. Of the 31 mutants, 16 are **invisible** (Modal, ScreenWidthMedia's Vimeo path and Slider's fade mode mount only on `/dev` routes, which 404 in production; `neutral-600` and `neutral-950` are used by no class; the noscript reveal rules guard markup no shipped slice server-renders), 8 are **design values** (the reveal stagger, the background video's fade timing, the invalid textarea's red border, the CTA heading sizes, the phase bubble's hover fade, the inverse button's border) and 7 are **contract losses**. The first two groups stay removed. The Playwright rewrites (the hover sweep, the mobile-nav icon cross-fade, the modal's narrow-screen gutter, the font check) drop the pins and keep what a visitor observes: hovered link contrast at AA, icons swapping, the dialog inside the viewport, every used face loaded.
+
+**What was kept, and how each keep was proved.** Each of the 7 real catches is replaced by an assertion that names no design value, then proved red with the reviewer's own mutant through `mutate.mjs --in-place` (7 red of 7):
+
+- The message box losing its focus ring: the input and the textarea must carry the same class string, which asserts the two agree, not what the classes are.
+- The dark CTA band (navy headline on near-black, about 1.9:1; or a light ground under white text, about 1.3:1): one test resolves the headline's nearest `text-*` and `bg-*` tokens through the app.css `@theme` block and asserts contrast >= 4.5. It catches both mutants.
+- MediaText's imageLeft doing nothing: the media column's `lg:order` must sort before the copy column's, a relation between the two.
+- The VideoBand and PageHero posters falling out of their boxes: the poster and the video must both overlay their box (`absolute`), an overlay contract rather than a size.
+- The SectorFeature accent line at 1.3:1: its text token against its ground (white unless an ancestor paints one) must clear 4.5.
+
+`docs/COMPONENTS.md` was regenerated, because its per-module test counts moved.
+
+**Checks.** prettier and eslint are clean, and vitest gives 881 of 881 (97 files). `svelte-check` reports 30 errors, all route `./$types` implicit-anys under `src/routes`. The worktree shares the clone's `node_modules` by symlink, and kit 3 writes its generated tsconfig there, so the route types resolve against the clone. The same worktree at `origin/main` gives the same 30, and the clone itself gives 0. The four changed Playwright specs, run against a production build (`REDDOOR_GATE_SERVER=preview`), pass except `hovers.spec.ts:175` on `/projects`, which times out at 30s. It also times out on an untouched `origin/main` worktree here, and the 2026-10-20 entries record it as environment-only, passing in CI. One run also showed `modal-centring`'s scroll-lock test red (616 → 592); that spec's scroll test is untouched, and it passed on the rerun.
+
+**What surprised me.** The reviewer's why for the PageHero poster ("pushes the title panel") was wrong: the panel is a sibling and does not move. The real failure is two half-width flex items side by side. Its why for the hero's `sizes` ("looks soft") was wrong too: with no media condition matching, the HTML `sizes` algorithm already falls back to 100vw, so that pin guarded nothing.

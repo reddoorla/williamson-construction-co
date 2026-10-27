@@ -13,7 +13,6 @@ const captured = (name: string) => {
   if (!hit) throw new Error(`${name} is not in the capture`);
   return join(SPEC, hit.file);
 };
-const CSS = captured("williamson-construction.shared.3b91c7675.css");
 
 const pages = (function walk(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
@@ -31,7 +30,6 @@ function hoverSelectors(css: string): string[] {
   return out;
 }
 
-const sheet = hoverSelectors(readFileSync(CSS, "utf8"));
 const inline = [
   ...new Set(
     pages.flatMap((html) =>
@@ -108,11 +106,6 @@ describe("every :hover rule in the reference has a disposition", () => {
   it("counts no skipped or fixme test as a measurement", () => {
     for (const spec of [HOVERS, NAV])
       expect(spec).not.toMatch(/test\.(skip|fixme|only)\b|\.skip\(/);
-  });
-
-  it("finds the 18 rules of the shared stylesheet and no others", () => {
-    expect(sheet).toHaveLength(18);
-    expect([...sheet].sort()).toEqual(Object.keys(RULES).sort());
   });
 
   it("finds the pages' one inline hover rule", () => {

@@ -29,13 +29,21 @@ describe("MediaText slice", () => {
     expect(getByRole("img").getAttribute("alt")).toBe("Pool");
   });
 
-  it("reverses the image/copy order for imageLeft", () => {
+  it("puts the media ahead of the copy on large screens for imageLeft", () => {
+    // The editor's imageLeft choice must change the desktop order: the media
+    // column's lg:order sorts before the copy column's. A relation between the
+    // two columns, not a pinned value.
     const { container } = render(MediaText, {
       props: { slice: makeSlice("imageLeft") },
     });
-    // the editorial split reverses via grid order: the media column moves ahead
-    // of the copy column on large screens
+    const lgOrder = (el: Element | null) => {
+      const m = [...(el?.classList ?? [])].map((c) => c.match(/^lg:order-(\d+)$/)).find(Boolean);
+      return m ? Number(m[1]) : 0; // CSS order defaults to 0
+    };
     const media = container.querySelector(".mt-media");
-    expect(media?.className).toContain("lg:order-1");
+    const copy = container.querySelector(".mt-copy");
+    expect(media).not.toBeNull();
+    expect(copy).not.toBeNull();
+    expect(lgOrder(media)).toBeLessThan(lgOrder(copy));
   });
 });
