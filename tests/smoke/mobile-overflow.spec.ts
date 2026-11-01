@@ -57,33 +57,53 @@ function measure(page: Page) {
       /paint|layout|strict|content/.test(cs.contain) ||
       /transform|translate|rotate|scale|perspective|filter/.test(cs.willChange);
     // The next box up in the flat tree: a slotted node climbs into its slot, and
-    // a shadow tree's top climbs out to its host.
+    // a shadow tree's top climbs out to its host. (A closed shadow root hides
+    // its slots from page script, so its clips are not seen.)
     const up = (a: Element): Element | null =>
       a.assignedSlot ??
       a.parentElement ??
       (a.parentNode instanceof ShadowRoot ? a.parentNode.host : null);
-    // How far right a line box can be seen, or null when none of it can. Each
-    // ancestor that clips narrows the line, axis by axis: overflow hidden and
-    // clip and paint containment show only the ancestor's padding box, and
-    // clip-path its border box, which leaves nothing of the sr-only pattern's
-    // 1px box or of a slider's parked slides. auto and scroll let the visitor
-    // scroll anything in the box's scrollable extent into view, so past one of
-    // those the line can sit anywhere in its box. A clipping ancestor only
-    // clips boxes whose containing block it is or contains. display: contents
-    // boxes have no rect. The returned edge is the line's own right edge, so
-    // text cut by a full-width clipping section still fails, except where the
-    // clip ends in a designed ellipsis (text-overflow): there the text ends
-    // where the clip does.
-    const seen = (el: Element, line: DOMRect): number | null => {
+    // clip-path and mask-image clip whatever they paint, out-of-flow boxes
+    // included, so they apply on every ancestor. Both are taken at the border
+    // box: a mask paints nothing outside it, and clip-path is narrowed only for
+    // an inset() with no negative inset (`inset(0 -100vmax)` reaches past the
+    // box); any other shape leaves the line as it is.
+    const clipsToBorderBox = (cs: CSSStyleDeclaration) =>
+      cs.maskImage !== "none" || (/^inset\(/.test(cs.clipPath) && !cs.clipPath.includes("-"));
+    // How far right a line box can be seen, or null when none of it can be seen
+    // on the screen. Each ancestor that clips narrows the line, axis by axis:
+    // overflow hidden and clip and paint containment show only the ancestor's
+    // padding box, which leaves nothing of the sr-only pattern's 1px box or of a
+    // slider's parked slides. auto and scroll let the visitor scroll anything in
+    // the box's scrollable extent into view, so past one of those the line can
+    // sit anywhere in its box. Overflow and containment do not apply to plain
+    // inline boxes. A clipping ancestor only clips boxes whose containing block
+    // it is or contains. display: contents boxes have no rect. The returned edge
+    // is the line's own right edge, so text cut by a full-width clipping section
+    // still fails, except where the line's own block container ends it in an
+    // ellipsis (text-overflow, Tailwind's `truncate`): there the text ends where
+    // the clip does.
+    const seen = (start: Element, line: DOMRect): number | null => {
       let [x0, x1, y0, y1] = [line.left, line.right, line.top, line.bottom];
       let end = line.right;
+      // The block container whose inline content the line is: the only box
+      // whose text-overflow draws an ellipsis on it.
+      let blockOf: Element | null = start;
+      while (blockOf && /^(inline|contents)$/.test(getComputedStyle(blockOf).display)) {
+        blockOf = up(blockOf);
+      }
       // An absolute box skips static ancestors up to its containing block; a
       // fixed box skips everything up to an ancestor that forms one by
       // transform, filter or containment (usually none: then nothing clips it).
       let escaped: "" | "absolute" | "fixed" = "";
-      for (let a: Element | null = el; a && a !== document.body; a = up(a)) {
+      for (let a: Element | null = start; a && a !== document.body; a = up(a)) {
         const cs = getComputedStyle(a);
         if (cs.display === "contents") continue;
+        const b = a.getBoundingClientRect();
+        if (clipsToBorderBox(cs)) {
+          [x0, x1] = [Math.max(x0, b.left), Math.min(x1, b.right)];
+          [y0, y1] = [Math.max(y0, b.top), Math.min(y1, b.bottom)];
+        }
         const block = formsBlock(cs);
         const containing =
           escaped === "fixed"
@@ -91,9 +111,8 @@ function measure(page: Page) {
             : escaped === "absolute"
               ? cs.position !== "static" || block
               : true;
-        if (containing) {
+        if (containing && cs.display !== "inline") {
           escaped = "";
-          const b = a.getBoundingClientRect();
           // The padding box, which overflow and paint containment clip to.
           const pl = b.left + a.clientLeft;
           const pt = b.top + a.clientTop;
@@ -115,20 +134,23 @@ function measure(page: Page) {
           } else if (cs.overflowY !== "visible" || paint) {
             [y0, y1] = [Math.max(y0, pt), Math.min(y1, pb)];
           }
-          if (cs.clipPath !== "none") {
-            [x0, x1] = [Math.max(x0, b.left), Math.min(x1, b.right)];
-            [y0, y1] = [Math.max(y0, b.top), Math.min(y1, b.bottom)];
-          }
-          if (cs.textOverflow !== "clip" && cs.overflowX !== "visible" && x1 < xBefore - 1) {
+          if (
+            a === blockOf &&
+            cs.textOverflow !== "clip" &&
+            cs.overflowX !== "visible" &&
+            x1 < xBefore - 1
+          ) {
             end = Math.min(end, x1);
           }
-          if (x1 - x0 <= 1 || y1 - y0 <= 1) return null;
+        } else if (containing) {
+          escaped = "";
         }
+        if (x1 - x0 <= 1 || y1 - y0 <= 1) return null;
         if (cs.position === "fixed") escaped = "fixed";
         else if (cs.position === "absolute") escaped = "absolute";
       }
       // What the ancestors leave of it must also be on the screen.
-      return x0 < vw - 1 ? end : null;
+      return x0 < vw - 1 && x1 > 1 ? end : null;
     };
     // Every text node, inside open shadow roots too.
     const texts: Text[] = [];
@@ -147,12 +169,17 @@ function measure(page: Page) {
       if (!n.textContent?.trim()) continue;
       const el = n.parentElement ?? (n.parentNode instanceof ShadowRoot ? n.parentNode.host : null);
       if (!el || !el.checkVisibility({ opacityProperty: true, visibilityProperty: true })) continue;
+      // Text the page marks inert is out of use: a carousel's peeking
+      // next slide (a designed peek, not a cut), or a parked panel.
+      if (el.closest("[inert]")) continue;
       const range = document.createRange();
       range.selectNodeContents(n);
+      // A slotted text node is laid out inside its slot, so its clips start there.
+      const start = n.assignedSlot ?? el;
       // A line counts when some of it can be seen on the screen and it
       // straddles the right edge.
       const cuts = [...range.getClientRects()].some((r) => {
-        const end = seen(el, r);
+        const end = seen(start, r);
         return end !== null && end > vw + 1 && r.left < vw - 1;
       });
       if (cuts) cut.push(`<${el.tagName.toLowerCase()}> "${n.textContent.trim().slice(0, 60)}"`);
