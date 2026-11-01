@@ -381,3 +381,7 @@ primary` has a white border with a primary bottom edge (shared.css:5966,
   the poster holds, read SSIM 0.989–0.995 and a mean difference under
   0.75/255 (control: home against about-us, 0.519). page-diff itself was
   not run: its skill is not in a cloud session.
+
+## 2026-11-01 — OurPlan's container clips on x, so the step panel stops widening the page (P1-90)
+
+- [deviation] The reference's `.plan-container` (`padding-left: 8%`, `position: relative`) holds the active `.plan-1` at `width: 100%; position: absolute` (`williamson-construction.shared.3b91c7675.css:6602-6619`). An absolute box takes the container's padding box as its width but starts at the content edge, so the panel ends 8% of its column past the right edge. From 992px to about 1320px (above that the 1280px container is centred with room to spare) that made `/` up to 41px wider than the screen (1057px at 1024, 1321px at 1280, on production 11-01). What runs past the edge is only the panel's empty `padding-right`: its painted text and buttons end inside the blue container at every width (1007px at 1024, 1241px at 1280). `overflow-x-clip` on the blue container removes the overflow and moves no painted pixel, so the gate's numbers should not change. Not run here: the match gate needs the reference live, and production is now this build.

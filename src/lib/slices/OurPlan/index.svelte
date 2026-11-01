@@ -32,8 +32,13 @@
   {#if slice.primary.heading}
     <h2 class="wc-h2 mb-8 pb-8 text-center text-primary">{slice.primary.heading}</h2>
   {/if}
+  <!-- overflow-x-clip (P1-90): the reference's `.plan-container` (padding-left: 8%)
+       holds an absolute `.plan-1` at width: 100% (shared.css:6602-6619), so the
+       step panel ends 8% of its column past the right edge. Only its empty
+       right padding is out there, but from 992px to about 1320px it made the
+       page up to 41px wider than the screen. Clipping on x leaves every painted pixel where it was. -->
   <div
-    class="mx-auto mb-16 flex max-w-[1280px] flex-wrap items-center justify-between bg-[#004a7e] max-[992px]:px-[10%] max-[768px]:px-[4%]"
+    class="mx-auto mb-16 flex max-w-[1280px] flex-wrap items-center justify-between overflow-x-clip bg-[#004a7e] max-[992px]:px-[10%] max-[768px]:px-[4%]"
   >
     <div class="w-[60%] p-8 max-[992px]:w-full max-[768px]:p-0">
       <div class="my-8 text-[14px] leading-5">
