@@ -35,7 +35,7 @@ async function gotoLoaded(page: Page, path: string) {
   expect(res?.ok(), `${path} answered ${res?.status()}`).toBe(true);
   // After hydration, which can change layout (the sliders), and which CI's `vite
   // dev` reaches about 2s after `load`.
-  await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
+  await page.locator("html[data-hydrated]").waitFor({ state: "attached", timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
 }
 

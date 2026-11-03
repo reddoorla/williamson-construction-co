@@ -45,7 +45,9 @@ jobs:
         env:
           SCRIPT: ${{ inputs.script || 'test:nightly' }}
           PLAYWRIGHT_HTML_OPEN: never
-        run: pnpm run "$SCRIPT" --reporter=github,html
+        # One worker: the reveal trace's 4 s window is only reliably met when a single
+        # cold page loads at a time on `vite dev`; it is two tests, so this costs nothing.
+        run: pnpm run "$SCRIPT" --reporter=github,html --workers=1
 
       - if: failure()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

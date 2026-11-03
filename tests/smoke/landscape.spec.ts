@@ -16,13 +16,12 @@ import { test, expect, devices, type Browser, type Page } from "@playwright/test
 //
 //   - the two media queries LandscapeModal reads are read back from the page,
 //     so "no overlay" can never mean "the device was never emulated";
-//   - the overlay is WAITED FOR rather than counted, so the verdict cannot be
-//     taken before hydration has had its say;
+//   - the overlay is counted only after `html[data-hydrated]`, so the verdict
+//     cannot be taken before hydration has had its say;
 //   - operability is probed with a retrying click, which is the positive half —
 //     a landscape phone can actually work the page, not merely lack an overlay.
 const FIXTURES = "/dev/a11y-fixtures";
 const MODAL = '[role="dialog"][aria-modal="true"]';
-const OVERLAY_GRACE_MS = 8000;
 
 /** Retrying click: a single click can land on markup that has not hydrated yet,
  *  where it does nothing at all. Re-issued until the Svelte-state accordion
@@ -48,11 +47,11 @@ async function measure(browser: Browser, device: (typeof devices)[string]) {
         .matches,
     }));
 
-    const overlayAppeared = await page
-      .locator(MODAL)
-      .waitFor({ state: "attached", timeout: OVERLAY_GRACE_MS })
-      .then(() => true)
-      .catch(() => false);
+    // A signal, not a window: the root layout writes the marker in `onMount`,
+    // which is when LandscapeModal would mount, so once it is there the overlay
+    // either exists or never will.
+    await page.locator("html[data-hydrated]").waitFor({ state: "attached", timeout: 30000 });
+    const overlayAppeared = (await page.locator(MODAL).count()) > 0;
 
     // Not probed when an overlay is up: it covers the viewport, so the click
     // would be measuring the overlay, and the overlay IS the failure.

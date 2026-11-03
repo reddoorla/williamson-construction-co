@@ -75,7 +75,7 @@ Three rules come with it, and none is optional:
 - **Keep the default `translateY`.** The CSS hides it at that distance; a call site passing its own travel must not ship the attribute, or CSS would hide it somewhere the action does not reveal it from.
 - **Above the fold only.** Below it the flash is nearly unobservable, so the trade — a certain flash for a possible invisible element — does not pay.
 
-Scripting-off browsers are covered by a `<noscript>` style in `app.html` that forces the two properties back, so a reader with JS disabled is never shown less than a crawler reading the SSR HTML gets. `tests/interaction/reveal-no-js.spec.ts` measures all of it; `/dev/animate-in` carries the template's only server-hidden target.
+Scripting-off browsers are covered by a `<noscript>` style in `app.html` that forces the two properties back, so a reader with JS disabled is never shown less than a crawler reading the SSR HTML gets. `tests/interaction/reveal-no-js.spec.ts` measures all of it (the scripting-off half is `@smoke`; the scripting-on first-frame trace is `@nightly`); `/dev/animate-in` carries the template's only server-hidden target.
 
 ### Focus trap action — `use:trapFocus`
 

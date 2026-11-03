@@ -87,20 +87,33 @@ test("the icons cross-fade: menu out, close in (.open-nav, .close-nav)", async (
   await open(page);
   await expect(menu).toHaveCSS("opacity", "0");
   await expect(close).toHaveCSS("opacity", "1");
-  // The Menu button is on every page at phone width. Its size is the design's to
-  // change, so this is a floor, WCAG 2.5.8's 24px target size, not the 64px comp
-  // value; and the close icon only has to land on the button, not on a px spot.
-  const button = (await page.getByRole("button", { name: "Menu" }).boundingBox())!;
-  expect(button.width, "Menu button width under the 24px target floor").toBeGreaterThanOrEqual(24);
-  expect(button.height, "Menu button height under the 24px target floor").toBeGreaterThanOrEqual(
-    24,
-  );
-  const icon = (await close.boundingBox())!;
-  expect(icon.x).toBeGreaterThanOrEqual(button.x - 0.5);
-  expect(icon.y).toBeGreaterThanOrEqual(button.y - 0.5);
-  expect(icon.x + icon.width).toBeLessThanOrEqual(button.x + button.width + 0.5);
-  expect(icon.y + icon.height).toBeLessThanOrEqual(button.y + button.height + 0.5);
 });
+
+test(
+  "the Menu button is at least the 24px WCAG target and holds the close icon",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    await page.goto("/", { waitUntil: "networkidle" });
+    await open(page);
+    const close = page.locator('button[aria-controls="wc-menu"] img').nth(1);
+    // The Menu button is on every page at phone width. Its size is the design's
+    // to change, so this is a floor, WCAG 2.5.8's 24px target size, not the 64px
+    // comp value; and the close icon only has to land on the button, not on a
+    // px spot. axe's target-size rule runs at desktop, where the button is hidden.
+    const button = (await page.getByRole("button", { name: "Menu" }).boundingBox())!;
+    expect(button.width, "Menu button width under the 24px target floor").toBeGreaterThanOrEqual(
+      24,
+    );
+    expect(button.height, "Menu button height under the 24px target floor").toBeGreaterThanOrEqual(
+      24,
+    );
+    const icon = (await close.boundingBox())!;
+    expect(icon.x).toBeGreaterThanOrEqual(button.x - 0.5);
+    expect(icon.y).toBeGreaterThanOrEqual(button.y - 0.5);
+    expect(icon.x + icon.width).toBeLessThanOrEqual(button.x + button.width + 0.5);
+    expect(icon.y + icon.height).toBeLessThanOrEqual(button.y + button.height + 0.5);
+  },
+);
 
 test(
   "Tab past the last menu link closes the menu, so the next control is not under it",
@@ -155,7 +168,29 @@ test(
     await page.goto("/", { waitUntil: "networkidle" });
     const button = await open(page);
     await expect(page.locator("#wc-menu a").first()).toBeVisible();
-    await page.mouse.click(200, 700);
+    // A spot of `main` with nothing interactive under it: a click on a link
+    // would close the menu by moving focus to the link (and navigate away),
+    // which is not the behaviour this names. Found, not hard-coded, so a content
+    // edit cannot put a link at a fixed point.
+    const spot = await page.evaluate(() => {
+      for (let y = 400; y < 840; y += 10)
+        for (let x = 20; x < 370; x += 10) {
+          const e = document.elementFromPoint(x, y);
+          if (
+            e &&
+            e.closest("main") &&
+            !e.closest(
+              "a, button, input, select, textarea, label, video, iframe, [tabindex]:not(main)",
+            )
+          )
+            return { x, y };
+        }
+      return null;
+    });
+    expect(spot, "a plain spot of main to click").not.toBeNull();
+    const url = page.url();
+    await page.mouse.click(spot!.x, spot!.y);
+    expect(page.url(), "the click navigated instead of landing on plain content").toBe(url);
     await expect(button).toHaveAttribute("aria-expanded", "false");
   },
 );
