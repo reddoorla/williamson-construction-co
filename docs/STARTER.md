@@ -137,7 +137,7 @@ Netlify/Prismic prompts. To stand one up by hand instead:
 | `pnpm lint`        | Lint with ESLint + Prettier                                                                         |
 | `pnpm format`      | Auto-format with Prettier                                                                           |
 | `pnpm test:unit`   | Run unit tests with Vitest                                                                          |
-| `pnpm test:smoke`  | Run Playwright route/hydration smoke suite                                                          |
+| `pnpm test:smoke`  | Run the Playwright `@smoke` gate (route, hydration and contract specs)                              |
 | `pnpm test:a11y`   | Run the axe audit CI gates on (`reddoor-maint`)                                                     |
 | `pnpm prismic:gen` | Regenerate `prismicio-types.d.ts` and the slice index from the models; CI fails when they are stale |
 

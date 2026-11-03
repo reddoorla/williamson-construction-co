@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 const PRISMIC_FRAMER = "https://*.prismic.io";
 
 for (const path of ["/slice-simulator", "/slice%2Dsimulator", "/slice%2dsimulator"]) {
-  test(`${path} lets Prismic frame it`, async ({ request }) => {
+  test(`${path} lets Prismic frame it`, { tag: "@smoke" }, async ({ request }) => {
     const response = await request.get(path, { maxRedirects: 0 });
     expect(response.status()).toBe(200);
     expect(response.headers()["x-frame-options"]).toBeUndefined();
@@ -34,11 +34,14 @@ const SLICE = {
   items: [],
 };
 
-test("/slice-simulator renders a slice the Type Builder sends it", async ({ page, baseURL }) => {
-  await page.route(HOST, (route) =>
-    route.fulfill({
-      contentType: "text/html",
-      body: `<!doctype html><iframe src="${baseURL}/slice-simulator" width="1280" height="800"></iframe>
+test(
+  "/slice-simulator renders a slice the Type Builder sends it",
+  { tag: "@smoke" },
+  async ({ page, baseURL }) => {
+    await page.route(HOST, (route) =>
+      route.fulfill({
+        contentType: "text/html",
+        body: `<!doctype html><iframe src="${baseURL}/slice-simulator" width="1280" height="800"></iframe>
 <script>
   const frame = document.querySelector("iframe");
   const ok = (requestID) => ({ requestID, status: 200, msg: "ok", data: undefined });
@@ -59,33 +62,40 @@ test("/slice-simulator renders a slice the Type Builder sends it", async ({ page
     frame.contentWindow.postMessage({ requestID: "emitter-connect", type: "connect", data: { activeSliceAPI: true, sliceZoneSizeAPI: true } }, "*", [channel.port2]);
   });
 </script>`,
-    }),
-  );
-  const errors: Error[] = [];
-  page.on("pageerror", (error) => errors.push(error));
-  // Chrome's Local Network Access check blocks a public origin from framing
-  // localhost unless the browser has granted that origin the permission.
-  await page.context().grantPermissions(["local-network-access"], { origin: new URL(HOST).origin });
-  await page.goto(HOST);
-  await expect
-    .poll(
-      () => page.evaluate(() => (window as { setSliceZoneStatus?: number }).setSliceZoneStatus),
-      { timeout: 25_000 },
-    )
-    .toBe(200);
-  const slice = page
-    .frameLocator("iframe")
-    .locator('.slice-simulator--root [data-slice-type="headline"]');
-  await expect(slice).toContainText(HEADING);
-  expect(errors).toEqual([]);
-});
+      }),
+    );
+    const errors: Error[] = [];
+    page.on("pageerror", (error) => errors.push(error));
+    // Chrome's Local Network Access check blocks a public origin from framing
+    // localhost unless the browser has granted that origin the permission.
+    await page
+      .context()
+      .grantPermissions(["local-network-access"], { origin: new URL(HOST).origin });
+    await page.goto(HOST);
+    await expect
+      .poll(
+        () => page.evaluate(() => (window as { setSliceZoneStatus?: number }).setSliceZoneStatus),
+        { timeout: 25_000 },
+      )
+      .toBe(200);
+    const slice = page
+      .frameLocator("iframe")
+      .locator('.slice-simulator--root [data-slice-type="headline"]');
+    await expect(slice).toContainText(HEADING);
+    expect(errors).toEqual([]);
+  },
+);
 
-test("an ordinary server-rendered page does not let Prismic frame it", async ({ request }) => {
-  const response = await request.get("/join-the-team");
-  expect(response.status()).toBe(200);
-  expect(response.headers()["x-frame-options"]).toBe("SAMEORIGIN");
-  const policy = response.headers()["content-security-policy"] ?? "";
-  const ancestors = policy.match(/frame-ancestors[^;]*/)?.[0];
-  expect(ancestors).toBeDefined();
-  expect(ancestors).not.toContain(PRISMIC_FRAMER);
-});
+test(
+  "an ordinary server-rendered page does not let Prismic frame it",
+  { tag: "@smoke" },
+  async ({ request }) => {
+    const response = await request.get("/join-the-team");
+    expect(response.status()).toBe(200);
+    expect(response.headers()["x-frame-options"]).toBe("SAMEORIGIN");
+    const policy = response.headers()["content-security-policy"] ?? "";
+    const ancestors = policy.match(/frame-ancestors[^;]*/)?.[0];
+    expect(ancestors).toBeDefined();
+    expect(ancestors).not.toContain(PRISMIC_FRAMER);
+  },
+);

@@ -33,6 +33,9 @@ async function gotoLoaded(page: Page, path: string) {
   const res = await page.goto(path, { waitUntil: "load" });
   // An unpublished page would otherwise measure the error page and pass.
   expect(res?.ok(), `${path} answered ${res?.status()}`).toBe(true);
+  // After hydration, which can change layout (the sliders), and which CI's `vite
+  // dev` reaches about 2s after `load`.
+  await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
   await page.evaluate(() => document.fonts.ready);
 }
 
@@ -196,7 +199,7 @@ for (const width of WIDTHS) {
     test.use({ viewport: { width, height: 800 }, reducedMotion: "reduce" });
 
     for (const path of ROUTES) {
-      test(`${path} has no horizontal overflow`, async ({ page }) => {
+      test(`${path} has no horizontal overflow`, { tag: "@smoke" }, async ({ page }) => {
         await gotoLoaded(page, path);
         const { scrollWidth, clientWidth, cut } = await measure(page);
         expect(scrollWidth, `page is wider than ${clientWidth}px`).toBeLessThanOrEqual(clientWidth);

@@ -102,50 +102,63 @@ test("the icons cross-fade: menu out, close in (.open-nav, .close-nav)", async (
   expect(icon.y + icon.height).toBeLessThanOrEqual(button.y + button.height + 0.5);
 });
 
-test("Tab past the last menu link closes the menu, so the next control is not under it", async ({
-  page,
-}) => {
-  await page.goto("/", { waitUntil: "networkidle" });
-  const button = await open(page);
-  await expect(page.locator("#wc-menu a").first()).toBeVisible();
-  await button.focus();
-  await expect(button).toBeFocused();
-  for (const name of ["About", "Services", "Projects", "Contact"]) {
+test(
+  "Tab past the last menu link closes the menu, so the next control is not under it",
+  {
+    tag: "@smoke",
+  },
+  async ({ page }) => {
+    await page.goto("/", { waitUntil: "networkidle" });
+    const button = await open(page);
+    await expect(page.locator("#wc-menu a").first()).toBeVisible();
+    await button.focus();
+    await expect(button).toBeFocused();
+    // Every link the panel holds, read off the page: a link added to the menu is
+    // not a defect, and the last one is what Tab has to get past.
+    const links = page.locator("#wc-menu a");
+    const count = await links.count();
+    expect(count, "the open menu holds links").toBeGreaterThan(0);
+    for (let i = 0; i < count; i++) {
+      await page.keyboard.press("Tab");
+      await expect(links.nth(i)).toBeFocused();
+    }
     await page.keyboard.press("Tab");
-    await expect(page.locator("#wc-menu").getByRole("link", { name })).toBeFocused();
-  }
-  await page.keyboard.press("Tab");
-  const where = await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 120));
-  await expect(button, `focus went to ${where}`).toHaveAttribute("aria-expanded", "false");
-  await expect
-    .poll(
-      () =>
-        page.evaluate(() => {
-          const nav = document.querySelector("#wc-menu") as HTMLElement;
-          if (getComputedStyle(nav).visibility === "hidden") return false;
-          const p = nav.getBoundingClientRect();
-          const f = (document.activeElement as HTMLElement).getBoundingClientRect();
-          return !(
-            p.bottom <= f.top ||
-            p.top >= f.bottom ||
-            p.right <= f.left ||
-            p.left >= f.right
-          );
-        }),
-      { timeout: 1500, message: "the painted panel still overlaps the focused control" },
-    )
-    .toBe(false);
-});
+    const where = await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 120));
+    await expect(button, `focus went to ${where}`).toHaveAttribute("aria-expanded", "false");
+    await expect
+      .poll(
+        () =>
+          page.evaluate(() => {
+            const nav = document.querySelector("#wc-menu") as HTMLElement;
+            if (getComputedStyle(nav).visibility === "hidden") return false;
+            const p = nav.getBoundingClientRect();
+            const f = (document.activeElement as HTMLElement).getBoundingClientRect();
+            return !(
+              p.bottom <= f.top ||
+              p.top >= f.bottom ||
+              p.right <= f.left ||
+              p.left >= f.right
+            );
+          }),
+        { timeout: 1500, message: "the painted panel still overlaps the focused control" },
+      )
+      .toBe(false);
+  },
+);
 
-test("a click on the page closes the open menu (ledgered deviation: the reference keeps it open)", async ({
-  page,
-}) => {
-  await page.goto("/", { waitUntil: "networkidle" });
-  const button = await open(page);
-  await expect(page.locator("#wc-menu a").first()).toBeVisible();
-  await page.mouse.click(200, 700);
-  await expect(button).toHaveAttribute("aria-expanded", "false");
-});
+test(
+  "a click on the page closes the open menu (ledgered deviation: the reference keeps it open)",
+  {
+    tag: "@smoke",
+  },
+  async ({ page }) => {
+    await page.goto("/", { waitUntil: "networkidle" });
+    const button = await open(page);
+    await expect(page.locator("#wc-menu a").first()).toBeVisible();
+    await page.mouse.click(200, 700);
+    await expect(button).toHaveAttribute("aria-expanded", "false");
+  },
+);
 
 test("the toggle fades to 0.6 on hover (.open-nav:hover, .close-nav:hover)", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
@@ -208,16 +221,20 @@ test.describe("with motion allowed", () => {
     await expect.poll(async () => (await box(page, "#wc-menu")).top).toBe(64 - 240);
   });
 
-  test("Tab straight after closing goes on into the page, never into the sliding panel", async ({
-    page,
-  }) => {
-    await page.goto("/", { waitUntil: "networkidle" });
-    const button = await open(page);
-    await button.focus();
-    await page.keyboard.press("Escape");
-    await expect(button).toHaveAttribute("aria-expanded", "false");
-    await page.keyboard.press("Tab");
-    const inPanel = await page.evaluate(() => !!document.activeElement?.closest("#wc-menu"));
-    expect(inPanel).toBe(false);
-  });
+  test(
+    "Tab straight after closing goes on into the page, never into the sliding panel",
+    {
+      tag: "@smoke",
+    },
+    async ({ page }) => {
+      await page.goto("/", { waitUntil: "networkidle" });
+      const button = await open(page);
+      await button.focus();
+      await page.keyboard.press("Escape");
+      await expect(button).toHaveAttribute("aria-expanded", "false");
+      await page.keyboard.press("Tab");
+      const inPanel = await page.evaluate(() => !!document.activeElement?.closest("#wc-menu"));
+      expect(inPanel).toBe(false);
+    },
+  );
 });

@@ -83,7 +83,9 @@ test("it stays inside the viewport instead of overflowing on a narrow screen", a
   expect(box.x + box.width, "right edge inside the viewport").toBeLessThanOrEqual(layoutWidth);
 });
 
-test("the page behind the open modal does not scroll", async ({ page }) => {
+// @nightly, not @smoke: the "stays put" half is a negative wait, a fixed 300ms
+// for a wheel event to have moved the page if it was going to.
+test("the page behind the open modal does not scroll", { tag: "@nightly" }, async ({ page }) => {
   await page.goto(FIXTURES, { waitUntil: "domcontentloaded" });
 
   // The fixtures page is far taller than the viewport, so a wheel over it moves

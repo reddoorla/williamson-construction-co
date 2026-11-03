@@ -16,7 +16,10 @@
     "test:prerender-origin": "node scripts/prerender-origin.mjs",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
-    "test:smoke": "playwright install chromium && playwright test",
+    "test:smoke": "playwright install chromium && playwright test --grep @smoke",
+    "test:nightly": "playwright test --grep @nightly",
+    "test:scaffold": "playwright test --grep-invert @smoke",
+    "test:e2e": "playwright test",
     "test:a11y": "reddoor-maint audit --only a11y --fail-on-violations",
     "prismic:gen": "prismic gen types && prismic gen slice-index"
   },
