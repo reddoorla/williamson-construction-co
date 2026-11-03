@@ -63,7 +63,8 @@ nothing else reads it.
   computed-style colour or size, and no element count a new button would
   change. Comparing two of the page's own boxes (a box against the viewport,
   text against the edge) reads a relation, not a design value, so it is a
-  contract and may be tagged. An untagged Playwright spec still runs in
+  contract and may be tagged. A box read against a WCAG floor (a 24px target,
+  2.5.8) is a contract too: it asserts `>=` the standard, never a comp value. An untagged Playwright spec still runs in
   `pnpm test:scaffold`, not in CI.
 - **A `@smoke` test that interacts, or reads what script builds, waits on
   `html[data-hydrated]`** (written by the root layout's `onMount`), or on
