@@ -63,9 +63,12 @@ nothing else reads it.
   computed-style colour or size, and no element count a new button would
   change. Comparing two of the page's own boxes (a box against the viewport,
   text against the edge) reads a relation, not a design value, so it is a
-  contract and may be tagged. A box read against a WCAG floor (a 24px target,
-  2.5.8) is a contract too: it asserts `>=` the standard, never a comp value. An untagged Playwright spec still runs in
-  `pnpm test:scaffold`, not in CI.
+  contract and may be tagged. A box read against a floor that WCAG 2.2 AA sets
+  (2.5.8's 24px target) is a contract too: it asserts `>=` that constant, never
+  a comp value and never an AAA figure. The test deliberately skips 2.5.8's
+  spacing exception, so an undersized target with spacing around it still
+  goes red. An untagged Playwright spec still runs in `pnpm test:scaffold`, not
+  in CI.
 - **A `@smoke` test that interacts, or reads what script builds, waits on
   `html[data-hydrated]`** (written by the root layout's `onMount`), or on
   something only script produces, never on a server-rendered element: CI's

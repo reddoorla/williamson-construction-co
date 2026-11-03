@@ -44,13 +44,17 @@ async function load(page: Page, path: string) {
 }
 
 for (const width of [390, 834, 1440]) {
-  test(`at ${width}px no slide clips its own content`, { tag: "@smoke" }, async ({ page }) => {
-    await page.setViewportSize({ width, height: 900 });
-    await load(page, "/dev/match/services");
-    expect(await clipped(page, "phase_slider")).toEqual([]);
-    await load(page, "/dev/match/home");
-    expect(await clipped(page, "quote_slider")).toEqual([]);
-    await load(page, "/dev/match/about-us");
-    expect(await clipped(page, "quote_slider")).toEqual([]);
-  });
+  test(
+    `at ${width}px no slide clips its content or sits a link under a control`,
+    { tag: "@smoke" },
+    async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await load(page, "/dev/match/services");
+      expect(await clipped(page, "phase_slider")).toEqual([]);
+      await load(page, "/dev/match/home");
+      expect(await clipped(page, "quote_slider")).toEqual([]);
+      await load(page, "/dev/match/about-us");
+      expect(await clipped(page, "quote_slider")).toEqual([]);
+    },
+  );
 }

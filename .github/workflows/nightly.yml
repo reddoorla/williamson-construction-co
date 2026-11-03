@@ -47,6 +47,7 @@ jobs:
           PLAYWRIGHT_HTML_OPEN: never
         # One worker: the reveal trace's 4 s window is only reliably met when a single
         # cold page loads at a time on `vite dev`; it is two tests, so this costs nothing.
+        # Manual test:e2e and test:scaffold runs also go serially, for the same reason.
         run: pnpm run "$SCRIPT" --reporter=github,html --workers=1
 
       - if: failure()
