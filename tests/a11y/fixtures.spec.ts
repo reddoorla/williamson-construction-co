@@ -7,13 +7,16 @@ const pages = [
 ];
 
 for (const { path, name } of pages) {
-  test(`${name} has no axe violations`, async ({ page }) => {
+  test(`${name} has no axe violations`, { tag: "@smoke" }, async ({ page }) => {
     // Audit under reduced-motion: the animate-in effects no-op (elements render
     // at full opacity immediately), so axe never samples a mid-fade element —
     // whose blended color would trip a spurious color-contrast violation. This
     // is also the correct a11y baseline (motion-averse users see this state).
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(path);
+    // Scan the hydrated page: CI's `vite dev` reaches `load` about 2s before
+    // hydration, and what hydration renders is what a visitor gets.
+    await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
     // The layout's skip link + main landmark render on every page (WCAG 2.4.1).
     await expect(page.locator('a[href="#main-content"]')).toHaveCount(1);
     await expect(page.locator("main#main-content")).toHaveCount(1);
