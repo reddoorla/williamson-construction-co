@@ -66,7 +66,6 @@ async function hovered(page: Page, el: Locator) {
   await page.evaluate(() => document.fonts.ready);
   await page.mouse.move(0, 0);
   await el.scrollIntoViewIfNeeded();
-  await page.waitForTimeout(200);
   const point = await el.evaluate((e) => {
     const r = e.getBoundingClientRect();
     for (let y = r.top + 2; y < r.bottom - 1; y += 3) {
@@ -82,7 +81,11 @@ async function hovered(page: Page, el: Locator) {
   await expect
     .poll(async () => el.evaluate((e) => e.matches(":hover")), { timeout: 3000 })
     .toBe(true);
-  await page.waitForTimeout(1000);
+  // A signal, not a sleep: every transition the hover started has finished.
+  await el.evaluate(async (e) => {
+    const all = [e, ...e.querySelectorAll("*")].flatMap((n) => n.getAnimations());
+    await Promise.all(all.map((a) => a.finished.catch(() => {})));
+  });
 }
 
 type ButtonCase = [path: string, slice: string, label: string, bg: string, reference: string];
@@ -172,67 +175,72 @@ test("a phase bubble does not fade on hover (.number-bubble:hover opacity 1)", a
 const ROUTES = ["/", "/about-us", "/services", "/contact", "/join-the-team", "/projects"];
 
 for (const path of ROUTES) {
-  test(`${path}: every plain link stays at AA when hovered (a:hover)`, async ({ page }) => {
-    await page.goto(path, { waitUntil: "networkidle" });
-    const links = page.locator("a:visible");
-    const count = await links.count();
-    let measured = 0;
-    for (let i = 0; i < count; i++) {
-      const link = links.nth(i);
-      const isButton = await link.evaluate(
-        (e) =>
-          (/\brounded-\[10px\]/.test(e.className) && /\bborder-2\b/.test(e.className)) ||
-          !!e.closest('[data-slice-type="phase_bubbles"]'),
-      );
-      const box = await link.boundingBox();
-      if (isButton || !box || box.width < 2 || box.height < 2) continue;
-      await hovered(page, link);
-      const m = await link.evaluate((e, pixel) => {
-        const parse = (0, eval)(pixel) as (c: string) => number[];
-        const over = (top: number[], under: number[]) =>
-          [0, 1, 2].map((k) => top[k] * top[3] + under[k] * (1 - top[3]));
-        const layers: number[][] = [];
-        for (let n = e.parentElement; n; n = n.parentElement) {
-          const c = parse(getComputedStyle(n).backgroundColor);
-          if (c[3] > 0) layers.push(c);
-          if (c[3] === 1) break;
-        }
-        let ground = [255, 255, 255];
-        for (const layer of layers.reverse()) ground = over(layer, ground);
-        const s = getComputedStyle(e);
-        const opacity = Number(s.opacity);
-        const text = parse(s.color);
-        const tint = parse(s.backgroundColor);
-        const lin = (c: number) => {
-          c /= 255;
-          return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-        };
-        const lum = (c: number[]) => 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
-        const ratio = (a: number[], b: number[]) => {
-          const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
-          return (hi + 0.05) / (lo + 0.05);
-        };
-        const at = (o: number) => {
-          const face = over([...over(tint.slice(0, 4), ground), o], ground);
-          return ratio(over([...text.slice(0, 3), o], face), face);
-        };
-        const size = parseFloat(s.fontSize);
-        const bold = Number(s.fontWeight) >= 700;
-        const floor = size >= 24 || (bold && size >= 18.66) ? 3 : 4.5;
-        const hasText = !!e.textContent?.trim();
-        return {
-          label: `${e.getAttribute("href")} "${e.textContent?.trim().slice(0, 30)}"`,
-          hasText,
-          floor,
-          now: at(opacity),
-        };
-      }, PIXEL);
-      if (!m.hasText) continue;
-      measured++;
-      expect(m.now, `${m.label} hovered contrast`).toBeGreaterThanOrEqual(m.floor);
-    }
-    expect(measured).toBeGreaterThan(3);
-  });
+  test(
+    `${path}: every plain link stays at AA when hovered (a:hover)`,
+    { tag: "@smoke" },
+    async ({ page }) => {
+      await page.goto(path, { waitUntil: "networkidle" });
+      await page.locator("html[data-hydrated]").waitFor({ state: "attached", timeout: 15000 });
+      const links = page.locator("a:visible");
+      const count = await links.count();
+      let measured = 0;
+      for (let i = 0; i < count; i++) {
+        const link = links.nth(i);
+        const isButton = await link.evaluate(
+          (e) =>
+            (/\brounded-\[10px\]/.test(e.className) && /\bborder-2\b/.test(e.className)) ||
+            !!e.closest('[data-slice-type="phase_bubbles"]'),
+        );
+        const box = await link.boundingBox();
+        if (isButton || !box || box.width < 2 || box.height < 2) continue;
+        await hovered(page, link);
+        const m = await link.evaluate((e, pixel) => {
+          const parse = (0, eval)(pixel) as (c: string) => number[];
+          const over = (top: number[], under: number[]) =>
+            [0, 1, 2].map((k) => top[k] * top[3] + under[k] * (1 - top[3]));
+          const layers: number[][] = [];
+          for (let n = e.parentElement; n; n = n.parentElement) {
+            const c = parse(getComputedStyle(n).backgroundColor);
+            if (c[3] > 0) layers.push(c);
+            if (c[3] === 1) break;
+          }
+          let ground = [255, 255, 255];
+          for (const layer of layers.reverse()) ground = over(layer, ground);
+          const s = getComputedStyle(e);
+          const opacity = Number(s.opacity);
+          const text = parse(s.color);
+          const tint = parse(s.backgroundColor);
+          const lin = (c: number) => {
+            c /= 255;
+            return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+          };
+          const lum = (c: number[]) => 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
+          const ratio = (a: number[], b: number[]) => {
+            const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+            return (hi + 0.05) / (lo + 0.05);
+          };
+          const at = (o: number) => {
+            const face = over([...over(tint.slice(0, 4), ground), o], ground);
+            return ratio(over([...text.slice(0, 3), o], face), face);
+          };
+          const size = parseFloat(s.fontSize);
+          const bold = Number(s.fontWeight) >= 700;
+          const floor = size >= 24 || (bold && size >= 18.66) ? 3 : 4.5;
+          const hasText = !!e.textContent?.trim();
+          return {
+            label: `${e.getAttribute("href")} "${e.textContent?.trim().slice(0, 30)}"`,
+            hasText,
+            floor,
+            now: at(opacity),
+          };
+        }, PIXEL);
+        if (!m.hasText) continue;
+        measured++;
+        expect(m.now, `${m.label} hovered contrast`).toBeGreaterThanOrEqual(m.floor);
+      }
+      expect(measured).toBeGreaterThan(3);
+    },
+  );
 }
 
 test.describe("with motion allowed", () => {

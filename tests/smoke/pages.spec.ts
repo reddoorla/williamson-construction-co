@@ -34,32 +34,52 @@ function attachConsoleWatcher(page: Page, extraAllowed: RegExp[] = []) {
   return errors;
 }
 
-for (const route of smokeRoutes) {
-  test(`${route.path} (${route.name}) loads with no console errors`, async ({ page }) => {
-    const expectedStatus = route.expectStatus ?? 200;
-    // A route whose expected status IS an error (e.g. "/" on the placeholder
-    // starter, see tests/smoke/routes.ts) makes the browser log "Failed to
-    // load resource: ... <status>" for the document itself — expected, not a
-    // bug. Same allowance as the dedicated 404-page test below.
-    const errors = attachConsoleWatcher(
-      page,
-      expectedStatus >= 400 ? [new RegExp(`Failed to load resource.*${expectedStatus}`, "i")] : [],
-    );
-    const response = await page.goto(route.path, {
-      waitUntil: "domcontentloaded",
-    });
-    expect(response?.status(), `HTTP status for ${route.path}`).toBe(expectedStatus);
-    if (route.hydrationMarker) {
-      await expect(
-        page.locator(route.hydrationMarker),
-        `hydration marker "${route.hydrationMarker}" on ${route.path}`,
-      ).toBeVisible();
-    }
-    expect(errors, `console errors on ${route.path}`).toEqual([]);
-  });
+// The root layout's onMount writes `html[data-hydrated]`. Console errors are read
+// only after it, because CI's smoke step runs on `vite dev`, where `load` fires
+// about 2s before hydration and an error thrown while hydrating would otherwise
+// ship green. A hydration that never happens is reported after the errors, which
+// are usually its cause.
+async function hydrated(page: Page, errors: string[], where: string) {
+  await page
+    .locator("html[data-hydrated]")
+    .waitFor({ state: "attached", timeout: 15_000 })
+    .catch(() => {});
+  expect(errors, `console errors on ${where}`).toEqual([]);
+  await expect(page.locator("html[data-hydrated]"), "the app never hydrated").toBeAttached();
 }
 
-test("404 page renders the custom error component", async ({ page }) => {
+for (const route of smokeRoutes) {
+  test(
+    `${route.path} (${route.name}) loads with no console errors`,
+    { tag: "@smoke" },
+    async ({ page }) => {
+      const expectedStatus = route.expectStatus ?? 200;
+      // A route whose expected status IS an error (e.g. "/" on the placeholder
+      // starter, see tests/smoke/routes.ts) makes the browser log "Failed to
+      // load resource: ... <status>" for the document itself — expected, not a
+      // bug. Same allowance as the dedicated 404-page test below.
+      const errors = attachConsoleWatcher(
+        page,
+        expectedStatus >= 400
+          ? [new RegExp(`Failed to load resource.*${expectedStatus}`, "i")]
+          : [],
+      );
+      const response = await page.goto(route.path, {
+        waitUntil: "domcontentloaded",
+      });
+      expect(response?.status(), `HTTP status for ${route.path}`).toBe(expectedStatus);
+      if (route.hydrationMarker) {
+        await expect(
+          page.locator(route.hydrationMarker),
+          `hydration marker "${route.hydrationMarker}" on ${route.path}`,
+        ).toBeVisible();
+      }
+      await hydrated(page, errors, route.path);
+    },
+  );
+}
+
+test("404 page renders the custom error component", { tag: "@smoke" }, async ({ page }) => {
   // The browser logs a top-level "Failed to load resource: 404" for the page
   // itself — expected on a 404 route, not a bug. Allow it here.
   const errors = attachConsoleWatcher(page, [/Failed to load resource.*404/i]);
@@ -69,5 +89,5 @@ test("404 page renders the custom error component", async ({ page }) => {
   expect(response?.status()).toBe(404);
   // src/routes/+error.svelte renders `<h1>{page.status}</h1>` → "404".
   await expect(page.getByText("404", { exact: false }).first()).toBeVisible();
-  expect(errors).toEqual([]);
+  await hydrated(page, errors, "the 404 page");
 });

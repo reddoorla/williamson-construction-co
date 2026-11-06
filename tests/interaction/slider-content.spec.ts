@@ -35,14 +35,26 @@ async function clipped(page: Page, slice: string) {
   }, slice);
 }
 
+// A contract: both halves compare the page's own boxes (text against the track
+// that clips it, a link against the controls over it) and pin no px. The slide
+// widths come from the client-side viewport width, so measure after hydration.
+async function load(page: Page, path: string) {
+  await page.goto(path);
+  await page.locator("html[data-hydrated]").waitFor({ state: "attached", timeout: 15000 });
+}
+
 for (const width of [390, 834, 1440]) {
-  test(`at ${width}px no slide clips its own content`, async ({ page }) => {
-    await page.setViewportSize({ width, height: 900 });
-    await page.goto("/dev/match/services");
-    expect(await clipped(page, "phase_slider")).toEqual([]);
-    await page.goto("/dev/match/home");
-    expect(await clipped(page, "quote_slider")).toEqual([]);
-    await page.goto("/dev/match/about-us");
-    expect(await clipped(page, "quote_slider")).toEqual([]);
-  });
+  test(
+    `at ${width}px no slide clips its content or sits a link under a control`,
+    { tag: "@smoke" },
+    async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await load(page, "/dev/match/services");
+      expect(await clipped(page, "phase_slider")).toEqual([]);
+      await load(page, "/dev/match/home");
+      expect(await clipped(page, "quote_slider")).toEqual([]);
+      await load(page, "/dev/match/about-us");
+      expect(await clipped(page, "quote_slider")).toEqual([]);
+    },
+  );
 }

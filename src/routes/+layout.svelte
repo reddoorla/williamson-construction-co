@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import PrismicPreview from "$lib/components/PrismicPreview.svelte";
   import { page } from "$app/state";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
@@ -17,6 +18,15 @@
   // instantly instead of gliding under app.css's smooth-scroll. See the util.
   beforeNavigate(disableSmoothScroll);
   afterNavigate(restoreSmoothScroll);
+
+  // Evidence that script has taken the page over, for the @smoke gate: only a
+  // mounted root layout writes it, so it is absent with scripting off, with the
+  // bundle missing, and before hydration (CI's smoke step runs on `vite dev`,
+  // where `load` fires about 2s earlier), and a throw in a child's onMount stops
+  // this one. Nothing styles from it.
+  onMount(() => {
+    document.documentElement.dataset.hydrated = "";
+  });
 </script>
 
 <!-- Single head source for the whole app. Static routes feed their title
