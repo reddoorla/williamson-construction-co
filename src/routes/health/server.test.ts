@@ -41,6 +41,7 @@ type HealthBody = {
     ingestToken: boolean;
     turnstile: boolean;
     testMode: boolean;
+    paths: string[];
   };
 };
 
@@ -99,10 +100,13 @@ describe("/health GET", () => {
       ingestUrl: true,
       ingestToken: false,
       turnstile: true,
-      // Not env-derived: this deploy's contact buildPayload forwards the
+      // Not env-derived: this deploy's join-the-team buildPayload forwards the
       // marker, so the declaration is unconditional. The fleet form-e2e probe
       // refuses to submit to any site whose /health omits it.
       testMode: true,
+      // The route that form is on, so the probe finds it: it looks only at
+      // /contact and / otherwise, and this site has no form on either.
+      paths: ["/join-the-team"],
     });
   });
 
