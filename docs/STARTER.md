@@ -75,7 +75,7 @@ Three rules come with it, and none is optional:
 - **Keep the default `translateY`.** The CSS hides it at that distance; a call site passing its own travel must not ship the attribute, or CSS would hide it somewhere the action does not reveal it from.
 - **Above the fold only.** Below it the flash is nearly unobservable, so the trade — a certain flash for a possible invisible element — does not pay.
 
-Scripting-off browsers are covered by a `<noscript>` style in `app.html` that forces the two properties back, so a reader with JS disabled is never shown less than a crawler reading the SSR HTML gets. `tests/interaction/reveal-no-js.spec.ts` measures all of it; `/dev/animate-in` carries the template's only server-hidden target.
+Scripting-off browsers are covered by a `<noscript>` style in `app.html` that forces the two properties back, so a reader with JS disabled is never shown less than a crawler reading the SSR HTML gets. `tests/interaction/reveal-no-js.spec.ts` measures all of it (the scripting-off half is `@smoke`; the scripting-on first-frame trace is `@nightly`); `/dev/animate-in` carries the template's only server-hidden target.
 
 ### Focus trap action — `use:trapFocus`
 
@@ -137,7 +137,7 @@ Netlify/Prismic prompts. To stand one up by hand instead:
 | `pnpm lint`        | Lint with ESLint + Prettier                                                                         |
 | `pnpm format`      | Auto-format with Prettier                                                                           |
 | `pnpm test:unit`   | Run unit tests with Vitest                                                                          |
-| `pnpm test:smoke`  | Run Playwright route/hydration smoke suite                                                          |
+| `pnpm test:smoke`  | Run the Playwright `@smoke` gate (route, hydration and contract specs)                              |
 | `pnpm test:a11y`   | Run the axe audit CI gates on (`reddoor-maint`)                                                     |
 | `pnpm prismic:gen` | Regenerate `prismicio-types.d.ts` and the slice index from the models; CI fails when they are stale |
 
