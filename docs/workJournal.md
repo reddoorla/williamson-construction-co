@@ -1180,3 +1180,9 @@ The proof: vitest runs 97 files and 883 tests with the same per-file counts as `
 Review round 1 (one Opus reviewer, three lenses, all six sites at once) found no blocker. Its one major is folded in: the hand-back checks read only `transitionProperty`, so a release that removed `transition-property` alone, leaving the hover at 2.4s on the reveal curve, stayed green; they now compare the whole computed transition (`box-shadow`, `0.2s`, `ease`), and that mutation turns two tests red. Its nits (the triggered reduced-motion read, now `style.cssText`; ContentWidth's token, now set in `beforeEach` and cleared after) are folded in too.
 
 Review round 2 (Opus, three lenses, the six PRs at once) found minors and nits only, so the review closes clean; the nits in this PR's own files are folded in.
+
+## 2026-11-09 — /health names the route of this site's one form (`claude/health-declare-form-paths` into `staging`)
+
+The fleet's nightly form test looked for a form only at `/contact` and `/`. This site has no form on either: its one form is the subcontractor intake on `/join-the-team`, whose action forwards the probe's `testMode` marker (forwarding proven live on 2026-10-20). So the nightly printed `form-e2e skip williamson-construction-co / no contact form (n/a)` every night, and a working form was never tested end to end (run 42579511593, 11-09). /health now lists the route in `forms.paths: ["/join-the-team"]`. The probe in reddoor-maintenance submits only on a contact route or a route listed there: `forms.testMode` vouches for one form's action, so a review of the maintenance change ruled out submitting any form it merely finds. The /health comment also named `contact/+page.server.ts`, which this site never had; it now names `join-the-team/+page.server.ts`.
+
+Test change: the /health test's exact `forms` shape gains `paths`, because the declaration is the behaviour this PR adds. `pnpm verify` passes, with 135 Playwright tests.
