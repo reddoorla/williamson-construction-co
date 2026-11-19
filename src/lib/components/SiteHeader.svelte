@@ -48,8 +48,9 @@
               href={link.href}
               aria-current={isCurrent(link.href) ? "page" : undefined}
               class="block rounded-[10px] px-[5px] py-0.5 text-[1.2rem] leading-5 font-medium whitespace-nowrap text-primary aria-[current=page]:underline aria-[current=page]:underline-offset-4"
-              >{link.label}</a
             >
+              {link.label}
+            </a>
           </li>
         {/each}
       </ul>
@@ -97,8 +98,10 @@
             href={link.href}
             aria-current={isCurrent(link.href) ? "page" : undefined}
             class="block rounded-[10px] p-4 text-[1.2rem] leading-5 font-medium text-primary"
-            onclick={closeMenu}>{link.label}</a
+            onclick={closeMenu}
           >
+            {link.label}
+          </a>
         </li>
       {/each}
     </ul>

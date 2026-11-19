@@ -23,9 +23,9 @@
       {#if email}<br /><a href="mailto:{email}" class="text-primary">{email}</a>{/if}
     </p>
     {#if file}
-      <WcButton href={file} grounds={["white"]}
-        >{slice.primary.button_label || "Employee Application"}</WcButton
-      >
+      <WcButton href={file} grounds={["white"]}>
+        {slice.primary.button_label || "Employee Application"}
+      </WcButton>
     {/if}
   </div>
 </section>

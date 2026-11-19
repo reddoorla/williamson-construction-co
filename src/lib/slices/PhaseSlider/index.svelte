@@ -46,9 +46,9 @@
           </p>
           {#if item.anchor}
             <div class="flex justify-center">
-              <WcButton href="#{item.anchor.replace(/^#/, '')}" class="mt-6"
-                >{item.button_label || "See More"}</WcButton
-              >
+              <WcButton href="#{item.anchor.replace(/^#/, '')}" class="mt-6">
+                {item.button_label || "See More"}
+              </WcButton>
             </div>
           {/if}
         </div>
