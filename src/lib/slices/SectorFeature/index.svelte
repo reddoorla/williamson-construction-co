@@ -35,9 +35,9 @@
       : 'max-[992px]:px-[6%]'}"
   >
     <h2 class="text-left">
-      <span class="wc-h2 block text-primary max-[768px]:text-[45px] max-[768px]:leading-[55px]"
-        >{slice.primary.heading}</span
-      >
+      <span class="wc-h2 block text-primary max-[768px]:text-[45px] max-[768px]:leading-[55px]">
+        {slice.primary.heading}
+      </span>
       {#if slice.primary.accent}
         <span class="wc-h2 block text-secondary">{slice.primary.accent}</span>
       {/if}

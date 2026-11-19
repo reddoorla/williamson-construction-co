@@ -49,9 +49,9 @@
                 <PrismicRichText field={project.scope} />
               </div>
             {/if}
-            <WcButton href={projectHref(project.uid)}
-              >View Project<span class="sr-only">: {project.title}</span></WcButton
-            >
+            <WcButton href={projectHref(project.uid)}>
+              View Project<span class="sr-only">: {project.title}</span>
+            </WcButton>
           </div>
         </li>
       {/each}
