@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
   import Pause from "@lucide/svelte/icons/pause";
   import Play from "@lucide/svelte/icons/play";
   import { cappedWidths } from "@reddoorla/maintenance/images";
@@ -32,8 +32,10 @@
   let video = $state<HTMLVideoElement>();
   let playing = $state(false);
   let revealed = $state(false);
-  let mounted = $state(false);
   let motionOk = $state(true);
+  // Sources are attached in the browser, never in the server markup: a `<source>` in
+  // the HTML starts a metadata fetch at parse time, before any check below can run.
+  let sourcesOn = $state(false);
   let userPaused = false;
 
   const hasSource = $derived(Boolean(mp4 || webm || mobileMp4));
@@ -57,7 +59,12 @@
   }
 
   onMount(() => {
-    mounted = true;
+    // Automated browsers (Playwright, headless Chrome, Lighthouse) get the poster and no
+    // video. Our own CI and nightly audits load these pages hundreds of times a month and
+    // were about half of Prismic's 100 GB CDN meter in 11-2026 (P1-119). A person's
+    // browser never sets `navigator.webdriver`, so a visitor sees no change.
+    if (navigator.webdriver) return;
+    sourcesOn = true;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     motionOk = !reduce?.matches;
     const onChange = (event: MediaQueryListEvent) => {
@@ -68,7 +75,7 @@
 
     const el = video;
     if (!el || typeof IntersectionObserver === "undefined") {
-      if (motionOk) play();
+      if (motionOk) tick().then(play);
       return () => reduce?.removeEventListener?.("change", onChange);
     }
     const io = new IntersectionObserver(
@@ -137,11 +144,13 @@
   onplaying={() => (revealed = true)}
   onpause={() => (playing = false)}
 >
-  {#if mobileMp4}<source src={mobileMp4} type="video/mp4" media="(max-width: 767px)" />{/if}
-  {#if webm}<source src={webm} type="video/webm" />{/if}
-  {#if mp4}<source src={mp4} type="video/mp4" />{/if}
+  {#if sourcesOn}
+    {#if mobileMp4}<source src={mobileMp4} type="video/mp4" media="(max-width: 767px)" />{/if}
+    {#if webm}<source src={webm} type="video/webm" />{/if}
+    {#if mp4}<source src={mp4} type="video/mp4" />{/if}
+  {/if}
 </video>
-{#if mounted && hasSource}
+{#if sourcesOn && hasSource}
   <button
     type="button"
     class="absolute z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary/80 text-white hover:bg-primary {controlClass}"
