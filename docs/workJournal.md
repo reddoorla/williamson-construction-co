@@ -1196,6 +1196,7 @@ Prismic warned on 11-20 that the `williamson-construction` repository had used 8
 Mutations run against the new tests, each red: dropping the webdriver check (1 failed); rendering the sources in the server markup again (2 failed); inverting the check (20 failed); attaching sources but skipping only `play()` under webdriver (1 failed).
 
 Costs worth knowing:
+
 - This repo's Playwright tests no longer exercise real video playback; the unit tests in `BgVideo.test.ts` still do.
 - Lighthouse now scores the home page without its videos, so its performance number reads better than a visitor's experience.
 - A no-JS visitor already saw only the poster; a `BgVideo` with no poster and no JS now shows an empty box instead of the first frame. Both current callers pass a poster.
