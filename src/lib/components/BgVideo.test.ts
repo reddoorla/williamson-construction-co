@@ -191,16 +191,23 @@ describe("BgVideo", () => {
 
     it("plays at mount where there is no IntersectionObserver", async () => {
       delete (window as { IntersectionObserver?: unknown }).IntersectionObserver;
+      let sourcesAtPlay = -1;
+      playSpy.mockImplementation(function (this: HTMLMediaElement) {
+        sourcesAtPlay = this.querySelectorAll("source").length;
+        return Promise.resolve();
+      });
       render(BgVideo, { props });
       await tick();
       expect(playSpy).toHaveBeenCalledTimes(1);
+      expect(sourcesAtPlay).toBe(2);
     });
   });
 
-  it("offers the phone rendition first, behind a media query, so a phone never fetches the desktop file", () => {
+  it("offers the phone rendition first, behind a media query, so a phone never fetches the desktop file", async () => {
     const { container } = render(BgVideo, {
       props: { ...props, mobileMp4: "/v/hero-720.mp4" },
     });
+    await tick();
     const sources = [...container.querySelectorAll("source")];
     expect(sources.map((s) => s.getAttribute("src"))).toEqual([
       "/v/hero-720.mp4",
@@ -209,6 +216,38 @@ describe("BgVideo", () => {
     ]);
     expect(sources[0].getAttribute("media")).toBe("(max-width: 767px)");
     expect(sources[1].getAttribute("media")).toBeNull();
+  });
+
+  describe("automated browsers (P1-119)", () => {
+    const setWebdriver = (value: boolean) =>
+      Object.defineProperty(window.navigator, "webdriver", { value, configurable: true });
+    afterEach(() => {
+      delete (window.navigator as unknown as { webdriver?: boolean }).webdriver;
+    });
+
+    it("gives an automated browser the poster and no video, so it never fetches the file", async () => {
+      setWebdriver(true);
+      const { container, queryByRole } = render(BgVideo, {
+        props: { ...props, mobileMp4: "/v/hero-720.mp4" },
+      });
+      await tick();
+      io?.([{ isIntersecting: true }]);
+      await tick();
+      expect(container.querySelectorAll("source")).toHaveLength(0);
+      expect(container.querySelector("img")?.getAttribute("src")).toContain("/p.jpg");
+      expect(playSpy).not.toHaveBeenCalled();
+      expect(queryByRole("button", { name: /background video/ })).toBeNull();
+    });
+
+    it("still gives a person's browser every source and plays it", async () => {
+      setWebdriver(false);
+      const { container } = render(BgVideo, { props });
+      await tick();
+      io!([{ isIntersecting: true }]);
+      await tick();
+      expect(container.querySelectorAll("source")).toHaveLength(2);
+      expect(playSpy).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe("poster and fade-in", () => {
