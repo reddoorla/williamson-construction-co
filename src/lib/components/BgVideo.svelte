@@ -59,10 +59,12 @@
   }
 
   onMount(() => {
-    // Automated browsers (Playwright, headless Chrome, Lighthouse) get the poster and no
-    // video. Our own CI and nightly audits load these pages hundreds of times a month and
-    // were about half of Prismic's 100 GB CDN meter in 11-2026 (P1-119). A person's
-    // browser never sets `navigator.webdriver`, so a visitor sees no change.
+    // Automated browsers (Playwright, headless Chrome; Lighthouse only where it runs
+    // headless, which is not yet shown) get the poster and no video. Our own CI and
+    // nightly audits load these pages hundreds of times a month and were about half of
+    // Prismic's 100 GB CDN meter in 11-2026 (P1-119). A person's browser never sets
+    // `navigator.webdriver`; its one cost there is that the metadata fetch now starts
+    // after hydration rather than at parse, behind the poster.
     if (navigator.webdriver) return;
     sourcesOn = true;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)");

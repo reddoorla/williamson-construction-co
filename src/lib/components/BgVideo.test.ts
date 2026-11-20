@@ -191,9 +191,15 @@ describe("BgVideo", () => {
 
     it("plays at mount where there is no IntersectionObserver", async () => {
       delete (window as { IntersectionObserver?: unknown }).IntersectionObserver;
+      let sourcesAtPlay = -1;
+      playSpy.mockImplementation(function (this: HTMLMediaElement) {
+        sourcesAtPlay = this.querySelectorAll("source").length;
+        return Promise.resolve();
+      });
       render(BgVideo, { props });
       await tick();
       expect(playSpy).toHaveBeenCalledTimes(1);
+      expect(sourcesAtPlay).toBe(2);
     });
   });
 
@@ -215,7 +221,9 @@ describe("BgVideo", () => {
   describe("automated browsers (P1-119)", () => {
     const setWebdriver = (value: boolean) =>
       Object.defineProperty(window.navigator, "webdriver", { value, configurable: true });
-    afterEach(() => setWebdriver(false));
+    afterEach(() => {
+      delete (window.navigator as unknown as { webdriver?: boolean }).webdriver;
+    });
 
     it("gives an automated browser the poster and no video, so it never fetches the file", async () => {
       setWebdriver(true);
