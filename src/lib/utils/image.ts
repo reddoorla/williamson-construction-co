@@ -1,5 +1,5 @@
 /**
- * Helpers for serving responsively-sized Prismic (imgix) images.
+ * Helpers for serving responsively-sized Prismic and Unsplash (imgix) images.
  *
  * Prismic image URLs are imgix URLs, so appending `w`/`auto`/`q` query params
  * makes the CDN return a correctly-sized, modern-format (WebP/AVIF) image.

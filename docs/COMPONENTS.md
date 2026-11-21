@@ -85,7 +85,7 @@ source. It is the fastest way to recognise what a thing does.
 | [`turnstile.ts`](../src/lib/turnstile.ts) | `loadTurnstile` | — | Cloudflare Turnstile explicit-render helper |
 | [`countup.ts`](../src/lib/utils/countup.ts) | `formatCount` | 6 |  |
 | [`createUniqueId.ts`](../src/lib/utils/createUniqueId.ts) | `createUniqueId` | 2 |  |
-| [`image.ts`](../src/lib/utils/image.ts) | `DEFAULT_IMAGE_WIDTHS`, `isPrismicImageUrl`, `isResizableImageUrl`, `imgix`, `srcset` | 20 | Helpers for serving responsively-sized Prismic (imgix) images |
+| [`image.ts`](../src/lib/utils/image.ts) | `DEFAULT_IMAGE_WIDTHS`, `isPrismicImageUrl`, `isResizableImageUrl`, `imgix`, `srcset` | 20 | Helpers for serving responsively-sized Prismic and Unsplash (imgix) images |
 | [`instantNavScroll.ts`](../src/lib/utils/instantNavScroll.ts) | `disableSmoothScroll`, `restoreSmoothScroll` | 5 |  |
 | [`preNavIntercept.ts`](../src/lib/utils/preNavIntercept.ts) | `shouldIntercept` | 11 |  |
 | [`richTextHeadings.ts`](../src/lib/utils/richTextHeadings.ts) | `RT_HEADING_CTX`, `defaultLevel`, `buildHeadingLevelMap` | 9 | Editors author arbitrary heading levels inside Prismic rich-text bodies (heading1–6 are all enabled in the slice models) |
