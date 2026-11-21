@@ -1187,6 +1187,25 @@ The fleet's nightly form test looked for a form only at `/contact` and `/`. This
 
 Test change: the /health test's exact `forms` shape gains `paths`, because the declaration is the behaviour this PR adds. `pnpm verify` passes, with 135 Playwright tests.
 
+## 2026-11-20 — Background videos are not served to automated browsers (P1-119, branch `claude/p1-119-no-video-under-automation`)
+
+Prismic warned on 11-20 that the `williamson-construction` repository had used 80 of its 100 GB CDN bandwidth this month. The audit (reddoor-workspace `audits/2026-11-20-williamson-cdn-bandwidth/report.md`) found that our own automation was the largest measured share. This repo's CI ran 82 times since 11-01, and each run's `@smoke` suite pulled 316 MB from Prismic (277 MB of it video), with the a11y audit adding 40 MB. That is about 29 GB. The nightly `fleet-smoke` (the same suite, 20 runs) and `fleet-lighthouse` (browser and Lighthouse audits) add about 12 GB more. GA4's 871 human page views explain about 6 to 7.5 GB at most.
+
+`BgVideo` now renders its `<source>` elements only in the browser, after mount, and only when `navigator.webdriver` is false. Playwright and headless Chrome set that flag; a person's browser does not. Whether the nightly Lighthouse run sets it is not shown: lhci's chrome-launcher passes only `--no-sandbox` as root, so it holds only if that Chrome runs headless. Check one nightly run's `network-requests` audit for `.mp4`/`.webm` before counting that share as saved. The server markup carries no `<source>` at all, because one in the HTML starts a `preload="metadata"` fetch at parse time, before any script can check anything. An automated browser gets the poster and no play control. Measured on this branch through a byte-counting proxy: the `@smoke` suite's video bytes went from 276.9 MB to 0.7 MB, and all 135 tests passed. A browser launched with `--disable-blink-features=AutomationControlled` (webdriver false) still got three sources and was playing `/services` at 6.9 s.
+
+Mutations run against the new tests, each red: dropping the webdriver check (1 failed); rendering the sources in the server markup again (2 failed); inverting the check (20 failed); attaching sources but skipping only `play()` under webdriver (1 failed).
+
+Costs worth knowing:
+
+- This repo's Playwright tests no longer exercise real video playback; the unit tests in `BgVideo.test.ts` still do.
+- Lighthouse now scores the home page without its videos, so its performance number reads better than a visitor's experience.
+- A no-JS visitor already saw only the poster; a `BgVideo` with no poster and no JS now shows an empty box instead of the first frame. Both current callers pass a poster.
+- A visitor's metadata fetch now starts after hydration rather than at parse, so the first frame comes a little later, behind the poster. Not measured.
+- No real-browser test exercises the visitor branch now (hydration of the control, the observer, `play()`): Playwright sets webdriver, so the component returns early. Filed as an issue with the cheap fix (a `@smoke` test that unsets webdriver in an init script and aborts media requests).
+- The 0.7 MB left on the CDN host in the measured run is not attributed; that host also serves the Prismic API (`/api/v2`), which the dev server and the slice simulator call.
+
+The lasting fix is moving these files off Prismic: the operator chose to copy the 9 played files to R2 once the `reddoor-video` bucket exists (Mon 11-23). Monday's go-live alone covers only reddoorla.com.
+
 ## 2026-11-21 — Unsplash photos are allowed by the CSP and sized like Prismic's (#65, `claude/unsplash-img-src` into `staging`)
 
 Every Prismic image field has an Unsplash tab, and a photo picked there is served from `images.unsplash.com`, not `images.prismic.io`. This site's `img-src` did not allow that host, so the first photo an editor picked from that tab would have rendered as its alt text alone: no warning in Prismic, `naturalWidth` 0 in the browser. Beachfront shipped exactly that on 11-20 (an article hero showed only its alt text), and the fleet audit that followed (reddoor-workspace `audits/2026-11-20-unsplash-csp-fleet-gap/report.md`) found five sites with the same gap, this one among them. Nothing here was broken yet; the live williamson-construction.com homepage carried no Unsplash URL when I re-read its `img-src` at 10:08am PT.

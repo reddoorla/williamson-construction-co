@@ -94,8 +94,10 @@
                 font-size="18"
                 text-anchor="middle"
                 dominant-baseline="central"
-                aria-hidden="true">{i + 1}</text
+                aria-hidden="true"
               >
+                {i + 1}
+              </text>
             </g>
           {/each}
         </svg>
@@ -118,17 +120,18 @@
             ] ?? 'pr-[8%]'}"
           >
             <div class="flex h-20 w-20 items-center justify-center rounded-full bg-gold">
-              <span class="-mt-4 text-[3rem] leading-5 text-navy" aria-hidden="true"
-                >{active + 1}</span
-              >
+              <span class="-mt-4 text-[3rem] leading-5 text-navy" aria-hidden="true">
+                {active + 1}
+              </span>
             </div>
             <div>
               <h3 class="wc-h2 text-left text-white">{step.title}</h3>
               <p class="mb-[10px] text-[1.5rem] leading-[1.6em] text-white">{step.body}</p>
             </div>
             <div class="mt-6 flex gap-8 pt-6 max-[992px]:flex-wrap">
-              {#if first && step.button_label}<WcButton href={first}>{step.button_label}</WcButton
-                >{/if}
+              {#if first && step.button_label}<WcButton href={first}>
+                  {step.button_label}
+                </WcButton>{/if}
               {#if second && step.button2_label}
                 <WcButton href={second} variant="outline-light">{step.button2_label}</WcButton>
               {/if}
