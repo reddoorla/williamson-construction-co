@@ -35,9 +35,9 @@
 {#if buttons.length > 0}
   <div class="flex flex-wrap {gap} {passedClasses}">
     {#each buttons as button, i (i)}
-      <WcButton href={button.href} variant={pick(button.item.button_style)} {grounds}
-        >{button.label}</WcButton
-      >
+      <WcButton href={button.href} variant={pick(button.item.button_style)} {grounds}>
+        {button.label}
+      </WcButton>
     {/each}
   </div>
 {/if}

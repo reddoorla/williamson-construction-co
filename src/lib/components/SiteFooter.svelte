@@ -24,8 +24,9 @@
               <a
                 href={link.href}
                 class="inline-block rounded-[10px] p-6 text-[1.2rem] leading-5 font-medium text-black"
-                >{link.label}</a
               >
+                {link.label}
+              </a>
             </li>
           {/each}
         </ul>
