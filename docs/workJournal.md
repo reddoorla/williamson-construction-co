@@ -1205,3 +1205,13 @@ Costs worth knowing:
 - The 0.7 MB left on the CDN host in the measured run is not attributed; that host also serves the Prismic API (`/api/v2`), which the dev server and the slice simulator call.
 
 The lasting fix is moving these files off Prismic: the operator chose to copy the 9 played files to R2 once the `reddoor-video` bucket exists (Mon 11-23). Monday's go-live alone covers only reddoorla.com.
+
+## 2026-11-21 — Unsplash photos are allowed by the CSP and sized like Prismic's (#65, `claude/unsplash-img-src` into `staging`)
+
+Every Prismic image field has an Unsplash tab, and a photo picked there is served from `images.unsplash.com`, not `images.prismic.io`. This site's `img-src` did not allow that host, so the first photo an editor picked from that tab would have rendered as its alt text alone: no warning in Prismic, `naturalWidth` 0 in the browser. Beachfront shipped exactly that on 11-20 (an article hero showed only its alt text), and the fleet audit that followed (reddoor-workspace `audits/2026-11-20-unsplash-csp-fleet-gap/report.md`) found five sites with the same gap, this one among them. Nothing here was broken yet; the live williamson-construction.com homepage carried no Unsplash URL when I re-read its `img-src` at 10:08am PT.
+
+The change is reddoorla/beachfront-dentistry#152 ported: the host in `sveltekit.config.js`'s `img-src`, a kit-config test that reads the options kit actually receives, and `imgix()`/`srcset()` widened from Prismic-only to Prismic or Unsplash, because a picked Unsplash URL carries no width and serves the full original. Unsplash is imgix-backed, so the same `w`/`auto` params apply; Beachfront's hero went from 1,545,274 B to 565,435 B. `isPrismicImageUrl` is unchanged, so an Unsplash og:image still goes out as stored.
+
+Mutations: dropping the host turns the new kit-config test red; making the sizing Prismic-only again turns the two Unsplash image tests red. Review round 1 (Opus) was clean: one minor, filed as #66, and one nit (the module header still said Prismic only), folded in. The unit suite passes 887; lint, svelte-check and build pass locally, and CI ran the rest.
+
+One minor stays open, filed rather than fixed: a picked Unsplash URL carries `fm=jpg`, which in imgix beats `auto=format`, so these photos are sized and compressed but never served as WebP or AVIF.
