@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "counts": {
+    "src/lib/components/BgVideo.svelte": {
+      "copy\tPause background video": 1,
+      "copy\tPlay background video": 1
+    },
+    "src/lib/components/Field.svelte": {
+      "copy\t(required)": 1
+    },
+    "src/lib/components/Footer.svelte": {
+      "copy\tCompany Name": 1,
+      "copy\tFacebook": 1,
+      "copy\tInstagram": 1,
+      "copy\tLinkedIn": 2,
+      "copy\tPinterest": 1,
+      "copy\tReddit": 1,
+      "copy\tTwitter": 1,
+      "copy\tYouTube": 1
+    },
+    "src/lib/components/IntakeFormFields.svelte": {
+      "button\tSending…": 1,
+      "button\tSubmit": 1,
+      "copy\tmarks a required field.": 1
+    },
+    "src/lib/components/LandscapeModal.svelte": {
+      "heading\tPlease Switch to Portrait Mode": 1
+    },
+    "src/lib/components/Nav.svelte": {
+      "alt\tHome": 1,
+      "copy\tClose menu": 2,
+      "copy\tLogo": 1,
+      "copy\tMenu": 2,
+      "copy\tOpen menu": 2,
+      "link\t/": 2
+    },
+    "src/lib/components/PrivacyNotice.svelte": {
+      "copy\tPrivacy Policy": 1,
+      "copy\tWe use what you send to reply to you and to filter spam. See our": 1
+    },
+    "src/lib/components/ProjectView.svelte": {
+      "copy\t${…} gallery": 1,
+      "copy\t${…} video": 1,
+      "heading\tScope of Work": 1
+    },
+    "src/lib/components/SiteFooter.svelte": {
+      "copy\t, All Rights Reserved": 1,
+      "copy\tFooter": 1,
+      "copy\tPrivacy Policy": 1,
+      "copy\tWilliamson Construction, home": 1,
+      "copy\t© Williamson Construction": 1,
+      "image\t/images/wcc-logo.svg": 1,
+      "link\t/": 1
+    },
+    "src/lib/components/SiteHeader.svelte": {
+      "copy\tMain": 1,
+      "copy\tMenu": 2,
+      "copy\tWilliamson Construction, home": 1,
+      "image\t/images/close-icon_white.svg": 1,
+      "image\t/images/menu-icon_white.svg": 1,
+      "image\t/images/wcc-header-logo.svg": 1,
+      "link\t/": 1
+    },
+    "src/lib/components/Slider.svelte": {
+      "copy\t${…} of ${…}": 2,
+      "copy\tGo to slide ${…}": 1,
+      "copy\tNext slide": 1,
+      "copy\tPause slides": 1,
+      "copy\tPlay slides": 1,
+      "copy\tPrevious slide": 1,
+      "copy\tSlide": 1,
+      "copy\tSlides": 1,
+      "copy\tof": 2,
+      "copy\tthrough": 1
+    },
+    "src/lib/contact.ts": {
+      "copy\tAbout": 2,
+      "copy\tContact": 1,
+      "copy\tContact Us": 1,
+      "copy\tHome": 1,
+      "copy\tJoin the Team": 1,
+      "copy\tProjects": 2,
+      "copy\tServices": 2,
+      "email\tinfo@williamson-construction.com": 1,
+      "link\t/": 1,
+      "link\t/about-us": 2,
+      "link\t/contact": 2,
+      "link\t/join-the-team": 1,
+      "link\t/projects": 2,
+      "link\t/services": 2,
+      "phone\t310.570.7278": 1,
+      "phone\ttel:3105707278": 1
+    },
+    "src/lib/intake.ts": {
+      "copy\tCompany Name": 1,
+      "copy\tEmail": 1,
+      "copy\tFor example, 5K to 100K": 1,
+      "copy\tInsurance": 1,
+      "copy\tLicense Number": 1,
+      "copy\tPhone": 1,
+      "copy\tPrevailing Wage": 1,
+      "copy\tProject Size": 1,
+      "copy\tTrade": 1,
+      "copy\tUnion": 1
+    },
+    "src/lib/page-load.ts": {
+      "copy\tPage not found": 1
+    },
+    "src/lib/projects.ts": {
+      "copy\tProject not found": 1
+    },
+    "src/lib/seo.ts": {
+      "copy\tWilliamson Construction": 1,
+      "copy\tWilliamson Construction builds and maintains the healthcare and education spaces that teach and heal our community, from planning to project closeout.": 1
+    },
+    "src/lib/site-config.json": {
+      "email\tinfo@williamson-construction.com": 1
+    },
+    "src/lib/slices/ClientLogos/index.svelte": {
+      "copy\tClients": 1
+    },
+    "src/lib/slices/IntakeForm/index.svelte": {
+      "copy\tEmail us at": 1,
+      "copy\tQuestions? Email us at": 1
+    },
+    "src/lib/slices/OurPlan/index.svelte": {
+      "copy\tStep ${…}: ${…}": 1,
+      "copy\tSteps of our plan": 1
+    },
+    "src/lib/slices/PhaseBubbles/index.svelte": {
+      "copy\tPhase ${…}:": 1
+    },
+    "src/lib/slices/PhaseSlider/index.svelte": {
+      "copy\tOur phases": 1
+    },
+    "src/lib/slices/ProjectList/index.svelte": {
+      "copy\tScope of Work": 1,
+      "copy\tView Project": 1
+    },
+    "src/lib/slices/QuoteSlider/index.svelte": {
+      "copy\tTestimonials": 1
+    },
+    "src/routes/+error.svelte": {
+      "copy\tGo home": 1,
+      "link\t/": 1
+    },
+    "src/routes/+layout.svelte": {
+      "copy\tSkip to main content": 1
+    },
+    "src/routes/[[preview=preview]]/+page.server.ts": {
+      "copy\tPage not found": 1
+    },
+    "src/routes/[[preview=preview]]/[uid]/+page.server.ts": {
+      "copy\tPage not found": 1
+    },
+    "src/routes/[[preview=preview]]/projects/[uid]/+page.server.ts": {
+      "copy\tProject not found": 1
+    },
+    "src/routes/join-the-team/+page.server.ts": {
+      "copy\tPage not found": 1
+    }
+  }
+}
